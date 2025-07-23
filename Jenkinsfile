@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'eclipse-temurin:22-alpine'
+                    image 'eclipse-temurin:17-alpine'
                     reuseNode true
                 }
             }
