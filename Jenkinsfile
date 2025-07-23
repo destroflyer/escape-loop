@@ -18,6 +18,10 @@ pipeline {
                     reuseNode true
                 }
             }
+            environment {
+                GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
+                ANDROID_SDK_HOME = "${WORKSPACE}/.android"
+            }
             steps {
                 sh './gradlew lwjgl3:dist'
             }
