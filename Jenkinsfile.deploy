@@ -19,7 +19,6 @@ pipeline {
             agent {
                 docker {
                     image 'eclipse-temurin:17-alpine'
-                    args '-v /home/destroflyer/java:/home/destroflyer/java'
                     reuseNode true
                 }
             }
