@@ -1,12 +1,12 @@
 package com.destroflyer.escapeloop.states;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.PolygonRegion;
-import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.EarClippingTriangulator;
@@ -19,34 +19,31 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.utils.Array;
 import com.destroflyer.escapeloop.Main;
+import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.Character;
+import com.destroflyer.escapeloop.game.Platform;
 import com.destroflyer.escapeloop.game.Player;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class MapRenderer {
+public class MapRenderState extends State {
 
-    public MapRenderer(Map map) {
-        this.map = map;
-        spriteBatch = new SpriteBatch();
-        shapeRenderer = new ShapeRenderer();
-        polygonSpriteBatch = new PolygonSpriteBatch();
-        backgroundTexture = new Texture("./maps/" + map.getName() + "/_composite.png");
+    public MapRenderState(MapState mapState) {
+        this.mapState = mapState;
     }
-    private Map map;
-    private SpriteBatch spriteBatch;
-    private ShapeRenderer shapeRenderer;
-    private PolygonSpriteBatch polygonSpriteBatch;
+    private MapState mapState;
     private Texture backgroundTexture;
     @Getter
     @Setter
     private boolean debug;
 
+    @Override
     public void render() {
-        drawBackground();
+        Map map = mapState.getMap();
+        drawBackground(map);
         for (MapObject mapObject : map.getObjects()) {
             if (!(mapObject instanceof Character)) {
                 drawMapObject(mapObject);
@@ -59,7 +56,10 @@ public class MapRenderer {
         }
     }
 
-    private void drawBackground() {
+    private void drawBackground(Map map) {
+        if (backgroundTexture == null) {
+            backgroundTexture = new Texture("./maps/" + map.getName() + "/_composite.png");
+        }
         spriteBatch.begin();
         spriteBatch.draw(backgroundTexture, 0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
         spriteBatch.end();
@@ -163,10 +163,12 @@ public class MapRenderer {
             if (fixtureIndex == 1) {
                 return character.isOnGround() ? new Color(1, 1, 0, 0.5f) : new Color(0, 1, 0, 0.5f);
             } else {
-                return (character == map.getPlayer()) ? new Color(1, 0, 0, alpha) : new Color(0, 1, 0, alpha);
+                return (character == mapState.getMap().getPlayer()) ? new Color(1, 0, 0, alpha) : new Color(0, 1, 0, alpha);
             }
+        } else if (mapObject instanceof Platform) {
+            return new Color(0.05f, 0.05f, 0.05f, alpha);
         }
-        return new Color(0.05f, 0.05f, 0.05f, alpha);
+        return new Color(0, 0, 1, alpha);
     }
 
     private float getAlpha(MapObject mapObject) {
@@ -179,14 +181,24 @@ public class MapRenderer {
         return 1;
     }
 
-    public void resize(Matrix4 projectionMatrix) {
-        spriteBatch.setProjectionMatrix(projectionMatrix);
-        shapeRenderer.setProjectionMatrix(projectionMatrix);
-        polygonSpriteBatch.setProjectionMatrix(projectionMatrix);
+    private int convertMapSize(float coordinate) {
+        float mapToPanel = (Main.VIEWPORT_WIDTH / mapState.getMap().getWidth());
+        return Math.round(coordinate * mapToPanel);
     }
 
-    private int convertMapSize(float coordinate) {
-        float mapToPanel = (Main.VIEWPORT_WIDTH / map.getWidth());
-        return Math.round(coordinate * mapToPanel);
+    @Override
+    public InputProcessor createInputProcessor() {
+        return new InputAdapter() {
+
+            @Override
+            public boolean keyDown(int keycode) {
+                switch (keycode) {
+                    case Input.Keys.F1:
+                        debug = !debug;
+                        break;
+                }
+                return false;
+            }
+        };
     }
 }

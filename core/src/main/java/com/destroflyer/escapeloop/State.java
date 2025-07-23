@@ -1,6 +1,9 @@
 package com.destroflyer.escapeloop;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.PolygonSpriteBatch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 
 import java.util.ArrayList;
@@ -12,8 +15,13 @@ public class State {
     protected Main main;
     @Getter
     protected ArrayList<State> childStates = new ArrayList<>();
+    @Getter
+    protected InputProcessor inputProcessor;
+    protected SpriteBatch spriteBatch = new SpriteBatch();
+    protected ShapeRenderer shapeRenderer = new ShapeRenderer();
+    protected PolygonSpriteBatch polygonSpriteBatch = new PolygonSpriteBatch();
 
-    public void createIfNeeded(Main main) {
+    public void onAdd(Main main) {
         if (this.main == null) {
             this.main = main;
             create();
@@ -21,12 +29,11 @@ public class State {
     }
 
     public void create() {
-
+        inputProcessor = createInputProcessor();
     }
 
-    public void switchToState(State state) {
-        main.removeState(this);
-        main.addState(state);
+    protected InputProcessor createInputProcessor() {
+        return null;
     }
 
     public void update(float tpf) {
@@ -37,15 +44,20 @@ public class State {
 
     }
 
-    public void resize(Matrix4 projectionMatrix) {
+    public void switchToState(State state) {
+        main.removeState(this);
+        main.addState(state);
+    }
 
+    public void resize(Matrix4 projectionMatrix) {
+        spriteBatch.setProjectionMatrix(projectionMatrix);
+        shapeRenderer.setProjectionMatrix(projectionMatrix);
+        polygonSpriteBatch.setProjectionMatrix(projectionMatrix);
     }
 
     public void dispose() {
-
-    }
-
-    public InputProcessor getInputProcessor() {
-        return null;
+        spriteBatch.dispose();
+        shapeRenderer.dispose();
+        polygonSpriteBatch.dispose();
     }
 }

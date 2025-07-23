@@ -16,12 +16,18 @@ public class Player extends Character {
         textureSize = new Vector2(1, 1);
     }
     private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadAnimation("./textures/orange_robot/idle.png", 4, 2, 5, 0.2f);
-    private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadAnimation("./textures/orange_robot/run.png", 5, 1, 0.15f);
+    public static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadAnimation("./textures/orange_robot/run.png", 5, 1, 0.15f);
     private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadAnimation("./textures/orange_robot/flying.png", 2, 1, 0.2f);
     private static final Animation<TextureRegion> ANIMATION_ATTACK_HORIZONTAL = TextureUtil.loadAnimation("./textures/orange_robot/attack_horizontal.png", 2, 2, 0.1f);
     private static final Animation<TextureRegion> ANIMATION_ATTACK_VERTICAL = TextureUtil.loadAnimation("./textures/orange_robot/attack_vertical.png", 2, 2, 0.1f);
     @Getter
     private boolean characterCollisionsEnabled;
+
+    @Override
+    public void createBody() {
+        super.createBody();
+        characterFixture.getFilterData().categoryBits |= Collisions.PLAYER;
+    }
 
     @Override
     public void update(float tpf) {

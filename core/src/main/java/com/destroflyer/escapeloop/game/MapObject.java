@@ -24,7 +24,7 @@ public abstract class MapObject {
     @Getter
     protected Vector2 textureOffset = new Vector2();
     @Getter
-    protected Vector2 textureSize = new Vector2();
+    protected Vector2 textureSize = new Vector2(Map.TILE_SIZE, Map.TILE_SIZE);
     private Animation<TextureRegion> oneTimeAnimation;
     private float oneTimeAnimationStartTime;
 

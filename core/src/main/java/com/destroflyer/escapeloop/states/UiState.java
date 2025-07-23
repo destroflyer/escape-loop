@@ -17,10 +17,10 @@ public abstract class UiState extends State {
     public void create() {
         super.create();
         stage = new Stage(main.getViewport());
-        create(main.getSkin(), Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
+        create(main.getSkin());
     }
 
-    protected abstract void create(Skin skin, float width, float height);
+    protected abstract void create(Skin skin);
 
     public void update(float tpf) {
         stage.act(tpf);

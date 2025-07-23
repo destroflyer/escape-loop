@@ -26,4 +26,11 @@ public class TextureUtil {
         }
         return new Animation<>(frameDuration, frames);
     }
+
+    public static TextureRegion loadTextureRegion(String path, int cols, int rows, int x, int y) {
+        Texture texture = new Texture(path);
+        int frameWidth = texture.getWidth() / cols;
+        int frameHeight = texture.getHeight() / rows;
+        return new TextureRegion(texture, x * frameWidth, y * frameHeight, frameWidth, frameHeight);
+    }
 }

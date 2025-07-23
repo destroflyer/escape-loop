@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Json;
+import com.destroflyer.escapeloop.game.Finish;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.Platform;
 import com.destroflyer.escapeloop.game.loader.json.MapData;
@@ -21,8 +22,8 @@ public class MapLoader {
         loadData();
         loadTerrain();
     }
+    public static final String DIRECTORY = "./maps/";
     private static final int TILE_SIZE_DATA = 16;
-    private static final float TILE_SIZE_MAP = 0.5f;
     private Map map;
     private MapData data;
     private ArrayList<int[]> terrain;
@@ -60,13 +61,18 @@ public class MapLoader {
             for (int tileX = 0; tileX < row.length; tileX++) {
                 int gridValue = row[tileX];
                 if (gridValue == 1) {
-                    float mapX = ((tileX + 0.5f) * TILE_SIZE_MAP);
-                    float mapY = ((((terrain.size() - 1) - tileY) + 0.5f) * TILE_SIZE_MAP);
-                    Platform platform = new Platform(BodyDef.BodyType.StaticBody, TILE_SIZE_MAP, TILE_SIZE_MAP);
+                    float mapX = ((tileX + 0.5f) * Map.TILE_SIZE);
+                    float mapY = ((((terrain.size() - 1) - tileY) + 0.5f) * Map.TILE_SIZE);
+                    Platform platform = new Platform(BodyDef.BodyType.StaticBody, Map.TILE_SIZE, Map.TILE_SIZE);
                     map.addObject(platform);
                     platform.getBody().setTransform(new Vector2(mapX, mapY), 0);
                 }
             }
+        }
+        for (MapDataEntity finishEntity : data.getEntities().getFinish()) {
+            Finish finish = new Finish();
+            map.addObject(finish);
+            finish.getBody().setTransform(getMapPosition(finishEntity), 0);
         }
     }
 
@@ -83,14 +89,14 @@ public class MapLoader {
     }
 
     private float toMapX(int dataX) {
-        return toMapSize(dataX + 0.5f);
+        return toMapSize(dataX + (TILE_SIZE_DATA / 2f));
     }
 
     private float toMapY(int dataY) {
-        return toMapSize(((data.getHeight() - TILE_SIZE_DATA) - dataY) + 0.5f);
+        return toMapSize(((data.getHeight() - TILE_SIZE_DATA) - dataY) + (TILE_SIZE_DATA / 2f));
     }
 
     private float toMapSize(float dataSize) {
-        return dataSize * (TILE_SIZE_MAP / TILE_SIZE_DATA);
+        return dataSize * (Map.TILE_SIZE / TILE_SIZE_DATA);
     }
 }

@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 public class Character extends MapObject {
 
-    private static final float RADIUS = 0.24f;
+    // A bit smaller so characters can both walk through and jump in narrow paths
+    private static final float RADIUS = ((Map.TILE_SIZE / 2) - 0.015f);
     private static final float FOOT_SENSOR_HEIGHT = 0.05f;;
 
     protected Fixture characterFixture;
@@ -46,7 +47,7 @@ public class Character extends MapObject {
 
         Filter characterFilter = new Filter();
         characterFilter.categoryBits = Collisions.CHARACTER;
-        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER;
+        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH;
         characterFixture.setFilterData(characterFilter);
 
         PolygonShape footSensorShape = new PolygonShape();

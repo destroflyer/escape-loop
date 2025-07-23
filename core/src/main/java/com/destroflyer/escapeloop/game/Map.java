@@ -23,6 +23,7 @@ public class Map {
     private static final Vector2 GRAVITY = new Vector2(0, -9.81f);
     private static final int VELOCITY_ITERATIONS = 6;
     private static final int POSITIONS_ITERATIONS = 2;
+    public static final float TILE_SIZE = 0.5f;
     @Getter
     private String name;
     private MapLoader mapLoader;
@@ -38,9 +39,16 @@ public class Map {
     private Player player;
     private ArrayList<PlayerInput> currentPlayerInputs = new ArrayList<>();
     private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
+    @Getter
+    private boolean finished;
 
     public void startNextRun() {
         playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerInputs)));
+        reset();
+    }
+
+    public void onDeath() {
+        playerPasts.clear();
         reset();
     }
 
@@ -48,6 +56,7 @@ public class Map {
         time = 0;
         objects.clear();
         disposeWorldContent();
+        finished = false;
 
         width = mapLoader.getWidth();
         mapLoader.loadObjects();
@@ -93,12 +102,19 @@ public class Map {
         for (MapObject mapObject : objects) {
             mapObject.update(tpf);
         }
+        if (player.getBody().getPosition().y < -1) {
+            onDeath();
+        }
     }
 
     public void applyInput(PlayerInput input) {
         input.setTime(time);
         input.apply(player);
         currentPlayerInputs.add(input);
+    }
+
+    public void onFinish() {
+        finished = true;
     }
 
     public MapObject getMapObject(Body body) {

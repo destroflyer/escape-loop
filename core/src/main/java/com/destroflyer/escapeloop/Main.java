@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.destroflyer.escapeloop.states.MainMenuState;
+import com.destroflyer.escapeloop.states.MapSelectionState;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,11 @@ public class Main extends ApplicationAdapter {
     @Getter
     private Skin skin;
     @Getter
-    private MainMenuState mainMenu;
+    private MainMenuState mainMenuState;
+    @Getter
+    private MapSelectionState mapSelectionState;
+    @Getter
+    private float time;
 
     @Override
     public void create() {
@@ -38,12 +43,14 @@ public class Main extends ApplicationAdapter {
 
         skin = new Skin(Gdx.files.internal("vis/uiskin.json"));
 
-        mainMenu = new MainMenuState();
-        addState(mainMenu);
+        mainMenuState = new MainMenuState();
+        mapSelectionState = new MapSelectionState();
+        addState(mainMenuState);
     }
 
     public void addState(State state) {
-        state.createIfNeeded(this);
+        state.onAdd(this);
+        notifyStateOfResize(state);
         states.add(state);
         InputProcessor inputProcessor = state.getInputProcessor();
         if (inputProcessor != null) {
@@ -68,7 +75,8 @@ public class Main extends ApplicationAdapter {
     @Override
     public void render() {
         float tpf = Gdx.graphics.getDeltaTime();
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
+        time += tpf;
+        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1);
         for (State state : states) {
             state.update(tpf);
             state.render();
@@ -80,8 +88,12 @@ public class Main extends ApplicationAdapter {
         super.resize(width, height);
         viewport.update(width, height, true);
         for (State state : states) {
-            state.resize(viewport.getCamera().combined);
+            notifyStateOfResize(state);
         }
+    }
+
+    private void notifyStateOfResize(State state) {
+        state.resize(viewport.getCamera().combined);
     }
 
     @Override

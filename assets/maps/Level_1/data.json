@@ -1,0 +1,44 @@
+{
+	"identifier": "Level_1",
+	"uniqueIdentifer": "f7b422e0-5e50-11f0-ba66-7131b4f056b4",
+	"x": -1,
+	"y": -1,
+	"width": 512,
+	"height": 288,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"Background.png",
+		"Terrain.png",
+		"Decoration.png"
+	],
+	"entities": {
+		"Player": [
+			{
+				"id": "Player",
+				"iid": "4b6882f0-5e50-11f0-ba66-dbf492eabef4",
+				"layer": "Entities",
+				"x": 192,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "cb076c20-5e50-11f0-ba66-b5abbc918c1d",
+				"layer": "Entities",
+				"x": 352,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 14120515,
+				"customFields" : {}
+			}
+		]
+	}
+}
