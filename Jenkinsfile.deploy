@@ -39,7 +39,7 @@ pipeline {
                 // Client
                 sh 'rm -rf "$CLIENT"'
                 sh 'mkdir "$CLIENT"'
-                sh 'mv /home/destroflyer/java/jdk-22.0.2" "$CLIENT/java"'
+                sh 'mv /home/destroflyer/java/jdk-22.0.2 "$CLIENT/java"'
                 sh 'mv "lwjgl3/build/libs/Escape Loop-1.0.0.jar" "$CLIENT/escape-loop.jar"'
                 sh 'mv assets/* "$CLIENT"'
                 sh 'rm "$CLIENT/assets.txt"'
