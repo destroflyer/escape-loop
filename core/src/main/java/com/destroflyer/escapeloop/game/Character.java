@@ -1,0 +1,136 @@
+package com.destroflyer.escapeloop.game;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+
+import lombok.Getter;
+
+import java.util.ArrayList;
+
+public class Character extends MapObject {
+
+    private static final float RADIUS = 0.24f;
+    private static final float FOOT_SENSOR_HEIGHT = 0.05f;;
+
+    protected Fixture characterFixture;
+    protected Fixture footSensorFixture;
+    protected int walkDirection;
+    @Getter
+    private int viewDirection = 1;
+    private float walkSpeed = 2.1f;
+    private float airAcceleration = 0.05f;
+    private float jumpForce = 0.9f;
+    private float remainingGroundPlatformIgnoreTime;
+    private ArrayList<Platform> groundPlatforms = new ArrayList<>();
+
+    @Override
+    public void createBody() {
+        BodyDef characterBodyDef = new BodyDef();
+        characterBodyDef.type = BodyDef.BodyType.DynamicBody;
+        body = map.getWorld().createBody(characterBodyDef);
+        body.setFixedRotation(true);
+        body.setLinearDamping(0.2f);
+
+        CircleShape characterShape = new CircleShape();
+        characterShape.setRadius(RADIUS);
+        FixtureDef characterFixtureDef = new FixtureDef();
+        characterFixtureDef.shape = characterShape;
+        characterFixtureDef.density = 1;
+        characterFixture = body.createFixture(characterFixtureDef);
+
+        Filter characterFilter = new Filter();
+        characterFilter.categoryBits = Collisions.CHARACTER;
+        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER;
+        characterFixture.setFilterData(characterFilter);
+
+        PolygonShape footSensorShape = new PolygonShape();
+        footSensorShape.setAsBox(RADIUS / 2, FOOT_SENSOR_HEIGHT / 2, new Vector2(0, (-1 * RADIUS) - (FOOT_SENSOR_HEIGHT / 2)), 0);
+        FixtureDef sensorFixtureDef = new FixtureDef();
+        sensorFixtureDef.shape = footSensorShape;
+        sensorFixtureDef.isSensor = true;
+        footSensorFixture = body.createFixture(sensorFixtureDef);
+
+        Filter sensorFilter = new Filter();
+        sensorFilter.categoryBits = Collisions.CHARACTER_FOOT_SENSOR;
+        sensorFilter.maskBits = Collisions.PLATFORM;
+        footSensorFixture.setFilterData(sensorFilter);
+    }
+
+    @Override
+    public void update(float tpf) {
+        super.update(tpf);
+        Vector2 linearVelocity = new Vector2(body.getLinearVelocity());
+        MapObject groundPlatform = getGroundPlatform();
+        if (groundPlatform != null) {
+            Vector2 groundVelocity = groundPlatform.getBody().getLinearVelocity();
+            if ((remainingGroundPlatformIgnoreTime <= 0) && (groundVelocity.len2() > 0)) {
+                linearVelocity.set(groundPlatform.getBody().getLinearVelocity());
+                linearVelocity.x += walkDirection * walkSpeed;
+            } else {
+                linearVelocity.x = walkDirection * walkSpeed;
+            }
+            body.setLinearVelocity(linearVelocity);
+        } else if (walkDirection != 0) {
+            boolean canStillAccelerate;
+            if (walkDirection == 1) {
+                canStillAccelerate = linearVelocity.x < walkSpeed;
+            } else {
+                canStillAccelerate = linearVelocity.x > (-1 * walkSpeed);
+            }
+            if (canStillAccelerate) {
+                linearVelocity.x += (walkDirection * airAcceleration);
+                body.setLinearVelocity(linearVelocity);
+            }
+        }
+
+        remainingGroundPlatformIgnoreTime = Math.max(0, remainingGroundPlatformIgnoreTime - tpf);
+    }
+
+    @Override
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
+        if ((ownFixture == footSensorFixture) && (mapObject instanceof Platform)) {
+            groundPlatforms.add((Platform) mapObject);
+        }
+    }
+
+    @Override
+    public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+        super.onContactEnd(mapObject, ownFixture, otherFixture, contact);
+        if ((ownFixture == footSensorFixture) && (mapObject instanceof Platform)) {
+            groundPlatforms.remove((Platform) mapObject);
+        }
+    }
+
+    public void setWalkDirection(int walkDirection) {
+        this.walkDirection = walkDirection;
+        if (walkDirection != 0) {
+            viewDirection = walkDirection;
+        }
+    }
+
+    public void jump() {
+        if (isOnGround()) {
+            body.applyLinearImpulse(new Vector2(0, jumpForce), body.getWorldCenter(), true);
+            resetRemainingGroundPlatformIgnoreTime();
+        }
+    }
+
+    public void resetRemainingGroundPlatformIgnoreTime() {
+        remainingGroundPlatformIgnoreTime = 0.1f;
+    }
+
+    public MapObject getGroundPlatform() {
+        return isOnGround() ? groundPlatforms.get(groundPlatforms.size() - 1) : null;
+    }
+
+    public boolean isOnGround() {
+        return groundPlatforms.size() > 0;
+    }
+}
