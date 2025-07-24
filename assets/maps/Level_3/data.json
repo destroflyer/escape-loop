@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_3",
-	"uniqueIdentifer": "09560a80-5e50-11f0-ba66-c773f7b8661d",
+	"uniqueIdentifer": "982784a0-5e50-11f0-ba66-fd13641531f1",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -17,26 +17,26 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "09560a82-5e50-11f0-ba66-7fb2cba705cf",
+				"iid": "982784a2-5e50-11f0-ba66-c50d8e442bef",
 				"layer": "Entities",
-				"x": 448,
-				"y": 80,
+				"x": 272,
+				"y": 176,
 				"width": 16,
 				"height": 16,
-				"color": 14120515,
+				"color": 16707124,
 				"customFields" : {}
 			}
 		],
 		"Player": [
 			{
 				"id": "Player",
-				"iid": "3d04efe0-5e50-11f0-ba66-c17df446272e",
+				"iid": "9827abb0-5e50-11f0-ba66-2bd337cca234",
 				"layer": "Entities",
-				"x": 64,
-				"y": 80,
+				"x": 128,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 12470831,
+				"color": 16217634,
 				"customFields" : {}
 			}
 		]

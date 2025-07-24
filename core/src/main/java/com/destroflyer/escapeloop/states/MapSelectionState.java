@@ -14,27 +14,27 @@ import java.io.File;
 
 public class MapSelectionState extends UiState {
 
-    private Table levels;
+    private Table levelsTable;
 
     @Override
     protected void create(Skin skin) {
-        Label title = new Label("Select a Level", skin);
-        title.setPosition((Main.VIEWPORT_WIDTH / 2f) - (title.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 110);
-        stage.addActor(title);
+        Label titleLabel = new Label("Select a level", skin);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 110);
+        stage.addActor(titleLabel);
 
-        levels = new Table();
-        stage.addActor(levels);
+        levelsTable = new Table();
+        stage.addActor(levelsTable);
 
-        TextButton back = new TextButton("Back", skin);
-        back.setPosition(Main.VIEWPORT_WIDTH - 120, 35);
-        back.addListener(new ClickListener() {
+        TextButton backButton = new TextButton("Back", skin);
+        backButton.setPosition(Main.VIEWPORT_WIDTH - 120, 35);
+        backButton.addListener(new ClickListener() {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 switchToState(main.getMainMenuState());
             }
         });
-        stage.addActor(back);
+        stage.addActor(backButton);
     }
 
     @Override
@@ -44,13 +44,13 @@ public class MapSelectionState extends UiState {
             MapImport.importAllMaps();
         }
 
-        levels.clear();
+        levelsTable.clear();
         int i = 0;
         for (File mapDirectory : new File(MapLoader.DIRECTORY).listFiles()) {
             String mapName = mapDirectory.getName();
             String mapTitle = mapName.replaceAll("_", " ");
             if ((i % 8) == 0) {
-                levels.row();
+                levelsTable.row();
             }
             TextButton level = new TextButton(mapTitle, main.getSkin());
             level.addListener(new ClickListener() {
@@ -63,9 +63,9 @@ public class MapSelectionState extends UiState {
                     switchToState(new MapState(mapName));
                 }
             });
-            levels.add(level).fill().padRight(10).padBottom(10);
+            levelsTable.add(level).fill().padRight(10).padBottom(10);
             i++;
         }
-        levels.setFillParent(true);
+        levelsTable.setFillParent(true);
     }
 }

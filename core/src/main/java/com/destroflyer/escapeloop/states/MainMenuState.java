@@ -15,36 +15,36 @@ public class MainMenuState extends UiState {
 
     @Override
     protected void create(Skin skin) {
-        Label title = new Label("Escape Loop", skin);
-        title.setPosition((Main.VIEWPORT_WIDTH / 2f) - (title.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 110);
-        stage.addActor(title);
+        Label titleLabel = new Label("Escape Loop", skin);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 110);
+        stage.addActor(titleLabel);
 
-        Table menu = new Table();
+        Table menuTable = new Table();
 
-        TextButton play = new TextButton("Play", skin);
-        play.addListener(new ClickListener() {
+        TextButton playButton = new TextButton("Play", skin);
+        playButton.addListener(new ClickListener() {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 switchToState(main.getMapSelectionState());
             }
         });
-        menu.add(play);
+        menuTable.add(playButton);
 
-        TextButton exit = new TextButton("Exit", skin);
-        exit.addListener(new ClickListener() {
+        TextButton exitWorld = new TextButton("Exit", skin);
+        exitWorld.addListener(new ClickListener() {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Gdx.app.exit();
             }
         });
-        menu.add(exit).padLeft(10);
-        menu.setFillParent(true);
-        menu.center();
-        menu.moveBy(0, -130);
+        menuTable.add(exitWorld).padLeft(10);
+        menuTable.setFillParent(true);
+        menuTable.center();
+        menuTable.moveBy(0, -130);
 
-        stage.addActor(menu);
+        stage.addActor(menuTable);
     }
 
     @Override

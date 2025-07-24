@@ -56,9 +56,6 @@ public class Main extends ApplicationAdapter {
         if (inputProcessor != null) {
             inputMultiplexer.addProcessor(inputProcessor);
         }
-        for (State childState : state.getChildStates()) {
-            addState(childState);
-        }
     }
 
     public void removeState(State state) {
@@ -77,7 +74,7 @@ public class Main extends ApplicationAdapter {
         float tpf = Gdx.graphics.getDeltaTime();
         time += tpf;
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1);
-        for (State state : states) {
+        for (State state : states.toArray(new State[0])) {
             state.update(tpf);
             state.render();
         }

@@ -23,7 +23,7 @@
 				"y": 80,
 				"width": 16,
 				"height": 16,
-				"color": 14120515,
+				"color": 16707124,
 				"customFields" : {}
 			},
 			{
@@ -34,7 +34,7 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 14120515,
+				"color": 16707124,
 				"customFields" : {}
 			}
 		],
@@ -47,8 +47,166 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 12470831,
+				"color": 16217634,
 				"customFields" : {}
+			}
+		],
+		"Trampoline": [
+			{
+				"id": "Trampoline",
+				"iid": "895eb720-5e50-11f0-8a41-bb157452a8d8",
+				"layer": "Entities",
+				"x": 192,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 14957380,
+				"customFields" : {}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "07c236f0-5e50-11f0-8a41-c3a1651778d1",
+				"layer": "Entities",
+				"x": 400,
+				"y": 64,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Reach a chest to beat the level!"
+				}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "06bcdf70-5e50-11f0-8a41-130ca8d57276",
+				"layer": "Entities",
+				"x": 400,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": false,
+					"shootCooldown": 1,
+					"patrolHorizontal": {
+						"cx": 19,
+						"cy": 15
+					},
+					"patrolVertical": {
+						"cx": 25,
+						"cy": 13
+					}
+				}
+			}
+		],
+		"Item": [
+			{
+				"id": "Item",
+				"iid": "d64ff3c0-5e50-11f0-8a41-e392194ecfcf",
+				"layer": "Entities",
+				"x": 256,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"item": "Heavy"
+				}
+			},
+			{
+				"id": "Item",
+				"iid": "dbcc8610-5e50-11f0-8a41-8f0cfeb9ec61",
+				"layer": "Entities",
+				"x": 32,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"item": "Knockback"
+				}
+			},
+			{
+				"id": "Item",
+				"iid": "e306f500-5e50-11f0-8a41-2b7667fa16e6",
+				"layer": "Entities",
+				"x": 448,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"item": "Freeze"
+				}
+			},
+			{
+				"id": "Item",
+				"iid": "70d5e7b0-5e50-11f0-8a41-7fdcd6cda586",
+				"layer": "Entities",
+				"x": 288,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"item": "Swap"
+				}
+			},
+			{
+				"id": "Item",
+				"iid": "91dcccd0-5e50-11f0-8a41-397b59ea87d0",
+				"layer": "Entities",
+				"x": 416,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"item": "Damage"
+				}
+			}
+		],
+		"Toggle": [
+			{
+				"id": "Toggle",
+				"iid": "fa556b80-5e50-11f0-8a41-7b98c28bfdb3",
+				"layer": "Entities",
+				"x": 224,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"gate": {
+						"entityIid": "629f8020-5e50-11f0-8a41-05cf3e3c8bc6",
+						"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
+						"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
+						"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+					},
+					"autoRevertDuration": null
+				}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "629f8020-5e50-11f0-8a41-05cf3e3c8bc6",
+				"layer": "Entities",
+				"x": 432,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 9149364,
+				"customFields": {
+					"end": {
+						"cx": 27,
+						"cy": 13
+					}
+				}
 			}
 		]
 	}

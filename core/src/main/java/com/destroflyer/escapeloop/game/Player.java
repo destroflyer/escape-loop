@@ -18,8 +18,8 @@ public class Player extends Character {
     private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadAnimation("./textures/orange_robot/idle.png", 4, 2, 5, 0.2f);
     public static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadAnimation("./textures/orange_robot/run.png", 5, 1, 0.15f);
     private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadAnimation("./textures/orange_robot/flying.png", 2, 1, 0.2f);
-    private static final Animation<TextureRegion> ANIMATION_ATTACK_HORIZONTAL = TextureUtil.loadAnimation("./textures/orange_robot/attack_horizontal.png", 2, 2, 0.1f);
-    private static final Animation<TextureRegion> ANIMATION_ATTACK_VERTICAL = TextureUtil.loadAnimation("./textures/orange_robot/attack_vertical.png", 2, 2, 0.1f);
+    private static final Animation<TextureRegion> ANIMATION_ACTION_HORIZONTAL = TextureUtil.loadAnimation("./textures/orange_robot/action_horizontal.png", 2, 2, 0.1f);
+    private static final Animation<TextureRegion> ANIMATION_ACTION_VERTICAL = TextureUtil.loadAnimation("./textures/orange_robot/action_vertical.png", 2, 2, 0.1f);
     @Getter
     private boolean characterCollisionsEnabled;
 
@@ -60,7 +60,6 @@ public class Player extends Character {
         Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
         body.setLinearVelocity(new Vector2());
         body.applyLinearImpulse(impulse, body.getPosition(), true);
-        otherPlayer.setOneTimeAnimation((Math.abs(impulse.x) > Math.abs(impulse.y)) ? ANIMATION_ATTACK_HORIZONTAL : ANIMATION_ATTACK_VERTICAL);
     }
 
     @Override
