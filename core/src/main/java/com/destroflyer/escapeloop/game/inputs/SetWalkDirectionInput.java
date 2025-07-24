@@ -1,6 +1,6 @@
 package com.destroflyer.escapeloop.game.inputs;
 
-import com.destroflyer.escapeloop.game.Player;
+import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.game.PlayerInput;
 
 import lombok.AllArgsConstructor;

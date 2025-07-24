@@ -1,5 +1,7 @@
 package com.destroflyer.escapeloop.game;
 
+import com.destroflyer.escapeloop.game.objects.Player;
+
 import java.util.ArrayList;
 
 import lombok.Getter;

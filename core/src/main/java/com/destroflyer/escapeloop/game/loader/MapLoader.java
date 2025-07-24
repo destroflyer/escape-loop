@@ -5,9 +5,9 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Json;
-import com.destroflyer.escapeloop.game.Finish;
+import com.destroflyer.escapeloop.game.objects.Finish;
 import com.destroflyer.escapeloop.game.Map;
-import com.destroflyer.escapeloop.game.Platform;
+import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.loader.json.MapData;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntity;
 

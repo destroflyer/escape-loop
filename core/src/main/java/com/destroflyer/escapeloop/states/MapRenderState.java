@@ -22,9 +22,9 @@ import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
-import com.destroflyer.escapeloop.game.Character;
-import com.destroflyer.escapeloop.game.Platform;
-import com.destroflyer.escapeloop.game.Player;
+import com.destroflyer.escapeloop.game.objects.Character;
+import com.destroflyer.escapeloop.game.objects.Platform;
+import com.destroflyer.escapeloop.game.objects.Player;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.destroflyer.escapeloop.Main;
-import com.destroflyer.escapeloop.game.Player;
+import com.destroflyer.escapeloop.game.objects.Player;
 
 public class MainMenuState extends UiState {
 

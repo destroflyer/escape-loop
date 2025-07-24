@@ -1,10 +1,12 @@
-package com.destroflyer.escapeloop.game;
+package com.destroflyer.escapeloop.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
 import lombok.Getter;

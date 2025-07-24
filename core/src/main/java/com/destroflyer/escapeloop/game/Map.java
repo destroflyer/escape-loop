@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.destroflyer.escapeloop.game.loader.MapLoader;
+import com.destroflyer.escapeloop.game.objects.Player;
 
 import lombok.Getter;
 

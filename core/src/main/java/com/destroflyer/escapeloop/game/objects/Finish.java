@@ -1,4 +1,4 @@
-package com.destroflyer.escapeloop.game;
+package com.destroflyer.escapeloop.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -7,6 +7,9 @@ import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.Map;
+import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class Finish extends MapObject {

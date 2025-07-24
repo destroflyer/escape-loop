@@ -1,9 +1,11 @@
-package com.destroflyer.escapeloop.game;
+package com.destroflyer.escapeloop.game.objects;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.MapObject;
 
 import lombok.AllArgsConstructor;
 
