@@ -51,7 +51,7 @@ public class Character extends MapObject {
 
         Filter characterFilter = new Filter();
         characterFilter.categoryBits = Collisions.CHARACTER;
-        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH;
+        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER;
         characterFixture.setFilterData(characterFilter);
 
         PolygonShape footSensorShape = new PolygonShape();

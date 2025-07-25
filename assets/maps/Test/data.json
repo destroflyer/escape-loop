@@ -23,7 +23,7 @@
 				"y": 80,
 				"width": 16,
 				"height": 16,
-				"color": 16707124,
+				"color": 6539085,
 				"customFields" : {}
 			},
 			{
@@ -34,20 +34,20 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16707124,
+				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Player": [
+		"Start": [
 			{
-				"id": "Player",
+				"id": "Start",
 				"iid": "11d46500-5e50-11f0-9f8d-0de7d88a354b",
 				"layer": "Entities",
 				"x": 64,
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 11882632,
 				"customFields" : {}
 			}
 		],
@@ -60,7 +60,7 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 14957380,
+				"color": 2943221,
 				"customFields" : {}
 			}
 		],
@@ -112,7 +112,7 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 16705377,
 				"customFields": {
 					"item": "Heavy"
 				}
@@ -125,7 +125,7 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 16705377,
 				"customFields": {
 					"item": "Knockback"
 				}
@@ -138,7 +138,7 @@
 				"y": 208,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 16705377,
 				"customFields": {
 					"item": "Freeze"
 				}
@@ -151,7 +151,7 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 16705377,
 				"customFields": {
 					"item": "Swap"
 				}
@@ -164,7 +164,7 @@
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 16705377,
 				"customFields": {
 					"item": "Damage"
 				}
@@ -175,11 +175,11 @@
 				"id": "Toggle_Trigger",
 				"iid": "fa556b80-5e50-11f0-8a41-7b98c28bfdb3",
 				"layer": "Entities",
-				"x": 144,
+				"x": 128,
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 7552569,
+				"color": 10626611,
 				"customFields": {
 					"gate": {
 						"entityIid": "8ea737f0-5e50-11f0-8a41-a5e3a2087b45",
@@ -198,7 +198,7 @@
 				"y": 96,
 				"width": 16,
 				"height": 16,
-				"color": 7552569,
+				"color": 10626611,
 				"customFields": {
 					"gate": {
 						"entityIid": "f2f65460-5e50-11f0-8a41-634bf71e9cb8",
@@ -232,6 +232,26 @@
 				"height": 16,
 				"color": 9149364,
 				"customFields" : {}
+			}
+		],
+		"Pressure_Trigger": [
+			{
+				"id": "Pressure_Trigger",
+				"iid": "2ee9af20-5e50-11f0-9988-3195dd6ff0f8",
+				"layer": "Entities",
+				"x": 160,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gate": {
+						"entityIid": "8ea737f0-5e50-11f0-8a41-a5e3a2087b45",
+						"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
+						"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
+						"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+					}
+				}
 			}
 		]
 	}

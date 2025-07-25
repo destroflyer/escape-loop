@@ -1,6 +1,5 @@
 package com.destroflyer.escapeloop.game.objects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -9,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.util.TextureUtil;
 
 import lombok.Getter;
 
@@ -18,7 +18,7 @@ public class Gate extends MapObject {
         this.width = width;
         this.height = height;
     }
-    public static final TextureRegion TEXTURE_REGION = new TextureRegion(new Texture("./textures/gate.png"));
+    public static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabMainTextureRegion(0, 16, 1, 1);
     @Getter
     private float width;
     @Getter

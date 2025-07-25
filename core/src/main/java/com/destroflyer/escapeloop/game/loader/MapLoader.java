@@ -16,6 +16,7 @@ import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.loader.json.MapData;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntity;
 import com.destroflyer.escapeloop.game.objects.PressureTrigger;
+import com.destroflyer.escapeloop.game.objects.Start;
 import com.destroflyer.escapeloop.game.objects.ToggleTrigger;
 import com.destroflyer.escapeloop.game.objects.items.DamageItem;
 import com.destroflyer.escapeloop.game.objects.items.FreezeItem;
@@ -92,12 +93,13 @@ public class MapLoader {
                 }
             }
         }
+        loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getItem(), entity -> ClassUtil.newInstance(ITEM_CLASSES.get(entity.getCustomFields().getItem())), entity -> new Vector2(0, 0));
-        loadEntities(data.getEntities().getBouncer(), entity -> new Bouncer(), entity -> new Vector2(0, (-2f / 16)));
-        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(), entity -> new Vector2(0, (-5f / 16)));
-        loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(), entity -> new Vector2(0, (-5f / 16)));
+        loadEntities(data.getEntities().getBouncer(), entity -> new Bouncer(), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
+        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(), entity -> new Vector2(0, -1 * (((16 - 7) / 2f) / 16)));
+        loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
         loadEntities(
             data.getEntities().getGate(),
             entity -> new Gate(toMapSize(entity.getWidth()), toMapSize(entity.getHeight())),
@@ -120,8 +122,8 @@ public class MapLoader {
         return toMapSize(data.getWidth());
     }
 
-    public Vector2 getPlayerStartPosition() {
-        return getMapPosition(data.getEntities().getPlayer().get(0));
+    public Vector2 getStartPosition() {
+        return getMapPosition(data.getEntities().getStart().get(0));
     }
 
     private Vector2 getMapPosition(MapDataEntity entity) {

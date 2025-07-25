@@ -14,16 +14,16 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Player": [
+		"Start": [
 			{
-				"id": "Player",
+				"id": "Start",
 				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
 				"layer": "Entities",
 				"x": 304,
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 11882632,
 				"customFields" : {}
 			}
 		],
@@ -36,7 +36,7 @@
 				"y": 176,
 				"width": 16,
 				"height": 16,
-				"color": 16707124,
+				"color": 6539085,
 				"customFields" : {}
 			}
 		]

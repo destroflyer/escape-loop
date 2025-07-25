@@ -16,9 +16,9 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 public class PressureTrigger extends MapObject {
 
     public PressureTrigger() {
-        textureOffset = new Vector2(0, (5f / 16) * Map.TILE_SIZE);
+        textureOffset = new Vector2(0, (((16 - 4) / 2f) / 16) * Map.TILE_SIZE);
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(6, 5);
+    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(8, 7);
 
     @Override
     public void createBody() {
@@ -27,7 +27,7 @@ public class PressureTrigger extends MapObject {
         body = map.getWorld().createBody(bodyDef);
         PolygonShape polygonShape = new PolygonShape();
         float width = Map.TILE_SIZE;
-        float height = Map.TILE_SIZE * (5f / 16);
+        float height = Map.TILE_SIZE * (4f / 16);
         polygonShape.setAsBox(width / 2, height / 2);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;

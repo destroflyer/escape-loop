@@ -1,6 +1,7 @@
 package com.destroflyer.escapeloop.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -14,7 +15,11 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class Finish extends MapObject {
 
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(3, 1);
+    public Finish() {
+        textureOffset = new Vector2(0, 0.125f);
+        textureSize = new Vector2(0.75f, 0.75f);
+    }
+    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabDecorationsTextureRegion(1, 1, 2, 2);
 
     @Override
     public void createBody() {

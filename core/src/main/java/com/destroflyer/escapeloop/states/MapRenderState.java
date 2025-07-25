@@ -1,9 +1,11 @@
 package com.destroflyer.escapeloop.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.PolygonRegion;
@@ -73,12 +75,63 @@ public class MapRenderState extends State {
         float bodyAngle = -1 * body.getAngle();
         float alpha = getAlpha(mapObject);
 
+        TextureRegion textureRegion = mapObject.getCurrentTextureRegion();
+        if (textureRegion != null) {
+            Matrix4 originalBatchTransform = spriteBatch.getTransformMatrix().cpy();
+
+            spriteBatch.begin();
+            Matrix4 bodyTransform = new Matrix4();
+            int xDirection = 1;
+            if (mapObject instanceof Character) {
+                Character character = (Character) mapObject;
+                xDirection = character.getViewDirection();
+            }
+            int offsetX = convertMapSize(mapObject.getTextureOffset().x);
+            int offsetY = convertMapSize(mapObject.getTextureOffset().y);
+            int width = convertMapSize(mapObject.getTextureSize().x);
+            int height = convertMapSize(mapObject.getTextureSize().y);
+            bodyTransform.translate(bodyX + (xDirection * ((width / -2f) + offsetX)), bodyY + (height / -2f) + offsetY, 0);
+            bodyTransform.rotateRad(0, 0, 1, bodyAngle);
+            bodyTransform.scl(xDirection, 1, 1);
+            spriteBatch.setTransformMatrix(bodyTransform);
+
+            spriteBatch.setColor(1, 1, 1, alpha);
+
+            int tilesX = 1;
+            int tilesY = 1;
+            float tileAngle = 0;
+            if (mapObject instanceof Gate) {
+                Gate gate = (Gate) mapObject;
+                tilesX = (int) (gate.getWidth() / Map.TILE_SIZE);
+                tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
+                if (tilesX > tilesY) {
+                    tileAngle = 90;
+                }
+            }
+            int textureOffsetX = (((tilesX - 1) * width) / -2);
+            int textureOffsetY = (((tilesY - 1) * height) / -2);
+            for (int tileX = 0; tileX < tilesX; tileX++) {
+                for (int tileY = 0; tileY < tilesY; tileY++) {
+                    int x = textureOffsetX + convertMapSize(tileX * Map.TILE_SIZE);
+                    int y = textureOffsetY + convertMapSize(tileY * Map.TILE_SIZE);
+                    spriteBatch.draw(textureRegion, x, y, (width / 2f), (height / 2f), width, height, 1, 1, tileAngle);
+                }
+            }
+
+            spriteBatch.setColor(1, 1, 1, 1);
+
+            spriteBatch.setTransformMatrix(originalBatchTransform);
+            spriteBatch.end();
+        }
+
         if (debug) {
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+
             Array<Fixture> fixtures = body.getFixtureList();
             int fixtureIndex = 0;
             for (Fixture fixture : fixtures) {
                 Shape shape = fixture.getShape();
-                Color color = getShapeColor(mapObject, fixtureIndex, alpha);
+                Color color = getShapeColor(mapObject, fixtureIndex, alpha * 0.5f);
 
                 if (shape instanceof PolygonShape) {
                     PolygonShape polygonShape = (PolygonShape) shape;
@@ -119,55 +172,8 @@ public class MapRenderState extends State {
 
                 fixtureIndex++;
             }
-        }
 
-        TextureRegion textureRegion = mapObject.getCurrentTextureRegion();
-        if (textureRegion != null) {
-            Matrix4 originalBatchTransform = spriteBatch.getTransformMatrix().cpy();
-
-            spriteBatch.begin();
-            Matrix4 bodyTransform = new Matrix4();
-            int xDirection = 1;
-            if (mapObject instanceof Character) {
-                Character character = (Character) mapObject;
-                xDirection = character.getViewDirection();
-            }
-            int offsetX = convertMapSize(mapObject.getTextureOffset().x);
-            int offsetY = convertMapSize(mapObject.getTextureOffset().y);
-            int width = convertMapSize(mapObject.getTextureSize().x);
-            int height = convertMapSize(mapObject.getTextureSize().y);
-            bodyTransform.translate(bodyX + (xDirection * ((width / -2f) + offsetX)), bodyY + (height / -2f) + offsetY, 0);
-            bodyTransform.rotateRad(0, 0, 1, bodyAngle);
-            bodyTransform.scl(xDirection, 1, 1);
-            spriteBatch.setTransformMatrix(bodyTransform);
-
-            spriteBatch.setColor(1, 1, 1, alpha);
-
-            int tilesX = 1;
-            int tilesY = 1;
-            float tileAngle = 0;
-            if (mapObject instanceof Gate) {
-                Gate gate = (Gate) mapObject;
-                tilesX = (int) (gate.getWidth() / Map.TILE_SIZE);
-                tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
-                if (tilesY > tilesX) {
-                    tileAngle = 90;
-                }
-            }
-            int textureOffsetX = (((tilesX - 1) * width) / -2);
-            int textureOffsetY = (((tilesY - 1) * height) / -2);
-            for (int tileX = 0; tileX < tilesX; tileX++) {
-                for (int tileY = 0; tileY < tilesY; tileY++) {
-                    int x = textureOffsetX + convertMapSize(tileX * Map.TILE_SIZE);
-                    int y = textureOffsetY + convertMapSize(tileY * Map.TILE_SIZE);
-                    spriteBatch.draw(textureRegion, x, y, (width / 2f), (height / 2f), width, height, 1, 1, tileAngle);
-                }
-            }
-
-            spriteBatch.setColor(1, 1, 1, 1);
-
-            spriteBatch.setTransformMatrix(originalBatchTransform);
-            spriteBatch.end();
+            Gdx.gl.glDisable(GL20.GL_BLEND);
         }
     }
 

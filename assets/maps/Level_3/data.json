@@ -19,24 +19,24 @@
 				"id": "Finish",
 				"iid": "982784a2-5e50-11f0-ba66-c50d8e442bef",
 				"layer": "Entities",
-				"x": 272,
+				"x": 320,
 				"y": 176,
 				"width": 16,
 				"height": 16,
-				"color": 16707124,
+				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Player": [
+		"Start": [
 			{
-				"id": "Player",
+				"id": "Start",
 				"iid": "9827abb0-5e50-11f0-ba66-2bd337cca234",
 				"layer": "Entities",
 				"x": 128,
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 11882632,
 				"customFields" : {}
 			}
 		]

@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TextureUtil {
 
-    private static final Texture CAVE_TEXTURE = new Texture("./textures/cave.png");
+    private static final Texture CAVE_TEXTURE = new Texture("./textures/cave/main.png");
+    private static final Texture LAB_MAIN_TEXTURE = new Texture("./textures/lab/main.png");
+    private static final Texture LAB_DECORATIONS_TEXTURE = new Texture("./textures/lab/decorations.png");
 
     public static Animation<TextureRegion> loadAnimation(String path, int cols, int rows, float frameDuration) {
         return loadAnimation(path, cols, rows, cols * rows, frameDuration);
@@ -31,6 +33,16 @@ public class TextureUtil {
 
     public static TextureRegion loadCaveTextureRegion(int x, int y) {
         return loadTextureRegion(CAVE_TEXTURE, 29, 12, x, y);
+    }
+
+    public static TextureRegion loadLabMainTextureRegion(int x, int y, int width, int height) {
+        int tileSize = 16;
+        return new TextureRegion(LAB_MAIN_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);
+    }
+
+    public static TextureRegion loadLabDecorationsTextureRegion(int x, int y, int width, int height) {
+        int tileSize = 16;
+        return new TextureRegion(LAB_DECORATIONS_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);
     }
 
     public static TextureRegion loadTextureRegion(Texture texture, int cols, int rows, int x, int y) {

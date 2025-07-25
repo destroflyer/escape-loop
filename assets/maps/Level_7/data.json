@@ -23,7 +23,7 @@
 				"y": 96,
 				"width": 16,
 				"height": 16,
-				"color": 16707124,
+				"color": 6539085,
 				"customFields" : {}
 			},
 			{
@@ -34,20 +34,20 @@
 				"y": 96,
 				"width": 16,
 				"height": 16,
-				"color": 16707124,
+				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Player": [
+		"Start": [
 			{
-				"id": "Player",
+				"id": "Start",
 				"iid": "02f69242-5e50-11f0-ba66-6b0934dd7129",
 				"layer": "Entities",
 				"x": 256,
 				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 11882632,
 				"customFields" : {}
 			}
 		]

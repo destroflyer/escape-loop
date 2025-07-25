@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class MapDataEntities {
-    private ArrayList<MapDataEntity> Player;
+    private ArrayList<MapDataEntity> Start;
     private ArrayList<MapDataEntity> Finish;
     private ArrayList<MapDataEntity> Enemy;
     private ArrayList<MapDataEntity> Item;

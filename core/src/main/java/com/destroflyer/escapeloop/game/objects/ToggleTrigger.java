@@ -16,7 +16,7 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 public class ToggleTrigger extends MapObject {
 
     public ToggleTrigger() {
-        textureOffset = new Vector2(0, (5f / 16) * Map.TILE_SIZE);
+        textureOffset = new Vector2(0, (((16 - 7) / 2f) / 16) * Map.TILE_SIZE);
     }
     private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(5, 8);
 

@@ -61,7 +61,7 @@ public class Map {
 
         width = mapLoader.getWidth();
         mapLoader.loadObjects();
-        Vector2 startPosition = mapLoader.getPlayerStartPosition();
+        Vector2 startPosition = mapLoader.getStartPosition();
 
         player = new Player();
         addObject(player);
