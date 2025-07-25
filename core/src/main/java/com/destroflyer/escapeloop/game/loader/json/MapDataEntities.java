@@ -11,4 +11,11 @@ import lombok.NoArgsConstructor;
 public class MapDataEntities {
     private ArrayList<MapDataEntity> Player;
     private ArrayList<MapDataEntity> Finish;
+    private ArrayList<MapDataEntity> Enemy;
+    private ArrayList<MapDataEntity> Item;
+    private ArrayList<MapDataEntity> Bouncer;
+    private ArrayList<MapDataEntity> Toggle_Trigger;
+    private ArrayList<MapDataEntity> Pressure_Trigger;
+    private ArrayList<MapDataEntity> Gate;
+    private ArrayList<MapDataEntity> Text;
 }

@@ -47,21 +47,12 @@ public class Player extends Character {
             if (solveCollision && (mapObject instanceof Player)) {
                 Player player = (Player) mapObject;
                 if (player.isCharacterCollisionsEnabled()) {
-                    bounce(player);
+                    bounceOff(player);
                 }
                 solveCollision = false;
             }
             contact.setEnabled(solveCollision);
         }
-    }
-
-    private void bounce(Player otherPlayer) {
-        float bounceStrengthX = 0.5f + Math.min(Math.max(Math.abs(body.getLinearVelocity().x), Math.abs(otherPlayer.getBody().getLinearVelocity().x)) / 3, 1);
-        float bounceStrengthY = 1;
-        Vector2 directionToTarget = body.getPosition().cpy().sub(otherPlayer.getBody().getPosition()).nor();
-        Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
-        body.setLinearVelocity(new Vector2());
-        body.applyLinearImpulse(impulse, body.getPosition(), true);
     }
 
     @Override

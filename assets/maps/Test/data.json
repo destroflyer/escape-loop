@@ -51,9 +51,9 @@
 				"customFields" : {}
 			}
 		],
-		"Trampoline": [
+		"Bouncer": [
 			{
-				"id": "Trampoline",
+				"id": "Bouncer",
 				"iid": "895eb720-5e50-11f0-8a41-bb157452a8d8",
 				"layer": "Entities",
 				"x": 192,
@@ -108,8 +108,8 @@
 				"id": "Item",
 				"iid": "d64ff3c0-5e50-11f0-8a41-e392194ecfcf",
 				"layer": "Entities",
-				"x": 256,
-				"y": 208,
+				"x": 224,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -134,7 +134,7 @@
 				"id": "Item",
 				"iid": "e306f500-5e50-11f0-8a41-2b7667fa16e6",
 				"layer": "Entities",
-				"x": 448,
+				"x": 464,
 				"y": 208,
 				"width": 16,
 				"height": 16,
@@ -170,19 +170,38 @@
 				}
 			}
 		],
-		"Toggle": [
+		"Toggle_Trigger": [
 			{
-				"id": "Toggle",
+				"id": "Toggle_Trigger",
 				"iid": "fa556b80-5e50-11f0-8a41-7b98c28bfdb3",
 				"layer": "Entities",
-				"x": 224,
+				"x": 144,
 				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 7552569,
 				"customFields": {
 					"gate": {
-						"entityIid": "629f8020-5e50-11f0-8a41-05cf3e3c8bc6",
+						"entityIid": "8ea737f0-5e50-11f0-8a41-a5e3a2087b45",
+						"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
+						"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
+						"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+					},
+					"autoRevertDuration": null
+				}
+			},
+			{
+				"id": "Toggle_Trigger",
+				"iid": "f6c5fa00-5e50-11f0-8a41-fdf8455735e9",
+				"layer": "Entities",
+				"x": 128,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 7552569,
+				"customFields": {
+					"gate": {
+						"entityIid": "f2f65460-5e50-11f0-8a41-634bf71e9cb8",
 						"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
 						"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
 						"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
@@ -194,19 +213,25 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "629f8020-5e50-11f0-8a41-05cf3e3c8bc6",
+				"iid": "8ea737f0-5e50-11f0-8a41-a5e3a2087b45",
 				"layer": "Entities",
 				"x": 432,
 				"y": 128,
 				"width": 16,
+				"height": 96,
+				"color": 9149364,
+				"customFields" : {}
+			},
+			{
+				"id": "Gate",
+				"iid": "f2f65460-5e50-11f0-8a41-634bf71e9cb8",
+				"layer": "Entities",
+				"x": 32,
+				"y": 112,
+				"width": 32,
 				"height": 16,
 				"color": 9149364,
-				"customFields": {
-					"end": {
-						"cx": 27,
-						"cy": 13
-					}
-				}
+				"customFields" : {}
 			}
 		]
 	}

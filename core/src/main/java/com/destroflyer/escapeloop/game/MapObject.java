@@ -19,7 +19,7 @@ public abstract class MapObject {
     protected Map map;
     @Getter
     protected Body body;
-    private ArrayList<Behaviour> behaviours = new ArrayList<>();
+    private ArrayList<Behaviour<?>> behaviours = new ArrayList<>();
     protected ArrayList<MapObject> activeContacts = new ArrayList<>();
     @Getter
     protected Vector2 textureOffset = new Vector2();
@@ -31,7 +31,7 @@ public abstract class MapObject {
     public abstract void createBody();
 
     public void update(float tpf) {
-        for (Behaviour behaviour : behaviours) {
+        for (Behaviour<?> behaviour : behaviours) {
             behaviour.update(tpf);
         }
         if ((oneTimeAnimation != null) && (map.getTime() >= (oneTimeAnimationStartTime + oneTimeAnimation.getAnimationDuration()))) {
@@ -60,11 +60,16 @@ public abstract class MapObject {
 
     }
 
-    // Rendering
-
-    public Texture getCurrentTexture() {
-        return null;
+    public void bounceOff(MapObject otherMapObject) {
+        float bounceStrengthX = 0.5f + Math.min(Math.max(Math.abs(body.getLinearVelocity().x), Math.abs(otherMapObject.getBody().getLinearVelocity().x)) / 3, 1);
+        float bounceStrengthY = 1;
+        Vector2 directionToTarget = body.getPosition().cpy().sub(otherMapObject.getBody().getPosition()).nor();
+        Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
+        body.setLinearVelocity(new Vector2());
+        body.applyLinearImpulse(impulse, body.getPosition(), true);
     }
+
+    // Rendering
 
     protected void setOneTimeAnimation(Animation<TextureRegion> animation) {
         oneTimeAnimation = animation;

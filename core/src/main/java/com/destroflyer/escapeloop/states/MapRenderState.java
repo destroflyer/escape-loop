@@ -23,6 +23,7 @@ import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.objects.Character;
+import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.objects.Player;
 
@@ -120,9 +121,8 @@ public class MapRenderState extends State {
             }
         }
 
-        Texture texture = mapObject.getCurrentTexture();
         TextureRegion textureRegion = mapObject.getCurrentTextureRegion();
-        if ((texture != null) || (textureRegion != null)) {
+        if (textureRegion != null) {
             Matrix4 originalBatchTransform = spriteBatch.getTransformMatrix().cpy();
 
             spriteBatch.begin();
@@ -143,11 +143,25 @@ public class MapRenderState extends State {
 
             spriteBatch.setColor(1, 1, 1, alpha);
 
-            if (texture != null) {
-                spriteBatch.draw(texture, 0, 0, width, height);
+            int tilesX = 1;
+            int tilesY = 1;
+            float tileAngle = 0;
+            if (mapObject instanceof Gate) {
+                Gate gate = (Gate) mapObject;
+                tilesX = (int) (gate.getWidth() / Map.TILE_SIZE);
+                tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
+                if (tilesY > tilesX) {
+                    tileAngle = 90;
+                }
             }
-            if (textureRegion != null) {
-                spriteBatch.draw(textureRegion, 0, 0, width, height);
+            int textureOffsetX = (((tilesX - 1) * width) / -2);
+            int textureOffsetY = (((tilesY - 1) * height) / -2);
+            for (int tileX = 0; tileX < tilesX; tileX++) {
+                for (int tileY = 0; tileY < tilesY; tileY++) {
+                    int x = textureOffsetX + convertMapSize(tileX * Map.TILE_SIZE);
+                    int y = textureOffsetY + convertMapSize(tileY * Map.TILE_SIZE);
+                    spriteBatch.draw(textureRegion, x, y, (width / 2f), (height / 2f), width, height, 1, 1, tileAngle);
+                }
             }
 
             spriteBatch.setColor(1, 1, 1, 1);

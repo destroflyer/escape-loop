@@ -5,15 +5,30 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Json;
+import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.objects.Bouncer;
+import com.destroflyer.escapeloop.game.objects.Enemy;
 import com.destroflyer.escapeloop.game.objects.Finish;
 import com.destroflyer.escapeloop.game.Map;
+import com.destroflyer.escapeloop.game.objects.Gate;
+import com.destroflyer.escapeloop.game.objects.Item;
 import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.loader.json.MapData;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntity;
+import com.destroflyer.escapeloop.game.objects.PressureTrigger;
+import com.destroflyer.escapeloop.game.objects.ToggleTrigger;
+import com.destroflyer.escapeloop.game.objects.items.DamageItem;
+import com.destroflyer.escapeloop.game.objects.items.FreezeItem;
+import com.destroflyer.escapeloop.game.objects.items.HeavyItem;
+import com.destroflyer.escapeloop.game.objects.items.KnockbackItem;
+import com.destroflyer.escapeloop.game.objects.items.SwapItem;
+import com.destroflyer.escapeloop.util.ClassUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.function.Function;
 
 public class MapLoader {
 
@@ -24,6 +39,14 @@ public class MapLoader {
     }
     public static final String DIRECTORY = "./maps/";
     private static final int TILE_SIZE_DATA = 16;
+    private static final HashMap<String, Class<? extends Item>> ITEM_CLASSES = new HashMap<>();
+    static {
+        ITEM_CLASSES.put("Damage", DamageItem.class);
+        ITEM_CLASSES.put("Freeze", FreezeItem.class);
+        ITEM_CLASSES.put("Heavy", HeavyItem.class);
+        ITEM_CLASSES.put("Knockback", KnockbackItem.class);
+        ITEM_CLASSES.put("Swap", SwapItem.class);
+    }
     private Map map;
     private MapData data;
     private ArrayList<int[]> terrain;
@@ -69,10 +92,27 @@ public class MapLoader {
                 }
             }
         }
-        for (MapDataEntity finishEntity : data.getEntities().getFinish()) {
-            Finish finish = new Finish();
-            map.addObject(finish);
-            finish.getBody().setTransform(getMapPosition(finishEntity), 0);
+        loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
+        loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(), entity -> new Vector2(0, 0));
+        loadEntities(data.getEntities().getItem(), entity -> ClassUtil.newInstance(ITEM_CLASSES.get(entity.getCustomFields().getItem())), entity -> new Vector2(0, 0));
+        loadEntities(data.getEntities().getBouncer(), entity -> new Bouncer(), entity -> new Vector2(0, (-2f / 16)));
+        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(), entity -> new Vector2(0, (-5f / 16)));
+        loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(), entity -> new Vector2(0, (-5f / 16)));
+        loadEntities(
+            data.getEntities().getGate(),
+            entity -> new Gate(toMapSize(entity.getWidth()), toMapSize(entity.getHeight())),
+            entity -> new Vector2(((entity.getWidth() / TILE_SIZE_DATA) - 1) / 2f, ((entity.getHeight() / TILE_SIZE_DATA) - 1) / -2f)
+        );
+    }
+
+    private void loadEntities(ArrayList<MapDataEntity> entities, Function<MapDataEntity, MapObject> createMapObject, Function<MapDataEntity, Vector2> getTileOffset) {
+        if (entities != null) {
+            for (MapDataEntity entity : entities) {
+                MapObject mapObject = createMapObject.apply(entity);
+                Vector2 tileOffset = getTileOffset.apply(entity);
+                map.addObject(mapObject);
+                mapObject.getBody().setTransform(getMapPosition(entity).add(tileOffset.scl(Map.TILE_SIZE)), 0);
+            }
         }
     }
 

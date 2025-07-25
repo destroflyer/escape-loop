@@ -1,20 +1,28 @@
 package com.destroflyer.escapeloop.game.objects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.destroflyer.escapeloop.game.Collisions;
-import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
-import com.destroflyer.escapeloop.util.TextureUtil;
 
-public class Finish extends MapObject {
+import lombok.Getter;
 
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(3, 1);
+public class Gate extends MapObject {
+
+    public Gate(float width, float height) {
+        this.width = width;
+        this.height = height;
+    }
+    public static final TextureRegion TEXTURE_REGION = new TextureRegion(new Texture("./textures/gate.png"));
+    @Getter
+    private float width;
+    @Getter
+    private float height;
 
     @Override
     public void createBody() {
@@ -22,22 +30,15 @@ public class Finish extends MapObject {
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = map.getWorld().createBody(bodyDef);
         PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox((Map.TILE_SIZE / 2), (Map.TILE_SIZE / 2));
+        polygonShape.setAsBox((width / 2), (height / 2));
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
-        fixtureDef.isSensor = true;
         Fixture fixture = body.createFixture(fixtureDef);
 
         Filter filter = new Filter();
-        filter.categoryBits = Collisions.FINISH;
-        filter.maskBits = Collisions.PLAYER;
+        filter.categoryBits = Collisions.GATE;
+        filter.maskBits = Collisions.CHARACTER;
         fixture.setFilterData(filter);
-    }
-
-    @Override
-    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
-        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
-        map.onFinish();
     }
 
     @Override
