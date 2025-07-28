@@ -56,6 +56,12 @@ public class Player extends Character {
     }
 
     @Override
+    public void action() {
+        super.action();
+        setOneTimeAnimation((verticalDirection != 0) ? ANIMATION_ACTION_VERTICAL : ANIMATION_ACTION_HORIZONTAL);
+    }
+
+    @Override
     public void setWalkDirection(int walkDirection) {
         super.setWalkDirection(walkDirection);
         characterCollisionsEnabled = true;

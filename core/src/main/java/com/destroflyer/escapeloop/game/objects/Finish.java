@@ -27,7 +27,7 @@ public class Finish extends MapObject {
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = map.getWorld().createBody(bodyDef);
         PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox((Map.TILE_SIZE / 2), (Map.TILE_SIZE / 2));
+        polygonShape.setAsBox(Map.TILE_SIZE / 2, Map.TILE_SIZE / 2);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
         fixtureDef.isSensor = true;

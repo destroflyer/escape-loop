@@ -3,7 +3,6 @@ package com.destroflyer.escapeloop.game.objects;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -15,10 +14,14 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class ToggleTrigger extends MapObject {
 
-    public ToggleTrigger() {
+    public ToggleTrigger(Gate gate) {
+        this.gate = gate;
         textureOffset = new Vector2(0, (((16 - 7) / 2f) / 16) * Map.TILE_SIZE);
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(5, 8);
+    private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.loadCaveTextureRegion(5, 7);
+    private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadCaveTextureRegion(5, 8);
+    private Gate gate;
+    private boolean state;
 
     @Override
     public void createBody() {
@@ -40,14 +43,13 @@ public class ToggleTrigger extends MapObject {
         fixture.setFilterData(filter);
     }
 
-    @Override
-    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
-        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
-        System.out.println("toggle");
+    public void toggle() {
+        state = !state;
+        gate.setOpening(!gate.isOpening());
     }
 
     @Override
     public TextureRegion getCurrentTextureRegion() {
-        return TEXTURE_REGION;
+        return state ? TEXTURE_REGION_RIGHT : TEXTURE_REGION_LEFT;
     }
 }

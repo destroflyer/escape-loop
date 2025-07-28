@@ -13,19 +13,24 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.EarClippingTriangulator;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Predicate;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.Particles;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Gate;
+import com.destroflyer.escapeloop.game.objects.Item;
 import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.objects.Player;
 
@@ -39,142 +44,226 @@ public class MapRenderState extends State {
     }
     private MapState mapState;
     private Texture backgroundTexture;
+    private Texture terrainTexture;
     @Getter
     @Setter
     private boolean debug;
 
     @Override
     public void render() {
-        Map map = mapState.getMap();
-        drawBackground(map);
-        for (MapObject mapObject : map.getObjects()) {
-            if (!(mapObject instanceof Character)) {
-                drawMapObject(mapObject);
-            }
+        if (backgroundTexture == null) {
+            backgroundTexture = new Texture("./maps/" + mapState.getMap().getName() + "/Background.png");
+            terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/Terrain.png");
         }
-        for (MapObject mapObject : map.getObjects()) {
-            if (mapObject instanceof Character) {
-                drawMapObject(mapObject);
-            }
-        }
+        drawFullScreenTexture(backgroundTexture);
+        drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
+        drawFullScreenTexture(terrainTexture);
+        drawMapObjects(mapObject -> !(mapObject instanceof Character) && !(mapObject instanceof Item), MapRenderLayer.FOREGROUND);
+        drawMapObjects(mapObject -> mapObject instanceof Character, MapRenderLayer.FOREGROUND);
+        drawMapObjects(mapObject -> mapObject instanceof Item, MapRenderLayer.FOREGROUND);
     }
 
-    private void drawBackground(Map map) {
-        if (backgroundTexture == null) {
-            backgroundTexture = new Texture("./maps/" + map.getName() + "/_composite.png");
-        }
+    private void drawFullScreenTexture(Texture texture) {
         spriteBatch.begin();
-        spriteBatch.draw(backgroundTexture, 0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
+        spriteBatch.draw(texture, 0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
         spriteBatch.end();
     }
 
-    private void drawMapObject(MapObject mapObject) {
+    private void drawMapObjects(Predicate<MapObject> filter, MapRenderLayer layer) {
+        for (MapObject mapObject : mapState.getMap().getObjects()) {
+            if (filter.evaluate(mapObject)) {
+                drawMapObject(mapObject, layer);
+            }
+        }
+    }
+
+    private void drawMapObject(MapObject mapObject, MapRenderLayer layer) {
         Body body = mapObject.getBody();
         int bodyX = convertMapSize(body.getPosition().x);
         int bodyY = convertMapSize(body.getPosition().y);
-        float bodyAngle = -1 * body.getAngle();
+        float bodyAngle = body.getAngle();
         float alpha = getAlpha(mapObject);
 
-        TextureRegion textureRegion = mapObject.getCurrentTextureRegion();
-        if (textureRegion != null) {
-            Matrix4 originalBatchTransform = spriteBatch.getTransformMatrix().cpy();
+        Matrix4 centerPositionTransform = new Matrix4();
+        centerPositionTransform.translate(bodyX, bodyY, 0);
 
-            spriteBatch.begin();
-            Matrix4 bodyTransform = new Matrix4();
-            int xDirection = 1;
-            if (mapObject instanceof Character) {
-                Character character = (Character) mapObject;
-                xDirection = character.getViewDirection();
-            }
-            int offsetX = convertMapSize(mapObject.getTextureOffset().x);
-            int offsetY = convertMapSize(mapObject.getTextureOffset().y);
-            int width = convertMapSize(mapObject.getTextureSize().x);
-            int height = convertMapSize(mapObject.getTextureSize().y);
-            bodyTransform.translate(bodyX + (xDirection * ((width / -2f) + offsetX)), bodyY + (height / -2f) + offsetY, 0);
-            bodyTransform.rotateRad(0, 0, 1, bodyAngle);
-            bodyTransform.scl(xDirection, 1, 1);
-            spriteBatch.setTransformMatrix(bodyTransform);
+        Matrix4 centerPositionAndRotationTransform = centerPositionTransform.cpy();
+        centerPositionAndRotationTransform.rotateRad(0, 0, 1, bodyAngle);
 
-            spriteBatch.setColor(1, 1, 1, alpha);
+        int xDirection = 1;
+        if (mapObject instanceof Character) {
+            Character character = (Character) mapObject;
+            xDirection = character.getViewDirection();
+        }
+        int textureOffsetX = convertMapSize(mapObject.getTextureOffset().x);
+        int textureOffsetY = convertMapSize(mapObject.getTextureOffset().y);
+        int textureWidth = convertMapSize(mapObject.getTextureSize().x);
+        int textureHeight = convertMapSize(mapObject.getTextureSize().y);
+        Matrix4 leftTopTransform = centerPositionAndRotationTransform.cpy();
+        leftTopTransform.translate(xDirection * ((textureWidth / -2f) + textureOffsetX), (textureHeight / -2f) + textureOffsetY, 0);
+        leftTopTransform.scl(xDirection, 1, 1);
 
-            int tilesX = 1;
-            int tilesY = 1;
-            float tileAngle = 0;
-            if (mapObject instanceof Gate) {
-                Gate gate = (Gate) mapObject;
-                tilesX = (int) (gate.getWidth() / Map.TILE_SIZE);
-                tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
-                if (tilesX > tilesY) {
-                    tileAngle = 90;
+        switch (layer) {
+            case BACKGROUND:
+                Particles particles = mapObject.getCurrentParticles();
+                if (particles != null) {
+                    drawParticles(particles, centerPositionTransform, textureWidth);
                 }
-            }
-            int textureOffsetX = (((tilesX - 1) * width) / -2);
-            int textureOffsetY = (((tilesY - 1) * height) / -2);
-            for (int tileX = 0; tileX < tilesX; tileX++) {
-                for (int tileY = 0; tileY < tilesY; tileY++) {
-                    int x = textureOffsetX + convertMapSize(tileX * Map.TILE_SIZE);
-                    int y = textureOffsetY + convertMapSize(tileY * Map.TILE_SIZE);
-                    spriteBatch.draw(textureRegion, x, y, (width / 2f), (height / 2f), width, height, 1, 1, tileAngle);
+                break;
+            case FOREGROUND:
+                TextureRegion textureRegion = mapObject.getCurrentTextureRegion();
+                if (textureRegion != null) {
+                    drawTexture(mapObject, textureRegion, leftTopTransform, textureWidth, textureHeight, alpha);
                 }
-            }
+                if (debug) {
+                    drawDebugShape(mapObject, bodyX, bodyY, alpha);
+                }
+                break;
+        }
+    }
 
-            spriteBatch.setColor(1, 1, 1, 1);
+    private void drawParticles(Particles particles, Matrix4 centerPositionTransform, float textureWidth) {
+        Matrix4 originalTransform = shapeRenderer.getTransformMatrix().cpy();
 
-            spriteBatch.setTransformMatrix(originalBatchTransform);
-            spriteBatch.end();
+        int[] indices = new int[] { 1, 5, 2, 4, 0, 3 };
+        float[] progresses = new float[indices.length];
+        float progressOffset = ((mapState.getMap().getTime() % particles.getDuration()) / particles.getDuration());
+        for (int i = 0; i < progresses.length; i++) {
+            progresses[i] = (progressOffset + (((float) i) / progresses.length)) % 1;
         }
 
-        if (debug) {
-            Gdx.gl.glEnable(GL20.GL_BLEND);
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        shapeRenderer.setTransformMatrix(centerPositionTransform);
 
-            Array<Fixture> fixtures = body.getFixtureList();
-            int fixtureIndex = 0;
-            for (Fixture fixture : fixtures) {
-                Shape shape = fixture.getShape();
-                Color color = getShapeColor(mapObject, fixtureIndex, alpha * 0.5f);
+        for (int i = 0; i < indices.length; i++) {
+            float indexPortion = ((float) indices[i] / (indices.length - 1));
+            shapeRenderer.setColor(1, 1, 1, 1 - progresses[i]);
+            switch (particles) {
+                case CIRCLE:
+                    int radius = 30;
+                    shapeRenderer.circle(0, 0, progresses[i] * radius, 10);
+                    break;
+                case UP:
+                case DOWN:
+                    int length = 10;
+                    int distance = 20;
+                    float x = ((indexPortion - 0.5f) * textureWidth);
+                    float yDirection = ((particles == Particles.UP) ? 1 : -1);
+                    float y1 = (progresses[i] - 1.25f) * (yDirection * distance);
+                    float y2 = y1 + (yDirection * length);
+                    shapeRenderer.line(x, y1, x, y2);
+                    break;
+            }
+        }
 
-                if (shape instanceof PolygonShape) {
-                    PolygonShape polygonShape = (PolygonShape) shape;
+        shapeRenderer.setTransformMatrix(originalTransform);
+        shapeRenderer.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
+    }
 
-                    int vertexCount = polygonShape.getVertexCount();
-                    float[] positions = new float[vertexCount * 2];
-                    int positionOffset = 0;
-                    for (int i = 0; i < vertexCount; i++) {
-                        Vector2 localVertex = new Vector2();
-                        polygonShape.getVertex(i, localVertex);
-                        Vector2 worldVertex = body.getWorldPoint(localVertex);
-                        positions[positionOffset++] = convertMapSize(worldVertex.x);
-                        positions[positionOffset++] = convertMapSize(worldVertex.y);
-                    }
-                    short[] indices = new EarClippingTriangulator().computeTriangles(positions).items;
+    private void drawTexture(MapObject mapObject, TextureRegion textureRegion, Matrix4 leftTopTransform, int textureWidth, int textureHeight, float alpha) {
+        Matrix4 originalTransform = spriteBatch.getTransformMatrix().cpy();
 
-                    Texture textureSolid;
-                    Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-                    pixmap.setColor(color);
-                    pixmap.fill();
-                    textureSolid = new Texture(pixmap);
-                    PolygonRegion polygonRegion = new PolygonRegion(new TextureRegion(textureSolid), positions, indices);
+        Rectangle clipBounds = null;
 
-                    polygonSpriteBatch.begin();
-                    polygonSpriteBatch.draw(polygonRegion, 0, 0);
-                    polygonSpriteBatch.end();
-                } else if (shape instanceof CircleShape) {
-                    CircleShape circleShape = (CircleShape) shape;
-                    int radius = convertMapSize(circleShape.getRadius());
+        int tilesX = 1;
+        int tilesY = 1;
+        float tileAngle = 0;
+        if (mapObject instanceof Gate) {
+            Gate gate = (Gate) mapObject;
+            tilesX = (int) (gate.getWidth() / Map.TILE_SIZE);
+            tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
+            if (tilesX > tilesY) {
+                tileAngle = 90;
+                clipBounds = new Rectangle(convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getWidth()) + (textureWidth / 2f), 0, convertMapSize(gate.getWidth()), textureHeight);
+            } else {
+                clipBounds = new Rectangle(0, convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getHeight()) + (textureHeight / 2f), textureWidth, convertMapSize(gate.getHeight()));
+            }
+        }
 
-                    shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-                    shapeRenderer.setColor(color);
-                    shapeRenderer.circle(bodyX, bodyY, radius);
-                    shapeRenderer.end();
-                } else {
-                    throw new IllegalArgumentException("Unsupported shape: " + shape);
+        if (clipBounds != null) {
+            Rectangle scissor = new Rectangle();
+            ScissorStack.calculateScissors(main.getViewport().getCamera(), leftTopTransform, clipBounds, scissor);
+            if (!ScissorStack.pushScissors(scissor)) {
+                return;
+            }
+        }
+
+        spriteBatch.begin();
+        spriteBatch.setTransformMatrix(leftTopTransform);
+        spriteBatch.setColor(1, 1, 1, alpha);
+
+        int tileOffsetX = (((tilesX - 1) * textureWidth) / -2);
+        int tileOffsetY = (((tilesY - 1) * textureHeight) / -2);
+        for (int tileX = 0; tileX < tilesX; tileX++) {
+            for (int tileY = 0; tileY < tilesY; tileY++) {
+                int x = tileOffsetX + convertMapSize(tileX * Map.TILE_SIZE);
+                int y = tileOffsetY + convertMapSize(tileY * Map.TILE_SIZE);
+                spriteBatch.draw(textureRegion, x, y, (textureWidth / 2f), (textureHeight / 2f), textureWidth, textureHeight, 1, 1, tileAngle);
+            }
+        }
+
+        spriteBatch.setColor(1, 1, 1, 1);
+        spriteBatch.setTransformMatrix(originalTransform);
+        spriteBatch.end();
+
+        if (clipBounds != null) {
+            ScissorStack.popScissors();
+        }
+    }
+
+    private void drawDebugShape(MapObject mapObject, int bodyX, int bodyY, float alpha) {
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+
+        Body body = mapObject.getBody();
+        Array<Fixture> fixtures = body.getFixtureList();
+        int fixtureIndex = 0;
+        for (Fixture fixture : fixtures) {
+            Shape shape = fixture.getShape();
+            Color color = getShapeColor(mapObject, fixtureIndex, alpha * 0.5f);
+
+            if (shape instanceof PolygonShape) {
+                PolygonShape polygonShape = (PolygonShape) shape;
+
+                int vertexCount = polygonShape.getVertexCount();
+                float[] positions = new float[vertexCount * 2];
+                int positionOffset = 0;
+                for (int i = 0; i < vertexCount; i++) {
+                    Vector2 localVertex = new Vector2();
+                    polygonShape.getVertex(i, localVertex);
+                    Vector2 worldVertex = body.getWorldPoint(localVertex);
+                    positions[positionOffset++] = convertMapSize(worldVertex.x);
+                    positions[positionOffset++] = convertMapSize(worldVertex.y);
                 }
+                short[] indices = new EarClippingTriangulator().computeTriangles(positions).items;
 
-                fixtureIndex++;
+                Texture textureSolid;
+                Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+                pixmap.setColor(color);
+                pixmap.fill();
+                textureSolid = new Texture(pixmap);
+                PolygonRegion polygonRegion = new PolygonRegion(new TextureRegion(textureSolid), positions, indices);
+
+                polygonSpriteBatch.begin();
+                polygonSpriteBatch.draw(polygonRegion, 0, 0);
+                polygonSpriteBatch.end();
+            } else if (shape instanceof CircleShape) {
+                CircleShape circleShape = (CircleShape) shape;
+                int radius = convertMapSize(circleShape.getRadius());
+
+                shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+                shapeRenderer.setColor(color);
+                shapeRenderer.circle(bodyX, bodyY, radius);
+                shapeRenderer.end();
+            } else {
+                throw new IllegalArgumentException("Unsupported shape: " + shape);
             }
 
-            Gdx.gl.glDisable(GL20.GL_BLEND);
+            fixtureIndex++;
         }
+
+        Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
     private Color getShapeColor(MapObject mapObject, int fixtureIndex, float alpha) {

@@ -27,7 +27,8 @@ public class MapImport {
             dstDirectory.mkdir();
             copyFile(srcDirectory, dstDirectory, "data.json");
             copyFile(srcDirectory, dstDirectory, "Terrain.csv");
-            copyFile(srcDirectory, dstDirectory, "_composite.png");
+            copyFile(srcDirectory, dstDirectory, "Background.png");
+            copyFile(srcDirectory, dstDirectory, "Terrain.png");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

@@ -21,9 +21,13 @@ public class MapState extends State {
     private MapIngameState mapIngameState;
     private MapPauseState mapPauseState;
     @Getter
-    private boolean isWalkingLeft;
+    private boolean isDirectionLeft;
     @Getter
-    private boolean isWalkingRight;
+    private boolean isDirectionRight;
+    @Getter
+    private boolean isDirectionUp;
+    @Getter
+    private boolean isDirectionDown;
 
     @Override
     public void create() {
@@ -78,10 +82,16 @@ public class MapState extends State {
             public boolean keyDown(int keycode) {
                 switch (keycode) {
                     case Input.Keys.A:
-                        isWalkingLeft = true;
+                        isDirectionLeft = true;
                         break;
                     case Input.Keys.D:
-                        isWalkingRight = true;
+                        isDirectionRight = true;
+                        break;
+                    case Input.Keys.W:
+                        isDirectionUp = true;
+                        break;
+                    case Input.Keys.S:
+                        isDirectionDown = true;
                         break;
                 }
                 return false;
@@ -91,10 +101,16 @@ public class MapState extends State {
             public boolean keyUp(int keycode) {
                 switch (keycode) {
                     case Input.Keys.A:
-                        isWalkingLeft = false;
+                        isDirectionLeft = false;
                         break;
                     case Input.Keys.D:
-                        isWalkingRight = false;
+                        isDirectionRight = false;
+                        break;
+                    case Input.Keys.W:
+                        isDirectionUp = false;
+                        break;
+                    case Input.Keys.S:
+                        isDirectionDown = false;
                         break;
                 }
                 return false;

@@ -15,10 +15,14 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class PressureTrigger extends MapObject {
 
-    public PressureTrigger() {
+    public PressureTrigger(Gate gate) {
+        this.gate = gate;
         textureOffset = new Vector2(0, (((16 - 4) / 2f) / 16) * Map.TILE_SIZE);
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadCaveTextureRegion(8, 7);
+    private static final TextureRegion TEXTURE_REGION_UP = TextureUtil.loadCaveTextureRegion(8, 7);
+    private static final TextureRegion TEXTURE_REGION_DOWN = TextureUtil.loadCaveTextureRegion(8, 8);
+    private Gate gate;
+    private boolean state;
 
     @Override
     public void createBody() {
@@ -43,11 +47,22 @@ public class PressureTrigger extends MapObject {
     @Override
     public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
         super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
-        System.out.println("pressure");
+        updateState();
+    }
+
+    @Override
+    public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+        super.onContactEnd(mapObject, ownFixture, otherFixture, contact);
+        updateState();
+    }
+
+    private void updateState() {
+        state = activeContacts.size() > 0;
+        gate.setOpening(state);
     }
 
     @Override
     public TextureRegion getCurrentTextureRegion() {
-        return TEXTURE_REGION;
+        return state ? TEXTURE_REGION_DOWN : TEXTURE_REGION_UP;
     }
 }

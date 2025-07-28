@@ -34,6 +34,7 @@ public class Map {
     private float time;
     @Getter
     private ArrayList<MapObject> objects = new ArrayList<>();
+    private ArrayList<Runnable> queuedTasks = new ArrayList<>();
     @Getter
     private World world;
     @Getter
@@ -56,6 +57,7 @@ public class Map {
     private void reset() {
         time = 0;
         objects.clear();
+        queuedTasks.clear();
         disposeWorldContent();
         finished = false;
 
@@ -100,12 +102,20 @@ public class Map {
             playerPast.applyInputs(time);
         }
         world.step(tpf, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
+        for (Runnable queuedTask : queuedTasks) {
+            queuedTask.run();
+        }
+        queuedTasks.clear();
         for (MapObject mapObject : objects) {
             mapObject.update(tpf);
         }
         if (player.getBody().getPosition().y < -1) {
             onDeath();
         }
+    }
+
+    public void queueTask(Runnable task) {
+        queuedTasks.add(task);
     }
 
     public void applyInput(PlayerInput input) {

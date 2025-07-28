@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.Particles;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class Bouncer extends MapObject {
@@ -49,5 +50,10 @@ public class Bouncer extends MapObject {
     @Override
     public TextureRegion getCurrentTextureRegion() {
         return TEXTURE_REGION;
+    }
+
+    @Override
+    public Particles getCurrentParticles() {
+        return Particles.CIRCLE;
     }
 }

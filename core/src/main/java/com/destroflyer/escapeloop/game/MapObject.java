@@ -3,7 +3,6 @@ package com.destroflyer.escapeloop.game;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -88,6 +87,10 @@ public abstract class MapObject {
     }
 
     protected Animation<TextureRegion> getLoopedAnimation() {
+        return null;
+    }
+
+    public Particles getCurrentParticles() {
         return null;
     }
 }

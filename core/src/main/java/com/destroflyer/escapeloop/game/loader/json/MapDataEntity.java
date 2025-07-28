@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class MapDataEntity {
+    private String iid;
     private int x;
     private int y;
     private int width;

@@ -13,6 +13,7 @@ import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 
@@ -28,11 +29,17 @@ public class Character extends MapObject {
     protected int walkDirection;
     @Getter
     private int viewDirection = 1;
+    @Getter
+    @Setter
+    protected int verticalDirection = 0;
     private float walkSpeed = 2.1f;
     private float airAcceleration = 0.05f;
     private float jumpForce = 0.9f;
     private float remainingGroundPlatformIgnoreTime;
     private ArrayList<Platform> groundPlatforms = new ArrayList<>();
+    @Getter
+    private Item item;
+    private float throwStrength = 3.8f;
 
     @Override
     public void createBody() {
@@ -51,7 +58,7 @@ public class Character extends MapObject {
 
         Filter characterFilter = new Filter();
         characterFilter.categoryBits = Collisions.CHARACTER;
-        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER;
+        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH | Collisions.ITEM | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER | Collisions.BOUNCER;
         characterFixture.setFilterData(characterFilter);
 
         PolygonShape footSensorShape = new PolygonShape();
@@ -125,6 +132,48 @@ public class Character extends MapObject {
             body.applyLinearImpulse(new Vector2(0, jumpForce), body.getWorldCenter(), true);
             resetRemainingGroundPlatformIgnoreTime();
         }
+    }
+
+    public void pickup(Item item) {
+        this.item = item;
+        item.onPickup(this);
+    }
+
+    public void action() {
+        if (item != null) {
+            throwItem();
+        } else {
+            ToggleTrigger toggleTrigger = getTouchedToggleTrigger();
+            if (toggleTrigger != null) {
+                toggleTrigger.toggle();
+            }
+        }
+    }
+
+    private void throwItem() {
+        float throwHorizontalDirection;
+        float throwVerticalDirection;
+        if (verticalDirection == 1) {
+            throwHorizontalDirection = walkDirection * 0.5f;
+            throwVerticalDirection = 1.5f;
+        } else if (verticalDirection == -1) {
+            throwHorizontalDirection = walkDirection * 0.9f;
+            throwVerticalDirection = -0.5f;
+        } else {
+            throwHorizontalDirection = viewDirection;
+            throwVerticalDirection = 1;
+        }
+        item.onThrow(new Vector2(throwHorizontalDirection * throwStrength, throwVerticalDirection * throwStrength));
+        item = null;
+    }
+
+    private ToggleTrigger getTouchedToggleTrigger() {
+        for (MapObject mapObject : activeContacts) {
+            if (mapObject instanceof ToggleTrigger) {
+                return (ToggleTrigger) mapObject;
+            }
+        }
+        return null;
     }
 
     public void resetRemainingGroundPlatformIgnoreTime() {
