@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_5",
-	"uniqueIdentifer": "faab7040-5e50-11f0-ba66-c96d718bf9e1",
+	"uniqueIdentifer": "09560a80-5e50-11f0-ba66-c773f7b8661d",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -14,29 +14,29 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
-				"layer": "Entities",
-				"x": 304,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields" : {}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "faab7042-5e50-11f0-ba66-d940cffb0c7d",
+				"iid": "09560a82-5e50-11f0-ba66-7fb2cba705cf",
 				"layer": "Entities",
-				"x": 160,
-				"y": 176,
+				"x": 448,
+				"y": 80,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Start": [
+			{
+				"id": "Start",
+				"iid": "3d04efe0-5e50-11f0-ba66-c17df446272e",
+				"layer": "Entities",
+				"x": 64,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 11882632,
 				"customFields" : {}
 			}
 		]

@@ -176,9 +176,9 @@ public class MapRenderState extends State {
             tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
             if (tilesX > tilesY) {
                 tileAngle = 90;
-                clipBounds = new Rectangle(convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getWidth()) + (textureWidth / 2f), 0, convertMapSize(gate.getWidth()), textureHeight);
+                clipBounds = new Rectangle(convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getWidth()) + (textureWidth / 2f), ((tilesY / -2f) + 0.5f) * textureHeight, convertMapSize(gate.getWidth()), tilesX * textureHeight);
             } else {
-                clipBounds = new Rectangle(0, convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getHeight()) + (textureHeight / 2f), textureWidth, convertMapSize(gate.getHeight()));
+                clipBounds = new Rectangle(((tilesX / -2f) + 0.5f) * textureWidth, convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getHeight()) + (textureHeight / 2f), tilesY * textureWidth, convertMapSize(gate.getHeight()));
             }
         }
 

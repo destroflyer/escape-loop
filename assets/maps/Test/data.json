@@ -168,13 +168,15 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"gate": {
-						"entityIid": "f2f65460-5e50-11f0-8a41-634bf71e9cb8",
-						"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
-						"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
-						"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-					},
-					"autoRevertDuration": null
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "f2f65460-5e50-11f0-8a41-634bf71e9cb8",
+							"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
+							"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
 				}
 			}
 		],
@@ -213,12 +215,14 @@
 				"height": 16,
 				"color": 16217634,
 				"customFields": {
-					"gate": {
-						"entityIid": "8ea737f0-5e50-11f0-8a41-a5e3a2087b45",
-						"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
-						"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
-						"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-					}
+					"gates": [
+						{
+							"entityIid": "8ea737f0-5e50-11f0-8a41-a5e3a2087b45",
+							"layerIid": "7fe2a7d0-5e50-11f0-a187-4bdeec795a8a",
+							"levelIid": "29d67510-5e50-11f0-a187-e5a45b03cab7",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
 				}
 			}
 		],

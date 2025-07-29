@@ -12,15 +12,17 @@ import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
+import java.util.ArrayList;
+
 public class ToggleTrigger extends MapObject {
 
-    public ToggleTrigger(Gate gate) {
-        this.gate = gate;
+    public ToggleTrigger(ArrayList<Gate> gates) {
+        this.gates = gates;
         textureOffset = new Vector2(0, (((16 - 7) / 2f) / 16) * Map.TILE_SIZE);
     }
     private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.loadCaveTextureRegion(5, 7);
     private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadCaveTextureRegion(5, 8);
-    private Gate gate;
+    private ArrayList<Gate> gates;
     private boolean state;
 
     @Override
@@ -45,7 +47,9 @@ public class ToggleTrigger extends MapObject {
 
     public void toggle() {
         state = !state;
-        gate.setOpening(!gate.isOpening());
+        for (Gate gate : gates) {
+            gate.setOpening(!gate.isOpening());
+        }
     }
 
     @Override

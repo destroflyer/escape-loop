@@ -13,15 +13,17 @@ import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
+import java.util.ArrayList;
+
 public class PressureTrigger extends MapObject {
 
-    public PressureTrigger(Gate gate) {
-        this.gate = gate;
+    public PressureTrigger(ArrayList<Gate> gates) {
+        this.gates = gates;
         textureOffset = new Vector2(0, (((16 - 4) / 2f) / 16) * Map.TILE_SIZE);
     }
     private static final TextureRegion TEXTURE_REGION_UP = TextureUtil.loadCaveTextureRegion(8, 7);
     private static final TextureRegion TEXTURE_REGION_DOWN = TextureUtil.loadCaveTextureRegion(8, 8);
-    private Gate gate;
+    private ArrayList<Gate> gates;
     private boolean state;
 
     @Override
@@ -58,7 +60,9 @@ public class PressureTrigger extends MapObject {
 
     private void updateState() {
         state = activeContacts.size() > 0;
-        gate.setOpening(state);
+        for (Gate gate : gates) {
+            gate.setOpening(state);
+        }
     }
 
     @Override

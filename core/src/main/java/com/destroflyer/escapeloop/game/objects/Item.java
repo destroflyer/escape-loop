@@ -22,8 +22,8 @@ public class Item extends MapObject {
     }
     private static final float RADIUS = 0.15f;
     private TextureRegion textureRegion;
-    private Character holder;
-    private Character thrower;
+    protected Character holder;
+    protected Character thrower;
     private ArrayList<Character> blockedPickupCharacters = new ArrayList<>();
 
     @Override

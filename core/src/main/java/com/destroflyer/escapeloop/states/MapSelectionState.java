@@ -11,9 +11,11 @@ import com.destroflyer.escapeloop.game.loader.MapLoader;
 import com.destroflyer.escapeloop.util.MapImport;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class MapSelectionState extends UiState {
 
+    private static final String MAP_NAME_PREFIX = "Level_";
     private Table levelsTable;
 
     @Override
@@ -45,9 +47,9 @@ public class MapSelectionState extends UiState {
         }
 
         levelsTable.clear();
-        int i = 0;
-        for (File mapDirectory : new File(MapLoader.DIRECTORY).listFiles()) {
-            String mapName = mapDirectory.getName();
+        ArrayList<String> mapNames = getMapNames();
+        for (int i = 0; i < mapNames.size(); i++) {
+            String mapName = mapNames.get(i);
             String mapTitle = mapName.replaceAll("_", " ");
             if ((i % 8) == 0) {
                 levelsTable.row();
@@ -64,8 +66,23 @@ public class MapSelectionState extends UiState {
                 }
             });
             levelsTable.add(level).fill().padRight(10).padBottom(10);
-            i++;
         }
         levelsTable.setFillParent(true);
+    }
+
+    private ArrayList<String> getMapNames() {
+        ArrayList<String> mapNames = new ArrayList<>();
+        for (File mapDirectory : new File(MapLoader.DIRECTORY).listFiles()) {
+            mapNames.add(mapDirectory.getName());
+        }
+        mapNames.sort((mapName1, mapName2) -> {
+            if (mapName1.startsWith(MAP_NAME_PREFIX) && mapName2.startsWith(MAP_NAME_PREFIX)) {
+                int mapNumber1 = Integer.parseInt(mapName1.substring(MAP_NAME_PREFIX.length()));
+                int mapNumber2 = Integer.parseInt(mapName2.substring(MAP_NAME_PREFIX.length()));
+                return mapNumber1 - mapNumber2;
+            }
+            return mapName1.compareTo(mapName2);
+        });
+        return mapNames;
     }
 }

@@ -39,7 +39,7 @@ public class Gate extends MapObject {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = map.getWorld().createBody(bodyDef);
-        updateFixture();
+        updateBody();
     }
 
     @Override
@@ -48,12 +48,12 @@ public class Gate extends MapObject {
         float openSpeed = OPEN_SPEED_PER_SIZE / Math.max(width, height);
         openProgress = Math.max(0, Math.min(openProgress + ((opening ? 1 : -1) * openSpeed * tpf), 1));
         if (openProgress != lastOpenProgress) {
-            updateFixture();
+            updateBody();
             lastOpenProgress = openProgress;
         }
     }
 
-    private void updateFixture() {
+    private void updateBody() {
         if (fixture != null) {
             body.destroyFixture(fixture);
         }
@@ -73,8 +73,10 @@ public class Gate extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.PLATFORM;
-        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR;
+        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM;
         fixture.setFilterData(filter);
+
+        body.setActive((shapeWidth * shapeHeight) > 0);
     }
 
     @Override

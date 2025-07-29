@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_6",
-	"uniqueIdentifer": "d893bdc0-5e50-11f0-ba66-0161bfa48d2d",
+	"uniqueIdentifer": "faab7040-5e50-11f0-ba66-c96d718bf9e1",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -17,9 +17,9 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "d893bdc2-5e50-11f0-ba66-dd823356579e",
+				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
 				"layer": "Entities",
-				"x": 192,
+				"x": 304,
 				"y": 240,
 				"width": 16,
 				"height": 16,
@@ -30,10 +30,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "d893bdc3-5e50-11f0-ba66-3142d81f7e47",
+				"iid": "faab7042-5e50-11f0-ba66-d940cffb0c7d",
 				"layer": "Entities",
-				"x": 352,
-				"y": 128,
+				"x": 160,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,

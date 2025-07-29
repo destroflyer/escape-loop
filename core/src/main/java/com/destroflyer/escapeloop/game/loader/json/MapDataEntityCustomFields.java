@@ -1,5 +1,7 @@
 package com.destroflyer.escapeloop.game.loader.json;
 
+import java.util.ArrayList;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ public class MapDataEntityCustomFields {
     // Item
     private String item;
     // Toggle trigger + Pressure trigger
-    private MapDataEntityCustomFieldEntity gate;
+    private ArrayList<MapDataEntityCustomFieldEntity> gates;
     // Toggle trigger
     private String autoRevertDuration;
     // Text

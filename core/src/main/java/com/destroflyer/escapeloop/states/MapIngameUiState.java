@@ -8,7 +8,7 @@ public class MapIngameUiState extends UiState {
 
     @Override
     protected void create(Skin skin) {
-        Label infoLabel = new Label("Enter = Time machine, Backspace = Reset, F1 = Debug, Escape = Menu", skin);
+        Label infoLabel = new Label("Enter = Time machine, J = Action, Backspace = Reset, Escape = Menu", skin);
         infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 55));
         stage.addActor(infoLabel);
     }

@@ -36,7 +36,7 @@ public class Character extends MapObject {
     private float airAcceleration = 0.05f;
     private float jumpForce = 0.9f;
     private float remainingGroundPlatformIgnoreTime;
-    private ArrayList<Platform> groundPlatforms = new ArrayList<>();
+    private ArrayList<MapObject> groundObjects = new ArrayList<>();
     @Getter
     private Item item;
     private float throwStrength = 3.8f;
@@ -78,7 +78,7 @@ public class Character extends MapObject {
     public void update(float tpf) {
         super.update(tpf);
         Vector2 linearVelocity = new Vector2(body.getLinearVelocity());
-        MapObject groundPlatform = getGroundPlatform();
+        MapObject groundPlatform = getGroundObject();
         if (groundPlatform != null) {
             Vector2 groundVelocity = groundPlatform.getBody().getLinearVelocity();
             if ((remainingGroundPlatformIgnoreTime <= 0) && (groundVelocity.len2() > 0)) {
@@ -107,17 +107,21 @@ public class Character extends MapObject {
     @Override
     public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
         super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
-        if ((ownFixture == footSensorFixture) && (mapObject instanceof Platform)) {
-            groundPlatforms.add((Platform) mapObject);
+        if ((ownFixture == footSensorFixture) && isGroundObject(mapObject)) {
+            groundObjects.add(mapObject);
         }
     }
 
     @Override
     public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
         super.onContactEnd(mapObject, ownFixture, otherFixture, contact);
-        if ((ownFixture == footSensorFixture) && (mapObject instanceof Platform)) {
-            groundPlatforms.remove((Platform) mapObject);
+        if ((ownFixture == footSensorFixture) && isGroundObject(mapObject)) {
+            groundObjects.remove(mapObject);
         }
+    }
+
+    private boolean isGroundObject(MapObject mapObject) {
+        return (mapObject instanceof Platform) || (mapObject instanceof Gate);
     }
 
     public void setWalkDirection(int walkDirection) {
@@ -180,11 +184,11 @@ public class Character extends MapObject {
         remainingGroundPlatformIgnoreTime = 0.1f;
     }
 
-    public MapObject getGroundPlatform() {
-        return isOnGround() ? groundPlatforms.get(groundPlatforms.size() - 1) : null;
+    public MapObject getGroundObject() {
+        return isOnGround() ? groundObjects.get(groundObjects.size() - 1) : null;
     }
 
     public boolean isOnGround() {
-        return groundPlatforms.size() > 0;
+        return groundObjects.size() > 0;
     }
 }

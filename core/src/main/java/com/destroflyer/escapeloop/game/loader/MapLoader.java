@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Json;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.loader.json.MapDataEntityCustomFieldEntity;
 import com.destroflyer.escapeloop.game.objects.Bouncer;
 import com.destroflyer.escapeloop.game.objects.Enemy;
 import com.destroflyer.escapeloop.game.objects.Finish;
@@ -93,7 +94,14 @@ public class MapLoader {
                 }
             }
         }
-        HashMap<String, Gate> gates = new HashMap<>();
+        HashMap<String, Gate> gatesByIid = new HashMap<>();
+        Function<ArrayList<MapDataEntityCustomFieldEntity>, ArrayList<Gate>> getGates = (gateEntities) -> {
+            ArrayList<Gate> gates = new ArrayList<>();
+            for (MapDataEntityCustomFieldEntity gateEntity : gateEntities) {
+                gates.add(gatesByIid.get(gateEntity.getEntityIid()));
+            }
+            return gates;
+        };
         loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(), entity -> new Vector2(0, 0));
@@ -103,13 +111,13 @@ public class MapLoader {
             data.getEntities().getGate(),
             entity -> {
                 Gate gate = new Gate(toMapSize(entity.getWidth()), toMapSize(entity.getHeight()));
-                gates.put(entity.getIid(), gate);
+                gatesByIid.put(entity.getIid(), gate);
                 return gate;
             },
             entity -> new Vector2(((entity.getWidth() / TILE_SIZE_DATA) - 1) / 2f, ((entity.getHeight() / TILE_SIZE_DATA) - 1) / -2f)
         );
-        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(gates.get(entity.getCustomFields().getGate().getEntityIid())), entity -> new Vector2(0, -1 * (((16 - 7) / 2f) / 16)));
-        loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(gates.get(entity.getCustomFields().getGate().getEntityIid())), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
+        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 7) / 2f) / 16)));
+        loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
     }
 
     private void loadEntities(ArrayList<MapDataEntity> entities, Function<MapDataEntity, MapObject> createMapObject, Function<MapDataEntity, Vector2> getTileOffset) {
