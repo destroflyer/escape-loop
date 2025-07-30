@@ -22,7 +22,7 @@ public class Start extends MapObject {
     }
 
     @Override
-    public TextureRegion getCurrentTextureRegion() {
+    public TextureRegion getTextureRegion() {
         return TEXTURE_REGION;
     }
 }

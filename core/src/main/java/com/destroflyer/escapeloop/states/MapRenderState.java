@@ -28,6 +28,7 @@ import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.Particles;
+import com.destroflyer.escapeloop.game.objects.Bullet;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
@@ -94,6 +95,9 @@ public class MapRenderState extends State {
         if (mapObject instanceof Character) {
             Character character = (Character) mapObject;
             xDirection = character.getViewDirection();
+        } else if (mapObject instanceof Bullet) {
+            Bullet bullet = (Bullet) mapObject;
+            xDirection = (int) Math.signum(bullet.getBody().getLinearVelocity().x);
         }
         int textureOffsetX = convertMapSize(mapObject.getTextureOffset().x);
         int textureOffsetY = convertMapSize(mapObject.getTextureOffset().y);
@@ -105,13 +109,13 @@ public class MapRenderState extends State {
 
         switch (layer) {
             case BACKGROUND:
-                Particles particles = mapObject.getCurrentParticles();
+                Particles particles = mapObject.getParticles();
                 if (particles != null) {
                     drawParticles(particles, centerPositionTransform, textureWidth);
                 }
                 break;
             case FOREGROUND:
-                TextureRegion textureRegion = mapObject.getCurrentTextureRegion();
+                TextureRegion textureRegion = mapObject.getTextureRegion();
                 if (textureRegion != null) {
                     drawTexture(mapObject, textureRegion, leftTopTransform, textureWidth, textureHeight, alpha);
                 }

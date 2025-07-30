@@ -28,7 +28,8 @@ public class Character extends MapObject {
     @Getter
     protected int walkDirection;
     @Getter
-    private int viewDirection = 1;
+    @Setter
+    protected int viewDirection = 1;
     @Getter
     @Setter
     protected int verticalDirection = 0;
@@ -58,7 +59,7 @@ public class Character extends MapObject {
 
         Filter characterFilter = new Filter();
         characterFilter.categoryBits = Collisions.CHARACTER;
-        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH | Collisions.ITEM | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER | Collisions.BOUNCER;
+        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH | Collisions.ITEM | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER | Collisions.BOUNCER | Collisions.BULLET;
         characterFixture.setFilterData(characterFilter);
 
         PolygonShape footSensorShape = new PolygonShape();

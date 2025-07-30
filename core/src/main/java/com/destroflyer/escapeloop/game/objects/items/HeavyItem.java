@@ -25,7 +25,7 @@ public class HeavyItem extends Item {
     }
 
     @Override
-    public Particles getCurrentParticles() {
+    public Particles getParticles() {
         return Particles.DOWN;
     }
 }

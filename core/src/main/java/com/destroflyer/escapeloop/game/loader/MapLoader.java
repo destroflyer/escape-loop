@@ -30,6 +30,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 public class MapLoader {
@@ -104,8 +105,10 @@ public class MapLoader {
         };
         loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
-        loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(), entity -> new Vector2(0, 0));
-        loadEntities(data.getEntities().getItem(), entity -> ClassUtil.newInstance(ITEM_CLASSES.get(entity.getCustomFields().getItem())), entity -> new Vector2(0, 0));
+        loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(entity.getCustomFields().getShootCooldown(), entity.getCustomFields().isAutoShoot()), entity -> new Vector2(0, 0), (entity, enemy) -> {
+            enemy.setViewDirection(entity.getCustomFields().getDirection().equals("Left") ? -1 : 1);
+        });
+        loadEntities(data.getEntities().getItem(), entity -> ClassUtil.newInstance(ITEM_CLASSES.get(entity.getCustomFields().getItem())), entity -> new Vector2(0, -1 * ((Map.TILE_SIZE - 0.15f) * Map.TILE_SIZE)));
         loadEntities(data.getEntities().getBouncer(), entity -> new Bouncer(), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
         loadEntities(
             data.getEntities().getGate(),
@@ -120,13 +123,20 @@ public class MapLoader {
         loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
     }
 
-    private void loadEntities(ArrayList<MapDataEntity> entities, Function<MapDataEntity, MapObject> createMapObject, Function<MapDataEntity, Vector2> getTileOffset) {
+    private <T extends MapObject> void loadEntities(ArrayList<MapDataEntity> entities, Function<MapDataEntity, T> createMapObject, Function<MapDataEntity, Vector2> getTileOffset) {
+        loadEntities(entities, createMapObject, getTileOffset, null);
+    }
+
+    private <T extends MapObject> void loadEntities(ArrayList<MapDataEntity> entities, Function<MapDataEntity, T> createMapObject, Function<MapDataEntity, Vector2> getTileOffset, BiConsumer<MapDataEntity, T> afterCreation) {
         if (entities != null) {
             for (MapDataEntity entity : entities) {
-                MapObject mapObject = createMapObject.apply(entity);
+                T mapObject = createMapObject.apply(entity);
                 Vector2 tileOffset = getTileOffset.apply(entity);
                 map.addObject(mapObject);
                 mapObject.getBody().setTransform(getMapPosition(entity).add(tileOffset.scl(Map.TILE_SIZE)), 0);
+                if (afterCreation != null) {
+                    afterCreation.accept(entity, mapObject);
+                }
             }
         }
     }

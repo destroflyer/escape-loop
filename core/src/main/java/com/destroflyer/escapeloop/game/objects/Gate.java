@@ -73,14 +73,14 @@ public class Gate extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.PLATFORM;
-        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM;
+        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM | Collisions.BULLET;
         fixture.setFilterData(filter);
 
         body.setActive((shapeWidth * shapeHeight) > 0);
     }
 
     @Override
-    public TextureRegion getCurrentTextureRegion() {
+    public TextureRegion getTextureRegion() {
         return TEXTURE_REGION;
     }
 }

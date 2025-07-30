@@ -77,7 +77,7 @@
 				"height": 16,
 				"color": 39387,
 				"customFields": {
-					"autoShoot": false,
+					"autoShoot": true,
 					"shootCooldown": 1,
 					"patrolHorizontal": {
 						"cx": 19,
@@ -86,7 +86,8 @@
 					"patrolVertical": {
 						"cx": 25,
 						"cy": 13
-					}
+					},
+					"direction": "Left"
 				}
 			}
 		],

@@ -53,7 +53,7 @@ public class ToggleTrigger extends MapObject {
     }
 
     @Override
-    public TextureRegion getCurrentTextureRegion() {
+    public TextureRegion getTextureRegion() {
         return state ? TEXTURE_REGION_RIGHT : TEXTURE_REGION_LEFT;
     }
 }

@@ -69,7 +69,8 @@
 					"autoShoot": false,
 					"shootCooldown": 1,
 					"patrolHorizontal": null,
-					"patrolVertical": null
+					"patrolVertical": null,
+					"direction": "Left"
 				}
 			}
 		]

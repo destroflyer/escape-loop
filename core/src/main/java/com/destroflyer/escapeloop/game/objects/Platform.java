@@ -27,7 +27,7 @@ public class Platform extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.PLATFORM;
-        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM;
+        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM | Collisions.BULLET;
         fixture.setFilterData(filter);
     }
 }

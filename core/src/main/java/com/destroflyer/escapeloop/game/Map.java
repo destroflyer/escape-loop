@@ -96,26 +96,42 @@ public class Map {
         objects.add(mapObject);
     }
 
+    public void removeObject(MapObject mapObject) {
+        world.destroyBody(mapObject.getBody());
+        objects.remove(mapObject);
+    }
+
     public void update(float tpf) {
         time += tpf;
         for (PlayerPast playerPast : playerPasts) {
-            playerPast.applyInputs(time);
+            if (isPlayerAlive(playerPast.getPlayer())) {
+                playerPast.applyInputs(time);
+            }
         }
         world.step(tpf, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
-        for (Runnable queuedTask : queuedTasks) {
-            queuedTask.run();
-        }
-        queuedTasks.clear();
+        runQueuedTasks();
         for (MapObject mapObject : objects) {
             mapObject.update(tpf);
         }
-        if (player.getBody().getPosition().y < -1) {
+        runQueuedTasks();
+        if (!isPlayerAlive(player)) {
             onDeath();
         }
     }
 
+    private boolean isPlayerAlive(Player player) {
+        return objects.contains(player);
+    }
+
     public void queueTask(Runnable task) {
         queuedTasks.add(task);
+    }
+
+    private void runQueuedTasks() {
+        for (Runnable queuedTask : queuedTasks) {
+            queuedTask.run();
+        }
+        queuedTasks.clear();
     }
 
     public void applyInput(PlayerInput input) {

@@ -68,6 +68,10 @@ public abstract class MapObject {
         body.applyLinearImpulse(impulse, body.getPosition(), true);
     }
 
+    public void remove() {
+        map.queueTask(() -> map.removeObject(this));
+    }
+
     // Rendering
 
     protected void setOneTimeAnimation(Animation<TextureRegion> animation) {
@@ -75,7 +79,7 @@ public abstract class MapObject {
         oneTimeAnimationStartTime = map.getTime();
     }
 
-    public TextureRegion getCurrentTextureRegion() {
+    public TextureRegion getTextureRegion() {
         if (oneTimeAnimation != null) {
             return oneTimeAnimation.getKeyFrame(map.getTime() - oneTimeAnimationStartTime, false);
         }
@@ -90,7 +94,7 @@ public abstract class MapObject {
         return null;
     }
 
-    public Particles getCurrentParticles() {
+    public Particles getParticles() {
         return null;
     }
 }

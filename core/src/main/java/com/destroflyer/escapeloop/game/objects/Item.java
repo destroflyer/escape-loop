@@ -102,7 +102,7 @@ public class Item extends MapObject {
     }
 
     @Override
-    public TextureRegion getCurrentTextureRegion() {
+    public TextureRegion getTextureRegion() {
         return textureRegion;
     }
 }

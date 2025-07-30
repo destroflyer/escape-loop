@@ -66,7 +66,7 @@ public class PressureTrigger extends MapObject {
     }
 
     @Override
-    public TextureRegion getCurrentTextureRegion() {
+    public TextureRegion getTextureRegion() {
         return state ? TEXTURE_REGION_DOWN : TEXTURE_REGION_UP;
     }
 }

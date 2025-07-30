@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class MapDataEntityCustomFields {
     // Enemy
+    private String direction;
     private boolean autoShoot;
     private float shootCooldown;
     private MapDataEntityCustomFieldPosition patrolHorizontal;
