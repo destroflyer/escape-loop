@@ -3,11 +3,9 @@ package com.destroflyer.escapeloop.game.objects;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.Map;
+import com.destroflyer.escapeloop.game.RayCastResult;
 import com.destroflyer.escapeloop.util.TextureUtil;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Enemy extends Character {
 
@@ -43,17 +41,9 @@ public class Enemy extends Character {
     private void handleHover() {
         if (hoverTileHeight > 0) {
             float effectiveHoverHeight = RADIUS + (((int) (hoverTileHeight / body.getGravityScale()) * Map.TILE_SIZE));
-            AtomicReference<Vector2> groundPoint = new AtomicReference<>();
-            map.getWorld().rayCast((fixture, point, normal, fraction) -> {
-                if (Collisions.hasCategory(fixture, Collisions.PLATFORM)) {
-                    groundPoint.set(point);
-                    return fraction;
-                }
-                return -1;
-            }, body.getPosition(), body.getPosition().cpy().sub(0, effectiveHoverHeight));
-
-            if (groundPoint.get() != null) {
-                float heightAboveGround = body.getPosition().y - groundPoint.get().y;
+            RayCastResult rayCastResult = rayCast(body.getPosition(), body.getPosition().cpy().sub(0, effectiveHoverHeight), result -> (result.getMapObject() instanceof Platform));
+            if (rayCastResult != null) {
+                float heightAboveGround = body.getPosition().y - rayCastResult.getPoint().y;
                 float heightError = effectiveHoverHeight - heightAboveGround;
                 float springForce = (HOVER_SPRING_STRENGTH * heightError) - (HOVER_DAMPING * body.getLinearVelocity().y);
                 body.applyForceToCenter(0, springForce, true);

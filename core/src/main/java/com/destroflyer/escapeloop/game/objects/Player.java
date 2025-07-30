@@ -37,9 +37,6 @@ public class Player extends Character {
         if (!characterCollisionsEnabled && activeContacts.stream().noneMatch(mapObject -> mapObject instanceof Character)) {
             characterCollisionsEnabled = true;
         }
-        if (body.getPosition().y < -1) {
-            remove();
-        }
     }
 
     @Override

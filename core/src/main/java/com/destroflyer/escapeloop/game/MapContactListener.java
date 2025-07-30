@@ -14,16 +14,16 @@ public class MapContactListener implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        MapObject mapObjectA = map.getMapObject(contact.getFixtureA().getBody());
-        MapObject mapObjectB = map.getMapObject(contact.getFixtureB().getBody());
+        MapObject mapObjectA = map.getMapObject(contact.getFixtureA());
+        MapObject mapObjectB = map.getMapObject(contact.getFixtureB());
         mapObjectA.onContactBegin(mapObjectB, contact.getFixtureA(), contact.getFixtureB(), contact);
         mapObjectB.onContactBegin(mapObjectA, contact.getFixtureB(), contact.getFixtureA(), contact);
     }
 
     @Override
     public void endContact(Contact contact) {
-        MapObject mapObjectA = map.getMapObject(contact.getFixtureA().getBody());
-        MapObject mapObjectB = map.getMapObject(contact.getFixtureB().getBody());
+        MapObject mapObjectA = map.getMapObject(contact.getFixtureA());
+        MapObject mapObjectB = map.getMapObject(contact.getFixtureB());
         // endContact is called when bodies are getting destroyed on map reset/cleanup
         if ((mapObjectA != null) && (mapObjectB != null)) {
             mapObjectA.onContactEnd(mapObjectB, contact.getFixtureA(), contact.getFixtureB(), contact);
@@ -33,8 +33,8 @@ public class MapContactListener implements ContactListener {
 
     @Override
     public void preSolve(Contact contact, Manifold manifold) {
-        MapObject mapObjectA = map.getMapObject(contact.getFixtureA().getBody());
-        MapObject mapObjectB = map.getMapObject(contact.getFixtureB().getBody());
+        MapObject mapObjectA = map.getMapObject(contact.getFixtureA());
+        MapObject mapObjectB = map.getMapObject(contact.getFixtureB());
         mapObjectA.preSolve(mapObjectB, contact.getFixtureA(), contact.getFixtureB(), contact);
         mapObjectB.preSolve(mapObjectA, contact.getFixtureB(), contact.getFixtureA(), contact);
     }

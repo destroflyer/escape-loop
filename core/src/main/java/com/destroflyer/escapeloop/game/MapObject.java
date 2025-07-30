@@ -11,6 +11,8 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Predicate;
 
 public abstract class MapObject {
 
@@ -66,6 +68,21 @@ public abstract class MapObject {
         Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
         body.setLinearVelocity(new Vector2());
         body.applyLinearImpulse(impulse, body.getPosition(), true);
+    }
+
+    public RayCastResult rayCast(Vector2 point1, Vector2 point2, Predicate<RayCastResult> filter) {
+        AtomicReference<RayCastResult> validResult = new AtomicReference<>();
+        map.getWorld().rayCast((fixture, point, normal, fraction) -> {
+            MapObject mapObject = map.getMapObject(fixture);
+            // Copy point as it seems to be internally reused and modified later
+            RayCastResult result = new RayCastResult(mapObject, fixture, point.cpy());
+            if (filter.test(result)) {
+                validResult.set(result);
+                return fraction;
+            }
+            return -1;
+        }, point1, point2);
+        return validResult.get();
     }
 
     public void remove() {

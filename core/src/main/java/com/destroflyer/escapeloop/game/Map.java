@@ -2,6 +2,7 @@ package com.destroflyer.escapeloop.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.destroflyer.escapeloop.game.loader.MapLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
@@ -130,6 +131,10 @@ public class Map {
 
     public void onFinish() {
         finished = true;
+    }
+
+    public MapObject getMapObject(Fixture fixture) {
+        return getMapObject(fixture.getBody());
     }
 
     public MapObject getMapObject(Body body) {
