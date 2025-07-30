@@ -5,9 +5,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 public class Enemy extends Character {
 
-    public Enemy(float shootCooldown, boolean autoShoot) {
+    public Enemy(float hoverHeight, float shootCooldown, boolean autoShoot) {
+        this.hoverHeight = hoverHeight;
         this.shootCooldown = shootCooldown;
         remainingShootCooldown = shootCooldown;
         this.autoShoot = autoShoot;
@@ -16,6 +19,9 @@ public class Enemy extends Character {
     private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadAnimation("./textures/enemy_robot/idle.png", 2, 2, 0.2f);
     private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadAnimation("./textures/enemy_robot/run.png", 2, 2, 0.15f);
     private static final Animation<TextureRegion> ANIMATION_SHOOT = TextureUtil.loadAnimation("./textures/enemy_robot/shoot.png", 2, 1, 0.05f);
+    private static final float HOVER_SPRING_STRENGTH = 50;
+    private static final float HOVER_DAMPING = 5;
+    private float hoverHeight;
     private float shootCooldown;
     private float remainingShootCooldown;
     private boolean autoShoot;
@@ -23,10 +29,31 @@ public class Enemy extends Character {
     @Override
     public void update(float tpf) {
         super.update(tpf);
+        handleHover();
         if (remainingShootCooldown > 0) {
             remainingShootCooldown -= tpf;
             if (autoShoot) {
                 tryShoot();
+            }
+        }
+    }
+
+    private void handleHover() {
+        if (hoverHeight > 0) {
+            AtomicReference<Vector2> groundPoint = new AtomicReference<>();
+            map.getWorld().rayCast((fixture, point, normal, fraction) -> {
+                if (fixture.getBody() == body) {
+                    return -1;
+                }
+                groundPoint.set(point);
+                return fraction;
+            }, body.getPosition(), body.getPosition().cpy().sub(0, hoverHeight));
+
+            if (groundPoint.get() != null) {
+                float heightAboveGround = body.getPosition().y - groundPoint.get().y;
+                float heightError = hoverHeight - heightAboveGround;
+                float springForce = (HOVER_SPRING_STRENGTH * heightError) - (HOVER_DAMPING * body.getLinearVelocity().y);
+                body.applyForceToCenter(0, springForce, true);
             }
         }
     }

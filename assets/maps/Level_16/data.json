@@ -70,7 +70,8 @@
 					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
-					"direction": "Left"
+					"direction": "Left",
+					"hoverHeight": 0
 				}
 			}
 		]

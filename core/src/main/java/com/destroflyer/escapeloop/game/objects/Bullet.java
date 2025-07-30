@@ -25,7 +25,6 @@ public class Bullet extends MapObject {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.gravityScale = 0;
-        bodyDef.bullet = true;
         body = map.getWorld().createBody(bodyDef);
         CircleShape circleShape = new CircleShape();
         circleShape.setRadius(0.1f);

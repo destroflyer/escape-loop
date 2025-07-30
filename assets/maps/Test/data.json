@@ -87,7 +87,8 @@
 						"cx": 25,
 						"cy": 13
 					},
-					"direction": "Left"
+					"direction": "Left",
+					"hoverHeight": 0.5
 				}
 			}
 		],

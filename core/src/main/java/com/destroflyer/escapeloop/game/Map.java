@@ -2,9 +2,7 @@ package com.destroflyer.escapeloop.game;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Joint;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.destroflyer.escapeloop.game.loader.MapLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
 
@@ -56,9 +54,11 @@ public class Map {
 
     private void reset() {
         time = 0;
+        for (MapObject mapObject : objects) {
+            world.destroyBody(mapObject.getBody());
+        }
         objects.clear();
         queuedTasks.clear();
-        disposeWorldContent();
         finished = false;
 
         width = mapLoader.getWidth();
@@ -77,19 +77,6 @@ public class Map {
         }
     }
 
-    private void disposeWorldContent() {
-        Array<Joint> joints = new Array<>();
-        world.getJoints(joints);
-        for (Joint joint : joints) {
-            world.destroyJoint(joint);
-        }
-        Array<Body> bodies = new Array<>();
-        world.getBodies(bodies);
-        for (Body body : bodies) {
-            world.destroyBody(body);
-        }
-    }
-
     public void addObject(MapObject mapObject) {
         mapObject.setMap(this);
         mapObject.createBody();
@@ -97,8 +84,9 @@ public class Map {
     }
 
     public void removeObject(MapObject mapObject) {
-        world.destroyBody(mapObject.getBody());
-        objects.remove(mapObject);
+        if (objects.remove(mapObject)) {
+            world.destroyBody(mapObject.getBody());
+        }
     }
 
     public void update(float tpf) {
