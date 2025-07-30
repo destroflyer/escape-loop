@@ -105,7 +105,7 @@ public class MapLoader {
         };
         loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
-        loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(entity.getCustomFields().getHoverHeight(), entity.getCustomFields().getShootCooldown(), entity.getCustomFields().isAutoShoot()), entity -> new Vector2(0, 0), (entity, enemy) -> {
+        loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(entity.getCustomFields().getHoverTileHeight(), entity.getCustomFields().getShootCooldown(), entity.getCustomFields().isAutoShoot()), entity -> new Vector2(0, 0), (entity, enemy) -> {
             enemy.setViewDirection(entity.getCustomFields().getDirection().equals("Left") ? -1 : 1);
         });
         loadEntities(data.getEntities().getItem(), entity -> ClassUtil.newInstance(ITEM_CLASSES.get(entity.getCustomFields().getItem())), entity -> new Vector2(0, -1 * ((Map.TILE_SIZE - 0.15f) * Map.TILE_SIZE)));

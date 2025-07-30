@@ -3,14 +3,16 @@ package com.destroflyer.escapeloop.game.objects;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Enemy extends Character {
 
-    public Enemy(float hoverHeight, float shootCooldown, boolean autoShoot) {
-        this.hoverHeight = hoverHeight;
+    public Enemy(int hoverTileHeight, float shootCooldown, boolean autoShoot) {
+        this.hoverTileHeight = hoverTileHeight;
         this.shootCooldown = shootCooldown;
         remainingShootCooldown = shootCooldown;
         this.autoShoot = autoShoot;
@@ -21,7 +23,7 @@ public class Enemy extends Character {
     private static final Animation<TextureRegion> ANIMATION_SHOOT = TextureUtil.loadAnimation("./textures/enemy_robot/shoot.png", 2, 1, 0.05f);
     private static final float HOVER_SPRING_STRENGTH = 50;
     private static final float HOVER_DAMPING = 5;
-    private float hoverHeight;
+    private int hoverTileHeight;
     private float shootCooldown;
     private float remainingShootCooldown;
     private boolean autoShoot;
@@ -39,19 +41,20 @@ public class Enemy extends Character {
     }
 
     private void handleHover() {
-        if (hoverHeight > 0) {
+        if (hoverTileHeight > 0) {
+            float effectiveHoverHeight = RADIUS + (((int) (hoverTileHeight / body.getGravityScale()) * Map.TILE_SIZE));
             AtomicReference<Vector2> groundPoint = new AtomicReference<>();
             map.getWorld().rayCast((fixture, point, normal, fraction) -> {
-                if (fixture.getBody() == body) {
-                    return -1;
+                if (Collisions.hasCategory(fixture, Collisions.PLATFORM)) {
+                    groundPoint.set(point);
+                    return fraction;
                 }
-                groundPoint.set(point);
-                return fraction;
-            }, body.getPosition(), body.getPosition().cpy().sub(0, hoverHeight));
+                return -1;
+            }, body.getPosition(), body.getPosition().cpy().sub(0, effectiveHoverHeight));
 
             if (groundPoint.get() != null) {
                 float heightAboveGround = body.getPosition().y - groundPoint.get().y;
-                float heightError = hoverHeight - heightAboveGround;
+                float heightError = effectiveHoverHeight - heightAboveGround;
                 float springForce = (HOVER_SPRING_STRENGTH * heightError) - (HOVER_DAMPING * body.getLinearVelocity().y);
                 body.applyForceToCenter(0, springForce, true);
             }

@@ -88,7 +88,7 @@
 						"cy": 13
 					},
 					"direction": "Left",
-					"hoverHeight": 0.5
+					"hoverTileHeight": 1
 				}
 			}
 		],
