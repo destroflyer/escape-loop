@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Json;
+import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntityCustomFieldEntity;
 import com.destroflyer.escapeloop.game.objects.Bouncer;
@@ -119,7 +120,13 @@ public class MapLoader {
             },
             entity -> new Vector2(((entity.getWidth() / TILE_SIZE_DATA) - 1) / 2f, ((entity.getHeight() / TILE_SIZE_DATA) - 1) / -2f)
         );
-        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 7) / 2f) / 16)));
+        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(getGates.apply(entity.getCustomFields().getGates()), parseDirection(entity.getCustomFields().getDirection())), entity -> {
+            Vector2 tileOffset = new Vector2(0, -1 * (((16 - 7) / 2f) / 16));
+            if (entity.getCustomFields().getDirection().equals("Down")) {
+                tileOffset.y *= -1;
+            }
+            return tileOffset;
+        });
         loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
     }
 
@@ -163,5 +170,15 @@ public class MapLoader {
 
     private float toMapSize(float dataSize) {
         return dataSize * (Map.TILE_SIZE / TILE_SIZE_DATA);
+    }
+
+    private Direction parseDirection(String direction) {
+        switch (direction) {
+            case "Left": return Direction.LEFT;
+            case "Right": return Direction.RIGHT;
+            case "Down": return Direction.DOWN;
+            case "Up": return Direction.UP;
+        }
+        throw new IllegalArgumentException(direction);
     }
 }

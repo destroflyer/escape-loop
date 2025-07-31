@@ -91,6 +91,10 @@ public abstract class MapObject {
 
     // Rendering
 
+    public Direction getTextureDirection() {
+        return Direction.RIGHT;
+    }
+
     protected void setOneTimeAnimation(Animation<TextureRegion> animation) {
         oneTimeAnimation = animation;
         oneTimeAnimationStartTime = map.getTime();

@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
@@ -16,13 +17,15 @@ import java.util.ArrayList;
 
 public class ToggleTrigger extends MapObject {
 
-    public ToggleTrigger(ArrayList<Gate> gates) {
+    public ToggleTrigger(ArrayList<Gate> gates, Direction direction) {
         this.gates = gates;
+        this.direction = direction;
         textureOffset = new Vector2(0, (((16 - 7) / 2f) / 16) * Map.TILE_SIZE);
     }
     private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.loadCaveTextureRegion(5, 7);
     private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadCaveTextureRegion(5, 8);
     private ArrayList<Gate> gates;
+    private Direction direction;
     private boolean state;
 
     @Override
@@ -50,6 +53,11 @@ public class ToggleTrigger extends MapObject {
         for (Gate gate : gates) {
             gate.setOpening(!gate.isOpening());
         }
+    }
+
+    @Override
+    public Direction getTextureDirection() {
+        return direction;
     }
 
     @Override

@@ -66,7 +66,7 @@ public class Gate extends MapObject {
             shapeHeight *= closeProgress;
         }
         PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(shapeWidth / 2, shapeHeight / 2, new Vector2(0, (height / 2) - (shapeHeight / 2)), 0);
+        polygonShape.setAsBox(shapeWidth / 2, shapeHeight / 2, new Vector2((width / 2) - (shapeWidth / 2), (height / 2) - (shapeHeight / 2)), 0);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
         fixture = body.createFixture(fixtureDef);

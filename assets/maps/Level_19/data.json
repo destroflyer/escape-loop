@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_19",
-	"uniqueIdentifer": "2fdb3a30-5e50-11f0-ba66-ddf1cf0c3985",
+	"uniqueIdentifer": "1b8b5d80-5e50-11f0-94d9-0fbda89db09e",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -14,45 +14,41 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "2fdb3a32-5e50-11f0-ba66-c7899f323e75",
-				"layer": "Entities",
-				"x": 144,
-				"y": 64,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields" : {}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "2fdb3a33-5e50-11f0-ba66-f34daa2046ba",
+				"iid": "1b8b5d82-5e50-11f0-94d9-a9811e5cc224",
 				"layer": "Entities",
-				"x": 320,
-				"y": 224,
+				"x": 144,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			},
+			{
+				"id": "Finish",
+				"iid": "1b8b5d83-5e50-11f0-94d9-c16cf2b743f8",
+				"layer": "Entities",
+				"x": 352,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Item": [
+		"Start": [
 			{
-				"id": "Item",
-				"iid": "21e2dbf0-5e50-11f0-94d9-cb1e6c647b29",
+				"id": "Start",
+				"iid": "1b8b8490-5e50-11f0-94d9-357b862ffc93",
 				"layer": "Entities",
-				"x": 128,
-				"y": 64,
+				"x": 256,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
+				"color": 11882632,
+				"customFields" : {}
 			}
 		]
 	}

@@ -25,10 +25,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.State;
+import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.Particles;
-import com.destroflyer.escapeloop.game.objects.Bullet;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
@@ -91,21 +91,16 @@ public class MapRenderState extends State {
         Matrix4 centerPositionAndRotationTransform = centerPositionTransform.cpy();
         centerPositionAndRotationTransform.rotateRad(0, 0, 1, bodyAngle);
 
-        int xDirection = 1;
-        if (mapObject instanceof Character) {
-            Character character = (Character) mapObject;
-            xDirection = character.getViewDirection();
-        } else if (mapObject instanceof Bullet) {
-            Bullet bullet = (Bullet) mapObject;
-            xDirection = (int) Math.signum(bullet.getBody().getLinearVelocity().x);
-        }
+        Direction textureDirection = mapObject.getTextureDirection();
+        int textureDirectionX = ((textureDirection.getX() != 0) ? textureDirection.getX() : 1);
+        int textureDirectionY = ((textureDirection.getY() != 0) ? textureDirection.getY() : 1);
         int textureOffsetX = convertMapSize(mapObject.getTextureOffset().x);
         int textureOffsetY = convertMapSize(mapObject.getTextureOffset().y);
         int textureWidth = convertMapSize(mapObject.getTextureSize().x);
         int textureHeight = convertMapSize(mapObject.getTextureSize().y);
         Matrix4 leftTopTransform = centerPositionAndRotationTransform.cpy();
-        leftTopTransform.translate(xDirection * ((textureWidth / -2f) + textureOffsetX), (textureHeight / -2f) + textureOffsetY, 0);
-        leftTopTransform.scl(xDirection, 1, 1);
+        leftTopTransform.translate(textureDirectionX * ((textureWidth / -2f) + textureOffsetX), textureDirectionY * ((textureHeight / -2f) + textureOffsetY), 0);
+        leftTopTransform.scl(textureDirectionX, textureDirectionY, 1);
 
         switch (layer) {
             case BACKGROUND:

@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_16",
-	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
+	"uniqueIdentifer": "9ad47f70-5e50-11f0-b20d-e91ea32ac5a0",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -14,12 +14,25 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "9ad4a681-5e50-11f0-b20d-9b744ee47232",
+				"layer": "Entities",
+				"x": 432,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
+				"iid": "9ad4a682-5e50-11f0-b20d-8d2fed5431fd",
 				"layer": "Entities",
-				"x": 96,
+				"x": 224,
 				"y": 176,
 				"width": 16,
 				"height": 16,
@@ -27,52 +40,39 @@
 				"customFields" : {}
 			}
 		],
-		"Finish": [
+		"Bouncer": [
 			{
-				"id": "Finish",
-				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
+				"id": "Bouncer",
+				"iid": "acbd7570-5e50-11f0-b20d-55f97c512a5c",
 				"layer": "Entities",
-				"x": 400,
+				"x": 304,
 				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 2943221,
 				"customFields" : {}
-			}
-		],
-		"Enemy": [
+			},
 			{
-				"id": "Enemy",
-				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
+				"id": "Bouncer",
+				"iid": "1ab3a2c0-5e50-11f0-b20d-b56cd4696508",
 				"layer": "Entities",
-				"x": 256,
-				"y": 176,
+				"x": 176,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 1
-				}
-			}
-		],
-		"Item": [
+				"color": 2943221,
+				"customFields" : {}
+			},
 			{
-				"id": "Item",
-				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
+				"id": "Bouncer",
+				"iid": "8f5852b0-5e50-11f0-b20d-e541cc17fd2d",
 				"layer": "Entities",
-				"x": 80,
-				"y": 176,
+				"x": 320,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Knockback"
-				}
+				"color": 2943221,
+				"customFields" : {}
 			}
 		]
 	}

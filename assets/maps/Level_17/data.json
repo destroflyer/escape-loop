@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_17",
-	"uniqueIdentifer": "6c3b37a0-5e50-11f0-870b-8d2187b30b37",
+	"uniqueIdentifer": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -17,10 +17,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "6c3b37a2-5e50-11f0-870b-3194ae3dd9c1",
+				"iid": "90e3fff2-5e50-11f0-b20d-e58c4961ff78",
 				"layer": "Entities",
 				"x": 128,
-				"y": 128,
+				"y": 32,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -30,48 +30,61 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "6c3b37a3-5e50-11f0-870b-2f7741a421d9",
+				"iid": "90e3fff3-5e50-11f0-b20d-473d7c404ff1",
 				"layer": "Entities",
-				"x": 304,
-				"y": 96,
+				"x": 128,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Enemy": [
+		"Bouncer": [
 			{
-				"id": "Enemy",
-				"iid": "6c3b37a5-5e50-11f0-870b-a714326b14c0",
+				"id": "Bouncer",
+				"iid": "251e9fe0-5e50-11f0-b20d-ff436559a5a5",
 				"layer": "Entities",
-				"x": 256,
-				"y": 144,
+				"x": 240,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 3
-				}
+				"color": 2943221,
+				"customFields" : {}
 			}
 		],
-		"Item": [
+		"Gate": [
 			{
-				"id": "Item",
-				"iid": "c3450440-5e50-11f0-870b-d122ec21d1db",
+				"id": "Gate",
+				"iid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
 				"layer": "Entities",
-				"x": 64,
-				"y": 96,
+				"x": 192,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Pressure_Trigger": [
+			{
+				"id": "Pressure_Trigger",
+				"iid": "d2bb3460-5e50-11f0-b20d-2fa90fe4fadb",
+				"layer": "Entities",
+				"x": 336,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
 				"customFields": {
-					"item": "Heavy"
+					"gates": [
+						{
+							"entityIid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
+							"layerIid": "90e3fff1-5e50-11f0-b20d-cf3125aeb0c2",
+							"levelIid": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
 				}
 			}
 		]

@@ -55,7 +55,7 @@ public class Item extends MapObject {
     @Override
     public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
         super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
-        if (mapObject instanceof Character) {
+        if ((holder == null) && (mapObject instanceof Character)) {
             Character character = (Character) mapObject;
             if (!blockedPickupCharacters.contains(character)) {
                 boolean canBePickuped = true;

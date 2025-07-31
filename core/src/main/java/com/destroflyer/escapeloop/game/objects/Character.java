@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 
@@ -195,5 +196,10 @@ public class Character extends MapObject {
 
     public boolean isOnGround() {
         return groundObjects.size() > 0;
+    }
+
+    @Override
+    public Direction getTextureDirection() {
+        return (viewDirection == -1) ? Direction.LEFT : Direction.RIGHT;
     }
 }
