@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_14",
-	"uniqueIdentifer": "df07ec00-5e50-11f0-b20d-1f53127b5878",
+	"uniqueIdentifer": "7102e150-5e50-11f0-9b1e-2ff57353c2ec",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -17,10 +17,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "df07ec02-5e50-11f0-b20d-abc2022ec3f5",
+				"iid": "7102e152-5e50-11f0-9b1e-dfdad7caee87",
 				"layer": "Entities",
-				"x": 416,
-				"y": 160,
+				"x": 240,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -30,49 +30,51 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "df07ec03-5e50-11f0-b20d-7143acb0e813",
+				"iid": "7102e153-5e50-11f0-9b1e-2530ae24cba3",
 				"layer": "Entities",
-				"x": 64,
-				"y": 112,
+				"x": 240,
+				"y": 208,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Bouncer": [
+		"Gate": [
 			{
-				"id": "Bouncer",
-				"iid": "3073bba0-5e50-11f0-b20d-1fda776c0e1c",
+				"id": "Gate",
+				"iid": "7102e154-5e50-11f0-9b1e-0525d8334ec6",
 				"layer": "Entities",
-				"x": 192,
-				"y": 112,
+				"x": 224,
+				"y": 160,
+				"width": 48,
+				"height": 16,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "7102e155-5e50-11f0-9b1e-5b0b3451ea8f",
+				"layer": "Entities",
+				"x": 240,
+				"y": 64,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "f484f350-5e50-11f0-b20d-ebfdb620ba86",
-				"layer": "Entities",
-				"x": 256,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "9167dc10-5e50-11f0-94d9-95b618df2d08",
-				"layer": "Entities",
-				"x": 128,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "7102e154-5e50-11f0-9b1e-0525d8334ec6",
+							"layerIid": "7102e151-5e50-11f0-9b1e-c3e0df0288e9",
+							"levelIid": "7102e150-5e50-11f0-9b1e-2ff57353c2ec",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Down"
+				}
 			}
 		]
 	}

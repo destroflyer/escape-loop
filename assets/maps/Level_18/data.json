@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_18",
-	"uniqueIdentifer": "02f69240-5e50-11f0-ba66-1d0cd2621a79",
+	"uniqueIdentifer": "9ad47f70-5e50-11f0-b20d-e91ea32ac5a0",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -17,63 +17,61 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "b9226560-5e50-11f0-ba66-79bdedcfff00",
+				"iid": "9ad4a681-5e50-11f0-b20d-9b744ee47232",
 				"layer": "Entities",
-				"x": 160,
-				"y": 48,
+				"x": 432,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Toggle_Trigger": [
-			{
-				"id": "Toggle_Trigger",
-				"iid": "2b8ad300-5e50-11f0-94d9-dba3ba6df098",
-				"layer": "Entities",
-				"x": 176,
-				"y": 224,
-				"width": 16,
-				"height": 16,
-				"color": 10626611,
-				"customFields": {
-					"autoRevertDuration": null,
-					"gates": [
-						{
-							"entityIid": "9b4397e0-5e50-11f0-94d9-476280282f93",
-							"layerIid": "02f69241-5e50-11f0-ba66-c1826d71de91",
-							"levelIid": "02f69240-5e50-11f0-ba66-1d0cd2621a79",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Up"
-				}
-			}
-		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "9b4397e0-5e50-11f0-94d9-476280282f93",
-				"layer": "Entities",
-				"x": 192,
-				"y": 64,
-				"width": 64,
-				"height": 176,
-				"color": 9149364,
-				"customFields" : {}
-			}
-		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "02f69242-5e50-11f0-ba66-6b0934dd7129",
+				"iid": "9ad4a682-5e50-11f0-b20d-8d2fed5431fd",
 				"layer": "Entities",
-				"x": 160,
-				"y": 224,
+				"x": 224,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
+				"customFields" : {}
+			}
+		],
+		"Bouncer": [
+			{
+				"id": "Bouncer",
+				"iid": "acbd7570-5e50-11f0-b20d-55f97c512a5c",
+				"layer": "Entities",
+				"x": 304,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 2943221,
+				"customFields" : {}
+			},
+			{
+				"id": "Bouncer",
+				"iid": "1ab3a2c0-5e50-11f0-b20d-b56cd4696508",
+				"layer": "Entities",
+				"x": 176,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 2943221,
+				"customFields" : {}
+			},
+			{
+				"id": "Bouncer",
+				"iid": "8f5852b0-5e50-11f0-b20d-e541cc17fd2d",
+				"layer": "Entities",
+				"x": 320,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 2943221,
 				"customFields" : {}
 			}
 		]

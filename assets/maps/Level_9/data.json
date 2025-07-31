@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_9",
-	"uniqueIdentifer": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
+	"uniqueIdentifer": "c11fafd0-5e50-11f0-925d-5d9fd188ff33",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -17,9 +17,9 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "edd2ef40-5e50-11f0-b20d-6d1cd3fb1786",
+				"iid": "c11fafd2-5e50-11f0-925d-01d6f17b9a41",
 				"layer": "Entities",
-				"x": 160,
+				"x": 336,
 				"y": 160,
 				"width": 16,
 				"height": 16,
@@ -30,49 +30,14 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "edd2ef41-5e50-11f0-b20d-617465dc2e3d",
+				"iid": "c11fafd3-5e50-11f0-925d-1d9647792a1d",
 				"layer": "Entities",
-				"x": 320,
-				"y": 160,
+				"x": 128,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
-			}
-		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
-				"layer": "Entities",
-				"x": 288,
-				"y": 112,
-				"width": 16,
-				"height": 64,
-				"color": 9149364,
-				"customFields" : {}
-			}
-		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "00b19ae0-5e50-11f0-9b1e-d1084b1a303d",
-				"layer": "Entities",
-				"x": 192,
-				"y": 160,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
-							"layerIid": "edd2c831-5e50-11f0-b20d-2d568b9a62d8",
-							"levelIid": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
 			}
 		]
 	}

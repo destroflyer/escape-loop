@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_20",
-	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
+	"uniqueIdentifer": "02f69240-5e50-11f0-ba66-1d0cd2621a79",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -14,65 +14,67 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
-				"layer": "Entities",
-				"x": 96,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields" : {}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
+				"iid": "b9226560-5e50-11f0-ba66-79bdedcfff00",
 				"layer": "Entities",
-				"x": 400,
-				"y": 160,
+				"x": 160,
+				"y": 48,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Enemy": [
+		"Toggle_Trigger": [
 			{
-				"id": "Enemy",
-				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
+				"id": "Toggle_Trigger",
+				"iid": "2b8ad300-5e50-11f0-94d9-dba3ba6df098",
 				"layer": "Entities",
-				"x": 256,
-				"y": 176,
+				"x": 176,
+				"y": 224,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
+				"color": 10626611,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 1
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "9b4397e0-5e50-11f0-94d9-476280282f93",
+							"layerIid": "02f69241-5e50-11f0-ba66-c1826d71de91",
+							"levelIid": "02f69240-5e50-11f0-ba66-1d0cd2621a79",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
 				}
 			}
 		],
-		"Item": [
+		"Gate": [
 			{
-				"id": "Item",
-				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
+				"id": "Gate",
+				"iid": "9b4397e0-5e50-11f0-94d9-476280282f93",
 				"layer": "Entities",
-				"x": 80,
-				"y": 176,
+				"x": 192,
+				"y": 64,
+				"width": 64,
+				"height": 176,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Start": [
+			{
+				"id": "Start",
+				"iid": "02f69242-5e50-11f0-ba66-6b0934dd7129",
+				"layer": "Entities",
+				"x": 160,
+				"y": 224,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Knockback"
-				}
+				"color": 11882632,
+				"customFields" : {}
 			}
 		]
 	}

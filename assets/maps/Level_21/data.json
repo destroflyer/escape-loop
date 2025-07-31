@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_21",
-	"uniqueIdentifer": "6c3b37a0-5e50-11f0-870b-8d2187b30b37",
+	"uniqueIdentifer": "1b8b5d80-5e50-11f0-94d9-0fbda89db09e",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -14,25 +14,23 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "6c3b37a2-5e50-11f0-870b-3194ae3dd9c1",
-				"layer": "Entities",
-				"x": 128,
-				"y": 128,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields" : {}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "6c3b37a3-5e50-11f0-870b-2f7741a421d9",
+				"iid": "1b8b5d82-5e50-11f0-94d9-a9811e5cc224",
 				"layer": "Entities",
-				"x": 304,
+				"x": 144,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			},
+			{
+				"id": "Finish",
+				"iid": "1b8b5d83-5e50-11f0-94d9-c16cf2b743f8",
+				"layer": "Entities",
+				"x": 352,
 				"y": 96,
 				"width": 16,
 				"height": 16,
@@ -40,39 +38,17 @@
 				"customFields" : {}
 			}
 		],
-		"Enemy": [
+		"Start": [
 			{
-				"id": "Enemy",
-				"iid": "6c3b37a5-5e50-11f0-870b-a714326b14c0",
+				"id": "Start",
+				"iid": "1b8b8490-5e50-11f0-94d9-357b862ffc93",
 				"layer": "Entities",
 				"x": 256,
-				"y": 144,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 3
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "c3450440-5e50-11f0-870b-d122ec21d1db",
-				"layer": "Entities",
-				"x": 64,
-				"y": 96,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
+				"color": 11882632,
+				"customFields" : {}
 			}
 		]
 	}
