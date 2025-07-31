@@ -11,12 +11,13 @@ public class MapIngameUiState extends UiState {
         this.mapState = mapState;
     }
     private MapState mapState;
+    private Label infoLabel;
     private Label timeLabel;
 
     @Override
     protected void create(Skin skin) {
-        Label infoLabel = new Label("Enter = Time machine, J = Action, Backspace = Reset, Escape = Menu", skin);
-        infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 55));
+        infoLabel = new Label("", skin);
+        infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
         stage.addActor(infoLabel);
 
         timeLabel = new Label("", skin);
@@ -27,10 +28,9 @@ public class MapIngameUiState extends UiState {
     @Override
     public void update(float tpf) {
         super.update(tpf);
-        updateTimeLabel();
-    }
-
-    private void updateTimeLabel() {
+        int maximumPlayerPasts = mapState.getMap().getMaximumPlayerPasts();
+        int remainingPlayerPasts = maximumPlayerPasts - mapState.getMap().getPlayerPasts().size();
+        infoLabel.setText("L = Time machine (" + remainingPlayerPasts + "/" + maximumPlayerPasts +  " charges left), J = Action, Backspace = Reset");
         timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTime(), 3) + "s");
     }
 }

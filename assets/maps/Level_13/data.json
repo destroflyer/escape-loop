@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",

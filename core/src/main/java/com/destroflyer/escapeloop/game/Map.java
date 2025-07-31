@@ -41,13 +41,17 @@ public class Map {
     private ArrayList<PlayerInput> currentPlayerCurrentFrameInputs = new ArrayList<>();
     private ArrayList<PlayerPastFrame> currentPlayerFrames = new ArrayList<>();
     @Getter
+    private int maximumPlayerPasts;
+    @Getter
     private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
     @Getter
     private boolean finished;
 
-    public void startNextRun() {
-        playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerFrames)));
-        reset();
+    public void tryStartNextPlayer() {
+        if (playerPasts.size() < maximumPlayerPasts) {
+            playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerFrames)));
+            reset();
+        }
     }
 
     public void onDeath() {
@@ -67,6 +71,7 @@ public class Map {
         width = mapLoader.getWidth();
         mapLoader.loadObjects();
         Vector2 startPosition = mapLoader.getStartPosition();
+        maximumPlayerPasts = mapLoader.getMaximumPlayerPasts();
 
         player = new Player();
         addObject(player);

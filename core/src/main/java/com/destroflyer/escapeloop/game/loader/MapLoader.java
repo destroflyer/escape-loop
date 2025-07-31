@@ -172,6 +172,10 @@ public class MapLoader {
         return dataSize * (Map.TILE_SIZE / TILE_SIZE_DATA);
     }
 
+    public int getMaximumPlayerPasts() {
+        return data.getCustomFields().getMaximumPlayerPasts();
+    }
+
     private Direction parseDirection(String direction) {
         switch (direction) {
             case "Left": return Direction.LEFT;

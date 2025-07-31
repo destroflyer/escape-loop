@@ -69,8 +69,8 @@ public class MapIngameState extends State {
                     case Input.Keys.J:
                         map.applyInput(new ActionInput());
                         break;
-                    case Input.Keys.ENTER:
-                        map.startNextRun();
+                    case Input.Keys.L:
+                        map.tryStartNextPlayer();
                         break;
                     case Input.Keys.BACKSPACE:
                         mapState.startNewGame();
