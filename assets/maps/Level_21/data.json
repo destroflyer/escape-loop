@@ -7,7 +7,9 @@
 	"height": 288,
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
-	"customFields" : {},
+	"customFields": {
+		"maximumPlayerPasts": 4
+	},
 	"layers": [
 		"Background.png",
 		"Terrain.png",
