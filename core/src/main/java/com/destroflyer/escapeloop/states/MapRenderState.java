@@ -31,6 +31,7 @@ import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.Particles;
 import com.destroflyer.escapeloop.game.PlayerPast;
 import com.destroflyer.escapeloop.game.PlayerPastFrame;
+import com.destroflyer.escapeloop.game.PlayerPastWithIndex;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
@@ -52,7 +53,10 @@ public class MapRenderState extends State {
     private Texture terrainTexture;
     @Getter
     @Setter
-    private float playerPastTrajectoryDuration = 3;
+    private float playerPastsTrajectoryDuration = 3;
+    @Getter
+    @Setter
+    private boolean playerPastsDistinctColors;
     @Getter
     @Setter
     private boolean debug;
@@ -115,9 +119,9 @@ public class MapRenderState extends State {
                 if (particles != null) {
                     drawParticles(particles, centerPositionTransform, textureWidth);
                 }
-                PlayerPast playerPast = getPlayerPast(mapObject);
-                if (playerPast != null) {
-                    drawPlayerTrajectory(playerPast);
+                PlayerPastWithIndex playerPastWithIndex = getPlayerPastWithIndex(mapObject);
+                if (playerPastWithIndex != null) {
+                    drawPlayerPastTrajectory(playerPastWithIndex);
                 }
                 break;
             case FOREGROUND:
@@ -172,17 +176,10 @@ public class MapRenderState extends State {
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
-    private PlayerPast getPlayerPast(MapObject mapObject) {
-        if (mapObject instanceof Player) {
-            return mapState.getMap().getPlayerPasts().stream().filter(playerPast -> playerPast.getPlayer() == mapObject).findAny().orElse(null);
-        }
-        return null;
-    }
-
-    private void drawPlayerTrajectory(PlayerPast playerPast) {
-        float maximumTime = mapState.getMap().getTime() + playerPastTrajectoryDuration;
+    private void drawPlayerPastTrajectory(PlayerPastWithIndex playerPastWithIndex) {
+        float maximumTime = mapState.getMap().getTime() + playerPastsTrajectoryDuration;
         ArrayList<Vector2> trajectoryPoints = new ArrayList<>();
-        for (PlayerPastFrame frame : playerPast.getRemainingFrames()) {
+        for (PlayerPastFrame frame : playerPastWithIndex.getPlayerPast().getRemainingFrames()) {
             if (frame.getTime() > maximumTime) {
                 break;
             }
@@ -190,12 +187,14 @@ public class MapRenderState extends State {
             int y = convertMapSize(frame.getPosition().y);
             trajectoryPoints.add(new Vector2(x, y));
         }
+        Color color = getMapObjectTintColor(playerPastWithIndex.getPlayerPast().getPlayer());
         if (trajectoryPoints.size() > 1) {
             Gdx.gl.glEnable(GL20.GL_BLEND);
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             for (int i = 0; i < trajectoryPoints.size() - 1; i++) {
                 float progress = ((float) i) / (trajectoryPoints.size() - 1);
-                shapeRenderer.setColor(new Color(1, 1, 1, 1 - progress));
+                color.a = 1 - progress;
+                shapeRenderer.setColor(color);
                 Vector2 start = trajectoryPoints.get(i);
                 Vector2 end = trajectoryPoints.get(i + 1);
                 shapeRenderer.line(start.x, start.y, end.x, end.y);
@@ -235,7 +234,7 @@ public class MapRenderState extends State {
 
         spriteBatch.begin();
         spriteBatch.setTransformMatrix(leftTopTransform);
-        spriteBatch.setColor(1, 1, 1, alpha);
+        spriteBatch.setColor(getMapObjectTintColor(mapObject, alpha));
 
         int tileOffsetX = (((tilesX - 1) * textureWidth) / -2);
         int tileOffsetY = (((tilesY - 1) * textureHeight) / -2);
@@ -256,6 +255,35 @@ public class MapRenderState extends State {
         }
     }
 
+    private Color getMapObjectTintColor(MapObject mapObject) {
+        return getMapObjectTintColor(mapObject, 1);
+    }
+
+    private Color getMapObjectTintColor(MapObject mapObject, float alpha) {
+        PlayerPastWithIndex playerPastWithIndex = getPlayerPastWithIndex(mapObject);
+        if ((playerPastWithIndex != null) && playerPastsDistinctColors) {
+            switch (playerPastWithIndex.getIndex()) {
+                case 0: return new Color(1, 0, 0, alpha);
+                case 1: return new Color(0, 1, 0, alpha);
+                case 2: return new Color(0, 0, 1, alpha);
+            }
+        }
+        return new Color(1, 1, 1, alpha);
+    }
+
+    private PlayerPastWithIndex getPlayerPastWithIndex(MapObject mapObject) {
+        if (mapObject instanceof Player) {
+            ArrayList<PlayerPast> playerPasts = mapState.getMap().getPlayerPasts();
+            for (int i = 0; i < playerPasts.size(); i++) {
+                PlayerPast playerPast = playerPasts.get(i);
+                if (playerPast.getPlayer() == mapObject) {
+                    return new PlayerPastWithIndex(i, playerPast);
+                }
+            }
+        }
+        return null;
+    }
+
     private void drawDebugShape(MapObject mapObject, int bodyX, int bodyY, float alpha) {
         Gdx.gl.glEnable(GL20.GL_BLEND);
 
@@ -264,7 +292,7 @@ public class MapRenderState extends State {
         int fixtureIndex = 0;
         for (Fixture fixture : fixtures) {
             Shape shape = fixture.getShape();
-            Color color = getShapeColor(mapObject, fixtureIndex, alpha * 0.5f);
+            Color color = getDebugShapeColor(mapObject, fixtureIndex, alpha * 0.5f);
 
             if (shape instanceof PolygonShape) {
                 PolygonShape polygonShape = (PolygonShape) shape;
@@ -309,7 +337,7 @@ public class MapRenderState extends State {
         Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
-    private Color getShapeColor(MapObject mapObject, int fixtureIndex, float alpha) {
+    private Color getDebugShapeColor(MapObject mapObject, int fixtureIndex, float alpha) {
         if (mapObject instanceof Character) {
             Character character = (Character) mapObject;
             if (fixtureIndex == 1) {

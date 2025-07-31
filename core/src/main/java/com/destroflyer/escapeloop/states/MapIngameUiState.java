@@ -16,11 +16,11 @@ public class MapIngameUiState extends UiState {
 
     @Override
     protected void create(Skin skin) {
-        infoLabel = new Label("", skin);
+        infoLabel = new Label(null, skin);
         infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
         stage.addActor(infoLabel);
 
-        timeLabel = new Label("", skin);
+        timeLabel = new Label(null, skin);
         timeLabel.setPosition((Main.VIEWPORT_WIDTH - 230), (Main.VIEWPORT_HEIGHT - 36));
         stage.addActor(timeLabel);
     }
