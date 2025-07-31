@@ -45,6 +45,8 @@ public class Map {
     @Getter
     private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
     @Getter
+    private ArrayList<MapText> texts = new ArrayList<>();
+    @Getter
     private boolean finished;
 
     public void tryStartNextPlayer() {
@@ -66,10 +68,11 @@ public class Map {
         }
         objects.clear();
         queuedTasks.clear();
+        texts.clear();
         finished = false;
 
         width = mapLoader.getWidth();
-        mapLoader.loadObjects();
+        mapLoader.loadContent();
         Vector2 startPosition = mapLoader.getStartPosition();
         maximumPlayerPasts = mapLoader.getMaximumPlayerPasts();
 
@@ -96,6 +99,10 @@ public class Map {
         if (objects.remove(mapObject)) {
             world.destroyBody(mapObject.getBody());
         }
+    }
+
+    public void addText(MapText text) {
+        texts.add(text);
     }
 
     public void update(float tpf) {

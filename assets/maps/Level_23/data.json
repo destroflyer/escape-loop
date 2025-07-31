@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_23",
-	"uniqueIdentifer": "ebfeead0-5e50-11f0-afb0-ad872cbc3848",
+	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,9 +19,9 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "ebfeead2-5e50-11f0-afb0-9f0e67990cef",
+				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
 				"layer": "Entities",
-				"x": 96,
+				"x": 416,
 				"y": 112,
 				"width": 16,
 				"height": 16,
@@ -29,64 +29,46 @@
 				"customFields" : {}
 			}
 		],
-		"Finish": [
+		"Item": [
 			{
-				"id": "Finish",
-				"iid": "ebfeead3-5e50-11f0-afb0-593ae5c7ae84",
-				"layer": "Entities",
-				"x": 400,
-				"y": 160,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "ebfeead4-5e50-11f0-afb0-193ae7a583c8",
+				"id": "Item",
+				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
 				"layer": "Entities",
 				"x": 336,
 				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 1
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "ebfeead5-5e50-11f0-afb0-054feae712dd",
-				"layer": "Entities",
-				"x": 128,
-				"y": 112,
-				"width": 16,
-				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Knockback"
+					"item": "Heavy"
 				}
 			}
 		],
-		"Bouncer": [
+		"Text": [
 			{
-				"id": "Bouncer",
-				"iid": "fd6172c0-5e50-11f0-afb0-c7b14f8f0ecd",
+				"id": "Text",
+				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
 				"layer": "Entities",
-				"x": 256,
-				"y": 128,
+				"x": 336,
+				"y": 80,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
+				"color": 16777215,
+				"customFields": {
+					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight"
+				}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"layer": "Entities",
+				"x": 64,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
 				"customFields" : {}
 			}
 		]

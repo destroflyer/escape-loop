@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_3",
-	"uniqueIdentifer": "dba81ac0-5e50-11f0-94d9-4157b88df978",
+	"uniqueIdentifer": "aa3f8bd0-5e50-11f0-ba66-e9e28a4a374c",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "dba81ac2-5e50-11f0-94d9-0d73c85d8b23",
+				"iid": "aa3f8bd3-5e50-11f0-ba66-a5e6f49b2e34",
 				"layer": "Entities",
-				"x": 432,
-				"y": 112,
+				"x": 448,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -32,14 +32,29 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "dba81ac3-5e50-11f0-94d9-d79d3f7ccce5",
+				"iid": "aa3f8bd2-5e50-11f0-ba66-6121855d33d6",
 				"layer": "Entities",
-				"x": 112,
-				"y": 160,
+				"x": 96,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
 				"customFields" : {}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "5693d4d0-5e50-11f0-928e-2b50db397665",
+				"layer": "Entities",
+				"x": 288,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "When bouncing, your angle and velocity determine how far and fast you fly"
+				}
 			}
 		]
 	}

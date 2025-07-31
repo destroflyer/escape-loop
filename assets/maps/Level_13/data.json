@@ -78,6 +78,21 @@
 					"direction": "Up"
 				}
 			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "75cda5a0-5e50-11f0-928e-eb7d0e1fbc73",
+				"layer": "Entities",
+				"x": 208,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Toggle switches will open/close gates when pushed - Use your action key"
+				}
+			}
 		]
 	}
 }

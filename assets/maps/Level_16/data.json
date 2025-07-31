@@ -76,6 +76,21 @@
 				"color": 2943221,
 				"customFields" : {}
 			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "b719cd90-5e50-11f0-928e-41f9c0997668",
+				"layer": "Entities",
+				"x": 192,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Bouncing platforms will... bounce you"
+				}
+			}
 		]
 	}
 }

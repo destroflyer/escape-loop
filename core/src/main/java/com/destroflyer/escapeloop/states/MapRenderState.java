@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.PolygonRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -21,6 +23,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
 import com.destroflyer.escapeloop.Main;
@@ -28,6 +31,7 @@ import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.MapText;
 import com.destroflyer.escapeloop.game.Particles;
 import com.destroflyer.escapeloop.game.PlayerPast;
 import com.destroflyer.escapeloop.game.PlayerPastFrame;
@@ -51,6 +55,8 @@ public class MapRenderState extends State {
     private MapState mapState;
     private Texture backgroundTexture;
     private Texture terrainTexture;
+    private BitmapFont textFont = new BitmapFont();
+    private GlyphLayout textLayout = new GlyphLayout();
     @Getter
     @Setter
     private float playerPastsTrajectoryDuration = 3;
@@ -70,6 +76,7 @@ public class MapRenderState extends State {
         drawFullScreenTexture(backgroundTexture);
         drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
+        drawMapTexts();
         drawMapObjects(mapObject -> !(mapObject instanceof Character) && !(mapObject instanceof Item), MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Character, MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Item, MapRenderLayer.FOREGROUND);
@@ -78,6 +85,19 @@ public class MapRenderState extends State {
     private void drawFullScreenTexture(Texture texture) {
         spriteBatch.begin();
         spriteBatch.draw(texture, 0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
+        spriteBatch.end();
+    }
+
+    private void drawMapTexts() {
+        spriteBatch.begin();
+        for (MapText text : mapState.getMap().getTexts()) {
+            int x = convertMapSize(text.getPosition().x);
+            int y = convertMapSize(text.getPosition().y);
+            textLayout.setText(textFont, text.getText(), Color.WHITE, 200, Align.center, true);
+            float textWidth = textLayout.width;
+            float textHeight = textLayout.height;
+            textFont.draw(spriteBatch, textLayout, x - (textWidth / 2), y + (textHeight / 2));
+        }
         spriteBatch.end();
     }
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.utils.Json;
 import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.MapText;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntityCustomFieldEntity;
 import com.destroflyer.escapeloop.game.objects.Bouncer;
 import com.destroflyer.escapeloop.game.objects.Enemy;
@@ -82,7 +83,7 @@ public class MapLoader {
         return Gdx.files.internal("./maps/" + map.getName() + "/" + fileName);
     }
 
-    public void loadObjects() {
+    public void loadContent() {
         for (int tileY = 0; tileY < terrain.size(); tileY++) {
             int[] row = terrain.get(tileY);
             for (int tileX = 0; tileX < row.length; tileX++) {
@@ -96,6 +97,7 @@ public class MapLoader {
                 }
             }
         }
+
         HashMap<String, Gate> gatesByIid = new HashMap<>();
         Function<ArrayList<MapDataEntityCustomFieldEntity>, ArrayList<Gate>> getGates = (gateEntities) -> {
             ArrayList<Gate> gates = new ArrayList<>();
@@ -128,6 +130,15 @@ public class MapLoader {
             return tileOffset;
         });
         loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
+
+        ArrayList<MapDataEntity> texts = data.getEntities().getText();
+        if (texts != null) {
+            for (MapDataEntity entity : texts) {
+                Vector2 position = getMapPosition(entity);
+                String text = entity.getCustomFields().getText();
+                map.addText(new MapText(position, text));
+            }
+        }
     }
 
     private <T extends MapObject> void loadEntities(ArrayList<MapDataEntity> entities, Function<MapDataEntity, T> createMapObject, Function<MapDataEntity, Vector2> getTileOffset) {

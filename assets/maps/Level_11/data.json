@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -74,6 +74,21 @@
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					]
+				}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "3312d280-5e50-11f0-928e-9f2c5a862c4d",
+				"layer": "Entities",
+				"x": 192,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Pressure switches will open gates while something is on top of them"
 				}
 			}
 		]

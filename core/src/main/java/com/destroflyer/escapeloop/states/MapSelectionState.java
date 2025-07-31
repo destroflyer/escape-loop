@@ -21,7 +21,7 @@ public class MapSelectionState extends UiState {
     @Override
     protected void create(Skin skin) {
         Label titleLabel = new Label("Select a level", skin);
-        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 110);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 125);
         stage.addActor(titleLabel);
 
         levelsTable = new Table();
