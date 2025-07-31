@@ -22,7 +22,7 @@ public class MapIngameState extends State {
     @Override
     public void create() {
         super.create();
-        mapIngameUiState = new MapIngameUiState();
+        mapIngameUiState = new MapIngameUiState(mapState);
         childStates.add(mapIngameUiState);
     }
 

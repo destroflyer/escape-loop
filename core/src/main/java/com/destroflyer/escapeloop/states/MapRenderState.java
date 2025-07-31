@@ -29,11 +29,15 @@ import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.Particles;
+import com.destroflyer.escapeloop.game.PlayerPast;
+import com.destroflyer.escapeloop.game.PlayerPastFrame;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
 import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.objects.Player;
+
+import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +50,9 @@ public class MapRenderState extends State {
     private MapState mapState;
     private Texture backgroundTexture;
     private Texture terrainTexture;
+    @Getter
+    @Setter
+    private float playerPastTrajectoryDuration = 3;
     @Getter
     @Setter
     private boolean debug;
@@ -108,6 +115,10 @@ public class MapRenderState extends State {
                 if (particles != null) {
                     drawParticles(particles, centerPositionTransform, textureWidth);
                 }
+                PlayerPast playerPast = getPlayerPast(mapObject);
+                if (playerPast != null) {
+                    drawPlayerTrajectory(playerPast);
+                }
                 break;
             case FOREGROUND:
                 TextureRegion textureRegion = mapObject.getTextureRegion();
@@ -159,6 +170,39 @@ public class MapRenderState extends State {
         shapeRenderer.setTransformMatrix(originalTransform);
         shapeRenderer.end();
         Gdx.gl.glDisable(GL20.GL_BLEND);
+    }
+
+    private PlayerPast getPlayerPast(MapObject mapObject) {
+        if (mapObject instanceof Player) {
+            return mapState.getMap().getPlayerPasts().stream().filter(playerPast -> playerPast.getPlayer() == mapObject).findAny().orElse(null);
+        }
+        return null;
+    }
+
+    private void drawPlayerTrajectory(PlayerPast playerPast) {
+        float maximumTime = mapState.getMap().getTime() + playerPastTrajectoryDuration;
+        ArrayList<Vector2> trajectoryPoints = new ArrayList<>();
+        for (PlayerPastFrame frame : playerPast.getRemainingFrames()) {
+            if (frame.getTime() > maximumTime) {
+                break;
+            }
+            int x = convertMapSize(frame.getPosition().x);
+            int y = convertMapSize(frame.getPosition().y);
+            trajectoryPoints.add(new Vector2(x, y));
+        }
+        if (trajectoryPoints.size() > 1) {
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            for (int i = 0; i < trajectoryPoints.size() - 1; i++) {
+                float progress = ((float) i) / (trajectoryPoints.size() - 1);
+                shapeRenderer.setColor(new Color(1, 1, 1, 1 - progress));
+                Vector2 start = trajectoryPoints.get(i);
+                Vector2 end = trajectoryPoints.get(i + 1);
+                shapeRenderer.line(start.x, start.y, end.x, end.y);
+            }
+            shapeRenderer.end();
+            Gdx.gl.glDisable(GL20.GL_BLEND);
+        }
     }
 
     private void drawTexture(MapObject mapObject, TextureRegion textureRegion, Matrix4 leftTopTransform, int textureWidth, int textureHeight, float alpha) {

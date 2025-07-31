@@ -8,26 +8,29 @@ import lombok.Getter;
 
 public class PlayerPast {
 
-    public PlayerPast(ArrayList<PlayerInput> inputs) {
-        this.inputs = inputs;
+    public PlayerPast(ArrayList<PlayerPastFrame> frames) {
+        this.frames = frames;
     }
     @Getter
     private Player player;
-    private ArrayList<PlayerInput> inputs;
-    private ArrayList<PlayerInput> remainingInputs = new ArrayList<>();
+    private ArrayList<PlayerPastFrame> frames;
+    @Getter
+    private ArrayList<PlayerPastFrame> remainingFrames = new ArrayList<>();
 
     public void reset() {
         player = new Player();
-        remainingInputs.clear();
-        remainingInputs.addAll(inputs);
+        remainingFrames.clear();
+        remainingFrames.addAll(frames);
     }
 
-    public void applyInputs(float time) {
-        for (int i = 0; i < remainingInputs.size(); i++) {
-            PlayerInput input = remainingInputs.get(i);
-            if (time >= input.getTime()) {
-                input.apply(player);
-                remainingInputs.remove(i);
+    public void applyFrames(float time) {
+        for (int i = 0; i < remainingFrames.size(); i++) {
+            PlayerPastFrame frame = remainingFrames.get(i);
+            if (time >= frame.getTime()) {
+                for (PlayerInput input : frame.getInputs()) {
+                    input.apply(player);
+                }
+                remainingFrames.remove(i);
                 i--;
             } else {
                 break;

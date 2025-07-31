@@ -17,6 +17,7 @@ public class MapState extends State {
     private String name;
     @Getter
     private Map map;
+    @Getter
     private MapRenderState mapRenderState;
     private MapIngameState mapIngameState;
     private MapPauseState mapPauseState;

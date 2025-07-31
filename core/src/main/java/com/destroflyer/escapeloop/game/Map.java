@@ -38,13 +38,15 @@ public class Map {
     private World world;
     @Getter
     private Player player;
-    private ArrayList<PlayerInput> currentPlayerInputs = new ArrayList<>();
+    private ArrayList<PlayerInput> currentPlayerCurrentFrameInputs = new ArrayList<>();
+    private ArrayList<PlayerPastFrame> currentPlayerFrames = new ArrayList<>();
+    @Getter
     private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
     @Getter
     private boolean finished;
 
     public void startNextRun() {
-        playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerInputs)));
+        playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerFrames)));
         reset();
     }
 
@@ -69,7 +71,8 @@ public class Map {
         player = new Player();
         addObject(player);
         player.getBody().setTransform(startPosition, 0);
-        currentPlayerInputs.clear();
+        currentPlayerCurrentFrameInputs.clear();
+        currentPlayerFrames.clear();
 
         for (PlayerPast playerPast : playerPasts) {
             playerPast.reset();
@@ -92,9 +95,11 @@ public class Map {
 
     public void update(float tpf) {
         time += tpf;
+        currentPlayerFrames.add(new PlayerPastFrame(time, player.getBody().getPosition().cpy(), new ArrayList<>(currentPlayerCurrentFrameInputs)));
+        currentPlayerCurrentFrameInputs.clear();
         for (PlayerPast playerPast : playerPasts) {
             if (isPlayerAlive(playerPast.getPlayer())) {
-                playerPast.applyInputs(time);
+                playerPast.applyFrames(time);
             }
         }
         world.step(tpf, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
@@ -124,9 +129,8 @@ public class Map {
     }
 
     public void applyInput(PlayerInput input) {
-        input.setTime(time);
         input.apply(player);
-        currentPlayerInputs.add(input);
+        currentPlayerCurrentFrameInputs.add(input);
     }
 
     public void onFinish() {
