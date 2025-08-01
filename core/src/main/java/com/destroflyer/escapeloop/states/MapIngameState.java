@@ -3,42 +3,48 @@ package com.destroflyer.escapeloop.states;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.destroflyer.escapeloop.Main;
-import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.inputs.ActionInput;
 import com.destroflyer.escapeloop.game.inputs.JumpInput;
 import com.destroflyer.escapeloop.game.inputs.SetVerticalDirectionInput;
 import com.destroflyer.escapeloop.game.inputs.SetWalkDirectionInput;
+import com.destroflyer.escapeloop.util.FloatUtil;
 
-public class MapIngameState extends State {
+public class MapIngameState extends UiState {
 
     public MapIngameState(MapState mapState) {
         this.mapState = mapState;
     }
     private MapState mapState;
-    private MapIngameUiState mapIngameUiState;
+    private Label infoLabel;
+    private Label timeLabel;
 
     @Override
-    public void create() {
-        super.create();
-        mapIngameUiState = new MapIngameUiState(mapState);
-        childStates.add(mapIngameUiState);
-    }
+    protected void create(Skin skin) {
+        infoLabel = new Label(null, skin);
+        infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
+        stage.addActor(infoLabel);
 
-    @Override
-    public void onAdd(Main main) {
-        super.onAdd(main);
-        main.addState(mapIngameUiState);
+        timeLabel = new Label(null, skin);
+        timeLabel.setPosition((Main.VIEWPORT_WIDTH - 230), (Main.VIEWPORT_HEIGHT - 36));
+        stage.addActor(timeLabel);
     }
 
     @Override
     public void update(float tpf) {
         super.update(tpf);
         Map map = mapState.getMap();
+
         updateWalkDirection(map);
         updateVerticalDirection(map);
         map.update(tpf);
+
+        int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
+        infoLabel.setText("L = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges left), J = Action, Backspace = Reset");
+        timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTime(), 3) + "s");
     }
 
     private void updateWalkDirection(Map map) {
@@ -65,19 +71,19 @@ public class MapIngameState extends State {
                 switch (keycode) {
                     case Input.Keys.SPACE:
                         map.applyInput(new JumpInput());
-                        break;
+                        return true;
                     case Input.Keys.J:
                         map.applyInput(new ActionInput());
-                        break;
+                        return true;
                     case Input.Keys.L:
                         map.tryStartNextPlayer();
-                        break;
+                        return true;
                     case Input.Keys.BACKSPACE:
                         mapState.startNewGame();
-                        break;
+                        return true;
                     case Input.Keys.ESCAPE:
                         mapState.openPauseMenu();
-                        break;
+                        return true;
                 }
                 return false;
             }

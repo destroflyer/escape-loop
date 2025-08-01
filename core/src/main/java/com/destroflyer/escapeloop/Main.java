@@ -8,7 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.destroflyer.escapeloop.states.MainMenuState;
+import com.destroflyer.escapeloop.states.MainMusicState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
+import com.destroflyer.escapeloop.states.SettingsState;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,10 @@ public class Main extends ApplicationAdapter {
     private ArrayList<State> states;
     @Getter
     private Skin skin;
+    @Getter
+    private SettingsState settingsState;
+    @Getter
+    private MainMusicState mainMusicState;
     @Getter
     private MainMenuState mainMenuState;
     @Getter
@@ -43,25 +49,35 @@ public class Main extends ApplicationAdapter {
 
         skin = new Skin(Gdx.files.internal("vis/uiskin.json"));
 
+        settingsState = new SettingsState();
+
+        mainMusicState = new MainMusicState();
+        addState(mainMusicState);
+
         mainMenuState = new MainMenuState();
-        mapSelectionState = new MapSelectionState();
         addState(mainMenuState);
+
+        mapSelectionState = new MapSelectionState();
+        addState(new MainMusicState());
+    }
+
+    public void openSettings(Runnable back) {
+        settingsState.setBack(back);
+        addState(settingsState);
     }
 
     public void addState(State state) {
         state.onAdd(this);
         notifyStateOfResize(state);
         states.add(state);
-        InputProcessor inputProcessor = state.getInputProcessor();
-        if (inputProcessor != null) {
-            inputMultiplexer.addProcessor(inputProcessor);
+        for (InputProcessor inputProcessor : state.getInputProcessors()) {
+            inputMultiplexer.addProcessor(0, inputProcessor);
         }
     }
 
     public void removeState(State state) {
         states.remove(state);
-        InputProcessor inputProcessor = state.getInputProcessor();
-        if (inputProcessor != null) {
+        for (InputProcessor inputProcessor : state.getInputProcessors()) {
             inputMultiplexer.removeProcessor(inputProcessor);
         }
         for (State childState : state.getChildStates()) {

@@ -84,16 +84,16 @@ public class MapState extends State {
                 switch (keycode) {
                     case Input.Keys.A:
                         isDirectionLeft = true;
-                        break;
+                        return true;
                     case Input.Keys.D:
                         isDirectionRight = true;
-                        break;
+                        return true;
                     case Input.Keys.W:
                         isDirectionUp = true;
-                        break;
+                        return true;
                     case Input.Keys.S:
                         isDirectionDown = true;
-                        break;
+                        return true;
                 }
                 return false;
             }

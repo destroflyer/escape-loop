@@ -16,7 +16,7 @@ public class State {
     @Getter
     protected ArrayList<State> childStates = new ArrayList<>();
     @Getter
-    protected InputProcessor inputProcessor;
+    protected ArrayList<InputProcessor> inputProcessors = new ArrayList<>();
     protected SpriteBatch spriteBatch = new SpriteBatch();
     protected ShapeRenderer shapeRenderer = new ShapeRenderer();
     protected PolygonSpriteBatch polygonSpriteBatch = new PolygonSpriteBatch();
@@ -29,7 +29,10 @@ public class State {
     }
 
     public void create() {
-        inputProcessor = createInputProcessor();
+        InputProcessor inputProcessor = createInputProcessor();
+        if (inputProcessor != null) {
+            inputProcessors.add(inputProcessor);
+        }
     }
 
     protected InputProcessor createInputProcessor() {

@@ -44,9 +44,6 @@ import com.destroflyer.escapeloop.game.objects.Player;
 
 import java.util.ArrayList;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class MapRenderState extends State {
 
     public MapRenderState(MapState mapState) {
@@ -57,14 +54,6 @@ public class MapRenderState extends State {
     private Texture terrainTexture;
     private BitmapFont textFont = new BitmapFont();
     private GlyphLayout textLayout = new GlyphLayout();
-    @Getter
-    @Setter
-    private float playerPastsTrajectoryDuration = 3;
-    @Getter
-    @Setter
-    private boolean playerPastsDistinctColors;
-    @Getter
-    @Setter
     private boolean debug;
 
     @Override
@@ -197,7 +186,7 @@ public class MapRenderState extends State {
     }
 
     private void drawPlayerPastTrajectory(PlayerPastWithIndex playerPastWithIndex) {
-        float maximumTime = mapState.getMap().getTime() + playerPastsTrajectoryDuration;
+        float maximumTime = mapState.getMap().getTime() + main.getSettingsState().getPlayerPastsTrajectoryDuration();
         ArrayList<Vector2> trajectoryPoints = new ArrayList<>();
         for (PlayerPastFrame frame : playerPastWithIndex.getPlayerPast().getRemainingFrames()) {
             if (frame.getTime() > maximumTime) {
@@ -281,7 +270,7 @@ public class MapRenderState extends State {
 
     private Color getMapObjectTintColor(MapObject mapObject, float alpha) {
         PlayerPastWithIndex playerPastWithIndex = getPlayerPastWithIndex(mapObject);
-        if ((playerPastWithIndex != null) && playerPastsDistinctColors) {
+        if ((playerPastWithIndex != null) && main.getSettingsState().isPlayerPastsDistinctColors()) {
             switch (playerPastWithIndex.getIndex()) {
                 case 0: return new Color(1, 0, 0, alpha);
                 case 1: return new Color(0, 1, 0, alpha);
@@ -395,7 +384,7 @@ public class MapRenderState extends State {
                 switch (keycode) {
                     case Input.Keys.F1:
                         debug = !debug;
-                        break;
+                        return true;
                 }
                 return false;
             }

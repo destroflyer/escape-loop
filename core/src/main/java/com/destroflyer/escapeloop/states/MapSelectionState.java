@@ -1,5 +1,8 @@
 package com.destroflyer.escapeloop.states;
 
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -33,7 +36,7 @@ public class MapSelectionState extends UiState {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                switchToState(main.getMainMenuState());
+                backToMainMenu();
             }
         });
         stage.addActor(backButton);
@@ -84,5 +87,25 @@ public class MapSelectionState extends UiState {
             return mapName1.compareTo(mapName2);
         });
         return mapNames;
+    }
+
+    private void backToMainMenu() {
+        switchToState(main.getMainMenuState());
+    }
+
+    @Override
+    public InputProcessor createInputProcessor() {
+        return new InputAdapter() {
+
+            @Override
+            public boolean keyDown(int keycode) {
+                switch (keycode) {
+                    case Input.Keys.ESCAPE:
+                        backToMainMenu();
+                        return true;
+                }
+                return false;
+            }
+        };
     }
 }
