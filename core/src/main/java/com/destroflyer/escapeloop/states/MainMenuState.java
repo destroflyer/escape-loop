@@ -3,6 +3,7 @@ package com.destroflyer.escapeloop.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -21,30 +22,30 @@ public class MainMenuState extends UiState {
 
         Table menuTable = new Table();
 
-        TextButton playButton = new TextButton("Play", skin);
-        playButton.addListener(new ClickListener() {
+        addButton(menuTable, skin, "Play", () -> switchToState(main.getMapSelectionState()));
+        addButton(menuTable, skin, "Settings", () -> {
+            main.removeState(this);
+            main.openSettings(() -> main.addState(this));
+        }).padLeft(10);
+        addButton(menuTable, skin, "Exit", () -> Gdx.app.exit()).padLeft(10);
 
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                switchToState(main.getMapSelectionState());
-            }
-        });
-        menuTable.add(playButton);
-
-        TextButton exitWorld = new TextButton("Exit", skin);
-        exitWorld.addListener(new ClickListener() {
-
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
-        menuTable.add(exitWorld).padLeft(10);
         menuTable.setFillParent(true);
         menuTable.center();
         menuTable.moveBy(0, -130);
 
         stage.addActor(menuTable);
+    }
+
+    private Cell<TextButton> addButton(Table menuTable, Skin skin, String label, Runnable onClick) {
+        TextButton button = new TextButton(label, skin);
+        button.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                onClick.run();
+            }
+        });
+        return menuTable.add(button);
     }
 
     @Override
