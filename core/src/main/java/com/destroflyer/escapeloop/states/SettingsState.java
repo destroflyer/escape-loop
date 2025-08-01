@@ -24,7 +24,7 @@ import lombok.Setter;
 public class SettingsState extends UiState {
 
     @Getter
-    private float musicVolume = 0.2f;
+    private float musicVolume = 0.1f;
     @Getter
     private float playerPastsTrajectoryDuration = 3;
     @Getter
