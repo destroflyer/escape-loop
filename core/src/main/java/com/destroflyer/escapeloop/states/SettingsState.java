@@ -24,6 +24,8 @@ import lombok.Setter;
 public class SettingsState extends UiState {
 
     @Getter
+    private float musicVolume = 0.2f;
+    @Getter
     private float playerPastsTrajectoryDuration = 3;
     @Getter
     private boolean playerPastsDistinctColors;
@@ -39,7 +41,11 @@ public class SettingsState extends UiState {
 
         menuTable.row().padTop(10);
 
-        addSlider(menuTable, skin, "Player pasts - Trajectory duration (s)", () -> playerPastsTrajectoryDuration, value -> playerPastsTrajectoryDuration = value);
+        addSlider(menuTable, skin, "Music volume", () -> musicVolume, value -> musicVolume = value, 0, 1, 0.01f, 2);
+
+        menuTable.row().padTop(10);
+
+        addSlider(menuTable, skin, "Player pasts - Trajectory duration (s)", () -> playerPastsTrajectoryDuration, value -> playerPastsTrajectoryDuration = value, 0, 6, 0.1f, 1);
 
         menuTable.row().padTop(10);
 
@@ -63,13 +69,13 @@ public class SettingsState extends UiState {
         stage.addActor(menuTable);
     }
 
-    private void addSlider(Table menuTable, Skin skin, String label, Supplier<Float> getValue, Consumer<Float> setValue) {
+    private void addSlider(Table menuTable, Skin skin, String label, Supplier<Float> getValue, Consumer<Float> setValue, float minimum, float maximum, float stepSize, int displayedDecimals) {
         Label sliderLabel = new Label(null, skin);
-        Runnable updateSliderLabel = () -> sliderLabel.setText(label + ": " + FloatUtil.format(getValue.get(), 1));
+        Runnable updateSliderLabel = () -> sliderLabel.setText(label + ": " + FloatUtil.format(getValue.get(), displayedDecimals));
         updateSliderLabel.run();
         menuTable.add(sliderLabel);
 
-        Slider slider = new Slider(0, 6, 0.1f, false, skin);
+        Slider slider = new Slider(minimum, maximum, stepSize, false, skin);
         slider.setValue(getValue.get());
         slider.addListener(new ChangeListener() {
             @Override

@@ -12,7 +12,7 @@ public class FloatUtil {
         }
         String decimalsText = "" + decimalsValue;
         while (decimalsText.length() < decimals) {
-            decimalsText += "0";
+            decimalsText = "0" + decimalsText;
         }
         return integerValue + "." + decimalsText;
     }

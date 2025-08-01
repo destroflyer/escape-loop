@@ -13,8 +13,13 @@ public class MainMusicState extends State {
         super.create();
         music = Gdx.audio.newMusic(Gdx.files.internal("./music/main.mp3"));
         music.setLooping(true);
-        music.setVolume(0.2f);
         music.play();
+    }
+
+    @Override
+    public void update(float tpf) {
+        super.update(tpf);
+        music.setVolume(main.getSettingsState().getMusicVolume());
     }
 
     public void dispose() {
