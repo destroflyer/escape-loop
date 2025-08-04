@@ -30,6 +30,8 @@ public class Map {
     @Getter
     public float width;
     @Getter
+    private float totalTime;
+    @Getter
     private float time;
     @Getter
     private ArrayList<MapObject> objects = new ArrayList<>();
@@ -52,16 +54,26 @@ public class Map {
     public void tryStartNextPlayer() {
         if (playerPasts.size() < maximumPlayerPasts) {
             playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerFrames)));
-            reset();
+            start();
         }
     }
 
-    public void onDeath() {
-        playerPasts.clear();
-        reset();
+    public void respawnCurrentPlayer() {
+        if (playerPasts.isEmpty()) {
+            reset();
+        } else {
+            start();
+        }
     }
 
-    private void reset() {
+    public void reset() {
+        totalTime = 0;
+        playerPasts.clear();
+        finished = false;
+        start();
+    }
+
+    private void start() {
         time = 0;
         for (MapObject mapObject : objects) {
             world.destroyBody(mapObject.getBody());
@@ -69,7 +81,6 @@ public class Map {
         objects.clear();
         queuedTasks.clear();
         texts.clear();
-        finished = false;
 
         width = mapLoader.getWidth();
         mapLoader.loadContent();
@@ -106,6 +117,7 @@ public class Map {
     }
 
     public void update(float tpf) {
+        totalTime += tpf;
         time += tpf;
         currentPlayerFrames.add(new PlayerPastFrame(time, player.getBody().getPosition().cpy(), new ArrayList<>(currentPlayerCurrentFrameInputs)));
         currentPlayerCurrentFrameInputs.clear();
@@ -121,7 +133,7 @@ public class Map {
         }
         runQueuedTasks();
         if (!isPlayerAlive(player)) {
-            onDeath();
+            respawnCurrentPlayer();
         }
     }
 

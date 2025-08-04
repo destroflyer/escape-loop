@@ -43,8 +43,8 @@ public class MapIngameState extends UiState {
         map.update(tpf);
 
         int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
-        infoLabel.setText("L = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges left), J = Action, Backspace = Reset");
-        timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTime(), 3) + "s");
+        infoLabel.setText("J = Action, K = Retry, L = Time travel (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges), Backspace = Reset");
+        timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTotalTime(), 3) + "s");
     }
 
     private void updateWalkDirection(Map map) {
@@ -75,11 +75,14 @@ public class MapIngameState extends UiState {
                     case Input.Keys.J:
                         map.applyInput(new ActionInput());
                         return true;
+                    case Input.Keys.K:
+                        map.respawnCurrentPlayer();
+                        return true;
                     case Input.Keys.L:
                         map.tryStartNextPlayer();
                         return true;
                     case Input.Keys.BACKSPACE:
-                        mapState.startNewGame();
+                        map.reset();
                         return true;
                     case Input.Keys.ESCAPE:
                         mapState.openPauseMenu();

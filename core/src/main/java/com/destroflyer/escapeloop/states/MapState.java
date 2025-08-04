@@ -39,7 +39,7 @@ public class MapState extends State {
         childStates.add(mapRenderState);
         childStates.add(mapIngameState);
         childStates.add(mapPauseState);
-        startNewGame();
+        map = new Map(name);
     }
 
     @Override
@@ -47,10 +47,6 @@ public class MapState extends State {
         super.onAdd(main);
         main.addState(mapRenderState);
         main.addState(mapIngameState);
-    }
-
-    public void startNewGame() {
-        map = new Map(name);
     }
 
     @Override
