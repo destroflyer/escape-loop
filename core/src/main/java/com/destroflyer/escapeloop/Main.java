@@ -24,9 +24,11 @@ public class Main extends ApplicationAdapter {
     @Getter
     private StretchViewport viewport;
     private InputMultiplexer inputMultiplexer;
-    private ArrayList<State> states;
     @Getter
-    private Skin skin;
+    private Skin skinSmall;
+    @Getter
+    private Skin skinLarge;
+    private ArrayList<State> states;
     @Getter
     private SettingsState settingsState;
     @Getter
@@ -45,9 +47,10 @@ public class Main extends ApplicationAdapter {
         inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(inputMultiplexer);
 
-        states = new ArrayList<>();
+        skinSmall = new Skin(Gdx.files.internal("skins/small/uiskin.json"));
+        skinLarge = new Skin(Gdx.files.internal("skins/large/uiskin.json"));
 
-        skin = new Skin(Gdx.files.internal("vis/uiskin.json"));
+        states = new ArrayList<>();
 
         settingsState = new SettingsState();
 

@@ -5,7 +5,6 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -22,15 +21,16 @@ public class MapSelectionState extends UiState {
     private Table levelsTable;
 
     @Override
-    protected void create(Skin skin) {
-        Label titleLabel = new Label("Select a level", skin);
+    public void create() {
+        super.create();
+        Label titleLabel = new Label("Select a level", main.getSkinLarge());
         titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 125);
         stage.addActor(titleLabel);
 
         levelsTable = new Table();
         stage.addActor(levelsTable);
 
-        TextButton backButton = new TextButton("Back", skin);
+        TextButton backButton = new TextButton("Back", main.getSkinLarge());
         backButton.setPosition(Main.VIEWPORT_WIDTH - 120, 35);
         backButton.addListener(new ClickListener() {
 
@@ -57,7 +57,7 @@ public class MapSelectionState extends UiState {
             if ((i % 8) == 0) {
                 levelsTable.row();
             }
-            TextButton level = new TextButton(mapTitle, main.getSkin());
+            TextButton level = new TextButton(mapTitle, main.getSkinLarge());
             level.addListener(new ClickListener() {
 
                 @Override

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.inputs.ActionInput;
@@ -23,12 +22,13 @@ public class MapIngameState extends UiState {
     private Label timeLabel;
 
     @Override
-    protected void create(Skin skin) {
-        infoLabel = new Label(null, skin);
+    public void create() {
+        super.create();
+        infoLabel = new Label(null, main.getSkinLarge());
         infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
         stage.addActor(infoLabel);
 
-        timeLabel = new Label(null, skin);
+        timeLabel = new Label(null, main.getSkinLarge());
         timeLabel.setPosition((Main.VIEWPORT_WIDTH - 230), (Main.VIEWPORT_HEIGHT - 36));
         stage.addActor(timeLabel);
     }

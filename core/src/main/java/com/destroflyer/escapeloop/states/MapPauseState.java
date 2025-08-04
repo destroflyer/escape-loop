@@ -7,7 +7,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -21,12 +20,13 @@ public class MapPauseState extends UiState {
     private MapState mapState;
 
     @Override
-    protected void create(Skin skin) {
+    public void create() {
+        super.create();
         Table menuTable = new Table();
 
         // Continue
 
-        TextButton continueButton = new TextButton("Continue", skin);
+        TextButton continueButton = new TextButton("Continue", main.getSkinLarge());
         continueButton.addListener(new ClickListener() {
 
             @Override
@@ -40,7 +40,7 @@ public class MapPauseState extends UiState {
 
         menuTable.row().padTop(10);
 
-        TextButton settingsButton = new TextButton("Settings", skin);
+        TextButton settingsButton = new TextButton("Settings", main.getSkinLarge());
         settingsButton.addListener(new ClickListener() {
 
             @Override
@@ -55,7 +55,7 @@ public class MapPauseState extends UiState {
 
         menuTable.row().padTop(10);
 
-        TextButton exitButton = new TextButton("Exit", skin);
+        TextButton exitButton = new TextButton("Exit", main.getSkinLarge());
         exitButton.addListener(new ClickListener() {
 
             @Override

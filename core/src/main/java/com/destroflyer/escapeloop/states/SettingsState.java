@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -33,27 +32,28 @@ public class SettingsState extends UiState {
     private Runnable back;
 
     @Override
-    protected void create(Skin skin) {
+    public void create() {
+        super.create();
         Table menuTable = new Table();
 
-        Label titleLabel = new Label("Settings", skin);
+        Label titleLabel = new Label("Settings", main.getSkinLarge());
         menuTable.add(titleLabel).colspan(2);
 
         menuTable.row().padTop(10);
 
-        addSlider(menuTable, skin, "Music volume", () -> musicVolume, value -> musicVolume = value, 0, 1, 0.01f, 2);
+        addSlider(menuTable, "Music volume", () -> musicVolume, value -> musicVolume = value, 0, 1, 0.01f, 2);
 
         menuTable.row().padTop(10);
 
-        addSlider(menuTable, skin, "Player pasts - Trajectory duration (s)", () -> playerPastsTrajectoryDuration, value -> playerPastsTrajectoryDuration = value, 0, 6, 0.1f, 1);
+        addSlider(menuTable, "Player pasts - Trajectory duration (s)", () -> playerPastsTrajectoryDuration, value -> playerPastsTrajectoryDuration = value, 0, 6, 0.1f, 1);
 
         menuTable.row().padTop(10);
 
-        addCheckbox(menuTable, skin, "Player pasts - Distinct colors", () -> playerPastsDistinctColors, value -> playerPastsDistinctColors = value);
+        addCheckbox(menuTable, "Player pasts - Distinct colors", () -> playerPastsDistinctColors, value -> playerPastsDistinctColors = value);
 
         menuTable.row().padTop(10);
 
-        TextButton backButton = new TextButton("Ok", skin);
+        TextButton backButton = new TextButton("Ok", main.getSkinLarge());
         backButton.addListener(new ClickListener() {
 
             @Override
@@ -69,15 +69,16 @@ public class SettingsState extends UiState {
         stage.addActor(menuTable);
     }
 
-    private void addSlider(Table menuTable, Skin skin, String label, Supplier<Float> getValue, Consumer<Float> setValue, float minimum, float maximum, float stepSize, int displayedDecimals) {
-        Label sliderLabel = new Label(null, skin);
+    private void addSlider(Table menuTable, String label, Supplier<Float> getValue, Consumer<Float> setValue, float minimum, float maximum, float stepSize, int displayedDecimals) {
+        Label sliderLabel = new Label(null, main.getSkinSmall());
         Runnable updateSliderLabel = () -> sliderLabel.setText(label + ": " + FloatUtil.format(getValue.get(), displayedDecimals));
         updateSliderLabel.run();
         menuTable.add(sliderLabel);
 
-        Slider slider = new Slider(minimum, maximum, stepSize, false, skin);
+        Slider slider = new Slider(minimum, maximum, stepSize, false, main.getSkinSmall());
         slider.setValue(getValue.get());
         slider.addListener(new ChangeListener() {
+
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 setValue.accept(slider.getValue());
@@ -87,11 +88,11 @@ public class SettingsState extends UiState {
         menuTable.add(slider).padLeft(10);
     }
 
-    private void addCheckbox(Table menuTable, Skin skin, String label, Supplier<Boolean> getValue, Consumer<Boolean> setValue) {
-        Label checkboxLabel = new Label(label, skin);
+    private void addCheckbox(Table menuTable, String label, Supplier<Boolean> getValue, Consumer<Boolean> setValue) {
+        Label checkboxLabel = new Label(label, main.getSkinSmall());
         menuTable.add(checkboxLabel);
 
-        CheckBox checkbox = new CheckBox(null, skin);
+        CheckBox checkbox = new CheckBox(null, main.getSkinSmall());
         checkbox.setChecked(getValue.get());
         checkbox.addListener(new ChangeListener() {
             @Override
