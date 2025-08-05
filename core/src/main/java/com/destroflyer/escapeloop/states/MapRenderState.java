@@ -59,8 +59,8 @@ public class MapRenderState extends State {
     @Override
     public void render() {
         if (backgroundTexture == null) {
-            backgroundTexture = new Texture("./maps/" + mapState.getMap().getName() + "/Background.png");
-            terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/Terrain.png");
+            backgroundTexture = new Texture("./textures/cave/background.png");
+            terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/terrain.png");
         }
         drawFullScreenTexture(backgroundTexture);
         drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);

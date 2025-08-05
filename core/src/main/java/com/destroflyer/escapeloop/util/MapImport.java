@@ -27,7 +27,6 @@ public class MapImport {
             dstDirectory.mkdir();
             copyFile(srcDirectory, dstDirectory, "data.json");
             copyFile(srcDirectory, dstDirectory, "Terrain.csv");
-            copyFile(srcDirectory, dstDirectory, "Background.png");
             copyFile(srcDirectory, dstDirectory, "Terrain.png");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
@@ -36,7 +35,7 @@ public class MapImport {
 
     @SuppressWarnings("NewApi")
     private static void copyFile(File srcDirectory, File dstDirectory, String fileName) throws IOException {
-        Files.copy(Paths.get(srcDirectory.getPath() + "/" + fileName), Paths.get(dstDirectory.getPath() + "/" + fileName), StandardCopyOption.REPLACE_EXISTING);
+        Files.copy(Paths.get(srcDirectory.getPath() + "/" + fileName), Paths.get(dstDirectory.getPath() + "/" + fileName.toLowerCase()), StandardCopyOption.REPLACE_EXISTING);
     }
 
     public static boolean isSrcMapsDirectoryPathSet() {
