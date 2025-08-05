@@ -45,12 +45,12 @@ public class MapIngameState extends UiState {
 
         Preferences preferences = main.getSettingsState().getPreferences();
         String help = "";
-        int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
-        help += Input.Keys.toString(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges)";
-        help += ", ";
         help += Input.Keys.toString(preferences.getInteger("keyAction")) + " = Action";
         help += ", ";
         help += Input.Keys.toString(preferences.getInteger("keyRespawn")) + " = Respawn";
+        help += ", ";
+        int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
+        help += Input.Keys.toString(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges)";
         help += ", ";
         help += Input.Keys.toString(preferences.getInteger("keyReset")) + " = Reset";
         infoLabel.setText(help);

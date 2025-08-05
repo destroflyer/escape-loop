@@ -34,10 +34,10 @@ public class SettingsState extends UiState {
         setDefaultInteger("keyDown", Input.Keys.S);
         setDefaultInteger("keyRight", Input.Keys.D);
         setDefaultInteger("keyJump", Input.Keys.SPACE);
-        setDefaultInteger("keyTimeMachine", Input.Keys.I);
         setDefaultInteger("keyAction", Input.Keys.J);
         setDefaultInteger("keyRespawn", Input.Keys.K);
-        setDefaultInteger("keyReset", Input.Keys.L);
+        setDefaultInteger("keyTimeMachine", Input.Keys.L);
+        setDefaultInteger("keyReset", Input.Keys.BACKSPACE);
     }
     @Getter
     private Preferences preferences;
@@ -61,9 +61,9 @@ public class SettingsState extends UiState {
         addKeyButton(menuTable, "Down", "keyDown");
         addKeyButton(menuTable, "Right", "keyRight");
         addKeyButton(menuTable, "Jump", "keyJump");
-        addKeyButton(menuTable, "Time machine", "keyTimeMachine");
         addKeyButton(menuTable, "Action", "keyAction");
         addKeyButton(menuTable, "Respawn", "keyRespawn");
+        addKeyButton(menuTable, "Time machine", "keyTimeMachine");
         addKeyButton(menuTable, "Reset", "keyReset");
 
         menuTable.row().padTop(10);
