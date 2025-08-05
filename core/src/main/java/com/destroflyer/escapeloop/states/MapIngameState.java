@@ -3,6 +3,7 @@ package com.destroflyer.escapeloop.states;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Map;
@@ -42,8 +43,18 @@ public class MapIngameState extends UiState {
         updateVerticalDirection(map);
         map.update(tpf);
 
+        Preferences preferences = main.getSettingsState().getPreferences();
+        String help = "";
         int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
-        infoLabel.setText("J = Action, K = Retry, L = Time travel (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges), Backspace = Reset");
+        help += Input.Keys.toString(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges)";
+        help += ", ";
+        help += Input.Keys.toString(preferences.getInteger("keyAction")) + " = Action";
+        help += ", ";
+        help += Input.Keys.toString(preferences.getInteger("keyRespawn")) + " = Respawn";
+        help += ", ";
+        help += Input.Keys.toString(preferences.getInteger("keyReset")) + " = Reset";
+        infoLabel.setText(help);
+
         timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTotalTime(), 3) + "s");
     }
 
@@ -67,26 +78,26 @@ public class MapIngameState extends UiState {
 
             @Override
             public boolean keyDown(int keycode) {
+                Preferences preferences = main.getSettingsState().getPreferences();
                 Map map = mapState.getMap();
-                switch (keycode) {
-                    case Input.Keys.SPACE:
-                        map.applyInput(new JumpInput());
-                        return true;
-                    case Input.Keys.J:
-                        map.applyInput(new ActionInput());
-                        return true;
-                    case Input.Keys.K:
-                        map.respawnCurrentPlayer();
-                        return true;
-                    case Input.Keys.L:
-                        map.tryStartNextPlayer();
-                        return true;
-                    case Input.Keys.BACKSPACE:
-                        map.reset();
-                        return true;
-                    case Input.Keys.ESCAPE:
-                        mapState.openPauseMenu();
-                        return true;
+                if (keycode == preferences.getInteger("keyJump")) {
+                    map.applyInput(new JumpInput());
+                    return true;
+                } else if (keycode == preferences.getInteger("keyAction")) {
+                    map.applyInput(new ActionInput());
+                    return true;
+                } else if (keycode == preferences.getInteger("keyRespawn")) {
+                    map.respawnCurrentPlayer();
+                    return true;
+                } else if (keycode == preferences.getInteger("keyTimeMachine")) {
+                    map.tryStartNextPlayer();
+                    return true;
+                } else if (keycode == preferences.getInteger("keyReset")) {
+                    map.reset();
+                    return true;
+                } else if (keycode == Input.Keys.ESCAPE) {
+                    mapState.openPauseMenu();
+                    return true;
                 }
                 return false;
             }

@@ -186,7 +186,7 @@ public class MapRenderState extends State {
     }
 
     private void drawPlayerPastTrajectory(PlayerPastWithIndex playerPastWithIndex) {
-        float maximumTime = mapState.getMap().getTime() + main.getSettingsState().getPlayerPastsTrajectoryDuration();
+        float maximumTime = mapState.getMap().getTime() + main.getSettingsState().getPreferences().getFloat("playerPastsTrajectoryDuration");
         ArrayList<Vector2> trajectoryPoints = new ArrayList<>();
         for (PlayerPastFrame frame : playerPastWithIndex.getPlayerPast().getRemainingFrames()) {
             if (frame.getTime() > maximumTime) {
@@ -270,7 +270,7 @@ public class MapRenderState extends State {
 
     private Color getMapObjectTintColor(MapObject mapObject, float alpha) {
         PlayerPastWithIndex playerPastWithIndex = getPlayerPastWithIndex(mapObject);
-        if ((playerPastWithIndex != null) && main.getSettingsState().isPlayerPastsDistinctColors()) {
+        if ((playerPastWithIndex != null) && main.getSettingsState().getPreferences().getBoolean("playerPastsDistinctColors")) {
             switch (playerPastWithIndex.getIndex()) {
                 case 0: return new Color(1, 0, 0, alpha);
                 case 1: return new Color(0, 1, 0, alpha);
@@ -381,10 +381,9 @@ public class MapRenderState extends State {
 
             @Override
             public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.F1:
-                        debug = !debug;
-                        return true;
+                if (keycode == Input.Keys.F1) {
+                    debug = !debug;
+                    return true;
                 }
                 return false;
             }

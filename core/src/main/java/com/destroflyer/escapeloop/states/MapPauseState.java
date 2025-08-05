@@ -88,10 +88,9 @@ public class MapPauseState extends UiState {
 
             @Override
             public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.ESCAPE:
-                        mapState.closePauseMenu();
-                        return true;
+                if (keycode == Input.Keys.ESCAPE) {
+                    mapState.closePauseMenu();
+                    return true;
                 }
                 return false;
             }

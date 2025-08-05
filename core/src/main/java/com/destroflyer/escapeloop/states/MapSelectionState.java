@@ -99,10 +99,9 @@ public class MapSelectionState extends UiState {
 
             @Override
             public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.ESCAPE:
-                        backToMainMenu();
-                        return true;
+                if (keycode == Input.Keys.ESCAPE) {
+                    backToMainMenu();
+                    return true;
                 }
                 return false;
             }

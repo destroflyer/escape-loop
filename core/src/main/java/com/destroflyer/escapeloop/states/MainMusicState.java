@@ -19,7 +19,7 @@ public class MainMusicState extends State {
     @Override
     public void update(float tpf) {
         super.update(tpf);
-        music.setVolume(main.getSettingsState().getMusicVolume());
+        music.setVolume(main.getSettingsState().getPreferences().getFloat("musicVolume"));
     }
 
     public void dispose() {

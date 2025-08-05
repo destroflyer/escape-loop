@@ -1,8 +1,10 @@
 package com.destroflyer.escapeloop.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
@@ -15,19 +17,31 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.destroflyer.escapeloop.util.FloatUtil;
 
 import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
 import lombok.Getter;
 import lombok.Setter;
 
 public class SettingsState extends UiState {
 
+    public SettingsState() {
+        preferences = Gdx.app.getPreferences("escape-loop");
+        setDefaultFloat("musicVolume", 0.1f);
+        setDefaultFloat("playerPastsTrajectoryDuration", 3);
+        setDefaultBoolean("playerPastsDistinctColors", false);
+        setDefaultInteger("keyUp", Input.Keys.W);
+        setDefaultInteger("keyLeft", Input.Keys.A);
+        setDefaultInteger("keyDown", Input.Keys.S);
+        setDefaultInteger("keyRight", Input.Keys.D);
+        setDefaultInteger("keyJump", Input.Keys.SPACE);
+        setDefaultInteger("keyTimeMachine", Input.Keys.I);
+        setDefaultInteger("keyAction", Input.Keys.J);
+        setDefaultInteger("keyRespawn", Input.Keys.K);
+        setDefaultInteger("keyReset", Input.Keys.L);
+    }
     @Getter
-    private float musicVolume = 0.1f;
-    @Getter
-    private float playerPastsTrajectoryDuration = 3;
-    @Getter
-    private boolean playerPastsDistinctColors;
+    private Preferences preferences;
+    private Consumer<Integer> keyRecorder;
     @Setter
     private Runnable back;
 
@@ -39,17 +53,18 @@ public class SettingsState extends UiState {
         Label titleLabel = new Label("Settings", main.getSkinLarge());
         menuTable.add(titleLabel).colspan(2);
 
-        menuTable.row().padTop(10);
-
-        addSlider(menuTable, "Music volume", () -> musicVolume, value -> musicVolume = value, 0, 1, 0.01f, 2);
-
-        menuTable.row().padTop(10);
-
-        addSlider(menuTable, "Player pasts - Trajectory duration (s)", () -> playerPastsTrajectoryDuration, value -> playerPastsTrajectoryDuration = value, 0, 6, 0.1f, 1);
-
-        menuTable.row().padTop(10);
-
-        addCheckbox(menuTable, "Player pasts - Distinct colors", () -> playerPastsDistinctColors, value -> playerPastsDistinctColors = value);
+        addSlider(menuTable, "Music volume", "musicVolume", 0, 1, 0.01f, 2);
+        addSlider(menuTable, "Player pasts - Trajectory duration (s)", "playerPastsTrajectoryDuration", 0, 6, 0.1f, 1);
+        addCheckbox(menuTable, "Player pasts - Distinct colors", "playerPastsDistinctColors");
+        addKeyButton(menuTable, "Up", "keyUp");
+        addKeyButton(menuTable, "Left", "keyLeft");
+        addKeyButton(menuTable, "Down", "keyDown");
+        addKeyButton(menuTable, "Right", "keyRight");
+        addKeyButton(menuTable, "Jump", "keyJump");
+        addKeyButton(menuTable, "Time machine", "keyTimeMachine");
+        addKeyButton(menuTable, "Action", "keyAction");
+        addKeyButton(menuTable, "Respawn", "keyRespawn");
+        addKeyButton(menuTable, "Reset", "keyReset");
 
         menuTable.row().padTop(10);
 
@@ -69,43 +84,104 @@ public class SettingsState extends UiState {
         stage.addActor(menuTable);
     }
 
-    private void addSlider(Table menuTable, String label, Supplier<Float> getValue, Consumer<Float> setValue, float minimum, float maximum, float stepSize, int displayedDecimals) {
-        Label sliderLabel = new Label(null, main.getSkinSmall());
-        Runnable updateSliderLabel = () -> sliderLabel.setText(label + ": " + FloatUtil.format(getValue.get(), displayedDecimals));
-        updateSliderLabel.run();
-        menuTable.add(sliderLabel);
+    private void addSlider(Table menuTable, String labelText, String key, float minimum, float maximum, float stepSize, int displayedDecimals) {
+        addElement(menuTable, null, label -> {
+            Runnable updateLabel = () -> label.setText(labelText + ": " + FloatUtil.format(preferences.getFloat(key), displayedDecimals));
+            updateLabel.run();
 
-        Slider slider = new Slider(minimum, maximum, stepSize, false, main.getSkinSmall());
-        slider.setValue(getValue.get());
-        slider.addListener(new ChangeListener() {
+            Slider slider = new Slider(minimum, maximum, stepSize, false, main.getSkinSmall());
+            slider.setValue(preferences.getFloat(key));
+            slider.addListener(new ChangeListener() {
 
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                setValue.accept(slider.getValue());
-                updateSliderLabel.run();
-            }
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    preferences.putFloat(key, slider.getValue());
+                    updateLabel.run();
+                }
+            });
+            return slider;
         });
-        menuTable.add(slider).padLeft(10);
     }
 
-    private void addCheckbox(Table menuTable, String label, Supplier<Boolean> getValue, Consumer<Boolean> setValue) {
-        Label checkboxLabel = new Label(label, main.getSkinSmall());
-        menuTable.add(checkboxLabel);
+    private void addCheckbox(Table menuTable, String labelText, String key) {
+        addElement(menuTable, labelText, label -> {
+            CheckBox checkbox = new CheckBox(null, main.getSkinSmall());
+            checkbox.setChecked(preferences.getBoolean(key));
+            checkbox.addListener(new ChangeListener() {
 
-        CheckBox checkbox = new CheckBox(null, main.getSkinSmall());
-        checkbox.setChecked(getValue.get());
-        checkbox.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                setValue.accept(checkbox.isChecked());
-            }
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    preferences.putBoolean(key, checkbox.isChecked());
+                }
+            });
+            return checkbox;
         });
-        menuTable.add(checkbox).padLeft(10);
+    }
+
+    private void addKeyButton(Table menuTable, String labelText, String key) {
+        addElement(menuTable, labelText, label -> {
+            TextButton button = new TextButton(null, main.getSkinSmall());
+
+            Consumer<String> updateButtonText = customText -> button.setText((customText != null) ? customText : Input.Keys.toString(preferences.getInteger(key)));
+            updateButtonText.accept(null);
+
+            button.addListener(new ChangeListener() {
+
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    updateButtonText.accept("Press a key");
+                    keyRecorder = keycode -> {
+                        if (keycode != null) {
+                            preferences.putInteger(key, keycode);
+                        }
+                        updateButtonText.accept(null);
+                    };
+                }
+            });
+            return button;
+        });
+    }
+
+    private void addElement(Table menuTable, String labelText, Function<Label, Actor> createElement) {
+        menuTable.row().padTop(10);
+
+        Label label = new Label(labelText, main.getSkinSmall());
+        menuTable.add(label);
+
+        Actor element = createElement.apply(label);
+        menuTable.add(element).padLeft(10);
+    }
+
+    private void setDefaultBoolean(String key, boolean defaultValue) {
+        if (!preferences.contains(key)) {
+            preferences.putBoolean(key, defaultValue);
+        }
+    }
+
+    private void setDefaultInteger(String key, int defaultValue) {
+        if (!preferences.contains(key)) {
+            preferences.putInteger(key, defaultValue);
+        }
+    }
+
+    private void setDefaultFloat(String key, float defaultValue) {
+        if (!preferences.contains(key)) {
+            preferences.putFloat(key, defaultValue);
+        }
     }
 
     private void back() {
+        preferences.flush();
+        if (keyRecorder != null) {
+            stopKeyRecording(null);
+        }
         main.removeState(this);
         back.run();
+    }
+
+    private void stopKeyRecording(Integer keycode) {
+        keyRecorder.accept(keycode);
+        keyRecorder = null;
     }
 
     @Override
@@ -114,10 +190,12 @@ public class SettingsState extends UiState {
 
             @Override
             public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.ESCAPE:
-                        back();
-                        return true;
+                if (keyRecorder != null) {
+                    stopKeyRecording((keycode != Input.Keys.ESCAPE) ? keycode : null);
+                    return true;
+                } else if (keycode == Input.Keys.ESCAPE) {
+                    back();
+                    return true;
                 }
                 return false;
             }
