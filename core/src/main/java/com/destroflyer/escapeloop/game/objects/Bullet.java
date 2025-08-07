@@ -18,7 +18,7 @@ public class Bullet extends MapObject {
     public Bullet(Enemy shooter) {
         this.shooter = shooter;
     }
-    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadAnimation("./textures/enemy_robot/bullet.png", 2, 2, 3, 0.2f);
+    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/bullet.png", 2, 2, 3, 0.2f);
     private Enemy shooter;
 
     @Override

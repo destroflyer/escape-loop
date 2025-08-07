@@ -52,6 +52,7 @@ public class MapRenderState extends State {
     private MapState mapState;
     private Texture backgroundTexture;
     private Texture terrainTexture;
+    private Texture decorationTexture;
     private BitmapFont textFont = new BitmapFont();
     private GlyphLayout textLayout = new GlyphLayout();
     private boolean debug;
@@ -61,10 +62,12 @@ public class MapRenderState extends State {
         if (backgroundTexture == null) {
             backgroundTexture = new Texture("./textures/cave/background.png");
             terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/terrain.png");
+            decorationTexture = new Texture("./maps/" + mapState.getMap().getName() + "/decoration.png");
         }
         drawFullScreenTexture(backgroundTexture);
         drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
+        drawFullScreenTexture(decorationTexture);
         drawMapTexts();
         drawMapObjects(mapObject -> !(mapObject instanceof Character) && !(mapObject instanceof Item), MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Character, MapRenderLayer.FOREGROUND);
@@ -82,10 +85,7 @@ public class MapRenderState extends State {
         for (MapText text : mapState.getMap().getTexts()) {
             int x = convertMapSize(text.getPosition().x);
             int y = convertMapSize(text.getPosition().y);
-            textLayout.setText(textFont, text.getText(), Color.WHITE, 200, Align.center, true);
-            float textWidth = textLayout.width;
-            float textHeight = textLayout.height;
-            textFont.draw(spriteBatch, textLayout, x - (textWidth / 2), y + (textHeight / 2));
+            drawCenteredText(x, y, text.getText(), Color.WHITE, 200);
         }
         spriteBatch.end();
     }
@@ -105,12 +105,6 @@ public class MapRenderState extends State {
         float bodyAngle = body.getAngle();
         float alpha = getAlpha(mapObject);
 
-        Matrix4 centerPositionTransform = new Matrix4();
-        centerPositionTransform.translate(bodyX, bodyY, 0);
-
-        Matrix4 centerPositionAndRotationTransform = centerPositionTransform.cpy();
-        centerPositionAndRotationTransform.rotateRad(0, 0, 1, bodyAngle);
-
         Direction textureDirection = mapObject.getTextureDirection();
         int textureDirectionX = ((textureDirection.getX() != 0) ? textureDirection.getX() : 1);
         int textureDirectionY = ((textureDirection.getY() != 0) ? textureDirection.getY() : 1);
@@ -118,15 +112,32 @@ public class MapRenderState extends State {
         int textureOffsetY = convertMapSize(mapObject.getTextureOffset().y);
         int textureWidth = convertMapSize(mapObject.getTextureSize().x);
         int textureHeight = convertMapSize(mapObject.getTextureSize().y);
-        Matrix4 leftTopTransform = centerPositionAndRotationTransform.cpy();
-        leftTopTransform.translate(textureDirectionX * ((textureWidth / -2f) + textureOffsetX), textureDirectionY * ((textureHeight / -2f) + textureOffsetY), 0);
-        leftTopTransform.scl(textureDirectionX, textureDirectionY, 1);
+
+        Matrix4 centerTransform = new Matrix4();
+        centerTransform.translate(bodyX, bodyY, 0);
+
+        Matrix4 centerAndRotationTransform = centerTransform.cpy();
+        centerAndRotationTransform.rotateRad(0, 0, 1, bodyAngle);
+
+        float centerToBottom = textureDirectionY * ((textureHeight / -2f) + textureOffsetY);
+
+        Matrix4 centerTopTransform = centerAndRotationTransform.cpy();
+        centerTopTransform.translate(0, -1 * centerToBottom, 0);
+
+        Matrix4 centerBottomTransform = centerAndRotationTransform.cpy();
+        centerBottomTransform.translate(0, centerToBottom, 0);
+
+        Matrix4 leftBottomTransform = centerBottomTransform.cpy();
+        leftBottomTransform.translate(textureDirectionX * ((textureWidth / -2f) + textureOffsetX), 0, 0);
+
+        Matrix4 leftBottomWithDirectionTransform = leftBottomTransform.cpy();
+        leftBottomWithDirectionTransform.scl(textureDirectionX, textureDirectionY, 1);
 
         switch (layer) {
             case BACKGROUND:
                 Particles particles = mapObject.getParticles();
                 if (particles != null) {
-                    drawParticles(particles, centerPositionTransform, textureWidth);
+                    drawParticles(particles, centerTransform, textureWidth);
                 }
                 PlayerPastWithIndex playerPastWithIndex = getPlayerPastWithIndex(mapObject);
                 if (playerPastWithIndex != null) {
@@ -136,7 +147,11 @@ public class MapRenderState extends State {
             case FOREGROUND:
                 TextureRegion textureRegion = mapObject.getTextureRegion();
                 if (textureRegion != null) {
-                    drawTexture(mapObject, textureRegion, leftTopTransform, textureWidth, textureHeight, alpha);
+                    drawTexture(mapObject, textureRegion, leftBottomWithDirectionTransform, textureWidth, textureHeight, alpha);
+                }
+                String speech = mapObject.getSpeech();
+                if (speech != null) {
+                    drawSpeech(speech, centerTopTransform);
                 }
                 if (debug) {
                     drawDebugShape(mapObject, bodyX, bodyY, alpha);
@@ -145,7 +160,7 @@ public class MapRenderState extends State {
         }
     }
 
-    private void drawParticles(Particles particles, Matrix4 centerPositionTransform, float textureWidth) {
+    private void drawParticles(Particles particles, Matrix4 centerTransform, float textureWidth) {
         Matrix4 originalTransform = shapeRenderer.getTransformMatrix().cpy();
 
         int[] indices = new int[] { 1, 5, 2, 4, 0, 3 };
@@ -157,7 +172,7 @@ public class MapRenderState extends State {
 
         Gdx.gl.glEnable(GL20.GL_BLEND);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setTransformMatrix(centerPositionTransform);
+        shapeRenderer.setTransformMatrix(centerTransform);
 
         for (int i = 0; i < indices.length; i++) {
             float indexPortion = ((float) indices[i] / (indices.length - 1));
@@ -213,7 +228,7 @@ public class MapRenderState extends State {
         }
     }
 
-    private void drawTexture(MapObject mapObject, TextureRegion textureRegion, Matrix4 leftTopTransform, int textureWidth, int textureHeight, float alpha) {
+    private void drawTexture(MapObject mapObject, TextureRegion textureRegion, Matrix4 leftBottomWithDirectionTransform, int textureWidth, int textureHeight, float alpha) {
         Matrix4 originalTransform = spriteBatch.getTransformMatrix().cpy();
 
         Rectangle clipBounds = null;
@@ -235,14 +250,14 @@ public class MapRenderState extends State {
 
         if (clipBounds != null) {
             Rectangle scissor = new Rectangle();
-            ScissorStack.calculateScissors(main.getViewport().getCamera(), leftTopTransform, clipBounds, scissor);
+            ScissorStack.calculateScissors(main.getViewport().getCamera(), leftBottomWithDirectionTransform, clipBounds, scissor);
             if (!ScissorStack.pushScissors(scissor)) {
                 return;
             }
         }
 
         spriteBatch.begin();
-        spriteBatch.setTransformMatrix(leftTopTransform);
+        spriteBatch.setTransformMatrix(leftBottomWithDirectionTransform);
         spriteBatch.setColor(getMapObjectTintColor(mapObject, alpha));
 
         int tileOffsetX = (((tilesX - 1) * textureWidth) / -2);
@@ -291,6 +306,40 @@ public class MapRenderState extends State {
             }
         }
         return null;
+    }
+
+    private void drawSpeech(String speech, Matrix4 centerTopTransform) {
+        Matrix4 originalShapeRendererTransform = shapeRenderer.getTransformMatrix().cpy();
+        Matrix4 originalSpriteBatchTransform = spriteBatch.getTransformMatrix().cpy();
+
+        shapeRenderer.setTransformMatrix(centerTopTransform);
+        spriteBatch.setTransformMatrix(centerTopTransform);
+
+        int width = 120;
+        int height = 40;
+        int offsetY = 15;
+        int padding = 5;
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.WHITE);
+        shapeRenderer.rect((width / -2f), offsetY, width, height);
+        shapeRenderer.setColor(Color.BLACK);
+        drawRectWithThickness((width / -2f), offsetY, width, height, 2);
+        shapeRenderer.end();
+
+        spriteBatch.begin();
+        drawCenteredText(0, offsetY + (height / 2), speech, Color.BLACK, width - (2 * padding));
+        spriteBatch.end();
+
+        shapeRenderer.setTransformMatrix(originalShapeRendererTransform);
+        spriteBatch.setTransformMatrix(originalSpriteBatchTransform);
+    }
+
+    private void drawRectWithThickness(float x, float y, float width, float height, float lineThickness) {
+        shapeRenderer.rect(x, y, width, lineThickness);
+        shapeRenderer.rect(x, y + height - lineThickness, width, lineThickness);
+        shapeRenderer.rect(x, y + lineThickness, lineThickness, height - (2 * lineThickness));
+        shapeRenderer.rect(x + width - lineThickness, y + lineThickness, lineThickness, height - (2 * lineThickness));
     }
 
     private void drawDebugShape(MapObject mapObject, int bodyX, int bodyY, float alpha) {
@@ -368,6 +417,12 @@ public class MapRenderState extends State {
             }
         }
         return 1;
+    }
+
+    private void drawCenteredText(int x, int y, String text, Color color, int targetWidth) {
+        textLayout.setText(textFont, text, color, targetWidth, Align.center, true);
+        float textHeight = textLayout.height;
+        textFont.draw(spriteBatch, textLayout, x - (targetWidth / 2f), y + (textHeight / 2));
     }
 
     private int convertMapSize(float coordinate) {

@@ -12,6 +12,7 @@ public class MapDataEntities {
     private ArrayList<MapDataEntity> Start;
     private ArrayList<MapDataEntity> Finish;
     private ArrayList<MapDataEntity> Enemy;
+    private ArrayList<MapDataEntity> Scientist;
     private ArrayList<MapDataEntity> Item;
     private ArrayList<MapDataEntity> Bouncer;
     private ArrayList<MapDataEntity> Toggle_Trigger;

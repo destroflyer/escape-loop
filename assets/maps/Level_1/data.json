@@ -21,7 +21,7 @@
 				"id": "Start",
 				"iid": "4b6882f0-5e50-11f0-ba66-dbf492eabef4",
 				"layer": "Entities",
-				"x": 192,
+				"x": 96,
 				"y": 240,
 				"width": 16,
 				"height": 16,
@@ -47,7 +47,7 @@
 				"id": "Text",
 				"iid": "9256a090-5e50-11f0-928e-f54eabfe558f",
 				"layer": "Entities",
-				"x": 192,
+				"x": 208,
 				"y": 192,
 				"width": 16,
 				"height": 16,
@@ -67,6 +67,34 @@
 				"color": 16777215,
 				"customFields": {
 					"text": "Jump on top of yourself to reach distant places"
+				}
+			}
+		],
+		"Scientist": [
+			{
+				"id": "Scientist",
+				"iid": "a7d35340-5e50-11f0-ab42-4197a806a3a4",
+				"layer": "Entities",
+				"x": 192,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "Right"
+				}
+			},
+			{
+				"id": "Scientist",
+				"iid": "a8321510-5e50-11f0-ab42-e522f47fbd24",
+				"layer": "Entities",
+				"x": 240,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 1578021,
+				"customFields": {
+					"direction": "Left"
 				}
 			}
 		]

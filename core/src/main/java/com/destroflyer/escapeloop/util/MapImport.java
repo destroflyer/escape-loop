@@ -28,6 +28,7 @@ public class MapImport {
             copyFile(srcDirectory, dstDirectory, "data.json");
             copyFile(srcDirectory, dstDirectory, "Terrain.csv");
             copyFile(srcDirectory, dstDirectory, "Terrain.png");
+            copyFile(srcDirectory, dstDirectory, "Decoration.png");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

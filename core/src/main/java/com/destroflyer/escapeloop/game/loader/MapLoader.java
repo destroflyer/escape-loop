@@ -19,6 +19,7 @@ import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.loader.json.MapData;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntity;
 import com.destroflyer.escapeloop.game.objects.PressureTrigger;
+import com.destroflyer.escapeloop.game.objects.Scientist;
 import com.destroflyer.escapeloop.game.objects.Start;
 import com.destroflyer.escapeloop.game.objects.ToggleTrigger;
 import com.destroflyer.escapeloop.game.objects.items.DamageItem;
@@ -110,6 +111,9 @@ public class MapLoader {
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(entity.getCustomFields().getHoverTileHeight(), entity.getCustomFields().getShootCooldown(), entity.getCustomFields().isAutoShoot()), entity -> new Vector2(0, 0), (entity, enemy) -> {
             enemy.setViewDirection(entity.getCustomFields().getDirection().equals("Left") ? -1 : 1);
+        });
+        loadEntities(data.getEntities().getScientist(), entity -> new Scientist(), entity -> new Vector2(0, 0), (entity, scientist) -> {
+            scientist.setViewDirection(entity.getCustomFields().getDirection().equals("Left") ? -1 : 1);
         });
         loadEntities(data.getEntities().getItem(), entity -> ClassUtil.newInstance(ITEM_CLASSES.get(entity.getCustomFields().getItem())), entity -> new Vector2(0, -1 * ((Map.TILE_SIZE - 0.15f) * Map.TILE_SIZE)));
         loadEntities(data.getEntities().getBouncer(), entity -> new Bouncer(), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));

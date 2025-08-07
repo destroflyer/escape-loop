@@ -28,6 +28,9 @@ public abstract class MapObject {
     protected Vector2 textureSize = new Vector2(Map.TILE_SIZE, Map.TILE_SIZE);
     private Animation<TextureRegion> oneTimeAnimation;
     private float oneTimeAnimationStartTime;
+    @Getter
+    @Setter
+    private String speech;
 
     public abstract void createBody();
 

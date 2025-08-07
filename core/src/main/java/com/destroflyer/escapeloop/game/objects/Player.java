@@ -17,11 +17,11 @@ public class Player extends Character {
         textureOffset = new Vector2(0, 0.25f);
         textureSize = new Vector2(1, 1);
     }
-    private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadAnimation("./textures/orange_robot/idle.png", 4, 2, 5, 0.2f);
-    public static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadAnimation("./textures/orange_robot/run.png", 5, 1, 0.15f);
-    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadAnimation("./textures/orange_robot/flying.png", 2, 1, 0.2f);
-    private static final Animation<TextureRegion> ANIMATION_ACTION_HORIZONTAL = TextureUtil.loadAnimation("./textures/orange_robot/action_horizontal.png", 2, 2, 0.1f);
-    private static final Animation<TextureRegion> ANIMATION_ACTION_VERTICAL = TextureUtil.loadAnimation("./textures/orange_robot/action_vertical.png", 2, 2, 0.1f);
+    private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadWrappedAnimation("./textures/orange_robot/idle.png", 4, 2, 5, 0.2f);
+    public static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadWrappedAnimation("./textures/orange_robot/run.png", 5, 1, 0.15f);
+    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("./textures/orange_robot/flying.png", 2, 1, 0.2f);
+    private static final Animation<TextureRegion> ANIMATION_ACTION_HORIZONTAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/action_horizontal.png", 2, 2, 0.1f);
+    private static final Animation<TextureRegion> ANIMATION_ACTION_VERTICAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/action_vertical.png", 2, 2, 0.1f);
     @Getter
     private boolean characterCollisionsEnabled;
 
