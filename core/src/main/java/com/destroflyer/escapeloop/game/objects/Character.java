@@ -36,7 +36,7 @@ public class Character extends MapObject {
     protected int verticalDirection = 0;
     private float walkSpeed = 2.1f;
     private float airAcceleration = 0.05f;
-    private float jumpForce = 0.9f;
+    private float jumpImpulse = 0.9f;
     private float remainingGroundPlatformIgnoreTime;
     private ArrayList<MapObject> groundObjects = new ArrayList<>();
     @Getter
@@ -139,9 +139,17 @@ public class Character extends MapObject {
 
     public void jump() {
         if (isOnGround()) {
-            body.applyLinearImpulse(new Vector2(0, jumpForce), body.getWorldCenter(), true);
-            resetRemainingGroundPlatformIgnoreTime();
+            applyVerticalImpulse(jumpImpulse);
         }
+    }
+
+    public void applyVerticalImpulse(float impulse) {
+        body.applyLinearImpulse(new Vector2(0, impulse), body.getWorldCenter(), true);
+        resetRemainingGroundPlatformIgnoreTime();
+    }
+
+    private void resetRemainingGroundPlatformIgnoreTime() {
+        remainingGroundPlatformIgnoreTime = 0.1f;
     }
 
     public void pickup(Item item) {
@@ -184,10 +192,6 @@ public class Character extends MapObject {
             }
         }
         return null;
-    }
-
-    public void resetRemainingGroundPlatformIgnoreTime() {
-        remainingGroundPlatformIgnoreTime = 0.1f;
     }
 
     public MapObject getGroundObject() {

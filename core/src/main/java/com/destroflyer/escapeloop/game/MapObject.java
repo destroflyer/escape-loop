@@ -29,8 +29,8 @@ public abstract class MapObject {
     private Animation<TextureRegion> oneTimeAnimation;
     private float oneTimeAnimationStartTime;
     @Getter
-    @Setter
     private String speech;
+    private Float remainingSpeechDuration;
 
     public abstract void createBody();
 
@@ -40,6 +40,13 @@ public abstract class MapObject {
         }
         if ((oneTimeAnimation != null) && (map.getTime() >= (oneTimeAnimationStartTime + oneTimeAnimation.getAnimationDuration()))) {
             oneTimeAnimation = null;
+        }
+        if (remainingSpeechDuration != null) {
+            remainingSpeechDuration -= tpf;
+            if (remainingSpeechDuration <= 0) {
+                speech = null;
+                remainingSpeechDuration = null;
+            }
         }
     }
 
@@ -120,5 +127,14 @@ public abstract class MapObject {
 
     public Particles getParticles() {
         return null;
+    }
+
+    public void setSpeech(String speech) {
+        setSpeech(speech, null);
+    }
+
+    public void setSpeech(String speech, Float duration) {
+        this.speech = speech;
+        remainingSpeechDuration = duration;
     }
 }

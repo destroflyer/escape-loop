@@ -16,7 +16,15 @@ public class Scientist extends Character {
     private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("textures/scientists/flying.png", 4, 1, 0.2f);
 
     @Override
+    public void createBody() {
+        super.createBody();
+        setSpeech("Amazing!", 2f);
+        setWalkDirection(1);
+        applyVerticalImpulse(1.3f);
+    }
+
+    @Override
     protected Animation<TextureRegion> getLoopedAnimation() {
-        return (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
+        return ANIMATION_FLYING; // (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
     }
 }
