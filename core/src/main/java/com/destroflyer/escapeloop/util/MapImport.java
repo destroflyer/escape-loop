@@ -1,6 +1,6 @@
 package com.destroflyer.escapeloop.util;
 
-import com.destroflyer.escapeloop.game.loader.MapLoader;
+import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class MapImport {
     public static void importMap(String mapName) {
         try {
             File srcDirectory = new File(getSrcMapsDirectoryPath() + "/" + mapName);
-            File dstDirectory = new File(MapLoader.DIRECTORY + "/" + mapName);
+            File dstDirectory = new File(MapFileLoader.DIRECTORY + "/" + mapName);
             dstDirectory.mkdir();
             copyFile(srcDirectory, dstDirectory, "data.json");
             copyFile(srcDirectory, dstDirectory, "Terrain.csv");

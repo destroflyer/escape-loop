@@ -28,4 +28,8 @@ public class Cinematic {
             }
         }
     }
+
+    public void finish() {
+
+    }
 }

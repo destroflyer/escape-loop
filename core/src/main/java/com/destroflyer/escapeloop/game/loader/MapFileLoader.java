@@ -36,9 +36,9 @@ import java.util.HashMap;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 
-public class MapLoader {
+public class MapFileLoader {
 
-    public MapLoader(Map map) {
+    public MapFileLoader(Map map) {
         this.map = map;
         loadData();
         loadTerrain();

@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
-import com.destroflyer.escapeloop.game.cinematics.IntroCinematic;
-import com.destroflyer.escapeloop.game.loader.MapLoader;
+import com.destroflyer.escapeloop.game.loader.MapCustomLoader;
+import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
 
 import lombok.Getter;
@@ -16,13 +16,12 @@ public class Map {
 
     public Map(String name) {
         this.name = name;
-        mapLoader = new MapLoader(this);
+        mapFileLoader = new MapFileLoader(this);
+        mapCustomLoader = new MapCustomLoader(this);
         world = new World(GRAVITY, false);
         world.setContactListener(new MapContactListener(this));
         reset();
-        if (name.equals("Level_1")) {
-            cinematic = new IntroCinematic(this);
-        }
+        cinematic = mapCustomLoader.getCinematic();
     }
     private static final Vector2 GRAVITY = new Vector2(0, -9.81f);
     private static final int VELOCITY_ITERATIONS = 6;
@@ -30,7 +29,8 @@ public class Map {
     public static final float TILE_SIZE = 0.5f;
     @Getter
     private String name;
-    private MapLoader mapLoader;
+    private MapFileLoader mapFileLoader;
+    private MapCustomLoader mapCustomLoader;
     @Getter
     public float width;
     @Getter
@@ -75,6 +75,9 @@ public class Map {
     public void reset() {
         totalTime = 0;
         playerPasts.clear();
+        if (cinematic != null) {
+            cinematic.finish();
+        }
         cinematic = null;
         finished = false;
         start();
@@ -89,10 +92,12 @@ public class Map {
         queuedTasks.clear();
         texts.clear();
 
-        width = mapLoader.getWidth();
-        mapLoader.loadContent();
-        Vector2 startPosition = mapLoader.getStartPosition();
-        maximumPlayerPasts = mapLoader.getMaximumPlayerPasts();
+        width = mapFileLoader.getWidth();
+        mapFileLoader.loadContent();
+        Vector2 startPosition = mapFileLoader.getStartPosition();
+        maximumPlayerPasts = mapFileLoader.getMaximumPlayerPasts();
+
+        mapCustomLoader.loadContent();
 
         player = new Player();
         addObject(player);

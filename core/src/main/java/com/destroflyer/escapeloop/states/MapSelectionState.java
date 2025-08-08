@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.destroflyer.escapeloop.Main;
-import com.destroflyer.escapeloop.game.loader.MapLoader;
+import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 import com.destroflyer.escapeloop.util.MapImport;
 
 import java.io.File;
@@ -75,7 +75,7 @@ public class MapSelectionState extends UiState {
 
     private ArrayList<String> getMapNames() {
         ArrayList<String> mapNames = new ArrayList<>();
-        for (File mapDirectory : new File(MapLoader.DIRECTORY).listFiles()) {
+        for (File mapDirectory : new File(MapFileLoader.DIRECTORY).listFiles()) {
             mapNames.add(mapDirectory.getName());
         }
         mapNames.sort((mapName1, mapName2) -> {
