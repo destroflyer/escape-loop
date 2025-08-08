@@ -69,34 +69,6 @@
 					"text": "Jump on top of yourself to reach distant places"
 				}
 			}
-		],
-		"Scientist": [
-			{
-				"id": "Scientist",
-				"iid": "a7d35340-5e50-11f0-ab42-4197a806a3a4",
-				"layer": "Entities",
-				"x": 192,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 1578021,
-				"customFields": {
-					"direction": "Right"
-				}
-			},
-			{
-				"id": "Scientist",
-				"iid": "a8321510-5e50-11f0-ab42-e522f47fbd24",
-				"layer": "Entities",
-				"x": 240,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 1578021,
-				"customFields": {
-					"direction": "Left"
-				}
-			}
 		]
 	}
 }

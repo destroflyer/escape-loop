@@ -23,7 +23,7 @@ public class PlayerPast {
         remainingFrames.addAll(frames);
     }
 
-    public void applyFrames(float time) {
+    public void applyTime(float time) {
         for (int i = 0; i < remainingFrames.size(); i++) {
             PlayerPastFrame frame = remainingFrames.get(i);
             if (time >= frame.getTime()) {

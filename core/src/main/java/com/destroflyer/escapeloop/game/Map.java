@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
+import com.destroflyer.escapeloop.game.cinematics.IntroCinematic;
 import com.destroflyer.escapeloop.game.loader.MapLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
 
@@ -19,6 +20,9 @@ public class Map {
         world = new World(GRAVITY, false);
         world.setContactListener(new MapContactListener(this));
         reset();
+        if (name.equals("Level_1")) {
+            cinematic = new IntroCinematic(this);
+        }
     }
     private static final Vector2 GRAVITY = new Vector2(0, -9.81f);
     private static final int VELOCITY_ITERATIONS = 6;
@@ -48,6 +52,7 @@ public class Map {
     private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
     @Getter
     private ArrayList<MapText> texts = new ArrayList<>();
+    private Cinematic cinematic;
     @Getter
     private boolean finished;
 
@@ -123,8 +128,11 @@ public class Map {
         currentPlayerCurrentFrameInputs.clear();
         for (PlayerPast playerPast : playerPasts) {
             if (isPlayerAlive(playerPast.getPlayer())) {
-                playerPast.applyFrames(time);
+                playerPast.applyTime(time);
             }
+        }
+        if (cinematic != null) {
+            cinematic.applyTime(time);
         }
         world.step(tpf, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
         runQueuedTasks();

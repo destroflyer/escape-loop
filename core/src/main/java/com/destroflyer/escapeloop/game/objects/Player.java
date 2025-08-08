@@ -72,9 +72,6 @@ public class Player extends Character {
         if (!isOnGround()) {
             return ANIMATION_FLYING;
         }
-        if (walkDirection != 0) {
-            return ANIMATION_RUN;
-        }
-        return ANIMATION_IDLE;
+        return (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
     }
 }

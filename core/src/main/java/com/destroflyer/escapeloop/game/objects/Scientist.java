@@ -12,19 +12,14 @@ public class Scientist extends Character {
         textureSize = new Vector2(0.85f, 0.85f);
     }
     private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadScientistsAnimation(0, 4, 0.25f);
-    private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadScientistsAnimation(0, 8, 0.15f);
+    private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadScientistsAnimation(1, 8, 0.15f);
     private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("textures/scientists/flying.png", 4, 1, 0.2f);
 
     @Override
-    public void createBody() {
-        super.createBody();
-        setSpeech("Amazing!", 2f);
-        setWalkDirection(1);
-        applyVerticalImpulse(1.3f);
-    }
-
-    @Override
     protected Animation<TextureRegion> getLoopedAnimation() {
-        return ANIMATION_FLYING; // (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
+        if (!isOnGround()) {
+            return ANIMATION_FLYING;
+        }
+        return (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
     }
 }
