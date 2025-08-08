@@ -95,7 +95,7 @@ public class MapRenderState extends State {
 
     private void drawMapObjects(Predicate<MapObject> filter, MapRenderLayer layer) {
         for (MapObject mapObject : mapState.getMap().getObjects()) {
-            if (filter.evaluate(mapObject)) {
+            if (mapObject.isVisible() && filter.evaluate(mapObject)) {
                 drawMapObject(mapObject, layer);
             }
         }

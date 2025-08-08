@@ -31,6 +31,9 @@ public abstract class MapObject {
     @Getter
     private String speech;
     private Float remainingSpeechDuration;
+    @Getter
+    @Setter
+    private boolean visible = true;
 
     public abstract void createBody();
 

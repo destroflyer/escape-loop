@@ -107,7 +107,9 @@ public class MapLoader {
             }
             return gates;
         };
-        loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0));
+        loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0), (entity, start) -> {
+            start.setVisible(entity.getCustomFields().isVisible());
+        });
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
         loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(entity.getCustomFields().getHoverTileHeight(), entity.getCustomFields().getShootCooldown(), entity.getCustomFields().isAutoShoot()), entity -> new Vector2(0, 0), (entity, enemy) -> {
             enemy.setViewDirection(entity.getCustomFields().getDirection().equals("Left") ? -1 : 1);

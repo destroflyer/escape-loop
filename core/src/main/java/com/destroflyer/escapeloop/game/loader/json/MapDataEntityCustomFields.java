@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class MapDataEntityCustomFields {
+    // Start
+    private boolean visible;
     // Enemy
     private String direction;
     private int hoverTileHeight;
