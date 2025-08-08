@@ -68,7 +68,9 @@ public class MapRenderState extends State {
         drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
         drawFullScreenTexture(decorationTexture);
-        drawMapTexts();
+        if (mapState.getMap().getCinematic() == null) {
+            drawMapTexts();
+        }
         drawMapObjects(mapObject -> !(mapObject instanceof Character) && !(mapObject instanceof Item), MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Character, MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Item, MapRenderLayer.FOREGROUND);
@@ -82,10 +84,11 @@ public class MapRenderState extends State {
 
     private void drawMapTexts() {
         spriteBatch.begin();
-        for (MapText text : mapState.getMap().getTexts()) {
-            int x = convertMapSize(text.getPosition().x);
-            int y = convertMapSize(text.getPosition().y);
-            drawCenteredText(x, y, text.getText(), Color.WHITE, 200);
+        for (MapText mapText : mapState.getMap().getTexts()) {
+            int x = convertMapSize(mapText.getPosition().x);
+            int y = convertMapSize(mapText.getPosition().y);
+            String text = main.getSettingsState().replacePlaceholders(mapText.getText());
+            drawCenteredText(x, y, text, Color.WHITE, mapText.getWidth());
         }
         spriteBatch.end();
     }

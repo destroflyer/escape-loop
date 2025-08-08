@@ -88,7 +88,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Pressure switches will open gates while something is on top of them"
+					"text": "Pressure switches will open gates while something is on top of them",
+					"width": 250
 				}
 			}
 		]

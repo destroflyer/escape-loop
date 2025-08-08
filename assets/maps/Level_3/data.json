@@ -53,7 +53,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "When bouncing, your angle and velocity determine how far and fast you fly"
+					"text": "When bouncing, your angle and velocity determine how far and fast you fly",
+					"width": 300
 				}
 			}
 		]

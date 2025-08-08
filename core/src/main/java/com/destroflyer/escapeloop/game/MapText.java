@@ -10,4 +10,5 @@ import lombok.Getter;
 public class MapText {
     private Vector2 position;
     private String text;
+    private int width;
 }

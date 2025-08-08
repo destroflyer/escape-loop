@@ -30,9 +30,11 @@ public class IntroCinematic extends Cinematic {
         });
         time += 0.25f;
         add(time, () -> scientistLeft.applyVerticalImpulse(1.3f));
-        time += 1.41f;
+        time += 1.4f;
         add(time, scientistRight::remove);
-        time += 0.72f;
+        time += 0.73f;
         add(time, scientistLeft::remove);
+
+        duration = time;
     }
 }

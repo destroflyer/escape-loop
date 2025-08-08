@@ -47,26 +47,28 @@
 				"id": "Text",
 				"iid": "9256a090-5e50-11f0-928e-f54eabfe558f",
 				"layer": "Entities",
-				"x": 208,
+				"x": 176,
 				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Use the time machine to interact with your past selves"
+					"text": "Use the time machine ${keyTimeMachine} to interact with your past selves",
+					"width": 250
 				}
 			},
 			{
 				"id": "Text",
 				"iid": "b4029f50-5e50-11f0-928e-9dd947a14a99",
 				"layer": "Entities",
-				"x": 256,
+				"x": 272,
 				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Jump on top of yourself to reach distant places"
+					"text": "Jump ${keyJump} on top of yourself to reach distant places",
+					"width": 250
 				}
 			}
 		]

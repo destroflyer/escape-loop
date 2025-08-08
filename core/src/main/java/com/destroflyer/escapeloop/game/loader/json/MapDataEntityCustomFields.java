@@ -24,4 +24,5 @@ public class MapDataEntityCustomFields {
     private String autoRevertDuration;
     // Text
     private String text;
+    private int width;
 }

@@ -40,7 +40,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Avoid bullets as they will destroy you"
+					"text": "Avoid bullets - They will destroy you!",
+					"width": 250
 				}
 			}
 		],

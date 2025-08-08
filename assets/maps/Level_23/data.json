@@ -55,7 +55,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight"
+					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
+					"width": 250
 				}
 			}
 		],

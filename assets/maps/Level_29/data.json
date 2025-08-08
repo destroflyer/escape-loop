@@ -88,7 +88,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Spatial orbs swap the positions of the thrower and the target"
+					"text": "Spatial orbs swap the positions of the thrower and the target",
+					"width": 250
 				}
 			}
 		]

@@ -52,6 +52,7 @@ public class Map {
     private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
     @Getter
     private ArrayList<MapText> texts = new ArrayList<>();
+    @Getter
     private Cinematic cinematic;
     @Getter
     private boolean finished;
@@ -74,6 +75,7 @@ public class Map {
     public void reset() {
         totalTime = 0;
         playerPasts.clear();
+        cinematic = null;
         finished = false;
         start();
     }
@@ -133,6 +135,9 @@ public class Map {
         }
         if (cinematic != null) {
             cinematic.applyTime(time);
+            if (time >= cinematic.getDuration()) {
+                reset();
+            }
         }
         world.step(tpf, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
         runQueuedTasks();

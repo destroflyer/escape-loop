@@ -59,12 +59,13 @@
 				"iid": "615925f0-5e50-11f0-928e-9bd9ef343fd9",
 				"layer": "Entities",
 				"x": 240,
-				"y": 112,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "This level is still under construction..."
+					"text": "This level is still under construction...",
+					"width": 250
 				}
 			}
 		]

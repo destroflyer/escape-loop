@@ -53,7 +53,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "When travelling back in time, your actions can influence the outcome of your previous selves actions"
+					"text": "When travelling back in time, your actions can influence the outcome of your previous selves actions",
+					"width": 250
 				}
 			}
 		]

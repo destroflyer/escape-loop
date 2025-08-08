@@ -64,7 +64,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Some helpful text!"
+					"text": "Some helpful text! Jump = ${actionJump}",
+					"width": 250
 				}
 			}
 		],

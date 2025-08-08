@@ -48,9 +48,9 @@
 				"iid": "672163b4-5e50-11f0-9b1e-6fec21e9a6c6",
 				"layer": "Entities",
 				"x": 272,
-				"y": 64,
+				"y": 48,
 				"width": 16,
-				"height": 48,
+				"height": 64,
 				"color": 9149364,
 				"customFields" : {}
 			}
@@ -85,12 +85,13 @@
 				"iid": "75cda5a0-5e50-11f0-928e-eb7d0e1fbc73",
 				"layer": "Entities",
 				"x": 208,
-				"y": 80,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Toggle switches will open/close gates when pushed - Use your action key"
+					"text": "Toggle switches will open/close gates when pushed - Use your action key ${keyAction}",
+					"width": 250
 				}
 			}
 		]

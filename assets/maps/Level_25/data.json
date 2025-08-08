@@ -88,7 +88,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Orbs can be thrown at other characters [Action key]"
+					"text": "Orbs can be thrown at other characters ${keyAction}",
+					"width": 250
 				}
 			}
 		]

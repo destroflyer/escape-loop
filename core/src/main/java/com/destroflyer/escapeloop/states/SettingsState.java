@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.destroflyer.escapeloop.util.FloatUtil;
 
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -168,6 +169,19 @@ public class SettingsState extends UiState {
         if (!preferences.contains(key)) {
             preferences.putFloat(key, defaultValue);
         }
+    }
+
+    public String replacePlaceholders(String text) {
+        Map<String, ?> values = preferences.get();
+        for (Map.Entry<String, ?> entry : values.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue().toString();
+            if (key.startsWith("key")) {
+                value = "[" + Input.Keys.toString(Integer.parseInt(value)) + "]";
+            }
+            text = text.replaceAll("\\$\\{" + entry.getKey() + "\\}", value);
+        }
+        return text;
     }
 
     private void back() {

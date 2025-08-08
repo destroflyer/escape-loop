@@ -2,12 +2,16 @@ package com.destroflyer.escapeloop.game;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+
 public class Cinematic {
 
     public Cinematic(Map map) {
         this.map = map;
     }
     protected Map map;
+    @Getter
+    protected float duration;
     private ArrayList<CinematicAction> actions = new ArrayList<>();
 
     public void add(float time, Runnable runnable) {

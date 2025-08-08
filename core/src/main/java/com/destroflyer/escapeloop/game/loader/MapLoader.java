@@ -140,7 +140,8 @@ public class MapLoader {
             for (MapDataEntity entity : texts) {
                 Vector2 position = getMapPosition(entity);
                 String text = entity.getCustomFields().getText();
-                map.addText(new MapText(position, text));
+                int width = entity.getCustomFields().getWidth();
+                map.addText(new MapText(position, text, width));
             }
         }
     }

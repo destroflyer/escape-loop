@@ -88,7 +88,8 @@
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away"
+					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
+					"width": 250
 				}
 			}
 		]

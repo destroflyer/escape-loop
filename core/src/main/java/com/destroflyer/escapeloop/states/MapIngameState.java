@@ -39,23 +39,28 @@ public class MapIngameState extends UiState {
         super.update(tpf);
         Map map = mapState.getMap();
 
-        updateWalkDirection(map);
-        updateVerticalDirection(map);
+        if (map.getCinematic() == null) {
+            updateWalkDirection(map);
+            updateVerticalDirection(map);
+        }
+
         map.update(tpf);
 
-        Preferences preferences = main.getSettingsState().getPreferences();
-        String help = "";
-        help += Input.Keys.toString(preferences.getInteger("keyAction")) + " = Action";
-        help += ", ";
-        help += Input.Keys.toString(preferences.getInteger("keyRespawn")) + " = Respawn";
-        help += ", ";
-        int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
-        help += Input.Keys.toString(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() +  " charges)";
-        help += ", ";
-        help += Input.Keys.toString(preferences.getInteger("keyReset")) + " = Reset";
-        infoLabel.setText(help);
+        if (map.getCinematic() == null) {
+            Preferences preferences = main.getSettingsState().getPreferences();
+            String help = "";
+            help += Input.Keys.toString(preferences.getInteger("keyAction")) + " = Action";
+            help += ", ";
+            help += Input.Keys.toString(preferences.getInteger("keyRespawn")) + " = Respawn";
+            help += ", ";
+            int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
+            help += Input.Keys.toString(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() + " charges)";
+            help += ", ";
+            help += Input.Keys.toString(preferences.getInteger("keyReset")) + " = Reset";
+            infoLabel.setText(help);
 
-        timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTotalTime(), 3) + "s");
+            timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTotalTime(), 3) + "s");
+        }
     }
 
     private void updateWalkDirection(Map map) {
@@ -80,24 +85,26 @@ public class MapIngameState extends UiState {
             public boolean keyDown(int keycode) {
                 Preferences preferences = main.getSettingsState().getPreferences();
                 Map map = mapState.getMap();
-                if (keycode == preferences.getInteger("keyJump")) {
-                    map.applyInput(new JumpInput());
-                    return true;
-                } else if (keycode == preferences.getInteger("keyAction")) {
-                    map.applyInput(new ActionInput());
-                    return true;
-                } else if (keycode == preferences.getInteger("keyRespawn")) {
-                    map.respawnCurrentPlayer();
-                    return true;
-                } else if (keycode == preferences.getInteger("keyTimeMachine")) {
-                    map.tryStartNextPlayer();
+                if (keycode == Input.Keys.ESCAPE) {
+                    mapState.openPauseMenu();
                     return true;
                 } else if (keycode == preferences.getInteger("keyReset")) {
                     map.reset();
                     return true;
-                } else if (keycode == Input.Keys.ESCAPE) {
-                    mapState.openPauseMenu();
-                    return true;
+                } else if (map.getCinematic() == null) {
+                    if (keycode == preferences.getInteger("keyJump")) {
+                        map.applyInput(new JumpInput());
+                        return true;
+                    } else if (keycode == preferences.getInteger("keyAction")) {
+                        map.applyInput(new ActionInput());
+                        return true;
+                    } else if (keycode == preferences.getInteger("keyRespawn")) {
+                        map.respawnCurrentPlayer();
+                        return true;
+                    } else if (keycode == preferences.getInteger("keyTimeMachine")) {
+                        map.tryStartNextPlayer();
+                        return true;
+                    }
                 }
                 return false;
             }
