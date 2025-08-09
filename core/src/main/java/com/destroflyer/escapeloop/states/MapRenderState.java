@@ -28,6 +28,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.State;
+import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
@@ -55,6 +56,7 @@ public class MapRenderState extends State {
     private Texture decorationTexture;
     private BitmapFont textFont = new BitmapFont();
     private GlyphLayout textLayout = new GlyphLayout();
+    private Rectangle bounds = new Rectangle();
     private boolean debug;
 
     @Override
@@ -64,6 +66,7 @@ public class MapRenderState extends State {
             terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/terrain.png");
             decorationTexture = new Texture("./maps/" + mapState.getMap().getName() + "/decoration.png");
         }
+        updateBounds();
         drawFullScreenTexture(backgroundTexture);
         drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
@@ -76,17 +79,29 @@ public class MapRenderState extends State {
         drawMapObjects(mapObject -> mapObject instanceof Item, MapRenderLayer.FOREGROUND);
     }
 
+    private void updateBounds() {
+        bounds.set(0, 0, mapState.getMap().getWidth(), mapState.getMap().getHeight());
+        Cinematic cinematic = mapState.getMap().getCinematic();
+        if (cinematic != null) {
+            cinematic.updateBounds(bounds);
+        }
+    }
+
     private void drawFullScreenTexture(Texture texture) {
+        float x = convertMapX(0);
+        float y = convertMapY(0);
+        float width = convertMapWidth(mapState.getMap().getWidth());
+        float height = convertMapHeight(mapState.getMap().getHeight());
         spriteBatch.begin();
-        spriteBatch.draw(texture, 0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
+        spriteBatch.draw(texture, x, y, width, height);
         spriteBatch.end();
     }
 
     private void drawMapTexts() {
         spriteBatch.begin();
         for (MapText mapText : mapState.getMap().getTexts()) {
-            int x = convertMapSize(mapText.getPosition().x);
-            int y = convertMapSize(mapText.getPosition().y);
+            int x = convertMapX(mapText.getPosition().x);
+            int y = convertMapY(mapText.getPosition().y);
             String text = main.getSettingsState().replacePlaceholders(mapText.getText());
             drawCenteredText(x, y, text, Color.WHITE, mapText.getWidth());
         }
@@ -103,18 +118,24 @@ public class MapRenderState extends State {
 
     private void drawMapObject(MapObject mapObject, MapRenderLayer layer) {
         Body body = mapObject.getBody();
-        int bodyX = convertMapSize(body.getPosition().x);
-        int bodyY = convertMapSize(body.getPosition().y);
+        int bodyX = convertMapX(body.getPosition().x);
+        int bodyY = convertMapY(body.getPosition().y);
         float bodyAngle = body.getAngle();
         float alpha = getAlpha(mapObject);
+
+        // When circular objects are rotated and their textures are rendered as ellipse due to distorted bounds, this visual ellipse doesn't match their physics/hitbox circle anymore
+        // Therefore, we just fixate their visual rotation for now
+        if (isDistortedBounds() && (mapObject instanceof Item)) {
+            bodyAngle = 0;
+        }
 
         Direction textureDirection = mapObject.getTextureDirection();
         int textureDirectionX = ((textureDirection.getX() != 0) ? textureDirection.getX() : 1);
         int textureDirectionY = ((textureDirection.getY() != 0) ? textureDirection.getY() : 1);
-        int textureOffsetX = convertMapSize(mapObject.getTextureOffset().x);
-        int textureOffsetY = convertMapSize(mapObject.getTextureOffset().y);
-        int textureWidth = convertMapSize(mapObject.getTextureSize().x);
-        int textureHeight = convertMapSize(mapObject.getTextureSize().y);
+        int textureOffsetX = convertMapWidth(mapObject.getTextureOffset().x);
+        int textureOffsetY = convertMapHeight(mapObject.getTextureOffset().y);
+        int textureWidth = convertMapWidth(mapObject.getTextureSize().x);
+        int textureHeight = convertMapHeight(mapObject.getTextureSize().y);
 
         Matrix4 centerTransform = new Matrix4();
         centerTransform.translate(bodyX, bodyY, 0);
@@ -181,20 +202,26 @@ public class MapRenderState extends State {
             float indexPortion = ((float) indices[i] / (indices.length - 1));
             shapeRenderer.setColor(1, 1, 1, 1 - progresses[i]);
             switch (particles) {
-                case CIRCLE:
-                    int radius = 30;
-                    shapeRenderer.circle(0, 0, progresses[i] * radius, 10);
+                case CIRCLE: {
+                    float mapDiameter = progresses[i] * 0.75f;
+                    int width = convertMapWidth(mapDiameter);
+                    int height = convertMapHeight(mapDiameter);
+                    float x = width / -2f;
+                    float y = height / -2f;
+                    shapeRenderer.ellipse(x, y, width, height, 10);
                     break;
+                }
                 case UP:
-                case DOWN:
-                    int length = 10;
-                    int distance = 20;
+                case DOWN: {
+                    int length = convertMapHeight(0.125f);
+                    int distance = convertMapHeight(0.25f);
                     float x = ((indexPortion - 0.5f) * textureWidth);
                     float yDirection = ((particles == Particles.UP) ? 1 : -1);
                     float y1 = (progresses[i] - 1.25f) * (yDirection * distance);
                     float y2 = y1 + (yDirection * length);
                     shapeRenderer.line(x, y1, x, y2);
                     break;
+                }
             }
         }
 
@@ -210,8 +237,8 @@ public class MapRenderState extends State {
             if (frame.getTime() > maximumTime) {
                 break;
             }
-            int x = convertMapSize(frame.getPosition().x);
-            int y = convertMapSize(frame.getPosition().y);
+            int x = convertMapX(frame.getPosition().x);
+            int y = convertMapY(frame.getPosition().y);
             trajectoryPoints.add(new Vector2(x, y));
         }
         Color color = getMapObjectTintColor(playerPastWithIndex.getPlayerPast().getPlayer());
@@ -245,9 +272,9 @@ public class MapRenderState extends State {
             tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
             if (tilesX > tilesY) {
                 tileAngle = 90;
-                clipBounds = new Rectangle(convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getWidth()) + (textureWidth / 2f), ((tilesY / -2f) + 0.5f) * textureHeight, convertMapSize(gate.getWidth()), tilesX * textureHeight);
+                clipBounds = new Rectangle(convertMapX((gate.getOpenProgress() - 0.5f) * gate.getWidth()) + (textureWidth / 2f), ((tilesY / -2f) + 0.5f) * textureHeight, convertMapWidth(gate.getWidth()), tilesX * textureHeight);
             } else {
-                clipBounds = new Rectangle(((tilesX / -2f) + 0.5f) * textureWidth, convertMapSize((gate.getOpenProgress() - 0.5f) * gate.getHeight()) + (textureHeight / 2f), tilesY * textureWidth, convertMapSize(gate.getHeight()));
+                clipBounds = new Rectangle(((tilesX / -2f) + 0.5f) * textureWidth, convertMapY((gate.getOpenProgress() - 0.5f) * gate.getHeight()) + (textureHeight / 2f), tilesY * textureWidth, convertMapHeight(gate.getHeight()));
             }
         }
 
@@ -267,8 +294,8 @@ public class MapRenderState extends State {
         int tileOffsetY = (((tilesY - 1) * textureHeight) / -2);
         for (int tileX = 0; tileX < tilesX; tileX++) {
             for (int tileY = 0; tileY < tilesY; tileY++) {
-                int x = tileOffsetX + convertMapSize(tileX * Map.TILE_SIZE);
-                int y = tileOffsetY + convertMapSize(tileY * Map.TILE_SIZE);
+                float x = tileOffsetX + (tileX * Map.TILE_SIZE);
+                float y = tileOffsetY + (tileY * Map.TILE_SIZE);
                 spriteBatch.draw(textureRegion, x, y, (textureWidth / 2f), (textureHeight / 2f), textureWidth, textureHeight, 1, 1, tileAngle);
             }
         }
@@ -365,8 +392,8 @@ public class MapRenderState extends State {
                     Vector2 localVertex = new Vector2();
                     polygonShape.getVertex(i, localVertex);
                     Vector2 worldVertex = body.getWorldPoint(localVertex);
-                    positions[positionOffset++] = convertMapSize(worldVertex.x);
-                    positions[positionOffset++] = convertMapSize(worldVertex.y);
+                    positions[positionOffset++] = convertMapX(worldVertex.x);
+                    positions[positionOffset++] = convertMapY(worldVertex.y);
                 }
                 short[] indices = new EarClippingTriangulator().computeTriangles(positions).items;
 
@@ -382,11 +409,12 @@ public class MapRenderState extends State {
                 polygonSpriteBatch.end();
             } else if (shape instanceof CircleShape) {
                 CircleShape circleShape = (CircleShape) shape;
-                int radius = convertMapSize(circleShape.getRadius());
+                int width = convertMapWidth(circleShape.getRadius() * 2);
+                int height = convertMapHeight(circleShape.getRadius() * 2);
 
                 shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
                 shapeRenderer.setColor(color);
-                shapeRenderer.circle(bodyX, bodyY, radius);
+                shapeRenderer.ellipse(bodyX - (width / 2f), bodyY - (height / 2f), width, height);
                 shapeRenderer.end();
             } else {
                 throw new IllegalArgumentException("Unsupported shape: " + shape);
@@ -428,9 +456,29 @@ public class MapRenderState extends State {
         textFont.draw(spriteBatch, textLayout, x - (targetWidth / 2f), y + (textHeight / 2));
     }
 
-    private int convertMapSize(float coordinate) {
-        float mapToPanel = (Main.VIEWPORT_WIDTH / mapState.getMap().getWidth());
-        return Math.round(coordinate * mapToPanel);
+    private int convertMapX(float mapX) {
+        return convertMapWidth(mapX - bounds.x);
+    }
+
+    private int convertMapY(float mapY) {
+        return convertMapHeight(mapY - bounds.y);
+    }
+
+    private int convertMapWidth(float width) {
+        return convertMapSize(width, Main.VIEWPORT_WIDTH, bounds.width);
+    }
+
+    private int convertMapHeight(float height) {
+        return convertMapSize(height, Main.VIEWPORT_HEIGHT, bounds.height);
+    }
+
+    private int convertMapSize(float mapSize, int viewportSize, float visibleMapSize) {
+        float mapToPanel = (viewportSize / visibleMapSize);
+        return Math.round(mapSize * mapToPanel);
+    }
+
+    private boolean isDistortedBounds() {
+        return (bounds.width / bounds.height) != (((float) Main.VIEWPORT_WIDTH) / Main.VIEWPORT_HEIGHT);
     }
 
     @Override

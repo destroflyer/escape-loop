@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
+import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.loader.MapCustomLoader;
 import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
@@ -185,5 +186,9 @@ public class Map {
 
     public MapObject getMapObject(Body body) {
         return objects.stream().filter(mapObject -> mapObject.getBody() == body).findAny().orElse(null);
+    }
+
+    public float getHeight() {
+        return (((float) Main.VIEWPORT_HEIGHT) / Main.VIEWPORT_WIDTH) * width;
     }
 }

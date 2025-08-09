@@ -1,5 +1,7 @@
 package com.destroflyer.escapeloop.game;
 
+import com.badlogic.gdx.math.Rectangle;
+
 import java.util.ArrayList;
 
 import lombok.Getter;
@@ -30,6 +32,10 @@ public class Cinematic {
     }
 
     public void finish() {
+
+    }
+
+    public void updateBounds(Rectangle bounds) {
 
     }
 }
