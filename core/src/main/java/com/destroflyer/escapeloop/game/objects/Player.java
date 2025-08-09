@@ -29,6 +29,7 @@ public class Player extends Character {
     public void createBody() {
         super.createBody();
         characterFixture.getFilterData().categoryBits |= Collisions.PLAYER;
+        characterFixture.getFilterData().maskBits |= Collisions.TIME_MACHINE;
     }
 
     @Override

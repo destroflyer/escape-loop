@@ -5,6 +5,7 @@ import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.cinematics.IntroCinematic;
 import com.destroflyer.escapeloop.game.objects.Decoration;
+import com.destroflyer.escapeloop.game.objects.TimeMachine;
 
 import lombok.AllArgsConstructor;
 
@@ -23,6 +24,9 @@ public class MapCustomLoader {
     public void loadContent() {
         switch (map.getName()) {
             case "Level_1":
+                TimeMachine timeMachine = new TimeMachine();
+                map.addObject(timeMachine);
+                timeMachine.getBody().setTransform(new Vector2(10.5f * Map.TILE_SIZE, 2.75f * Map.TILE_SIZE), 0);
                 for (int x = 0; x < 3; x++) {
                     for (int y = 0; y < 3; y++) {
                         Decoration turbinePiece = new Decoration(5, (y == 2) ? 5 : 6);
