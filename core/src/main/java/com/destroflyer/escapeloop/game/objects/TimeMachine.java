@@ -55,7 +55,7 @@ public class TimeMachine extends MapObject {
         super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
         if (mapObject instanceof Player) {
             Player player = (Player) mapObject;
-            // TODO: Pickup
+            player.setHasTimeMachine(true);
             remove();
         }
     }

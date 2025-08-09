@@ -10,6 +10,7 @@ import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
 import lombok.Getter;
+import lombok.Setter;
 
 public class Player extends Character {
 
@@ -17,11 +18,12 @@ public class Player extends Character {
         textureOffset = new Vector2(0, 0.25f);
         textureSize = new Vector2(1, 1);
     }
-    private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadWrappedAnimation("./textures/orange_robot/idle.png", 4, 2, 5, 0.2f);
-    public static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadWrappedAnimation("./textures/orange_robot/run.png", 5, 1, 0.15f);
-    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("./textures/orange_robot/flying.png", 2, 1, 0.2f);
+    public static final PlayerContextAnimations ANIMATIONS_WITH_TIME_MACHINE = new PlayerContextAnimations(true);
+    private static final PlayerContextAnimations ANIMATIONS_WITHOUT_TIME_MACHINE = new PlayerContextAnimations(false);
     private static final Animation<TextureRegion> ANIMATION_ACTION_HORIZONTAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/action_horizontal.png", 2, 2, 0.1f);
     private static final Animation<TextureRegion> ANIMATION_ACTION_VERTICAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/action_vertical.png", 2, 2, 0.1f);
+    @Setter
+    private boolean hasTimeMachine = true;
     @Getter
     private boolean characterCollisionsEnabled;
 
@@ -70,9 +72,10 @@ public class Player extends Character {
 
     @Override
     protected Animation<TextureRegion> getLoopedAnimation() {
+        PlayerContextAnimations animations = (hasTimeMachine ? ANIMATIONS_WITH_TIME_MACHINE : ANIMATIONS_WITHOUT_TIME_MACHINE);
         if (!isOnGround()) {
-            return ANIMATION_FLYING;
+            return animations.getFlyingAnimation();
         }
-        return (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
+        return (walkDirection != 0) ? animations.getRunAnimation() : animations.getIdleAnimation();
     }
 }

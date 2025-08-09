@@ -61,7 +61,7 @@ public class MainMenuState extends UiState {
         float y = ((Main.VIEWPORT_HEIGHT / 2f) + 70) - (height / 2f);
         spriteBatch.setProjectionMatrix(main.getViewport().getCamera().combined);
         spriteBatch.begin();
-        TextureRegion textureRegion = Player.ANIMATION_RUN.getKeyFrame(main.getTime(), true);
+        TextureRegion textureRegion = Player.ANIMATIONS_WITH_TIME_MACHINE.getRunAnimation().getKeyFrame(main.getTime(), true);
         spriteBatch.draw(textureRegion, x, y, width, height);
         spriteBatch.end();
     }

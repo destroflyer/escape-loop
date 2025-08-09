@@ -6,6 +6,7 @@ import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.objects.Decoration;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.game.objects.Scientist;
+import com.destroflyer.escapeloop.game.objects.TimeMachine;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,8 +41,13 @@ public class IntroCinematic extends Cinematic {
         time += 0.73f;
         add(time, scientistLeft::remove);
 
+        TimeMachine timeMachine = new TimeMachine();
+        map.addObject(timeMachine);
+        timeMachine.getBody().setTransform(getTileCenter(10, GROUND_TILE_Y + 0.25f), 0);
+
         Player player = map.getPlayer();
         player.getBody().setTransform(getTileCenter(6, GROUND_TILE_Y), 0);
+        player.setHasTimeMachine(false);
 
         Decoration box = new Decoration(1, 8);
         map.addObject(box);
@@ -105,7 +111,7 @@ public class IntroCinematic extends Cinematic {
         }
     }
 
-    private Vector2 getTileCenter(int tileX, int tileY) {
+    private Vector2 getTileCenter(float tileX, float tileY) {
         return new Vector2((tileX + 0.5f) * Map.TILE_SIZE, (tileY + 0.5f) * Map.TILE_SIZE);
     }
 }
