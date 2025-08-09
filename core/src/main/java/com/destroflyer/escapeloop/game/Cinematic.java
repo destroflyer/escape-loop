@@ -35,7 +35,7 @@ public class Cinematic {
 
     }
 
-    public void updateBounds(Rectangle bounds) {
+    public void updateRenderBounds(Rectangle bounds) {
 
     }
 }

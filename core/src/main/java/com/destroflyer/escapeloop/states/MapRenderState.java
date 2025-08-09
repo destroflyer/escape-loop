@@ -83,7 +83,7 @@ public class MapRenderState extends State {
         bounds.set(0, 0, mapState.getMap().getWidth(), mapState.getMap().getHeight());
         Cinematic cinematic = mapState.getMap().getCinematic();
         if (cinematic != null) {
-            cinematic.updateBounds(bounds);
+            cinematic.updateRenderBounds(bounds);
         }
     }
 

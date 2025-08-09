@@ -1,5 +1,6 @@
 package com.destroflyer.escapeloop.game.cinematics;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Map;
@@ -7,6 +8,7 @@ import com.destroflyer.escapeloop.game.objects.Decoration;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.game.objects.Scientist;
 import com.destroflyer.escapeloop.game.objects.TimeMachine;
+import com.destroflyer.escapeloop.util.FloatUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +26,8 @@ public class IntroCinematic extends Cinematic {
         scientistRight.getBody().setTransform(getTileCenter(15, GROUND_TILE_Y), 0);
         scientistRight.setViewDirection(-1);
 
-        float time = 0.5f;
+        float time = AD_DURATION_TOTAL;
+        time += 0.5f;
         add(time, () -> scientistLeft.setSpeech("Amazing!", 1f));
         time += 1;
         add(time, () -> scientistRight.setSpeech("Yes yes", 1f));
@@ -53,7 +56,8 @@ public class IntroCinematic extends Cinematic {
         map.addObject(box);
         box.getBody().setTransform(getTileCenter(7, GROUND_TILE_Y), 0);
 
-        time = 0;
+        time = AD_DURATION_BEFORE_ZOOM_OUT;
+        time += 2;
         turbinePieces = map.getObjects().stream()
             .filter(mapObject -> (mapObject instanceof Decoration) && (mapObject != box))
             .map(mapObject -> (Decoration) mapObject)
@@ -101,6 +105,9 @@ public class IntroCinematic extends Cinematic {
         duration = time;
     }
     private static final int GROUND_TILE_Y = 2;
+    private static final int AD_DURATION_TOTAL = 7;
+    private static final int AD_DURATION_BEFORE_ZOOM_OUT = 3;
+    private static final Rectangle FULL_ZOOM_IN_BOUNDS = new Rectangle(7, 1.375f, 0.03f, 0.03f);
     private List<Decoration> turbinePieces;
 
     @Override
@@ -113,5 +120,17 @@ public class IntroCinematic extends Cinematic {
 
     private Vector2 getTileCenter(float tileX, float tileY) {
         return new Vector2((tileX + 0.5f) * Map.TILE_SIZE, (tileY + 0.5f) * Map.TILE_SIZE);
+    }
+
+    @Override
+    public void updateRenderBounds(Rectangle bounds) {
+        super.updateRenderBounds(bounds);
+        if (map.getTime() < AD_DURATION_TOTAL) {
+            float zoomOutProgress = 0;
+            if (map.getTime() >= AD_DURATION_BEFORE_ZOOM_OUT) {
+                zoomOutProgress = ((map.getTime() - AD_DURATION_BEFORE_ZOOM_OUT) / (AD_DURATION_TOTAL - AD_DURATION_BEFORE_ZOOM_OUT));
+            }
+            FloatUtil.lerp(FULL_ZOOM_IN_BOUNDS, bounds, zoomOutProgress, bounds);
+        }
     }
 }

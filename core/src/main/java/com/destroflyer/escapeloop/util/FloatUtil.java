@@ -1,5 +1,8 @@
 package com.destroflyer.escapeloop.util;
 
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
+
 public class FloatUtil {
 
     public static String format(float value, int decimals) {
@@ -15,5 +18,14 @@ public class FloatUtil {
             decimalsText = "0" + decimalsText;
         }
         return integerValue + "." + decimalsText;
+    }
+
+    public static void lerp(Rectangle a, Rectangle b, float progress, Rectangle destination) {
+        destination.set(
+            MathUtils.lerp(a.x, b.x, progress),
+            MathUtils.lerp(a.y, b.y, progress),
+            MathUtils.lerp(a.width, b.width, progress),
+            MathUtils.lerp(a.height, b.height, progress)
+        );
     }
 }
