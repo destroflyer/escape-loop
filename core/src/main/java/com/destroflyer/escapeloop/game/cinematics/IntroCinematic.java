@@ -28,20 +28,48 @@ public class IntroCinematic extends Cinematic {
 
         float time = AD_DURATION_TOTAL;
         time += 0.5f;
-        add(time, () -> scientistLeft.setSpeech("Amazing!", 1f));
-        time += 1;
-        add(time, () -> scientistRight.setSpeech("Yes yes", 1f));
+        add(time, () -> scientistLeft.setSpeech("Amazing", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistRight.setSpeech("Yes, better than last year's", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistLeft.setSpeech("I'm not a fan of our orbs", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistLeft.setWalkDirection(-1));
+        time += 0.25f;
+        add(time, () -> scientistLeft.setWalkDirection(0));
+        time += 0.5f;
+        add(time, () -> scientistLeft.setSpeech("But they fund our real project", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistRight.setWalkDirection(-1));
+        time += 0.7f;
+        add(time, () -> scientistRight.setWalkDirection(0));
+        time += 0.5f;
+        add(time, () -> scientistRight.setSpeech("The time machine...", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistRight.setSpeech("It still has a lot of quirks", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
         time += 1;
         add(time, () -> {
-            scientistLeft.setWalkDirection(1);
-            scientistRight.setWalkDirection(1);
-            scientistRight.applyVerticalImpulse(1.35f);
+            scientistLeft.setViewDirection(1);
+            scientistRight.setViewDirection(1);
+            scientistRight.setSpeech("!", SPEECH_DURATION_SHORT);
         });
+        time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistRight.setSpeech("Issues in section C again", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> scientistLeft.setSpeech("Sigh... Let's go", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        add(time, () -> {
+            scientistRight.setWalkDirection(1);
+            scientistLeft.setWalkDirection(1);
+        });
+        time += 0.4f;
+        add(time, () -> scientistRight.applyVerticalImpulse(1.35f));
         time += 0.25f;
         add(time, () -> scientistLeft.applyVerticalImpulse(1.3f));
-        time += 1.4f;
+        time += 1.7f;
         add(time, scientistRight::remove);
-        time += 0.73f;
+        time += 0.3f;
         add(time, scientistLeft::remove);
 
         TimeMachine timeMachine = new TimeMachine();
@@ -77,28 +105,33 @@ public class IntroCinematic extends Cinematic {
                 }
             });
             time += walkDuration;
-            add(time, () -> {
-                turbinePiece.setVisible(true);
-                player.setWalkDirection(1);
-            });
+            add(time, () -> player.setWalkDirection(0));
+            time += 1;
+            add(time, () -> turbinePiece.setVisible(true));
+            time += 1;
+            add(time, () -> player.setWalkDirection(1));
             time += walkDuration;
+            add(time, () -> player.setWalkDirection(0));
+            time += 1;
             i++;
         }
         add(time, () -> {
             player.setWalkDirection(0);
-            player.setSpeech("Finished", 1f);
+            player.setSpeech("Finished", SPEECH_DURATION_LONG);
         });
-        time += 2;
-        add(time, () -> player.setSpeech("...", 1f));
-        time += 2;
-        add(time, () -> player.setSpeech("!", 0.5f));
-        time += 0.5f;
+        time += SPEECH_DURATION_LONG;
+        time += 1;
+        add(time, () -> player.setSpeech("...", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG;
+        add(time, () -> player.setSpeech("!", SPEECH_DURATION_SHORT));
+        time += SPEECH_DURATION_SHORT;
         add(time, () -> player.setWalkDirection(1));
         time += 0.7f;
         add(time, () -> player.setWalkDirection(0));
         time += 0.5f;
-        add(time, () -> player.setSpeech("...", 1f));
-        time += 2;
+        add(time, () -> player.setSpeech("...", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG;
+        time += 1;
         add(time, () -> player.setWalkDirection(1));
         time += 0.3f;
 
@@ -108,6 +141,9 @@ public class IntroCinematic extends Cinematic {
     private static final int AD_DURATION_TOTAL = 7;
     private static final int AD_DURATION_BEFORE_ZOOM_OUT = 3;
     private static final Rectangle FULL_ZOOM_IN_BOUNDS = new Rectangle(7, 1.375f, 0.03f, 0.03f);
+    private static final float SPEECH_DURATION_LONG = 2.2f;
+    private static final float SPEECH_DURATION_BREAK = 0.2f;
+    private static final float SPEECH_DURATION_SHORT = 1;
     private List<Decoration> turbinePieces;
 
     @Override
