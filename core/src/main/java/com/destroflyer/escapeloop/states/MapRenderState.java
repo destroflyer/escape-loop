@@ -66,22 +66,25 @@ public class MapRenderState extends State {
             terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/terrain.png");
             decorationTexture = new Texture("./maps/" + mapState.getMap().getName() + "/decoration.png");
         }
-        updateBounds();
+        Cinematic cinematic = mapState.getMap().getCinematic();
+        updateBounds(cinematic);
         drawFullScreenTexture(backgroundTexture);
         drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
         drawFullScreenTexture(decorationTexture);
-        if (mapState.getMap().getCinematic() == null) {
+        if (cinematic == null) {
             drawMapTexts();
         }
         drawMapObjects(mapObject -> !(mapObject instanceof Character) && !(mapObject instanceof Item), MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Character, MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Item, MapRenderLayer.FOREGROUND);
+        if (cinematic != null) {
+            cinematic.render(spriteBatch, shapeRenderer);
+        }
     }
 
-    private void updateBounds() {
+    private void updateBounds(Cinematic cinematic) {
         bounds.set(0, 0, mapState.getMap().getWidth(), mapState.getMap().getHeight());
-        Cinematic cinematic = mapState.getMap().getCinematic();
         if (cinematic != null) {
             cinematic.updateRenderBounds(bounds);
         }

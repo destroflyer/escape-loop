@@ -1,7 +1,11 @@
 package com.destroflyer.escapeloop.game.cinematics;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.objects.Decoration;
@@ -26,7 +30,7 @@ public class IntroCinematic extends Cinematic {
         scientistRight.getBody().setTransform(getTileCenter(15, GROUND_TILE_Y), 0);
         scientistRight.setViewDirection(-1);
 
-        float time = AD_DURATION_TOTAL;
+        float time = AD_DURATION + ZOOM_OUT_DURATION;
         time += 0.5f;
         add(time, () -> scientistLeft.setSpeech("Amazing", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
@@ -38,7 +42,7 @@ public class IntroCinematic extends Cinematic {
         time += 0.25f;
         add(time, () -> scientistLeft.setWalkDirection(0));
         time += 0.5f;
-        add(time, () -> scientistLeft.setSpeech("But they fund our real project", SPEECH_DURATION_LONG));
+        add(time, () -> scientistLeft.setSpeech("But they fund our actual project", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
         add(time, () -> scientistRight.setWalkDirection(-1));
         time += 0.7f;
@@ -55,7 +59,7 @@ public class IntroCinematic extends Cinematic {
             scientistRight.setSpeech("!", SPEECH_DURATION_SHORT);
         });
         time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK;
-        add(time, () -> scientistRight.setSpeech("Issues in section C again", SPEECH_DURATION_LONG));
+        add(time, () -> scientistRight.setSpeech("Issues in sector C again", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
         add(time, () -> scientistLeft.setSpeech("Sigh... Let's go", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
@@ -84,7 +88,7 @@ public class IntroCinematic extends Cinematic {
         map.addObject(box);
         box.getBody().setTransform(getTileCenter(7, GROUND_TILE_Y), 0);
 
-        time = AD_DURATION_BEFORE_ZOOM_OUT;
+        time = AD_DURATION;
         time += 2;
         turbinePieces = map.getObjects().stream()
             .filter(mapObject -> (mapObject instanceof Decoration) && (mapObject != box))
@@ -119,27 +123,27 @@ public class IntroCinematic extends Cinematic {
             player.setWalkDirection(0);
             player.setSpeech("Finished", SPEECH_DURATION_LONG);
         });
-        time += SPEECH_DURATION_LONG;
-        time += 1;
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        time += 0.8f;
         add(time, () -> player.setSpeech("...", SPEECH_DURATION_LONG));
-        time += SPEECH_DURATION_LONG;
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
         add(time, () -> player.setSpeech("!", SPEECH_DURATION_SHORT));
-        time += SPEECH_DURATION_SHORT;
+        time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK;
         add(time, () -> player.setWalkDirection(1));
         time += 0.7f;
         add(time, () -> player.setWalkDirection(0));
         time += 0.5f;
         add(time, () -> player.setSpeech("...", SPEECH_DURATION_LONG));
-        time += SPEECH_DURATION_LONG;
-        time += 1;
+        time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        time += 0.8f;
         add(time, () -> player.setWalkDirection(1));
         time += 0.3f;
 
         duration = time;
     }
     private static final int GROUND_TILE_Y = 2;
-    private static final int AD_DURATION_TOTAL = 7;
-    private static final int AD_DURATION_BEFORE_ZOOM_OUT = 3;
+    private static final int AD_DURATION = 3;
+    private static final int ZOOM_OUT_DURATION = 4;
     private static final Rectangle FULL_ZOOM_IN_BOUNDS = new Rectangle(7, 1.375f, 0.03f, 0.03f);
     private static final float SPEECH_DURATION_LONG = 2.2f;
     private static final float SPEECH_DURATION_BREAK = 0.2f;
@@ -161,12 +165,26 @@ public class IntroCinematic extends Cinematic {
     @Override
     public void updateRenderBounds(Rectangle bounds) {
         super.updateRenderBounds(bounds);
-        if (map.getTime() < AD_DURATION_TOTAL) {
+        float time = map.getTime();
+        if (time < (AD_DURATION + ZOOM_OUT_DURATION)) {
             float zoomOutProgress = 0;
-            if (map.getTime() >= AD_DURATION_BEFORE_ZOOM_OUT) {
-                zoomOutProgress = ((map.getTime() - AD_DURATION_BEFORE_ZOOM_OUT) / (AD_DURATION_TOTAL - AD_DURATION_BEFORE_ZOOM_OUT));
+            if (time >= AD_DURATION) {
+                zoomOutProgress = ((time - AD_DURATION) / ZOOM_OUT_DURATION);
             }
             FloatUtil.lerp(FULL_ZOOM_IN_BOUNDS, bounds, zoomOutProgress, bounds);
+        }
+    }
+
+    @Override
+    public void render(SpriteBatch spriteBatch, ShapeRenderer shapeRenderer) {
+        super.render(spriteBatch, shapeRenderer);
+        float time = map.getTime();
+        if (time < AD_DURATION) {
+            float adProgress = (time / AD_DURATION);
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+            shapeRenderer.setColor(Color.BLACK.cpy().lerp(Color.WHITE, adProgress));
+            shapeRenderer.rect(0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
+            shapeRenderer.end();
         }
     }
 }
