@@ -185,6 +185,18 @@ public class IntroCinematic extends Cinematic {
     private List<Decoration> turbinePieces;
 
     @Override
+    public void onPauseMenuOpen() {
+        super.onPauseMenuOpen();
+        map.getMusicState().pause();
+    }
+
+    @Override
+    public void onPauseMenuClose() {
+        super.onPauseMenuClose();
+        map.getMusicState().resume();
+    }
+
+    @Override
     public void finish() {
         super.finish();
         map.getMusicState().play("main");

@@ -33,6 +33,14 @@ public class Cinematic {
         }
     }
 
+    public void onPauseMenuOpen() {
+
+    }
+
+    public void onPauseMenuClose() {
+
+    }
+
     public void finish() {
 
     }

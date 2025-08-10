@@ -36,6 +36,18 @@ public class MusicState extends State {
         Gdx.app.postRunnable(() -> currentMusic.play());
     }
 
+    public void pause() {
+        if (currentMusic != null) {
+            currentMusic.pause();
+        }
+    }
+
+    public void resume() {
+        if (currentMusic != null) {
+            currentMusic.play();
+        }
+    }
+
     public void stop() {
         if (currentMusic != null) {
             currentMusic.stop();

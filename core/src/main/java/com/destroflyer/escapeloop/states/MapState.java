@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
 import com.destroflyer.escapeloop.Main;
+import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.State;
 
@@ -58,16 +59,28 @@ public class MapState extends State {
     }
 
     public void openPauseMenu() {
+        Cinematic cinematic = map.getCinematic();
+        if (cinematic != null) {
+            cinematic.onPauseMenuOpen();
+        }
         main.removeState(mapIngameState);
         main.addState(mapPauseState);
     }
 
     public void closePauseMenu() {
+        Cinematic cinematic = map.getCinematic();
+        if (cinematic != null) {
+            cinematic.onPauseMenuClose();
+        }
         main.removeState(mapPauseState);
         main.addState(mapIngameState);
     }
 
     public void backToMapSelection() {
+        Cinematic cinematic = map.getCinematic();
+        if (cinematic != null) {
+            cinematic.finish();
+        }
         switchToState(main.getMapSelectionState());
     }
 
