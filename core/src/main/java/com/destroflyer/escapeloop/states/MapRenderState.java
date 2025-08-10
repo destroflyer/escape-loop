@@ -23,7 +23,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.scenes.scene2d.utils.ScissorStack;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Predicate;
 import com.destroflyer.escapeloop.Main;
@@ -42,6 +41,7 @@ import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
 import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.objects.Player;
+import com.destroflyer.escapeloop.util.RenderUtil;
 
 import java.util.ArrayList;
 
@@ -101,14 +101,12 @@ public class MapRenderState extends State {
     }
 
     private void drawMapTexts() {
-        spriteBatch.begin();
         for (MapText mapText : mapState.getMap().getTexts()) {
             int x = convertMapX(mapText.getPosition().x);
             int y = convertMapY(mapText.getPosition().y);
             String text = main.getSettingsState().replacePlaceholders(mapText.getText());
             drawCenteredText(x, y, text, Color.WHITE, mapText.getWidth());
         }
-        spriteBatch.end();
     }
 
     private void drawMapObjects(Predicate<MapObject> filter, MapRenderLayer layer) {
@@ -360,9 +358,7 @@ public class MapRenderState extends State {
         drawRectWithThickness((width / -2f), offsetY, width, height, 2);
         shapeRenderer.end();
 
-        spriteBatch.begin();
         drawCenteredText(0, offsetY + (height / 2), speech, Color.BLACK, width - (2 * padding));
-        spriteBatch.end();
 
         shapeRenderer.setTransformMatrix(originalShapeRendererTransform);
         spriteBatch.setTransformMatrix(originalSpriteBatchTransform);
@@ -454,9 +450,7 @@ public class MapRenderState extends State {
     }
 
     private void drawCenteredText(int x, int y, String text, Color color, int targetWidth) {
-        textLayout.setText(textFont, text, color, targetWidth, Align.center, true);
-        float textHeight = textLayout.height;
-        textFont.draw(spriteBatch, textLayout, x - (targetWidth / 2f), y + (textHeight / 2));
+        RenderUtil.drawCenteredText(spriteBatch, textLayout, textFont, x, y, text, color, targetWidth);
     }
 
     private int convertMapX(float mapX) {
