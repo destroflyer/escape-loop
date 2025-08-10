@@ -38,23 +38,21 @@ public class IntroCinematic extends Cinematic {
         // Ad
 
         map.getMusicState().play("intro", false);
-        adTextFont.getData().setScale(3);
 
         adSections = new IntroCinematicSection[] {
-            new IntroCinematicSection("Life is great.", "family"),
-            new IntroCinematicSection( "But everyone can use a little help.", "couch"),
-            new IntroCinematicSection("Life can get dangerous.", "cat"),
-            new IntroCinematicSection("And sometimes, it needs a helping hand.", "math"),
-            new IntroCinematicSection("Some jobs are just more fun when shared.", "laundry"),
-            new IntroCinematicSection("And every day should end with a smile.", "bed"),
-            new IntroCinematicSection("Orb Industries - The future is perfectly round", "factory"),
+            new IntroCinematicSection("family", "Life is great."),
+            new IntroCinematicSection("couch", "But everyone can use a little help."),
+            new IntroCinematicSection("cat", "Life can get dangerous."),
+            new IntroCinematicSection("math", "And sometimes, it needs a helping hand."),
+            new IntroCinematicSection("laundry", "Some jobs are just more fun when shared."),
+            new IntroCinematicSection("bed", "And every day should end with a smile."),
+            new IntroCinematicSection("factory", "Orb Industries - The future is perfectly round", 4, 250),
         };
         adDuration = adSections.length * AD_SECTION_DURATION;
 
         // Scientists
 
         float time = adDuration + ZOOM_OUT_DURATION;
-        add(time, () -> map.getMusicState().stop());
         time += 0.5f;
         add(time, () -> scientistLeft.setSpeech("Amazing", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
@@ -260,8 +258,9 @@ public class IntroCinematic extends Cinematic {
             spriteBatch.end();
 
             Gdx.gl.glEnable(GL20.GL_BLEND);
+            adTextFont.getData().setScale(adSection.getTextScale());
             RenderUtil.drawCenteredText(
-                spriteBatch, textLayout, adTextFont, Main.VIEWPORT_WIDTH / 2, 115, adSection.getText(), adTextColor, Main.VIEWPORT_WIDTH,
+                spriteBatch, textLayout, adTextFont, Main.VIEWPORT_WIDTH / 2, adSection.getTextY(), adSection.getText(), adTextColor, Main.VIEWPORT_WIDTH,
                 shapeRenderer, AD_TEXT_BACKDROP_COLOR, 10f
             );
             Gdx.gl.glDisable(GL20.GL_BLEND);

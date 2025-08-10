@@ -30,10 +30,17 @@ public class MusicState extends State {
 
     public void play(String name, boolean looping) {
         stop();
-        currentMusic = musics.get(name);
-        currentMusic.setLooping(looping);
         // Avoids a loud noise when immediately switching from one music to another one
-        Gdx.app.postRunnable(() -> currentMusic.play());
+        Gdx.app.postRunnable(() -> {
+            currentMusic = musics.get(name);
+            currentMusic.setLooping(looping);
+            currentMusic.setOnCompletionListener(music -> {
+                if (!looping) {
+                    stop();
+                }
+            });
+            currentMusic.play();
+        });
     }
 
     public void pause() {
