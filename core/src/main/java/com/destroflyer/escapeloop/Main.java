@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.destroflyer.escapeloop.states.MainMenuState;
-import com.destroflyer.escapeloop.states.MainMusicState;
+import com.destroflyer.escapeloop.states.MusicState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
 import com.destroflyer.escapeloop.states.SettingsState;
 
@@ -32,7 +32,7 @@ public class Main extends ApplicationAdapter {
     @Getter
     private SettingsState settingsState;
     @Getter
-    private MainMusicState mainMusicState;
+    private MusicState musicState;
     @Getter
     private MainMenuState mainMenuState;
     @Getter
@@ -54,14 +54,13 @@ public class Main extends ApplicationAdapter {
 
         settingsState = new SettingsState();
 
-        mainMusicState = new MainMusicState();
-        addState(mainMusicState);
+        musicState = new MusicState();
+        addState(musicState);
 
         mainMenuState = new MainMenuState();
         addState(mainMenuState);
 
         mapSelectionState = new MapSelectionState();
-        addState(new MainMusicState());
     }
 
     public void openSettings(Runnable back) {

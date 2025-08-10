@@ -39,7 +39,7 @@ public class MapState extends State {
         childStates.add(mapRenderState);
         childStates.add(mapIngameState);
         childStates.add(mapPauseState);
-        map = new Map(name);
+        map = new Map(name, main.getMusicState());
     }
 
     @Override

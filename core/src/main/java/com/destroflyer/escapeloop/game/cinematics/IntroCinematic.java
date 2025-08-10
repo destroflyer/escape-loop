@@ -30,7 +30,10 @@ public class IntroCinematic extends Cinematic {
         scientistRight.getBody().setTransform(getTileCenter(15, GROUND_TILE_Y), 0);
         scientistRight.setViewDirection(-1);
 
+        map.getMusicState().play("intro");
+
         float time = AD_DURATION + ZOOM_OUT_DURATION;
+        add(time, () -> map.getMusicState().stop());
         time += 0.5f;
         add(time, () -> scientistLeft.setSpeech("Amazing", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
@@ -127,6 +130,7 @@ public class IntroCinematic extends Cinematic {
         time += 0.8f;
         add(time, () -> player.setSpeech("...", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_DURATION_BREAK;
+        time += 0.3f;
         add(time, () -> player.setSpeech("!", SPEECH_DURATION_SHORT));
         time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK;
         add(time, () -> player.setWalkDirection(1));
@@ -153,6 +157,7 @@ public class IntroCinematic extends Cinematic {
     @Override
     public void finish() {
         super.finish();
+        map.getMusicState().play("main");
         for (Decoration turbine : turbinePieces) {
             turbine.setVisible(true);
         }
