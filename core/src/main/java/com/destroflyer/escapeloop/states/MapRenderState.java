@@ -295,8 +295,8 @@ public class MapRenderState extends State {
         int tileOffsetY = (((tilesY - 1) * textureHeight) / -2);
         for (int tileX = 0; tileX < tilesX; tileX++) {
             for (int tileY = 0; tileY < tilesY; tileY++) {
-                float x = tileOffsetX + (tileX * Map.TILE_SIZE);
-                float y = tileOffsetY + (tileY * Map.TILE_SIZE);
+                float x = tileOffsetX + (tileX * textureWidth);
+                float y = tileOffsetY + (tileY * textureHeight);
                 spriteBatch.draw(textureRegion, x, y, (textureWidth / 2f), (textureHeight / 2f), textureWidth, textureHeight, 1, 1, tileAngle);
             }
         }
