@@ -81,7 +81,7 @@ public class MapFileLoader {
     }
 
     private FileHandle getFileHandle(String fileName) {
-        return Gdx.files.internal("./maps/" + map.getName() + "/" + fileName);
+        return Gdx.files.internal("./maps/" + map.getMapNumber() + "/" + fileName);
     }
 
     public void loadContent() {

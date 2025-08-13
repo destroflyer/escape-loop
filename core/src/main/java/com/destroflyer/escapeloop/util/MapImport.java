@@ -10,21 +10,24 @@ import java.nio.file.StandardCopyOption;
 
 public class MapImport {
 
+    private static final String MAP_NAME_PREFIX = "Level_";
+
     public static void main(String[] args) {
         importAllMaps();
     }
 
     public static void importAllMaps() {
         for (File srcDirectory : new File(getSrcMapsDirectoryPath()).listFiles()) {
-            importMap(srcDirectory.getName());
+            int mapNumber = Integer.parseInt(srcDirectory.getName().substring(MAP_NAME_PREFIX.length()));
+            importMap(mapNumber);
         }
     }
 
-    public static void importMap(String mapName) {
+    public static void importMap(int mapNumber) {
+        File srcDirectory = new File(getSrcMapsDirectoryPath() + "/Level_" + mapNumber);
+        File dstDirectory = new File(MapFileLoader.DIRECTORY + "/" + mapNumber);
+        dstDirectory.mkdir();
         try {
-            File srcDirectory = new File(getSrcMapsDirectoryPath() + "/" + mapName);
-            File dstDirectory = new File(MapFileLoader.DIRECTORY + "/" + mapName);
-            dstDirectory.mkdir();
             copyFile(srcDirectory, dstDirectory, "data.json");
             copyFile(srcDirectory, dstDirectory, "Terrain.csv");
             copyFile(srcDirectory, dstDirectory, "Terrain.png");

@@ -12,10 +12,10 @@ import lombok.Getter;
 
 public class MapState extends State {
 
-    public MapState(String name) {
-        this.name = name;
+    public MapState(int mapNumber) {
+        this.mapNumber = mapNumber;
     }
-    private String name;
+    private int mapNumber;
     @Getter
     private Map map;
     @Getter
@@ -40,7 +40,7 @@ public class MapState extends State {
         childStates.add(mapRenderState);
         childStates.add(mapIngameState);
         childStates.add(mapPauseState);
-        map = new Map(name, main.getMusicState());
+        map = new Map(mapNumber, main.getMusicState());
     }
 
     @Override
@@ -54,8 +54,17 @@ public class MapState extends State {
     public void update(float tpf) {
         super.update(tpf);
         if (map.isFinished()) {
-            switchToState(main.getMapSelectionState());
+            onLevelFinished();
         }
+    }
+
+    private void onLevelFinished() {
+        Preferences preferences = main.getSettingsState().getPreferences();
+        if (map.getMapNumber() >= preferences.getInteger("level")) {
+            preferences.putInteger("level", map.getMapNumber() + 1);
+            preferences.flush();
+        }
+        switchToState(main.getMapSelectionState());
     }
 
     public void openPauseMenu() {

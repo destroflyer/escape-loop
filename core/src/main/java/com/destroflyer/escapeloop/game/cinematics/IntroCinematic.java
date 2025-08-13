@@ -41,7 +41,7 @@ public class IntroCinematic extends Cinematic {
 
         adSections = new IntroCinematicSection[] {
             new IntroCinematicSection("family", "Life is great."),
-            new IntroCinematicSection("couch", "But everyone can use a little help."),
+            new IntroCinematicSection("couch", "But all of us can use a little help."),
             new IntroCinematicSection("cat", "Life can get dangerous."),
             new IntroCinematicSection("math", "And sometimes, it needs a helping hand."),
             new IntroCinematicSection("laundry", "Some jobs are just more fun when shared."),

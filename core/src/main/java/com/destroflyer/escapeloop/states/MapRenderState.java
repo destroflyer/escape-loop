@@ -63,8 +63,8 @@ public class MapRenderState extends State {
     public void render() {
         if (backgroundTexture == null) {
             backgroundTexture = new Texture("./textures/cave/background.png");
-            terrainTexture = new Texture("./maps/" + mapState.getMap().getName() + "/terrain.png");
-            decorationTexture = new Texture("./maps/" + mapState.getMap().getName() + "/decoration.png");
+            terrainTexture = new Texture("./maps/" + mapState.getMap().getMapNumber() + "/terrain.png");
+            decorationTexture = new Texture("./maps/" + mapState.getMap().getMapNumber() + "/decoration.png");
         }
         Cinematic cinematic = mapState.getMap().getCinematic();
         updateBounds(cinematic);

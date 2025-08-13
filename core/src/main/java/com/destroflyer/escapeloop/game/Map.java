@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 public class Map {
 
-    public Map(String name, MusicState musicState) {
-        this.name = name;
+    public Map(int mapNumber, MusicState musicState) {
+        this.mapNumber = mapNumber;
         this.musicState = musicState;
         mapFileLoader = new MapFileLoader(this);
         mapCustomLoader = new MapCustomLoader(this);
@@ -31,7 +31,7 @@ public class Map {
     private static final int POSITIONS_ITERATIONS = 2;
     public static final float TILE_SIZE = 0.5f;
     @Getter
-    private String name;
+    private int mapNumber;
     @Getter
     private MusicState musicState;
     private MapFileLoader mapFileLoader;

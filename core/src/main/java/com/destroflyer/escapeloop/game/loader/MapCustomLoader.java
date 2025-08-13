@@ -14,15 +14,15 @@ public class MapCustomLoader {
     private Map map;
 
     public Cinematic getCinematic() {
-        switch (map.getName()) {
-            case "Level_1": return new IntroCinematic(map);
+        switch (map.getMapNumber()) {
+            case 1: return new IntroCinematic(map);
         }
         return null;
     }
 
     public void loadContent() {
-        switch (map.getName()) {
-            case "Level_1":
+        switch (map.getMapNumber()) {
+            case 1:
                 for (int x = 0; x < 3; x++) {
                     for (int y = 0; y < 3; y++) {
                         Decoration turbinePiece = new Decoration(5, (y == 2) ? 5 : 6);
