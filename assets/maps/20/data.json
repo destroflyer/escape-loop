@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_20",
-	"uniqueIdentifer": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
+	"uniqueIdentifer": "1b8b5d80-5e50-11f0-94d9-0fbda89db09e",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 3
 	},
 	"layers": [
 		"Background.png",
@@ -16,13 +16,37 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "1b8b5d82-5e50-11f0-94d9-a9811e5cc224",
+				"layer": "Entities",
+				"x": 144,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			},
+			{
+				"id": "Finish",
+				"iid": "1b8b5d83-5e50-11f0-94d9-c16cf2b743f8",
+				"layer": "Entities",
+				"x": 352,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "90e3fff2-5e50-11f0-b20d-e58c4961ff78",
+				"iid": "1b8b8490-5e50-11f0-94d9-357b862ffc93",
 				"layer": "Entities",
-				"x": 128,
-				"y": 32,
+				"x": 256,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,64 +55,19 @@
 				}
 			}
 		],
-		"Finish": [
+		"Text": [
 			{
-				"id": "Finish",
-				"iid": "90e3fff3-5e50-11f0-b20d-473d7c404ff1",
-				"layer": "Entities",
-				"x": 128,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Bouncer": [
-			{
-				"id": "Bouncer",
-				"iid": "251e9fe0-5e50-11f0-b20d-ff436559a5a5",
+				"id": "Text",
+				"iid": "615925f0-5e50-11f0-928e-9bd9ef343fd9",
 				"layer": "Entities",
 				"x": 240,
-				"y": 240,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			}
-		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
-				"layer": "Entities",
-				"x": 192,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 9149364,
-				"customFields" : {}
-			}
-		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "d2bb3460-5e50-11f0-b20d-2fa90fe4fadb",
-				"layer": "Entities",
-				"x": 336,
-				"y": 208,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
+				"color": 16777215,
 				"customFields": {
-					"gates": [
-						{
-							"entityIid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
-							"layerIid": "90e3fff1-5e50-11f0-b20d-cf3125aeb0c2",
-							"levelIid": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
+					"text": "This level is still under construction...",
+					"width": 250
 				}
 			}
 		]

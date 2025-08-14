@@ -20,16 +20,19 @@ import com.destroflyer.escapeloop.util.SkinUtil;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.Arrays;
+
+import lombok.Getter;
 
 public class MapSelectionState extends UiState {
 
+    @Getter
+    private int maximumMapIndex;
     private Table mapsTable;
-    private HashMap<Integer, TextButton> mapButtons = new HashMap<>();
+    private ArrayList<TextButton> mapButtons = new ArrayList<>();
     private Label selectedMapLabel;
     private Image selectedMapImage;
-    private Integer selectedMapNumber;
+    private Integer selectedMapIndex;
 
     @Override
     public void create() {
@@ -74,10 +77,7 @@ public class MapSelectionState extends UiState {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                if (MapImport.isSrcMapsDirectoryPathSet()) {
-                    MapImport.importMap(selectedMapNumber);
-                }
-                switchToState(new MapState(selectedMapNumber));
+                switchToState(new MapState(selectedMapIndex));
             }
         });
         selectedMapTable.add(playButton).width(playTableWidth).fill();
@@ -92,63 +92,62 @@ public class MapSelectionState extends UiState {
         if (MapImport.isSrcMapsDirectoryPathSet()) {
             MapImport.importAllMaps();
         }
+        maximumMapIndex = findMaximumMapIndex();
 
         mapsTable.clear();
         mapButtons.clear();
-        ArrayList<Integer> mapNumbers = getMapNumbers();
         int currentLevel = getCurrentLevel();
-        for (int i = 0; i < 50; i++) {
-            if ((i % 5) == 0) {
+        for (int mapIndex = 0; mapIndex < 50; mapIndex++) {
+            if ((mapIndex % 5) == 0) {
                 mapsTable.row();
             }
-            boolean mapExists = i < mapNumbers.size();
-            Integer mapNumber = mapExists ? mapNumbers.get(i) : null;
-            boolean isSelectable = mapExists && (mapNumber <= currentLevel);
-            TextButton mapButton = new TextButton(getMapTitle(mapNumber), SkinUtil.getToggleButtonStyle(main.getSkinLarge()));
+            boolean mapExists = mapIndex <= maximumMapIndex;
+            boolean isSelectable = mapExists && (mapIndex <= currentLevel);
+            TextButton mapButton = new TextButton(getMapTitle(mapIndex), SkinUtil.getToggleButtonStyle(main.getSkinLarge()));
             if (isSelectable) {
+                int _mapIndex = mapIndex;
                 mapButton.addListener(new ClickListener() {
 
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        selectMap(mapNumber);
+                        selectMap(_mapIndex);
                     }
                 });
             } else {
                 mapButton.setDisabled(true);
             }
             mapsTable.add(mapButton).fill().padRight(10).padBottom(10);
-            mapButtons.put(mapNumber, mapButton);
+            mapButtons.add(mapButton);
         }
         mapsTable.setPosition(50 + (mapsTable.getPrefWidth() / 2f), 40 + (mapsTable.getPrefHeight() / 2));
 
         selectMap(currentLevel);
     }
 
-    private ArrayList<Integer> getMapNumbers() {
-        ArrayList<Integer> mapNumbers = new ArrayList<>();
-        for (File mapDirectory : new File(MapFileLoader.DIRECTORY).listFiles()) {
-            mapNumbers.add(Integer.parseInt(mapDirectory.getName()));
-        }
-        mapNumbers.sort(Comparator.comparingInt(mapNumber -> mapNumber));
-        return mapNumbers;
+    private int findMaximumMapIndex() {
+        return Arrays.stream(new File(MapFileLoader.DIRECTORY).listFiles())
+            .map(File::getName)
+            .mapToInt(Integer::parseInt)
+            .max()
+            .getAsInt();
     }
 
     private int getCurrentLevel() {
         return main.getSettingsState().getPreferences().getInteger("level");
     }
 
-    public void selectMap(int mapNumber) {
-        if (selectedMapNumber != null) {
-            mapButtons.get(selectedMapNumber).setChecked(false);
+    public void selectMap(int mapIndex) {
+        if (selectedMapIndex != null) {
+            mapButtons.get(selectedMapIndex).setChecked(false);
         }
-        selectedMapNumber = mapNumber;
-        selectedMapLabel.setText(getMapTitle(selectedMapNumber));
-        selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapNumber + "/terrain.png"))));
-        mapButtons.get(selectedMapNumber).setChecked(true);
+        selectedMapIndex = mapIndex;
+        selectedMapLabel.setText(getMapTitle(selectedMapIndex));
+        selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
+        mapButtons.get(selectedMapIndex).setChecked(true);
     }
 
-    private String getMapTitle(Integer mapNumber) {
-        return (mapNumber != null) ? "Level " + mapNumber : "-";
+    private String getMapTitle(Integer mapIndex) {
+        return (mapIndex != null) ? "Level " + (mapIndex + 1) : "-";
     }
 
     private void backToMainMenu() {

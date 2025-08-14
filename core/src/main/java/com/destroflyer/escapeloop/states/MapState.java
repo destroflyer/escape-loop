@@ -7,15 +7,19 @@ import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.State;
+import com.destroflyer.escapeloop.util.MapImport;
 
 import lombok.Getter;
 
 public class MapState extends State {
 
-    public MapState(int mapNumber) {
-        this.mapNumber = mapNumber;
+    public MapState(int mapIndex) {
+        if (MapImport.isSrcMapsDirectoryPathSet()) {
+            MapImport.importMap(mapIndex);
+        }
+        this.mapIndex = mapIndex;
     }
-    private int mapNumber;
+    private int mapIndex;
     @Getter
     private Map map;
     @Getter
@@ -40,7 +44,7 @@ public class MapState extends State {
         childStates.add(mapRenderState);
         childStates.add(mapIngameState);
         childStates.add(mapPauseState);
-        map = new Map(mapNumber, main.getMusicState());
+        map = new Map(mapIndex, main.getMusicState());
     }
 
     @Override
@@ -54,17 +58,25 @@ public class MapState extends State {
     public void update(float tpf) {
         super.update(tpf);
         if (map.isFinished()) {
-            onLevelFinished();
+            onMapFinished();
         }
     }
 
-    private void onLevelFinished() {
+    private void onMapFinished() {
+        boolean goToMapSelection = true;
         Preferences preferences = main.getSettingsState().getPreferences();
-        if (map.getMapNumber() >= preferences.getInteger("level")) {
-            preferences.putInteger("level", map.getMapNumber() + 1);
+        if (map.getMapIndex() >= preferences.getInteger("level")) {
+            int nextMapIndex = map.getMapIndex() + 1;
+            preferences.putInteger("level", nextMapIndex);
             preferences.flush();
+            if (nextMapIndex < main.getMapSelectionState().getMaximumMapIndex()) {
+                switchToState(new MapState(nextMapIndex));
+                goToMapSelection = false;
+            }
         }
-        switchToState(main.getMapSelectionState());
+        if (goToMapSelection) {
+            switchToState(main.getMapSelectionState());
+        }
     }
 
     public void openPauseMenu() {

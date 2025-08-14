@@ -39,7 +39,7 @@ public class SettingsState extends UiState {
         setDefaultInteger("keyRespawn", Input.Keys.K);
         setDefaultInteger("keyTimeMachine", Input.Keys.L);
         setDefaultInteger("keyReset", Input.Keys.BACKSPACE);
-        setDefaultInteger("level", 1);
+        setDefaultInteger("level", 0);
     }
     @Getter
     private Preferences preferences;

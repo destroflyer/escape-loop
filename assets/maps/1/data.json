@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_1",
-	"uniqueIdentifer": "f7b422e0-5e50-11f0-ba66-7131b4f056b4",
+	"uniqueIdentifer": "5ba61f90-5e50-11f0-870b-6d1cb22524df",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,61 +16,31 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "4b6882f0-5e50-11f0-ba66-dbf492eabef4",
-				"layer": "Entities",
-				"x": 160,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": false
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "cb076c20-5e50-11f0-ba66-b5abbc918c1d",
+				"iid": "5ba646a0-5e50-11f0-870b-a7595f8a7e76",
 				"layer": "Entities",
-				"x": 352,
-				"y": 192,
+				"x": 320,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Text": [
+		"Start": [
 			{
-				"id": "Text",
-				"iid": "9256a090-5e50-11f0-928e-f54eabfe558f",
+				"id": "Start",
+				"iid": "5ba646a1-5e50-11f0-870b-b7b46c29a1c2",
 				"layer": "Entities",
-				"x": 176,
-				"y": 192,
+				"x": 128,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 11882632,
 				"customFields": {
-					"text": "Use the time machine ${keyTimeMachine} to interact with your past selves",
-					"width": 250
-				}
-			},
-			{
-				"id": "Text",
-				"iid": "b4029f50-5e50-11f0-928e-9dd947a14a99",
-				"layer": "Entities",
-				"x": 272,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Jump ${keyJump} on top of yourself to reach distant places",
-					"width": 250
+					"visible": true
 				}
 			}
 		]

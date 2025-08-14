@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_23",
-	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
+	"uniqueIdentifer": "5e233a30-5e50-11f0-928e-d5094dc28b63",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
+				"iid": "5e233a32-5e50-11f0-928e-05479527e7d7",
 				"layer": "Entities",
-				"x": 416,
-				"y": 112,
+				"x": 80,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,48 +31,32 @@
 				}
 			}
 		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "5e233a33-5e50-11f0-928e-1d1559826a3b",
+				"layer": "Entities",
+				"x": 432,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
+				"iid": "5e233a34-5e50-11f0-928e-43eba5be409a",
 				"layer": "Entities",
-				"x": 336,
-				"y": 112,
+				"x": 80,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
 					"item": "Heavy"
 				}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
-				"layer": "Entities",
-				"x": 336,
-				"y": 80,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
-					"width": 250
-				}
-			}
-		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
-				"layer": "Entities",
-				"x": 64,
-				"y": 256,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
 			}
 		]
 	}

@@ -18,14 +18,14 @@ public class MapImport {
 
     public static void importAllMaps() {
         for (File srcDirectory : new File(getSrcMapsDirectoryPath()).listFiles()) {
-            int mapNumber = Integer.parseInt(srcDirectory.getName().substring(MAP_NAME_PREFIX.length()));
-            importMap(mapNumber);
+            int mapIndex = Integer.parseInt(srcDirectory.getName().substring(MAP_NAME_PREFIX.length()));
+            importMap(mapIndex);
         }
     }
 
-    public static void importMap(int mapNumber) {
-        File srcDirectory = new File(getSrcMapsDirectoryPath() + "/Level_" + mapNumber);
-        File dstDirectory = new File(MapFileLoader.DIRECTORY + "/" + mapNumber);
+    public static void importMap(int mapIndex) {
+        File srcDirectory = new File(getSrcMapsDirectoryPath() + "/Level_" + mapIndex);
+        File dstDirectory = new File(MapFileLoader.DIRECTORY + "/" + mapIndex);
         dstDirectory.mkdir();
         try {
             copyFile(srcDirectory, dstDirectory, "data.json");

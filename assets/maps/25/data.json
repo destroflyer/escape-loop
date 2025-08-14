@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_25",
-	"uniqueIdentifer": "6c3b37a0-5e50-11f0-870b-8d2187b30b37",
+	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "6c3b37a2-5e50-11f0-870b-3194ae3dd9c1",
+				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
 				"layer": "Entities",
-				"x": 128,
-				"y": 128,
+				"x": 96,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "6c3b37a3-5e50-11f0-870b-2f7741a421d9",
+				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
 				"layer": "Entities",
-				"x": 304,
-				"y": 96,
+				"x": 400,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,10 +47,10 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "6c3b37a5-5e50-11f0-870b-a714326b14c0",
+				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
 				"layer": "Entities",
 				"x": 256,
-				"y": 144,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
@@ -60,37 +60,37 @@
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 3
+					"hoverTileHeight": 1
 				}
 			}
 		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "c3450440-5e50-11f0-870b-d122ec21d1db",
+				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
 				"layer": "Entities",
-				"x": 64,
-				"y": 96,
+				"x": 80,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Heavy"
+					"item": "Knockback"
 				}
 			}
 		],
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "3f88a4b0-5e50-11f0-928e-e5d44bf6bee3",
+				"iid": "66af4be0-5e50-11f0-928e-b7eb09714dcf",
 				"layer": "Entities",
-				"x": 128,
-				"y": 80,
+				"x": 288,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Orbs can be thrown at other characters ${keyAction}",
+					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
 					"width": 250
 				}
 			}

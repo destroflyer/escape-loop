@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_11",
-	"uniqueIdentifer": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
+	"uniqueIdentifer": "179821a0-5e50-11f0-9b1e-898fad008844",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "edd2ef40-5e50-11f0-b20d-6d1cd3fb1786",
+				"iid": "179821a2-5e50-11f0-9b1e-4920e89cefea",
 				"layer": "Entities",
-				"x": 160,
-				"y": 160,
+				"x": 224,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "edd2ef41-5e50-11f0-b20d-617465dc2e3d",
+				"iid": "179821a3-5e50-11f0-9b1e-f3c830535611",
 				"layer": "Entities",
-				"x": 320,
-				"y": 160,
+				"x": 368,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,10 +47,21 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
+				"iid": "179848b0-5e50-11f0-9b1e-7d6aa4028044",
 				"layer": "Entities",
-				"x": 288,
-				"y": 112,
+				"x": 320,
+				"y": 128,
+				"width": 16,
+				"height": 64,
+				"color": 9149364,
+				"customFields" : {}
+			},
+			{
+				"id": "Gate",
+				"iid": "6a8fc160-5e50-11f0-9b1e-293790f36b99",
+				"layer": "Entities",
+				"x": 176,
+				"y": 128,
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
@@ -60,38 +71,42 @@
 		"Pressure_Trigger": [
 			{
 				"id": "Pressure_Trigger",
-				"iid": "00b19ae0-5e50-11f0-9b1e-d1084b1a303d",
+				"iid": "179848b1-5e50-11f0-9b1e-d565c69e2d51",
 				"layer": "Entities",
-				"x": 192,
-				"y": 160,
+				"x": 272,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16217634,
 				"customFields": {
 					"gates": [
 						{
-							"entityIid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
-							"layerIid": "edd2c831-5e50-11f0-b20d-2d568b9a62d8",
-							"levelIid": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
+							"entityIid": "6a8fc160-5e50-11f0-9b1e-293790f36b99",
+							"layerIid": "179821a1-5e50-11f0-9b1e-1d791366cb59",
+							"levelIid": "179821a0-5e50-11f0-9b1e-898fad008844",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					]
 				}
-			}
-		],
-		"Text": [
+			},
 			{
-				"id": "Text",
-				"iid": "3312d280-5e50-11f0-928e-9f2c5a862c4d",
+				"id": "Pressure_Trigger",
+				"iid": "6d629070-5e50-11f0-9b1e-4fb8c60cce9f",
 				"layer": "Entities",
-				"x": 192,
-				"y": 128,
+				"x": 128,
+				"y": 176,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 16217634,
 				"customFields": {
-					"text": "Pressure switches will open gates while something is on top of them",
-					"width": 250
+					"gates": [
+						{
+							"entityIid": "179848b0-5e50-11f0-9b1e-7d6aa4028044",
+							"layerIid": "179821a1-5e50-11f0-9b1e-1d791366cb59",
+							"levelIid": "179821a0-5e50-11f0-9b1e-898fad008844",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
 				}
 			}
 		]

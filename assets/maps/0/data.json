@@ -1,6 +1,6 @@
 {
-	"identifier": "Level_5",
-	"uniqueIdentifer": "faab7040-5e50-11f0-ba66-c96d718bf9e1",
+	"identifier": "Level_0",
+	"uniqueIdentifer": "f7b422e0-5e50-11f0-ba66-7131b4f056b4",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,25 +19,25 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
+				"iid": "4b6882f0-5e50-11f0-ba66-dbf492eabef4",
 				"layer": "Entities",
-				"x": 304,
+				"x": 160,
 				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
 				"customFields": {
-					"visible": true
+					"visible": false
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "faab7042-5e50-11f0-ba66-d940cffb0c7d",
+				"iid": "cb076c20-5e50-11f0-ba66-b5abbc918c1d",
 				"layer": "Entities",
-				"x": 160,
-				"y": 176,
+				"x": 352,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,15 +47,29 @@
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "c84f4780-5e50-11f0-928e-1ba6501e9213",
+				"iid": "9256a090-5e50-11f0-928e-f54eabfe558f",
 				"layer": "Entities",
-				"x": 224,
-				"y": 96,
+				"x": 176,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "When travelling back in time, your actions can influence the outcome of your previous selves actions",
+					"text": "Use the time machine ${keyTimeMachine} to interact with your past selves",
+					"width": 250
+				}
+			},
+			{
+				"id": "Text",
+				"iid": "b4029f50-5e50-11f0-928e-9dd947a14a99",
+				"layer": "Entities",
+				"x": 272,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Jump ${keyJump} on top of yourself to reach distant places",
 					"width": 250
 				}
 			}
