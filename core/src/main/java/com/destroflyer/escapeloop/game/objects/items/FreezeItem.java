@@ -12,6 +12,6 @@ public class FreezeItem extends Item {
     @Override
     protected boolean onImpact(Character thrower, Character target) {
         // TODO: Freeze
-        return false;
+        return true;
     }
 }

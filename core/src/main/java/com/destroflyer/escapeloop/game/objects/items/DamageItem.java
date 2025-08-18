@@ -12,6 +12,6 @@ public class DamageItem extends Item {
     @Override
     protected boolean onImpact(Character thrower, Character target) {
         // TODO: Damage
-        return false;
+        return true;
     }
 }

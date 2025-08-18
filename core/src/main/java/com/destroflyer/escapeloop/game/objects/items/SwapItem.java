@@ -19,6 +19,6 @@ public class SwapItem extends Item {
             target.getBody().setTransform(holderPosition, target.getBody().getAngle());
         });
         bounceOff(target);
-        return false;
+        return true;
     }
 }

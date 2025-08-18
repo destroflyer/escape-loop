@@ -1,6 +1,6 @@
 {
-	"identifier": "Level_28",
-	"uniqueIdentifer": "4fbefe60-5e50-11f0-9451-8d6aee0d1907",
+	"identifier": "Level_34",
+	"uniqueIdentifer": "2fdb3a30-5e50-11f0-ba66-ddf1cf0c3985",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "4fbefe62-5e50-11f0-9451-f71709a7bcf7",
+				"iid": "2fdb3a32-5e50-11f0-ba66-c7899f323e75",
 				"layer": "Entities",
-				"x": 240,
-				"y": 224,
+				"x": 144,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "4fbefe63-5e50-11f0-9451-65b2138a1517",
+				"iid": "2fdb3a33-5e50-11f0-ba66-f34daa2046ba",
 				"layer": "Entities",
-				"x": 224,
-				"y": 96,
+				"x": 320,
+				"y": 256,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,15 +47,15 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "4fbefe64-5e50-11f0-9451-bb416b987547",
+				"iid": "21e2dbf0-5e50-11f0-94d9-cb1e6c647b29",
 				"layer": "Entities",
-				"x": 256,
-				"y": 224,
+				"x": 192,
+				"y": 32,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Knockback"
+					"item": "Heavy"
 				}
 			}
 		]

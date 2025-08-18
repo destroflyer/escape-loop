@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_23",
-	"uniqueIdentifer": "5e233a30-5e50-11f0-928e-d5094dc28b63",
+	"uniqueIdentifer": "dfc34040-5e50-11f0-9451-590543c1b661",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5e233a32-5e50-11f0-928e-05479527e7d7",
+				"iid": "dfc34042-5e50-11f0-9451-856ff40be79a",
 				"layer": "Entities",
-				"x": 80,
-				"y": 176,
+				"x": 256,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "5e233a33-5e50-11f0-928e-1d1559826a3b",
+				"iid": "dfc34043-5e50-11f0-9451-718f586c20c8",
 				"layer": "Entities",
-				"x": 432,
-				"y": 176,
+				"x": 400,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,15 +47,66 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "5e233a34-5e50-11f0-928e-43eba5be409a",
+				"iid": "dfc34044-5e50-11f0-9451-9dadb58c0b89",
 				"layer": "Entities",
-				"x": 80,
-				"y": 176,
+				"x": 224,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
 					"item": "Heavy"
+				}
+			}
+		],
+		"Pressure_Trigger": [
+			{
+				"id": "Pressure_Trigger",
+				"iid": "17bb4100-5e50-11f0-9451-cf6cfc01a8f1",
+				"layer": "Entities",
+				"x": 96,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "1a40b360-5e50-11f0-9451-af60fccfca08",
+							"layerIid": "dfc34041-5e50-11f0-9451-a103226889c1",
+							"levelIid": "dfc34040-5e50-11f0-9451-590543c1b661",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
+				}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "1a40b360-5e50-11f0-9451-af60fccfca08",
+				"layer": "Entities",
+				"x": 368,
+				"y": 176,
+				"width": 80,
+				"height": 16,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "0fb11310-5e50-11f0-baa8-7d361545d7d6",
+				"layer": "Entities",
+				"x": 96,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Orbs can be thrown ${keyAction}",
+					"width": 250
 				}
 			}
 		]
