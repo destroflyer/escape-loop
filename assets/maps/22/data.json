@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_22",
-	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
+	"uniqueIdentifer": "cf8e19e0-5e50-11f0-ad7d-6dde68c1f845",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
+				"iid": "cf8e19e2-5e50-11f0-ad7d-f7a88ec36c40",
 				"layer": "Entities",
-				"x": 416,
-				"y": 112,
+				"x": 432,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,44 +31,33 @@
 				}
 			}
 		],
-		"Item": [
+		"Enemy": [
 			{
-				"id": "Item",
-				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
+				"id": "Enemy",
+				"iid": "cf8e19e4-5e50-11f0-ad7d-45668fe1b11d",
 				"layer": "Entities",
-				"x": 336,
-				"y": 112,
+				"x": 352,
+				"y": 224,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
+				"color": 39387,
 				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
-				"layer": "Entities",
-				"x": 336,
-				"y": 80,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
-					"width": 250
+					"autoShoot": false,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 7
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"iid": "cf8e40f0-5e50-11f0-ad7d-35625bfbbd27",
 				"layer": "Entities",
-				"x": 64,
-				"y": 256,
+				"x": 96,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
