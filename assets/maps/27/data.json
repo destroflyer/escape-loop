@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_27",
-	"uniqueIdentifer": "ebfeead0-5e50-11f0-afb0-ad872cbc3848",
+	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "ebfeead2-5e50-11f0-afb0-9f0e67990cef",
+				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
 				"layer": "Entities",
 				"x": 96,
-				"y": 112,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,7 +34,7 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "ebfeead3-5e50-11f0-afb0-593ae5c7ae84",
+				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
 				"layer": "Entities",
 				"x": 400,
 				"y": 160,
@@ -47,16 +47,16 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "ebfeead4-5e50-11f0-afb0-193ae7a583c8",
+				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
 				"layer": "Entities",
-				"x": 336,
-				"y": 112,
+				"x": 256,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
 				"customFields": {
 					"autoShoot": true,
-					"shootCooldown": 0.5,
+					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
@@ -67,10 +67,10 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "ebfeead5-5e50-11f0-afb0-054feae712dd",
+				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
 				"layer": "Entities",
-				"x": 128,
-				"y": 112,
+				"x": 80,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -79,17 +79,20 @@
 				}
 			}
 		],
-		"Bouncer": [
+		"Text": [
 			{
-				"id": "Bouncer",
-				"iid": "fd6172c0-5e50-11f0-afb0-c7b14f8f0ecd",
+				"id": "Text",
+				"iid": "66af4be0-5e50-11f0-928e-b7eb09714dcf",
 				"layer": "Entities",
-				"x": 256,
-				"y": 128,
+				"x": 288,
+				"y": 144,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
+				"color": 16777215,
+				"customFields": {
+					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
+					"width": 250
+				}
 			}
 		]
 	}
