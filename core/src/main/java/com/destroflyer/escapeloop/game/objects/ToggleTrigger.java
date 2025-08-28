@@ -3,6 +3,7 @@ package com.destroflyer.escapeloop.game.objects;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -11,6 +12,7 @@ import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.game.objects.items.KnockbackItem;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
 import java.util.ArrayList;
@@ -44,8 +46,19 @@ public class ToggleTrigger extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.TOGGLE_TRIGGER;
-        filter.maskBits = Collisions.PLAYER;
+        filter.maskBits = Collisions.PLAYER | Collisions.ITEM;
         fixture.setFilterData(filter);
+    }
+
+    @Override
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
+        if (mapObject instanceof KnockbackItem) {
+            KnockbackItem knockbackItem = (KnockbackItem) mapObject;
+            knockbackItem.bounceOff(this);
+            knockbackItem.resetThrower();
+            toggle();
+        }
     }
 
     public void toggle() {

@@ -22,6 +22,7 @@ public class Item extends MapObject {
     }
     private static final float RADIUS = 0.15f;
     private TextureRegion textureRegion;
+    protected Fixture fixture;
     protected Character holder;
     protected Character thrower;
     private ArrayList<Character> blockedPickupCharacters = new ArrayList<>();
@@ -36,7 +37,7 @@ public class Item extends MapObject {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circleShape;
         fixtureDef.density = 2.5f;
-        Fixture fixture = body.createFixture(fixtureDef);
+        fixture = body.createFixture(fixtureDef);
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.ITEM;
@@ -99,6 +100,10 @@ public class Item extends MapObject {
         blockedPickupCharacters.add(thrower);
         body.setLinearVelocity(velocity);
         body.setActive(true);
+    }
+
+    public void resetThrower() {
+        thrower = null;
     }
 
     @Override

@@ -16,21 +16,6 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "85180c22-5e50-11f0-baa8-8d6ec1de8023",
-				"layer": "Entities",
-				"x": 80,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": true
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
@@ -127,6 +112,34 @@
 					],
 					"direction": "Up"
 				}
+			}
+		],
+		"Start": [
+			{
+				"id": "Start",
+				"iid": "85180c22-5e50-11f0-baa8-8d6ec1de8023",
+				"layer": "Entities",
+				"x": 80,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 11882632,
+				"customFields": {
+					"visible": true
+				}
+			}
+		],
+		"Bouncer": [
+			{
+				"id": "Bouncer",
+				"iid": "73cee1b0-5e50-11f0-bfd8-29b45ce7a489",
+				"layer": "Entities",
+				"x": 144,
+				"y": 192,
+				"width": 16,
+				"height": 16,
+				"color": 2943221,
+				"customFields" : {}
 			}
 		]
 	}
