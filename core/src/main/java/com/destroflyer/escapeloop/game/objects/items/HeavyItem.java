@@ -1,6 +1,7 @@
 package com.destroflyer.escapeloop.game.objects.items;
 
 import com.badlogic.gdx.math.Vector2;
+import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.Particles;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Item;
@@ -11,6 +12,12 @@ public class HeavyItem extends Item {
         super("heavy");
     }
     private static final float BONUS_GRAVITY_SCALE = 1;
+
+    @Override
+    public void createBody() {
+        super.createBody();
+        fixture.getFilterData().maskBits |= Collisions.PRESSURE_TRIGGER;
+    }
 
     @Override
     protected void onPickup(Character holder) {

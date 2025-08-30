@@ -42,7 +42,7 @@ public class PressureTrigger extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.PRESSURE_TRIGGER;
-        filter.maskBits = Collisions.CHARACTER;
+        filter.maskBits = Collisions.CHARACTER | Collisions.ITEM;
         fixture.setFilterData(filter);
     }
 
