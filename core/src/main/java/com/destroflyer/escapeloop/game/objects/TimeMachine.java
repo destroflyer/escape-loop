@@ -61,7 +61,7 @@ public class TimeMachine extends MapObject {
     }
 
     @Override
-    public TextureRegion getTextureRegion() {
+    public TextureRegion getSimpleTextureRegion() {
         return textureRegion;
     }
 }

@@ -113,7 +113,11 @@ public abstract class MapObject {
         oneTimeAnimationStartTime = map.getTime();
     }
 
-    public TextureRegion getTextureRegion() {
+    public boolean hasTexture() {
+        return getTextureRegion(0, 0,  1, 1) != null;
+    }
+
+    public TextureRegion getTextureRegion(int tileX, int tileY, int tilesX, int tilesY) {
         if (oneTimeAnimation != null) {
             return oneTimeAnimation.getKeyFrame(map.getTime() - oneTimeAnimationStartTime, false);
         }
@@ -121,6 +125,10 @@ public abstract class MapObject {
         if (loopedAnimation != null) {
             return loopedAnimation.getKeyFrame(map.getTime(), true);
         }
+        return getSimpleTextureRegion();
+    }
+
+    public TextureRegion getSimpleTextureRegion() {
         return null;
     }
 

@@ -14,8 +14,12 @@ public class Platform extends Ground {
     private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadLabMainTextureRegion(3, 5);
 
     @Override
-    public TextureRegion getTextureRegion() {
-        // TODO: Different texture for each tile
+    public TextureRegion getTextureRegion(int tileX, int tileY, int tilesX, int tilesY) {
+        if (tileX <= 0) {
+            return TEXTURE_REGION_LEFT;
+        } else if (tileX >= (tilesX - 1)) {
+            return TEXTURE_REGION_RIGHT;
+        }
         return TEXTURE_REGION_CENTER;
     }
 }

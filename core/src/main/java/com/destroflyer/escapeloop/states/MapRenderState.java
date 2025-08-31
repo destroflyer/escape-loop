@@ -170,9 +170,8 @@ public class MapRenderState extends State {
                 }
                 break;
             case FOREGROUND:
-                TextureRegion textureRegion = mapObject.getTextureRegion();
-                if (textureRegion != null) {
-                    drawTexture(mapObject, textureRegion, leftBottomWithDirectionTransform, textureWidth, textureHeight, alpha);
+                if (mapObject.hasTexture()) {
+                    drawTexture(mapObject, leftBottomWithDirectionTransform, textureWidth, textureHeight, alpha);
                 }
                 String speech = mapObject.getSpeech();
                 if (speech != null) {
@@ -259,7 +258,7 @@ public class MapRenderState extends State {
         }
     }
 
-    private void drawTexture(MapObject mapObject, TextureRegion textureRegion, Matrix4 leftBottomWithDirectionTransform, int textureWidth, int textureHeight, float alpha) {
+    private void drawTexture(MapObject mapObject, Matrix4 leftBottomWithDirectionTransform, int textureWidth, int textureHeight, float alpha) {
         Matrix4 originalTransform = spriteBatch.getTransformMatrix().cpy();
 
         Rectangle clipBounds = null;
@@ -301,6 +300,7 @@ public class MapRenderState extends State {
             for (int tileY = 0; tileY < tilesY; tileY++) {
                 float x = tileOffsetX + (tileX * textureWidth);
                 float y = tileOffsetY + (tileY * textureHeight);
+                TextureRegion textureRegion = mapObject.getTextureRegion(tileX, tileY, tilesX, tilesY);
                 spriteBatch.draw(textureRegion, x, y, (textureWidth / 2f), (textureHeight / 2f), textureWidth, textureHeight, 1, 1, tileAngle);
             }
         }

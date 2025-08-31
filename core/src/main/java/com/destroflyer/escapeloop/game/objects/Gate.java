@@ -80,7 +80,7 @@ public class Gate extends MapObject {
     }
 
     @Override
-    public TextureRegion getTextureRegion() {
+    public TextureRegion getSimpleTextureRegion() {
         return TEXTURE_REGION;
     }
 }
