@@ -8,16 +8,21 @@ import com.badlogic.gdx.utils.Json;
 import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.MapText;
+import com.destroflyer.escapeloop.game.behaviours.CircleMovementBehaviour;
+import com.destroflyer.escapeloop.game.behaviours.HorizontalMovementBehaviour;
+import com.destroflyer.escapeloop.game.behaviours.VerticalMovementBehaviour;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntityCustomFieldEntity;
+import com.destroflyer.escapeloop.game.loader.json.MapDataEntityCustomFields;
 import com.destroflyer.escapeloop.game.objects.Bouncer;
 import com.destroflyer.escapeloop.game.objects.Enemy;
 import com.destroflyer.escapeloop.game.objects.Finish;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
-import com.destroflyer.escapeloop.game.objects.Platform;
+import com.destroflyer.escapeloop.game.objects.Ground;
 import com.destroflyer.escapeloop.game.loader.json.MapData;
 import com.destroflyer.escapeloop.game.loader.json.MapDataEntity;
+import com.destroflyer.escapeloop.game.objects.Platform;
 import com.destroflyer.escapeloop.game.objects.PressureTrigger;
 import com.destroflyer.escapeloop.game.objects.Scientist;
 import com.destroflyer.escapeloop.game.objects.Start;
@@ -92,9 +97,9 @@ public class MapFileLoader {
                 if (gridValue == 1) {
                     float mapX = ((tileX + 0.5f) * Map.TILE_SIZE);
                     float mapY = ((((terrain.size() - 1) - tileY) + 0.5f) * Map.TILE_SIZE);
-                    Platform platform = new Platform(BodyDef.BodyType.StaticBody, Map.TILE_SIZE, Map.TILE_SIZE);
-                    map.addObject(platform);
-                    platform.getBody().setTransform(new Vector2(mapX, mapY), 0);
+                    Ground ground = new Ground(BodyDef.BodyType.StaticBody, Map.TILE_SIZE, Map.TILE_SIZE);
+                    map.addObject(ground);
+                    ground.getBody().setTransform(new Vector2(mapX, mapY), 0);
                 }
             }
         }
@@ -111,6 +116,24 @@ public class MapFileLoader {
             start.setVisible(entity.getCustomFields().isVisible());
         });
         loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
+        loadEntities(
+            data.getEntities().getPlatform(),
+            entity -> new Platform(BodyDef.BodyType.KinematicBody, toMapSize(entity.getWidth()), toMapSize(entity.getHeight())),
+            entity -> new Vector2(((entity.getWidth() / TILE_SIZE_DATA) - 1) / 2f, ((entity.getHeight() / TILE_SIZE_DATA) - 1) / -2f),
+            (entity, platform) -> {
+                MapDataEntityCustomFields customFields = entity.getCustomFields();
+                Vector2 position = platform.getBody().getPosition();
+                if (customFields.getCircleMovementTileRadius() != null) {
+                    platform.addBehaviour(new CircleMovementBehaviour(position.cpy(), customFields.getCircleMovementTileRadius() * Map.TILE_SIZE, customFields.getCircleMovementSpeed()));
+                }
+                if (customFields.getHorizontalMovementVelocity() != null) {
+                    platform.addBehaviour(new HorizontalMovementBehaviour(position.x, position.x + (customFields.getHorizontalMovementTileWidth() * Map.TILE_SIZE), customFields.getHorizontalMovementVelocity()));
+                }
+                if (customFields.getVerticalMovementVelocity() != null) {
+                    platform.addBehaviour(new VerticalMovementBehaviour(position.y, position.y + (customFields.getVerticalMovementTileHeight() * Map.TILE_SIZE), customFields.getVerticalMovementVelocity()));
+                }
+            }
+        );
         loadEntities(data.getEntities().getEnemy(), entity -> new Enemy(entity.getCustomFields().getHoverTileHeight(), entity.getCustomFields().getShootCooldown(), entity.getCustomFields().isAutoShoot()), entity -> new Vector2(0, 0), (entity, enemy) -> {
             enemy.setViewDirection(entity.getCustomFields().getDirection().equals("Left") ? -1 : 1);
         });

@@ -39,7 +39,7 @@ import com.destroflyer.escapeloop.game.PlayerPastWithIndex;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
-import com.destroflyer.escapeloop.game.objects.Platform;
+import com.destroflyer.escapeloop.game.objects.Ground;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.util.RenderUtil;
 
@@ -267,7 +267,11 @@ public class MapRenderState extends State {
         int tilesX = 1;
         int tilesY = 1;
         float tileAngle = 0;
-        if (mapObject instanceof Gate) {
+        if (mapObject instanceof Ground) {
+            Ground ground = (Ground) mapObject;
+            tilesX = (int) (ground.getWidth() / Map.TILE_SIZE);
+            tilesY = (int) (ground.getHeight() / Map.TILE_SIZE);
+        } else if (mapObject instanceof Gate) {
             Gate gate = (Gate) mapObject;
             tilesX = (int) (gate.getWidth() / Map.TILE_SIZE);
             tilesY = (int) (gate.getHeight() / Map.TILE_SIZE);
@@ -433,7 +437,7 @@ public class MapRenderState extends State {
             } else {
                 return (character == mapState.getMap().getPlayer()) ? new Color(1, 0, 0, alpha) : new Color(0, 1, 0, alpha);
             }
-        } else if (mapObject instanceof Platform) {
+        } else if (mapObject instanceof Ground) {
             return new Color(0.05f, 0.05f, 0.05f, alpha);
         }
         return new Color(0, 0, 1, alpha);

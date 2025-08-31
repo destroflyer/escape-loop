@@ -57,6 +57,10 @@ public class TextureUtil {
         return loadTextureRegion(CAVE_TEXTURE, 29, 12, x, y);
     }
 
+    public static TextureRegion loadLabMainTextureRegion(int x, int y) {
+        return loadLabMainTextureRegion(x, y, 1, 1);
+    }
+
     public static TextureRegion loadLabMainTextureRegion(int x, int y, int width, int height) {
         int tileSize = 16;
         return new TextureRegion(LAB_MAIN_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);

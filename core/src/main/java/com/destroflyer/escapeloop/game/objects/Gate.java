@@ -20,7 +20,7 @@ public class Gate extends MapObject {
         this.width = width;
         this.height = height;
     }
-    public static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabMainTextureRegion(0, 16, 1, 1);
+    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabMainTextureRegion(0, 16);
     private static final float OPEN_SPEED_PER_SIZE = 2;
     @Getter
     private float width;
@@ -72,7 +72,7 @@ public class Gate extends MapObject {
         fixture = body.createFixture(fixtureDef);
 
         Filter filter = new Filter();
-        filter.categoryBits = Collisions.PLATFORM;
+        filter.categoryBits = Collisions.GROUND;
         filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM | Collisions.BULLET;
         fixture.setFilterData(filter);
 

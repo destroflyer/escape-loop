@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_16",
-	"uniqueIdentifer": "df07ec00-5e50-11f0-b20d-1f53127b5878",
+	"uniqueIdentifer": "b9a8a350-5e50-11f0-9b1e-6de23c2b12df",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "df07ec02-5e50-11f0-b20d-abc2022ec3f5",
+				"iid": "b9a8a352-5e50-11f0-9b1e-11d99f84a744",
 				"layer": "Entities",
-				"x": 416,
-				"y": 160,
+				"x": 80,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,64 +34,67 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "df07ec03-5e50-11f0-b20d-7143acb0e813",
+				"iid": "b9a8a353-5e50-11f0-9b1e-c57c4e436625",
 				"layer": "Entities",
-				"x": 64,
-				"y": 112,
+				"x": 336,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Bouncer": [
+		"Gate": [
 			{
-				"id": "Bouncer",
-				"iid": "3073bba0-5e50-11f0-b20d-1fda776c0e1c",
-				"layer": "Entities",
-				"x": 192,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "f484f350-5e50-11f0-b20d-ebfdb620ba86",
+				"id": "Gate",
+				"iid": "b9a8a354-5e50-11f0-9b1e-67331be31df3",
 				"layer": "Entities",
 				"x": 256,
-				"y": 112,
-				"width": 16,
+				"y": 80,
+				"width": 64,
 				"height": 16,
-				"color": 2943221,
+				"color": 9149364,
 				"customFields" : {}
 			},
 			{
-				"id": "Bouncer",
-				"iid": "9167dc10-5e50-11f0-94d9-95b618df2d08",
+				"id": "Gate",
+				"iid": "b9a8a356-5e50-11f0-9b1e-c7c39af89bfc",
 				"layer": "Entities",
-				"x": 128,
-				"y": 112,
-				"width": 16,
+				"x": 256,
+				"y": 240,
+				"width": 64,
 				"height": 16,
-				"color": 2943221,
+				"color": 9149364,
 				"customFields" : {}
 			}
 		],
-		"Text": [
+		"Toggle_Trigger": [
 			{
-				"id": "Text",
-				"iid": "b719cd90-5e50-11f0-928e-41f9c0997668",
+				"id": "Toggle_Trigger",
+				"iid": "b9a8a355-5e50-11f0-9b1e-41b76e8e0fb1",
 				"layer": "Entities",
-				"x": 192,
-				"y": 80,
+				"x": 144,
+				"y": 96,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 10626611,
 				"customFields": {
-					"text": "Bouncing platforms will... bounce you",
-					"width": 250
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "b9a8a354-5e50-11f0-9b1e-67331be31df3",
+							"layerIid": "b9a8a351-5e50-11f0-9b1e-812b26a5291b",
+							"levelIid": "b9a8a350-5e50-11f0-9b1e-6de23c2b12df",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						},
+						{
+							"entityIid": "b9a8a356-5e50-11f0-9b1e-c7c39af89bfc",
+							"layerIid": "b9a8a351-5e50-11f0-9b1e-812b26a5291b",
+							"levelIid": "b9a8a350-5e50-11f0-9b1e-6de23c2b12df",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
 				}
 			}
 		]

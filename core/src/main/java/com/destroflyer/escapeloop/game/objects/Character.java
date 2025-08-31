@@ -37,7 +37,7 @@ public class Character extends MapObject {
     private float walkSpeed = 2.1f;
     private float airAcceleration = 0.05f;
     private float jumpImpulse = 0.9f;
-    private float remainingGroundPlatformIgnoreTime;
+    private float remainingGroundIgnoreTime;
     private ArrayList<MapObject> groundObjects = new ArrayList<>();
     @Getter
     private Item item;
@@ -60,7 +60,7 @@ public class Character extends MapObject {
 
         Filter characterFilter = new Filter();
         characterFilter.categoryBits = Collisions.CHARACTER;
-        characterFilter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.FINISH | Collisions.ITEM | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER | Collisions.BOUNCER | Collisions.BULLET;
+        characterFilter.maskBits = Collisions.GROUND | Collisions.CHARACTER | Collisions.FINISH | Collisions.ITEM | Collisions.TOGGLE_TRIGGER | Collisions.PRESSURE_TRIGGER | Collisions.BOUNCER | Collisions.BULLET;
         characterFixture.setFilterData(characterFilter);
 
         PolygonShape footSensorShape = new PolygonShape();
@@ -72,7 +72,7 @@ public class Character extends MapObject {
 
         Filter sensorFilter = new Filter();
         sensorFilter.categoryBits = Collisions.CHARACTER_FOOT_SENSOR;
-        sensorFilter.maskBits = Collisions.PLATFORM;
+        sensorFilter.maskBits = Collisions.GROUND;
         footSensorFixture.setFilterData(sensorFilter);
     }
 
@@ -80,11 +80,11 @@ public class Character extends MapObject {
     public void update(float tpf) {
         super.update(tpf);
         Vector2 linearVelocity = new Vector2(body.getLinearVelocity());
-        MapObject groundPlatform = getGroundObject();
-        if (groundPlatform != null) {
-            Vector2 groundVelocity = groundPlatform.getBody().getLinearVelocity();
-            if ((remainingGroundPlatformIgnoreTime <= 0) && (groundVelocity.len2() > 0)) {
-                linearVelocity.set(groundPlatform.getBody().getLinearVelocity());
+        MapObject ground = getGroundObject();
+        if (ground != null) {
+            Vector2 groundVelocity = ground.getBody().getLinearVelocity();
+            if ((remainingGroundIgnoreTime <= 0) && (groundVelocity.len2() > 0)) {
+                linearVelocity.set(ground.getBody().getLinearVelocity());
                 linearVelocity.x += walkDirection * walkSpeed;
             } else {
                 linearVelocity.x = walkDirection * walkSpeed;
@@ -103,7 +103,7 @@ public class Character extends MapObject {
             }
         }
 
-        remainingGroundPlatformIgnoreTime = Math.max(0, remainingGroundPlatformIgnoreTime - tpf);
+        remainingGroundIgnoreTime = Math.max(0, remainingGroundIgnoreTime - tpf);
 
         if (body.getPosition().y < -1) {
             remove();
@@ -126,8 +126,8 @@ public class Character extends MapObject {
         }
     }
 
-    private boolean isGroundObject(MapObject mapObject) {
-        return (mapObject instanceof Platform) || (mapObject instanceof Gate);
+    protected boolean isGroundObject(MapObject mapObject) {
+        return (mapObject instanceof Ground) || (mapObject instanceof Gate);
     }
 
     public void setWalkDirection(int walkDirection) {
@@ -145,11 +145,11 @@ public class Character extends MapObject {
 
     public void applyVerticalImpulse(float impulse) {
         body.applyLinearImpulse(new Vector2(0, impulse), body.getWorldCenter(), true);
-        resetRemainingGroundPlatformIgnoreTime();
+        resetRemainingGroundIgnoreTime();
     }
 
-    private void resetRemainingGroundPlatformIgnoreTime() {
-        remainingGroundPlatformIgnoreTime = 0.1f;
+    private void resetRemainingGroundIgnoreTime() {
+        remainingGroundIgnoreTime = 0.1f;
     }
 
     public void pickup(Item item) {

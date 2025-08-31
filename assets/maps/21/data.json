@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_21",
-	"uniqueIdentifer": "7f94b610-5e50-11f0-928e-95fb73237167",
+	"uniqueIdentifer": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "7f94b614-5e50-11f0-928e-ab7058480ff3",
+				"iid": "90e3fff2-5e50-11f0-b20d-e58c4961ff78",
 				"layer": "Entities",
 				"x": 128,
-				"y": 176,
+				"y": 32,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,53 +31,65 @@
 				}
 			}
 		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "7f94b615-5e50-11f0-928e-7f828e199bb8",
-				"layer": "Entities",
-				"x": 336,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Avoid bullets - They will destroy you!",
-					"width": 250
-				}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "aeef5c80-5e50-11f0-928e-433f98bc7e15",
-				"layer": "Entities",
-				"x": 304,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 0
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "d912de10-5e50-11f0-928e-c1d069970f74",
+				"iid": "90e3fff3-5e50-11f0-b20d-473d7c404ff1",
 				"layer": "Entities",
-				"x": 352,
-				"y": 176,
+				"x": 128,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
+			}
+		],
+		"Bouncer": [
+			{
+				"id": "Bouncer",
+				"iid": "251e9fe0-5e50-11f0-b20d-ff436559a5a5",
+				"layer": "Entities",
+				"x": 240,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 2943221,
+				"customFields" : {}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
+				"layer": "Entities",
+				"x": 192,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Pressure_Trigger": [
+			{
+				"id": "Pressure_Trigger",
+				"iid": "d2bb3460-5e50-11f0-b20d-2fa90fe4fadb",
+				"layer": "Entities",
+				"x": 336,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
+							"layerIid": "90e3fff1-5e50-11f0-b20d-cf3125aeb0c2",
+							"levelIid": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
+				}
 			}
 		]
 	}

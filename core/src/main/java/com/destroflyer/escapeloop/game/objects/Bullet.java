@@ -36,7 +36,7 @@ public class Bullet extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.BULLET;
-        filter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER;
+        filter.maskBits = Collisions.GROUND | Collisions.CHARACTER;
         fixture.setFilterData(filter);
     }
 

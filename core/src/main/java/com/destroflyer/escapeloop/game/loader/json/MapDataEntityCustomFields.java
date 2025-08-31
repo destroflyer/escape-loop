@@ -11,6 +11,13 @@ import lombok.NoArgsConstructor;
 public class MapDataEntityCustomFields {
     // Start
     private boolean visible;
+    // Platform
+    private Float circleMovementTileRadius;
+    private Float circleMovementSpeed;
+    private Float horizontalMovementTileWidth;
+    private Float horizontalMovementVelocity;
+    private Float verticalMovementTileHeight;
+    private Float verticalMovementVelocity;
     // Enemy
     private String direction;
     private int hoverTileHeight;

@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_9",
-	"uniqueIdentifer": "33b248a0-5e50-11f0-925d-450f33e1055e",
+	"uniqueIdentifer": "c11fafd0-5e50-11f0-925d-5d9fd188ff33",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,9 +19,9 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "33b26fb0-5e50-11f0-925d-4349249609c2",
+				"iid": "c11fafd2-5e50-11f0-925d-01d6f17b9a41",
 				"layer": "Entities",
-				"x": 160,
+				"x": 336,
 				"y": 160,
 				"width": 16,
 				"height": 16,
@@ -34,9 +34,9 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "33b26fb1-5e50-11f0-925d-e3abb2b7d35a",
+				"iid": "c11fafd3-5e50-11f0-925d-1d9647792a1d",
 				"layer": "Entities",
-				"x": 384,
+				"x": 128,
 				"y": 128,
 				"width": 16,
 				"height": 16,

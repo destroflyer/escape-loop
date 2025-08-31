@@ -1,7 +1,7 @@
 package com.destroflyer.escapeloop.game;
 
 public class Collisions {
-    public static final short PLATFORM = 1;
+    public static final short GROUND = 1;
     public static final short CHARACTER = 2;
     public static final short CHARACTER_FOOT_SENSOR = 4;
     public static final short PLAYER = 8;

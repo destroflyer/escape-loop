@@ -41,7 +41,7 @@ public class Enemy extends Character {
     private void handleHover() {
         if (hoverTileHeight > 0) {
             float effectiveHoverHeight = RADIUS + (((int) (hoverTileHeight / body.getGravityScale()) * Map.TILE_SIZE));
-            RayCastResult rayCastResult = rayCast(body.getPosition(), body.getPosition().cpy().sub(0, effectiveHoverHeight), result -> (result.getMapObject() instanceof Platform));
+            RayCastResult rayCastResult = rayCast(body.getPosition(), body.getPosition().cpy().sub(0, effectiveHoverHeight), result -> isGroundObject(result.getMapObject()));
             if (rayCastResult != null) {
                 float heightAboveGround = body.getPosition().y - rayCastResult.getPoint().y;
                 float heightError = effectiveHoverHeight - heightAboveGround;

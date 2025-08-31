@@ -41,7 +41,7 @@ public class Item extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.ITEM;
-        filter.maskBits = Collisions.PLATFORM | Collisions.CHARACTER | Collisions.BOUNCER;
+        filter.maskBits = Collisions.GROUND | Collisions.CHARACTER | Collisions.BOUNCER;
         fixture.setFilterData(filter);
     }
 

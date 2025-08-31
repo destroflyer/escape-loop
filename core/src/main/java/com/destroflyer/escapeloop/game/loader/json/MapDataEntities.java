@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class MapDataEntities {
     private ArrayList<MapDataEntity> Start;
     private ArrayList<MapDataEntity> Finish;
+    private ArrayList<MapDataEntity> Platform;
     private ArrayList<MapDataEntity> Enemy;
     private ArrayList<MapDataEntity> Scientist;
     private ArrayList<MapDataEntity> Item;

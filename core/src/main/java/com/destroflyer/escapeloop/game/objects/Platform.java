@@ -1,33 +1,21 @@
 package com.destroflyer.escapeloop.game.objects;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Filter;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.destroflyer.escapeloop.game.Collisions;
-import com.destroflyer.escapeloop.game.MapObject;
+import com.destroflyer.escapeloop.util.TextureUtil;
 
-import lombok.AllArgsConstructor;
+public class Platform extends Ground {
 
-@AllArgsConstructor
-public class Platform extends MapObject {
-
-    private BodyDef.BodyType bodyType;
-    private float width;
-    private float height;
+    public Platform(BodyDef.BodyType bodyType, float width, float height) {
+        super(bodyType, width, height);
+    }
+    private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.loadLabMainTextureRegion(1, 5);
+    private static final TextureRegion TEXTURE_REGION_CENTER = TextureUtil.loadLabMainTextureRegion(2, 5);
+    private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadLabMainTextureRegion(3, 5);
 
     @Override
-    public void createBody() {
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = bodyType;
-        body = map.getWorld().createBody(bodyDef);
-        PolygonShape polygonShape = new PolygonShape();
-        polygonShape.setAsBox(width / 2, height / 2);
-        Fixture fixture = body.createFixture(polygonShape, 0);
-
-        Filter filter = new Filter();
-        filter.categoryBits = Collisions.PLATFORM;
-        filter.maskBits = Collisions.CHARACTER | Collisions.CHARACTER_FOOT_SENSOR | Collisions.ITEM | Collisions.BULLET;
-        fixture.setFilterData(filter);
+    public TextureRegion getTextureRegion() {
+        // TODO: Different texture for each tile
+        return TEXTURE_REGION_CENTER;
     }
 }

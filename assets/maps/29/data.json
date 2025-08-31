@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_29",
-	"uniqueIdentifer": "e1747250-5e50-11f0-9ae3-7fd9d5c15d02",
+	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "e1747252-5e50-11f0-9ae3-450403aa8872",
+				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
 				"layer": "Entities",
-				"x": 208,
-				"y": 160,
+				"x": 96,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,9 +34,9 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "e1747253-5e50-11f0-9ae3-0f81c2c91889",
+				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
 				"layer": "Entities",
-				"x": 368,
+				"x": 400,
 				"y": 160,
 				"width": 16,
 				"height": 16,
@@ -44,18 +44,54 @@
 				"customFields" : {}
 			}
 		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
+				"layer": "Entities",
+				"x": 256,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 1
+				}
+			}
+		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "e1747254-5e50-11f0-9ae3-2b3f3ec11adb",
+				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
 				"layer": "Entities",
-				"x": 208,
-				"y": 160,
+				"x": 80,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
 					"item": "Knockback"
+				}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "66af4be0-5e50-11f0-928e-b7eb09714dcf",
+				"layer": "Entities",
+				"x": 288,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
+					"width": 250
 				}
 			}
 		]

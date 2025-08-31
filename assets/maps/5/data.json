@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_5",
-	"uniqueIdentifer": "faab7040-5e50-11f0-ba66-c96d718bf9e1",
+	"uniqueIdentifer": "dba81ac0-5e50-11f0-94d9-4157b88df978",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,47 +16,31 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
-				"layer": "Entities",
-				"x": 304,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": true
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "faab7042-5e50-11f0-ba66-d940cffb0c7d",
+				"iid": "dba81ac2-5e50-11f0-94d9-0d73c85d8b23",
 				"layer": "Entities",
-				"x": 160,
-				"y": 176,
+				"x": 432,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Text": [
+		"Start": [
 			{
-				"id": "Text",
-				"iid": "c84f4780-5e50-11f0-928e-1ba6501e9213",
+				"id": "Start",
+				"iid": "dba81ac3-5e50-11f0-94d9-d79d3f7ccce5",
 				"layer": "Entities",
-				"x": 224,
-				"y": 96,
+				"x": 112,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 11882632,
 				"customFields": {
-					"text": "When travelling back in time, your actions can influence the outcome of your previous selves actions",
-					"width": 250
+					"visible": true
 				}
 			}
 		]
