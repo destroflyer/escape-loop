@@ -11,5 +11,5 @@ public class Collisions {
     public static final short TOGGLE_TRIGGER = 128;
     public static final short PRESSURE_TRIGGER = 256;
     public static final short BOUNCER = 512;
-    public static final short BULLET = 1014;
+    public static final short BULLET = 1024;
 }

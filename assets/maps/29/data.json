@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_29",
-	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
+	"uniqueIdentifer": "ed4fb440-8560-11f0-b4b2-2d903cb02bb1",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
+				"iid": "ed4fb442-8560-11f0-b4b2-7b91fdab0718",
 				"layer": "Entities",
-				"x": 416,
-				"y": 112,
+				"x": 96,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,47 +31,67 @@
 				}
 			}
 		],
-		"Item": [
+		"Enemy": [
 			{
-				"id": "Item",
-				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
+				"id": "Enemy",
+				"iid": "ed4fb443-8560-11f0-b4b2-85af34172098",
 				"layer": "Entities",
-				"x": 336,
+				"x": 400,
 				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
+				"color": 39387,
 				"customFields": {
-					"item": "Heavy"
+					"autoShoot": true,
+					"shootCooldown": 1.5,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 1
 				}
-			}
-		],
-		"Text": [
+			},
 			{
-				"id": "Text",
-				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
+				"id": "Enemy",
+				"iid": "0ef1a0e0-8560-11f0-b4b2-3b8c532c2575",
 				"layer": "Entities",
-				"x": 336,
-				"y": 80,
+				"x": 160,
+				"y": 240,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 39387,
 				"customFields": {
-					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
-					"width": 250
+					"autoShoot": true,
+					"shootCooldown": 0.25,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Right",
+					"hoverTileHeight": 5
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"iid": "ed4fb444-8560-11f0-b4b2-172c6fb191c4",
 				"layer": "Entities",
-				"x": 64,
-				"y": 256,
+				"x": 416,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Bouncer": [
+			{
+				"id": "Bouncer",
+				"iid": "2c158a00-8560-11f0-b4b2-f5af9e1d13fe",
+				"layer": "Entities",
+				"x": 256,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 2943221,
 				"customFields" : {}
 			}
 		]

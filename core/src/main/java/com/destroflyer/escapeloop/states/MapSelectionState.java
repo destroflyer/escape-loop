@@ -119,7 +119,7 @@ public class MapSelectionState extends UiState {
             mapsTable.add(mapButton).fill().padRight(10).padBottom(10);
             mapButtons.add(mapButton);
         }
-        mapsTable.setPosition(50 + (mapsTable.getPrefWidth() / 2f), 40 + (mapsTable.getPrefHeight() / 2));
+        mapsTable.setPosition(50 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
 
         selectMap(currentLevel);
     }

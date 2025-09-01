@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_44",
-	"uniqueIdentifer": "df71cd70-5e50-11f0-baa8-59677b7c1325",
+	"uniqueIdentifer": "b83edaa0-5e50-11f0-94d9-f1e2f3b0676c",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "df71cd72-5e50-11f0-baa8-dbf3e9472b0b",
+				"iid": "b83edaa2-5e50-11f0-94d9-d3277eeed8d0",
 				"layer": "Entities",
 				"x": 128,
-				"y": 208,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "df71cd73-5e50-11f0-baa8-ed9e03bb00c2",
+				"iid": "b83edaa4-5e50-11f0-94d9-7d2a65a4640d",
 				"layer": "Entities",
-				"x": 160,
-				"y": 208,
+				"x": 176,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -49,10 +49,10 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "df71cd74-5e50-11f0-baa8-e90ed6ae78a7",
+				"iid": "b83edaa5-5e50-11f0-94d9-f9a80bc68e06",
 				"layer": "Entities",
-				"x": 192,
-				"y": 208,
+				"x": 336,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
@@ -62,17 +62,33 @@
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 4
+					"hoverTileHeight": 0
+				}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "a7c62110-5e50-11f0-928e-ab7de7bda8ae",
+				"layer": "Entities",
+				"x": 176,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Spatial orbs swap the positions of the thrower and the target",
+					"width": 250
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "df71cd76-5e50-11f0-baa8-93b9717d0b40",
+				"iid": "fdc2f350-5e50-11f0-baa8-b39975b62451",
 				"layer": "Entities",
-				"x": 384,
-				"y": 128,
+				"x": 416,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
