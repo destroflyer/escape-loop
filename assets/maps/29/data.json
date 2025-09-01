@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_29",
-	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
+	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
+				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
 				"layer": "Entities",
-				"x": 96,
-				"y": 176,
+				"x": 416,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,68 +31,48 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
-				"layer": "Entities",
-				"x": 400,
-				"y": 160,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
-				"layer": "Entities",
-				"x": 256,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 1
-				}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
+				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
 				"layer": "Entities",
-				"x": 80,
-				"y": 176,
+				"x": 336,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Knockback"
+					"item": "Heavy"
 				}
 			}
 		],
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "66af4be0-5e50-11f0-928e-b7eb09714dcf",
+				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
 				"layer": "Entities",
-				"x": 288,
-				"y": 144,
+				"x": 336,
+				"y": 80,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
+					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
 					"width": 250
 				}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"layer": "Entities",
+				"x": 64,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
 			}
 		]
 	}

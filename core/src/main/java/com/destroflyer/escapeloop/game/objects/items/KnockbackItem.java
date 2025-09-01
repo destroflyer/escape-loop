@@ -1,8 +1,12 @@
 package com.destroflyer.escapeloop.game.objects.items;
 
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.objects.Character;
 import com.destroflyer.escapeloop.game.objects.Item;
+import com.destroflyer.escapeloop.game.objects.ToggleTrigger;
 
 public class KnockbackItem extends Item {
 
@@ -14,6 +18,17 @@ public class KnockbackItem extends Item {
     public void createBody() {
         super.createBody();
         fixture.getFilterData().maskBits |= Collisions.TOGGLE_TRIGGER;
+    }
+
+    @Override
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
+        if (mapObject instanceof ToggleTrigger) {
+            ToggleTrigger toggleTrigger = (ToggleTrigger) mapObject;
+            toggleTrigger.toggle();
+            bounceOff(toggleTrigger);
+            resetThrower();
+        }
     }
 
     @Override

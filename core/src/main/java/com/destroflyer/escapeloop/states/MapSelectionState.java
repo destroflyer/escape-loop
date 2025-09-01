@@ -97,7 +97,7 @@ public class MapSelectionState extends UiState {
         mapsTable.clear();
         mapButtons.clear();
         int currentLevel = getCurrentLevel();
-        for (int mapIndex = 0; mapIndex < 50; mapIndex++) {
+        for (int mapIndex = 0; mapIndex < 55; mapIndex++) {
             if ((mapIndex % 5) == 0) {
                 mapsTable.row();
             }

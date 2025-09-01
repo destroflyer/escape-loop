@@ -36,7 +36,7 @@ public class Bullet extends MapObject {
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.BULLET;
-        filter.maskBits = Collisions.GROUND | Collisions.CHARACTER;
+        filter.maskBits = Collisions.GROUND | Collisions.CHARACTER | Collisions.TOGGLE_TRIGGER;
         fixture.setFilterData(filter);
     }
 
@@ -46,6 +46,9 @@ public class Bullet extends MapObject {
         if (mapObject != shooter) {
             if (mapObject instanceof Character) {
                 mapObject.remove();
+            } else if (mapObject instanceof ToggleTrigger) {
+                ToggleTrigger toggleTrigger = (ToggleTrigger) mapObject;
+                toggleTrigger.toggle();
             }
             remove();
         }
