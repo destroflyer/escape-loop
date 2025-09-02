@@ -127,10 +127,32 @@ public class MapFileLoader {
                     platform.addBehaviour(new CircleMovementBehaviour(position.cpy(), customFields.getCircleMovementTileRadius() * Map.TILE_SIZE, customFields.getCircleMovementSpeed()));
                 }
                 if (customFields.getHorizontalMovementVelocity() != null) {
-                    platform.addBehaviour(new HorizontalMovementBehaviour(position.x, position.x + (customFields.getHorizontalMovementTileWidth() * Map.TILE_SIZE), customFields.getHorizontalMovementVelocity()));
+                    float x1 = position.x;
+                    float x2 = position.x + (customFields.getHorizontalMovementTileWidth() * Map.TILE_SIZE);
+                    float minX;
+                    float maxX;
+                    if (x1 < x2) {
+                        minX = x1;
+                        maxX = x2;
+                    } else {
+                        minX = x2;
+                        maxX = x1;
+                    }
+                    platform.addBehaviour(new HorizontalMovementBehaviour(minX, maxX, customFields.getHorizontalMovementVelocity()));
                 }
                 if (customFields.getVerticalMovementVelocity() != null) {
-                    platform.addBehaviour(new VerticalMovementBehaviour(position.y, position.y + (customFields.getVerticalMovementTileHeight() * Map.TILE_SIZE), customFields.getVerticalMovementVelocity()));
+                    float y1 = position.y;
+                    float y2 = position.y + (customFields.getVerticalMovementTileHeight() * Map.TILE_SIZE);
+                    float minY;
+                    float maxY;
+                    if (y1 < y2) {
+                        minY = y1;
+                        maxY = y2;
+                    } else {
+                        minY = y2;
+                        maxY = y1;
+                    }
+                    platform.addBehaviour(new VerticalMovementBehaviour(minY, maxY, customFields.getVerticalMovementVelocity()));
                 }
             }
         );

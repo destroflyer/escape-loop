@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_29",
-	"uniqueIdentifer": "ed4fb440-8560-11f0-b4b2-2d903cb02bb1",
+	"uniqueIdentifer": "cf8e19e0-5e50-11f0-ad7d-6dde68c1f845",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "ed4fb442-8560-11f0-b4b2-7b91fdab0718",
+				"iid": "cf8e19e2-5e50-11f0-ad7d-f7a88ec36c40",
 				"layer": "Entities",
-				"x": 96,
-				"y": 240,
+				"x": 432,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,64 +34,33 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "ed4fb443-8560-11f0-b4b2-85af34172098",
+				"iid": "cf8e19e4-5e50-11f0-ad7d-45668fe1b11d",
 				"layer": "Entities",
-				"x": 400,
-				"y": 112,
+				"x": 352,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1.5,
+					"autoShoot": false,
+					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 1
-				}
-			},
-			{
-				"id": "Enemy",
-				"iid": "0ef1a0e0-8560-11f0-b4b2-3b8c532c2575",
-				"layer": "Entities",
-				"x": 160,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.25,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 5
+					"hoverTileHeight": 7
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "ed4fb444-8560-11f0-b4b2-172c6fb191c4",
+				"iid": "cf8e40f0-5e50-11f0-ad7d-35625bfbbd27",
 				"layer": "Entities",
-				"x": 416,
-				"y": 112,
+				"x": 96,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Bouncer": [
-			{
-				"id": "Bouncer",
-				"iid": "2c158a00-8560-11f0-b4b2-f5af9e1d13fe",
-				"layer": "Entities",
-				"x": 256,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
 				"customFields" : {}
 			}
 		]
