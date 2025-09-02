@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_50",
-	"uniqueIdentifer": "68607130-8560-11f0-9faf-95c34b5bb65b",
+	"uniqueIdentifer": "af932930-8560-11f0-beea-3f51a060147a",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,13 +16,64 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "af932934-8560-11f0-beea-211bb45e4888",
+				"layer": "Entities",
+				"x": 128,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "af932939-8560-11f0-beea-03eb3cd9c6ee",
+				"layer": "Entities",
+				"x": 128,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 3
+				}
+			},
+			{
+				"id": "Enemy",
+				"iid": "6653ad20-8560-11f0-beea-8d51d117fa63",
+				"layer": "Entities",
+				"x": 128,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 2
+				}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "68607132-8560-11f0-9faf-25003c092233",
+				"iid": "af932932-8560-11f0-beea-4ff724c6df19",
 				"layer": "Entities",
-				"x": 352,
-				"y": 96,
+				"x": 272,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,26 +82,13 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "68607133-8560-11f0-9faf-cd96b0c46c71",
-				"layer": "Entities",
-				"x": 448,
-				"y": 96,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "68607134-8560-11f0-9faf-c95a079d0e6c",
+				"iid": "88347780-8560-11f0-beea-f3870211d384",
 				"layer": "Entities",
-				"x": 288,
-				"y": 96,
+				"x": 256,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -60,101 +98,15 @@
 			},
 			{
 				"id": "Item",
-				"iid": "937d1fd0-8560-11f0-9faf-e3ac701f0ddb",
+				"iid": "8a4bbec0-8560-11f0-beea-719820270a11",
 				"layer": "Entities",
-				"x": 96,
-				"y": 208,
+				"x": 240,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "81ac6cc0-8560-11f0-9faf-e18e41f98213",
-				"layer": "Entities",
-				"x": 416,
-				"y": 48,
-				"width": 16,
-				"height": 64,
-				"color": 9149364,
-				"customFields" : {}
-			},
-			{
-				"id": "Gate",
-				"iid": "259b2150-8560-11f0-9faf-ef16217a7c95",
-				"layer": "Entities",
-				"x": 384,
-				"y": 48,
-				"width": 16,
-				"height": 64,
-				"color": 9149364,
-				"customFields" : {}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "9bcf6760-8560-11f0-9faf-ed9e9b36dda0",
-				"layer": "Entities",
-				"x": 48,
-				"y": 208,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 4
-				}
-			}
-		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "20240d40-8560-11f0-9faf-c1b35dfe2d1a",
-				"layer": "Entities",
-				"x": 64,
-				"y": 256,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "259b2150-8560-11f0-9faf-ef16217a7c95",
-							"layerIid": "68607131-8560-11f0-9faf-7115bc3c1fca",
-							"levelIid": "68607130-8560-11f0-9faf-95c34b5bb65b",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
-			},
-			{
-				"id": "Pressure_Trigger",
-				"iid": "6bc06fa0-8560-11f0-9faf-cf1b00898a90",
-				"layer": "Entities",
-				"x": 320,
-				"y": 160,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "81ac6cc0-8560-11f0-9faf-e18e41f98213",
-							"layerIid": "68607131-8560-11f0-9faf-7115bc3c1fca",
-							"levelIid": "68607130-8560-11f0-9faf-95c34b5bb65b",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
+					"item": "Swap"
 				}
 			}
 		]

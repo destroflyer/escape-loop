@@ -203,6 +203,14 @@ public class Character extends MapObject {
     }
 
     @Override
+    public void remove() {
+        super.remove();
+        if (item != null) {
+            item.remove();
+        }
+    }
+
+    @Override
     public Direction getTextureDirection() {
         return (viewDirection == -1) ? Direction.LEFT : Direction.RIGHT;
     }
