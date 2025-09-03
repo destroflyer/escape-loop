@@ -78,6 +78,11 @@ public abstract class MapObject {
         float bounceStrengthX = 0.5f + Math.min(Math.max(Math.abs(body.getLinearVelocity().x), Math.abs(otherMapObject.getBody().getLinearVelocity().x)) / 3, 1);
         float bounceStrengthY = 1;
         Vector2 directionToTarget = body.getPosition().cpy().sub(otherMapObject.getBody().getPosition()).nor();
+        // Can for example happen during the first frame with two players at the starting position
+        if (directionToTarget.isZero()) {
+            // Guarantees the two objects to have different bounce directions
+            directionToTarget.x = (hashCode() < otherMapObject.hashCode()) ? -1 : 1;
+        }
         Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
         body.setLinearVelocity(new Vector2());
         body.applyLinearImpulse(impulse, body.getPosition(), true);

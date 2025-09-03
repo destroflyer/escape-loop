@@ -149,12 +149,19 @@ public class Map {
                 reset();
             }
         }
-        world.step(tpf, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
-        runQueuedTasks();
+        // Execute the physics step in two halves (one before and one after the game object updates), which ensures:
+        // - In the first frame, the initial contacts are up-to-date when the game objects execute their updates (e.g. important for player characterCollisionsEnabled)
+        // - When game objects change their fixtures during update (e.g. gates), they destroy the old fixture which immediately ends the contact. By executing another physics step afterwards, the new fixture contact gets started before rendering+inputs (e.g. important for character isGrounded)
+        Runnable runHalfStep = () -> {
+            world.step(tpf / 2f, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
+            runQueuedTasks();
+        };
+        runHalfStep.run();
         for (MapObject mapObject : objects) {
             mapObject.update(tpf);
         }
         runQueuedTasks();
+        runHalfStep.run();
         if (!isPlayerAlive(player)) {
             respawnCurrentPlayer();
         }

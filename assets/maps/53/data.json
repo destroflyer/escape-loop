@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_53",
-	"uniqueIdentifer": "0bea8b00-8560-11f0-9f34-1b14fc62347d",
+	"uniqueIdentifer": "3f63bb90-8560-11f0-9f34-399f9b656f2a",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,9 +19,9 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "0bea8b02-8560-11f0-9f34-75e8c481029c",
+				"iid": "3f63bb92-8560-11f0-9f34-71d21456997a",
 				"layer": "Entities",
-				"x": 96,
+				"x": 400,
 				"y": 80,
 				"width": 16,
 				"height": 16,
@@ -34,9 +34,9 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "0beab210-8560-11f0-9f34-15e9010989ce",
+				"iid": "3f63bb93-8560-11f0-9f34-196a95e8d594",
 				"layer": "Entities",
-				"x": 256,
+				"x": 240,
 				"y": 128,
 				"width": 16,
 				"height": 16,
@@ -46,7 +46,7 @@
 					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
-					"direction": "Right",
+					"direction": "Left",
 					"hoverTileHeight": 3
 				}
 			}
@@ -54,9 +54,9 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "0beab211-8560-11f0-9f34-5fe2ad235c02",
+				"iid": "3f63bb94-8560-11f0-9f34-ff4ef1136112",
 				"layer": "Entities",
-				"x": 272,
+				"x": 208,
 				"y": 240,
 				"width": 16,
 				"height": 16,
@@ -67,9 +67,9 @@
 		"Toggle_Trigger": [
 			{
 				"id": "Toggle_Trigger",
-				"iid": "2d7b60a0-8560-11f0-9f34-53ddf14e9a6a",
+				"iid": "3f63e2a0-8560-11f0-9f34-a1ffbecec7fa",
 				"layer": "Entities",
-				"x": 464,
+				"x": 32,
 				"y": 96,
 				"width": 16,
 				"height": 16,
@@ -78,9 +78,9 @@
 					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "9b642070-8560-11f0-9f34-178922f89daa",
-							"layerIid": "0bea8b01-8560-11f0-9f34-53bb292b4a17",
-							"levelIid": "0bea8b00-8560-11f0-9f34-1b14fc62347d",
+							"entityIid": "3f63e2a4-8560-11f0-9f34-21eb694d1383",
+							"layerIid": "3f63bb91-8560-11f0-9f34-e991041f7819",
+							"levelIid": "3f63bb90-8560-11f0-9f34-399f9b656f2a",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
@@ -89,9 +89,9 @@
 			},
 			{
 				"id": "Toggle_Trigger",
-				"iid": "2f22a800-8560-11f0-9f34-69de46653e3d",
+				"iid": "3f63e2a1-8560-11f0-9f34-e5a842d08c02",
 				"layer": "Entities",
-				"x": 464,
+				"x": 32,
 				"y": 128,
 				"width": 16,
 				"height": 16,
@@ -100,9 +100,9 @@
 					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "9a28e150-8560-11f0-9f34-873304dac241",
-							"layerIid": "0bea8b01-8560-11f0-9f34-53bb292b4a17",
-							"levelIid": "0bea8b00-8560-11f0-9f34-1b14fc62347d",
+							"entityIid": "3f63e2a3-8560-11f0-9f34-517bbee2751d",
+							"layerIid": "3f63bb91-8560-11f0-9f34-e991041f7819",
+							"levelIid": "3f63bb90-8560-11f0-9f34-399f9b656f2a",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
@@ -113,9 +113,9 @@
 		"Platform": [
 			{
 				"id": "Platform",
-				"iid": "35b7af30-8560-11f0-9f34-5b37ed49e08f",
+				"iid": "3f63e2a2-8560-11f0-9f34-3f5672105469",
 				"layer": "Entities",
-				"x": 176,
+				"x": 288,
 				"y": 160,
 				"width": 48,
 				"height": 16,
@@ -123,7 +123,7 @@
 				"customFields": {
 					"circleMovementTileRadius": null,
 					"circleMovementSpeed": null,
-					"horizontalMovementTileWidth": 5,
+					"horizontalMovementTileWidth": -5,
 					"horizontalMovementVelocity": 1,
 					"verticalMovementVelocity": null,
 					"verticalMovementTileHeight": null
@@ -133,9 +133,9 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "9a28e150-8560-11f0-9f34-873304dac241",
+				"iid": "3f63e2a3-8560-11f0-9f34-517bbee2751d",
 				"layer": "Entities",
-				"x": 32,
+				"x": 432,
 				"y": 272,
 				"width": 48,
 				"height": 16,
@@ -144,10 +144,10 @@
 			},
 			{
 				"id": "Gate",
-				"iid": "9b642070-8560-11f0-9f34-178922f89daa",
+				"iid": "3f63e2a4-8560-11f0-9f34-21eb694d1383",
 				"layer": "Entities",
-				"x": 160,
-				"y": 96,
+				"x": 432,
+				"y": 208,
 				"width": 48,
 				"height": 16,
 				"color": 9149364,
@@ -157,9 +157,9 @@
 		"Bouncer": [
 			{
 				"id": "Bouncer",
-				"iid": "b6f26ae0-8560-11f0-9f34-934276a124e1",
+				"iid": "3f63e2a5-8560-11f0-9f34-7b69a1926ca2",
 				"layer": "Entities",
-				"x": 160,
+				"x": 336,
 				"y": 128,
 				"width": 16,
 				"height": 16,
