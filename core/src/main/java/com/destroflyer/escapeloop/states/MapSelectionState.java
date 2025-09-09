@@ -26,6 +26,8 @@ import lombok.Getter;
 
 public class MapSelectionState extends UiState {
 
+    private static final float MAXIMUM_DISPLAYED_MAPS = 70;
+
     @Getter
     private int maximumMapIndex;
     private Table mapsTable;
@@ -97,8 +99,8 @@ public class MapSelectionState extends UiState {
         mapsTable.clear();
         mapButtons.clear();
         int currentLevel = getCurrentLevel();
-        for (int mapIndex = 0; mapIndex < 60; mapIndex++) {
-            if ((mapIndex % 6) == 0) {
+        for (int mapIndex = 0; mapIndex < MAXIMUM_DISPLAYED_MAPS; mapIndex++) {
+            if ((mapIndex % 7) == 0) {
                 mapsTable.row();
             }
             boolean mapExists = mapIndex <= maximumMapIndex;
@@ -119,7 +121,7 @@ public class MapSelectionState extends UiState {
             mapsTable.add(mapButton).fill().padRight(10).padBottom(10);
             mapButtons.add(mapButton);
         }
-        mapsTable.setPosition(50 + (mapsTable.getPrefWidth() / 2f), 40 + (mapsTable.getPrefHeight() / 2));
+        mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 45 + (mapsTable.getPrefHeight() / 2));
 
         selectMap(currentLevel);
     }
