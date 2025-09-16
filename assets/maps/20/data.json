@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_20",
-	"uniqueIdentifer": "020662c0-5e50-11f0-b20d-4fb663f91511",
+	"uniqueIdentifer": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,36 +19,47 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "020662c3-5e50-11f0-b20d-6f7e09ae3d22",
+				"iid": "5dccb7b2-8560-11f0-b4b2-d9f4d7bbc0bb",
 				"layer": "Entities",
-				"x": 416,
-				"y": 128,
+				"x": 144,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Bouncer": [
+		"Toggle_Trigger": [
 			{
-				"id": "Bouncer",
-				"iid": "10ab5150-5e50-11f0-b20d-0fde1f573f4a",
+				"id": "Toggle_Trigger",
+				"iid": "5dccb7b3-8560-11f0-b4b2-f71d1ee037cd",
 				"layer": "Entities",
-				"x": 208,
-				"y": 144,
+				"x": 352,
+				"y": 256,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
+							"layerIid": "5dccb7b1-8560-11f0-b4b2-8dd9c7512ebe",
+							"levelIid": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Left"
+				}
 			}
 		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "020662c2-5e50-11f0-b20d-9f0992fb86b6",
+				"iid": "5dccb7b5-8560-11f0-b4b2-29988f407b9a",
 				"layer": "Entities",
-				"x": 192,
-				"y": 64,
+				"x": 208,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -57,37 +68,15 @@
 				}
 			}
 		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "150571c0-5e50-11f0-b20d-556344561b70",
-				"layer": "Entities",
-				"x": 64,
-				"y": 128,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "2d3d6540-5e50-11f0-b20d-87e72784afce",
-							"layerIid": "020662c1-5e50-11f0-b20d-db3024df4239",
-							"levelIid": "020662c0-5e50-11f0-b20d-4fb663f91511",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
-			}
-		],
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "2d3d6540-5e50-11f0-b20d-87e72784afce",
+				"iid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
 				"layer": "Entities",
-				"x": 320,
-				"y": 64,
+				"x": 176,
+				"y": 80,
 				"width": 16,
-				"height": 80,
+				"height": 32,
 				"color": 9149364,
 				"customFields" : {}
 			}

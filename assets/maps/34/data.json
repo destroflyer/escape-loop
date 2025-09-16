@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_34",
-	"uniqueIdentifer": "511f68a0-5e50-11f0-9ae3-abe44d4cb2ad",
+	"uniqueIdentifer": "dfc34040-5e50-11f0-9451-590543c1b661",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,61 +16,13 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "511f68a3-5e50-11f0-9ae3-d33fa3603b82",
-				"layer": "Entities",
-				"x": 448,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "511f68a4-5e50-11f0-9ae3-7f9badebf326",
-				"layer": "Entities",
-				"x": 416,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.25,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 3
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "511f68a5-5e50-11f0-9ae3-23ea0ec27e4b",
-				"layer": "Entities",
-				"x": 80,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "511f68a2-5e50-11f0-9ae3-d34bf2d6fade",
+				"iid": "dfc34042-5e50-11f0-9451-856ff40be79a",
 				"layer": "Entities",
-				"x": 48,
-				"y": 144,
+				"x": 256,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -79,193 +31,83 @@
 				}
 			}
 		],
-		"Bouncer": [
+		"Finish": [
 			{
-				"id": "Bouncer",
-				"iid": "7f7f3450-5e50-11f0-9ae3-dd0b671f80b5",
+				"id": "Finish",
+				"iid": "dfc34043-5e50-11f0-9451-718f586c20c8",
 				"layer": "Entities",
-				"x": 144,
-				"y": 176,
+				"x": 400,
+				"y": 224,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
+				"color": 6539085,
 				"customFields" : {}
-			},
+			}
+		],
+		"Item": [
 			{
-				"id": "Bouncer",
-				"iid": "7fa9c6c0-5e50-11f0-9ae3-27c283ca9cb8",
-				"layer": "Entities",
-				"x": 160,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "7fd17300-5e50-11f0-9ae3-47dd86bd2f3c",
-				"layer": "Entities",
-				"x": 176,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "80055440-5e50-11f0-9ae3-718f7aa98cc3",
-				"layer": "Entities",
-				"x": 192,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "804606c0-5e50-11f0-9ae3-c92662e7f9ac",
-				"layer": "Entities",
-				"x": 208,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "807ad260-5e50-11f0-9ae3-7bb2346db097",
+				"id": "Item",
+				"iid": "dfc34044-5e50-11f0-9451-9dadb58c0b89",
 				"layer": "Entities",
 				"x": 224,
-				"y": 176,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
+				"color": 16705377,
+				"customFields": {
+					"item": "Heavy"
+				}
+			}
+		],
+		"Pressure_Trigger": [
 			{
-				"id": "Bouncer",
-				"iid": "80af9e00-5e50-11f0-9ae3-adccd00ca9f4",
+				"id": "Pressure_Trigger",
+				"iid": "17bb4100-5e50-11f0-9451-cf6cfc01a8f1",
 				"layer": "Entities",
-				"x": 240,
-				"y": 176,
+				"x": 96,
+				"y": 224,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "1a40b360-5e50-11f0-9451-af60fccfca08",
+							"layerIid": "dfc34041-5e50-11f0-9451-a103226889c1",
+							"levelIid": "dfc34040-5e50-11f0-9451-590543c1b661",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
+				}
+			}
+		],
+		"Gate": [
 			{
-				"id": "Bouncer",
-				"iid": "80e15c60-5e50-11f0-9ae3-c53f1745a1ca",
-				"layer": "Entities",
-				"x": 256,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "81214b90-5e50-11f0-9ae3-dd35649142bd",
-				"layer": "Entities",
-				"x": 272,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "81561730-5e50-11f0-9ae3-03c45fda4ed4",
-				"layer": "Entities",
-				"x": 288,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "818600d0-5e50-11f0-9ae3-0f021478cabf",
-				"layer": "Entities",
-				"x": 304,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "81b8f7b0-5e50-11f0-9ae3-d7ab08ab63dc",
-				"layer": "Entities",
-				"x": 336,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "8271e770-5e50-11f0-9ae3-395e6e003359",
-				"layer": "Entities",
-				"x": 320,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "8297bef0-5e50-11f0-9ae3-73c5dede0080",
-				"layer": "Entities",
-				"x": 352,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "82c07ca0-5e50-11f0-9ae3-254bc4bce19f",
+				"id": "Gate",
+				"iid": "1a40b360-5e50-11f0-9451-af60fccfca08",
 				"layer": "Entities",
 				"x": 368,
 				"y": 176,
-				"width": 16,
+				"width": 80,
 				"height": 16,
-				"color": 2943221,
+				"color": 9149364,
 				"customFields" : {}
-			},
+			}
+		],
+		"Text": [
 			{
-				"id": "Bouncer",
-				"iid": "83209e00-5e50-11f0-9ae3-31ca938c7ee4",
+				"id": "Text",
+				"iid": "0fb11310-5e50-11f0-baa8-7d361545d7d6",
 				"layer": "Entities",
-				"x": 384,
-				"y": 176,
+				"x": 96,
+				"y": 144,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "836c7410-5e50-11f0-9ae3-730eaea5e3a3",
-				"layer": "Entities",
-				"x": 400,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
+				"color": 16777215,
+				"customFields": {
+					"text": "Orbs can be thrown ${keyAction}",
+					"width": 250
+				}
 			}
 		]
 	}

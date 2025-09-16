@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_8",
-	"uniqueIdentifer": "293f3400-8560-11f0-9faf-3502cc138f34",
+	"uniqueIdentifer": "a672aee0-5e50-11f0-ba66-019125e08ce2",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 2
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "293f3402-8560-11f0-9faf-23555fe5d1d1",
+				"iid": "a672aee3-5e50-11f0-ba66-23cbb6c744b8",
 				"layer": "Entities",
-				"x": 192,
-				"y": 240,
+				"x": 224,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,9 +34,9 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "293f3403-8560-11f0-9faf-db790e20e536",
+				"iid": "a672aee2-5e50-11f0-ba66-2b32fb6a0902",
 				"layer": "Entities",
-				"x": 352,
+				"x": 416,
 				"y": 128,
 				"width": 16,
 				"height": 16,

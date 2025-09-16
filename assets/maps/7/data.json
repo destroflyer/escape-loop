@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_7",
-	"uniqueIdentifer": "a672aee0-5e50-11f0-ba66-019125e08ce2",
+	"uniqueIdentifer": "faab7040-5e50-11f0-ba66-c96d718bf9e1",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "a672aee3-5e50-11f0-ba66-23cbb6c744b8",
+				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
 				"layer": "Entities",
-				"x": 224,
-				"y": 192,
+				"x": 304,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,14 +34,30 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "a672aee2-5e50-11f0-ba66-2b32fb6a0902",
+				"iid": "faab7042-5e50-11f0-ba66-d940cffb0c7d",
 				"layer": "Entities",
-				"x": 416,
-				"y": 128,
+				"x": 160,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
+			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "c84f4780-5e50-11f0-928e-1ba6501e9213",
+				"layer": "Entities",
+				"x": 224,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "When travelling back in time, your actions can influence the outcome of your previous selves actions",
+					"width": 250
+				}
 			}
 		]
 	}
