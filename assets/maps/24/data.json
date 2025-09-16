@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_24",
-	"uniqueIdentifer": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
+	"uniqueIdentifer": "9ad47f70-5e50-11f0-b20d-e91ea32ac5a0",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -16,13 +16,26 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "9ad4a681-5e50-11f0-b20d-9b744ee47232",
+				"layer": "Entities",
+				"x": 432,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "90e3fff2-5e50-11f0-b20d-e58c4961ff78",
+				"iid": "9ad4a682-5e50-11f0-b20d-8d2fed5431fd",
 				"layer": "Entities",
-				"x": 128,
-				"y": 32,
+				"x": 224,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,65 +44,39 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "90e3fff3-5e50-11f0-b20d-473d7c404ff1",
-				"layer": "Entities",
-				"x": 128,
-				"y": 224,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
 		"Bouncer": [
 			{
 				"id": "Bouncer",
-				"iid": "251e9fe0-5e50-11f0-b20d-ff436559a5a5",
+				"iid": "acbd7570-5e50-11f0-b20d-55f97c512a5c",
 				"layer": "Entities",
-				"x": 240,
-				"y": 240,
+				"x": 304,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 2943221,
 				"customFields" : {}
-			}
-		],
-		"Gate": [
+			},
 			{
-				"id": "Gate",
-				"iid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
+				"id": "Bouncer",
+				"iid": "1ab3a2c0-5e50-11f0-b20d-b56cd4696508",
 				"layer": "Entities",
-				"x": 192,
-				"y": 224,
+				"x": 176,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 9149364,
+				"color": 2943221,
 				"customFields" : {}
-			}
-		],
-		"Pressure_Trigger": [
+			},
 			{
-				"id": "Pressure_Trigger",
-				"iid": "d2bb3460-5e50-11f0-b20d-2fa90fe4fadb",
+				"id": "Bouncer",
+				"iid": "8f5852b0-5e50-11f0-b20d-e541cc17fd2d",
 				"layer": "Entities",
-				"x": 336,
-				"y": 208,
+				"x": 320,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "bd548950-5e50-11f0-b20d-2b4eb2e3a554",
-							"layerIid": "90e3fff1-5e50-11f0-b20d-cf3125aeb0c2",
-							"levelIid": "90e3fff0-5e50-11f0-b20d-b736ecffc5a6",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
+				"color": 2943221,
+				"customFields" : {}
 			}
 		]
 	}
