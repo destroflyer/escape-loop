@@ -26,7 +26,7 @@ import lombok.Getter;
 
 public class MapSelectionState extends UiState {
 
-    private static final float MAXIMUM_DISPLAYED_MAPS = 70;
+    private static final float MAXIMUM_DISPLAYED_MAPS = 77;
 
     @Getter
     private int maximumMapIndex;
@@ -121,7 +121,7 @@ public class MapSelectionState extends UiState {
             mapsTable.add(mapButton).fill().padRight(10).padBottom(10);
             mapButtons.add(mapButton);
         }
-        mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 45 + (mapsTable.getPrefHeight() / 2));
+        mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
 
         selectMap(currentLevel);
     }
