@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_36",
-	"uniqueIdentifer": "dfc34040-5e50-11f0-9451-590543c1b661",
+	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "dfc34042-5e50-11f0-9451-856ff40be79a",
+				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
 				"layer": "Entities",
-				"x": 256,
-				"y": 160,
+				"x": 416,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,26 +31,13 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "dfc34043-5e50-11f0-9451-718f586c20c8",
-				"layer": "Entities",
-				"x": 400,
-				"y": 224,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "dfc34044-5e50-11f0-9451-9dadb58c0b89",
+				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
 				"layer": "Entities",
-				"x": 224,
-				"y": 160,
+				"x": 336,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -59,55 +46,33 @@
 				}
 			}
 		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "17bb4100-5e50-11f0-9451-cf6cfc01a8f1",
-				"layer": "Entities",
-				"x": 96,
-				"y": 224,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "1a40b360-5e50-11f0-9451-af60fccfca08",
-							"layerIid": "dfc34041-5e50-11f0-9451-a103226889c1",
-							"levelIid": "dfc34040-5e50-11f0-9451-590543c1b661",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
-			}
-		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "1a40b360-5e50-11f0-9451-af60fccfca08",
-				"layer": "Entities",
-				"x": 368,
-				"y": 176,
-				"width": 80,
-				"height": 16,
-				"color": 9149364,
-				"customFields" : {}
-			}
-		],
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "0fb11310-5e50-11f0-baa8-7d361545d7d6",
+				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
 				"layer": "Entities",
-				"x": 96,
-				"y": 144,
+				"x": 336,
+				"y": 80,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Orbs can be thrown ${keyAction}",
+					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
 					"width": 250
 				}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"layer": "Entities",
+				"x": 64,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
 			}
 		]
 	}
