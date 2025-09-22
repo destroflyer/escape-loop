@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_60",
-	"uniqueIdentifer": "23c3dcd0-8560-11f0-a157-27bee3c2bac7",
+	"uniqueIdentifer": "be3be810-8560-11f0-9faf-8f44dfa93506",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "23c3dcd2-8560-11f0-a157-0154f8aa5e26",
+				"iid": "be3be812-8560-11f0-9faf-57fb909730b9",
 				"layer": "Entities",
-				"x": 432,
-				"y": 96,
+				"x": 64,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,9 +34,9 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "23c3dcd3-8560-11f0-a157-1d44674d510e",
+				"iid": "be3be813-8560-11f0-9faf-896f40273775",
 				"layer": "Entities",
-				"x": 80,
+				"x": 432,
 				"y": 224,
 				"width": 16,
 				"height": 16,
@@ -47,66 +47,72 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "23c3dcd4-8560-11f0-a157-5d33a4b9bc53",
+				"iid": "be3be814-8560-11f0-9faf-e5a36e6604de",
 				"layer": "Entities",
-				"x": 400,
-				"y": 96,
+				"x": 96,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Swap"
+					"item": "Knockback"
 				}
-			},
+			}
+		],
+		"Toggle_Trigger": [
 			{
-				"id": "Item",
-				"iid": "3b41cf20-8560-11f0-a157-f97302571c7c",
+				"id": "Toggle_Trigger",
+				"iid": "be3be815-8560-11f0-9faf-17d0d8a6d8af",
 				"layer": "Entities",
-				"x": 464,
-				"y": 96,
+				"x": 176,
+				"y": 128,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
+				"color": 10626611,
 				"customFields": {
-					"item": "Swap"
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "be3be816-8560-11f0-9faf-85f36aaa355e",
+							"layerIid": "be3be811-8560-11f0-9faf-f92051227baf",
+							"levelIid": "be3be810-8560-11f0-9faf-8f44dfa93506",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Left"
 				}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "be3be816-8560-11f0-9faf-85f36aaa355e",
+				"layer": "Entities",
+				"x": 368,
+				"y": 240,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields" : {}
 			}
 		],
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "23c3dcd5-8560-11f0-a157-a359eda6bc2f",
+				"iid": "a813f360-8560-11f0-9faf-77bc55a3ed7d",
 				"layer": "Entities",
-				"x": 192,
+				"x": 336,
 				"y": 256,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
 				"customFields": {
-					"autoShoot": false,
+					"autoShoot": true,
 					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 2
-				}
-			},
-			{
-				"id": "Enemy",
-				"iid": "44b3de90-8560-11f0-a157-1d9e71419bc0",
-				"layer": "Entities",
-				"x": 192,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": false,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 0
+					"hoverTileHeight": 1
 				}
 			}
 		]

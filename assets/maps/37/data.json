@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_37",
-	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
+	"uniqueIdentifer": "18e7ffc0-8560-11f0-bfa3-a1bdea728be7",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 2
 	},
 	"layers": [
 		"Background.png",
@@ -16,13 +16,26 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "18e7ffc2-8560-11f0-bfa3-1b9f04c4ed85",
+				"layer": "Entities",
+				"x": 432,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
+				"iid": "18e7ffc3-8560-11f0-bfa3-e912fa29a3e8",
 				"layer": "Entities",
-				"x": 416,
-				"y": 112,
+				"x": 144,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,48 +44,111 @@
 				}
 			}
 		],
-		"Item": [
+		"Gate": [
 			{
-				"id": "Item",
-				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
+				"id": "Gate",
+				"iid": "18e7ffc4-8560-11f0-bfa3-37f4561fc037",
 				"layer": "Entities",
-				"x": 336,
+				"x": 256,
+				"y": 128,
+				"width": 32,
+				"height": 16,
+				"color": 9149364,
+				"customFields" : {}
+			},
+			{
+				"id": "Gate",
+				"iid": "a6161e90-8560-11f0-bfa3-055710c76172",
+				"layer": "Entities",
+				"x": 400,
+				"y": 144,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields" : {}
+			},
+			{
+				"id": "Gate",
+				"iid": "c3471c80-8560-11f0-bfa3-43055e82bf23",
+				"layer": "Entities",
+				"x": 304,
+				"y": 144,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "18e7ffc6-8560-11f0-bfa3-e389bfdd2c62",
+				"layer": "Entities",
+				"x": 256,
 				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 16705377,
+				"color": 39387,
 				"customFields": {
-					"item": "Heavy"
+					"autoShoot": true,
+					"shootCooldown": 0.1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 0
 				}
 			}
 		],
-		"Text": [
+		"Toggle_Trigger": [
 			{
-				"id": "Text",
-				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
+				"id": "Toggle_Trigger",
+				"iid": "54487fe0-8560-11f0-bfa3-89f567af2987",
 				"layer": "Entities",
-				"x": 336,
-				"y": 80,
+				"x": 80,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
+				"color": 10626611,
 				"customFields": {
-					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
-					"width": 250
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "18e7ffc4-8560-11f0-bfa3-37f4561fc037",
+							"layerIid": "18e7ffc1-8560-11f0-bfa3-6544492f242f",
+							"levelIid": "18e7ffc0-8560-11f0-bfa3-a1bdea728be7",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						},
+						{
+							"entityIid": "c3471c80-8560-11f0-bfa3-43055e82bf23",
+							"layerIid": "18e7ffc1-8560-11f0-bfa3-6544492f242f",
+							"levelIid": "18e7ffc0-8560-11f0-bfa3-a1bdea728be7",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
 				}
 			}
 		],
-		"Finish": [
+		"Pressure_Trigger": [
 			{
-				"id": "Finish",
-				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"id": "Pressure_Trigger",
+				"iid": "9bcb3b50-8560-11f0-bfa3-a707d047010c",
 				"layer": "Entities",
-				"x": 64,
-				"y": 256,
+				"x": 352,
+				"y": 160,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "a6161e90-8560-11f0-bfa3-055710c76172",
+							"layerIid": "18e7ffc1-8560-11f0-bfa3-6544492f242f",
+							"levelIid": "18e7ffc0-8560-11f0-bfa3-a1bdea728be7",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
+				}
 			}
 		]
 	}

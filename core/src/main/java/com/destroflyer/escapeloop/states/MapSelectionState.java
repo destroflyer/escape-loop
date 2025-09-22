@@ -26,7 +26,7 @@ import lombok.Getter;
 
 public class MapSelectionState extends UiState {
 
-    private static final float MAXIMUM_DISPLAYED_MAPS = 77;
+    private static final float MAXIMUM_DISPLAYED_MAPS = 80;
 
     @Getter
     private int maximumMapIndex;
@@ -100,7 +100,7 @@ public class MapSelectionState extends UiState {
         mapButtons.clear();
         int currentLevel = getCurrentLevel();
         for (int mapIndex = 0; mapIndex < MAXIMUM_DISPLAYED_MAPS; mapIndex++) {
-            if ((mapIndex % 7) == 0) {
+            if ((mapIndex % 8) == 0) {
                 mapsTable.row();
             }
             boolean mapExists = mapIndex <= maximumMapIndex;
@@ -149,7 +149,7 @@ public class MapSelectionState extends UiState {
     }
 
     private String getMapTitle(Integer mapIndex) {
-        return (mapIndex != null) ? "Lvl " + (mapIndex + 1) : "-";
+        return (mapIndex != null) ? "# " + (mapIndex + 1) : "-";
     }
 
     private void backToMainMenu() {
