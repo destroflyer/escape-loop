@@ -173,12 +173,25 @@ public class MapFileLoader {
             },
             entity -> new Vector2(((entity.getWidth() / TILE_SIZE_DATA) - 1) / 2f, ((entity.getHeight() / TILE_SIZE_DATA) - 1) / -2f)
         );
-        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(getGates.apply(entity.getCustomFields().getGates()), parseDirection(entity.getCustomFields().getDirection())), entity -> {
-            Vector2 tileOffset = new Vector2(0, -1 * (((16 - 7) / 2f) / 16));
-            if (entity.getCustomFields().getDirection().equals("Down")) {
-                tileOffset.y *= -1;
+        loadEntities(data.getEntities().getToggle_Trigger(), entity -> new ToggleTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> {
+            float alignmentOffsetX = 0.5f - ((7 / 2f) / 16);
+            float alignmentOffsetY = -1 * (((16 - 7) / 2f) / 16);
+            Vector2 tileOffset = new Vector2(0, 0);
+            switch (entity.getCustomFields().getDirection()) {
+                case "Left": tileOffset.x = alignmentOffsetX; break;
+                case "Right": tileOffset.x = -1 * alignmentOffsetX; break;
+                case "Up": tileOffset.y = alignmentOffsetY; break;
+                case "Down": tileOffset.y = -1 * alignmentOffsetY; break;
             }
             return tileOffset;
+        }, (entity, toggleTrigger) -> {
+            float angle = 0;
+            switch (entity.getCustomFields().getDirection()) {
+                case "Left": angle = (float) (Math.PI / 2); break;
+                case "Right": angle = (float) (Math.PI / -2); break;
+                case "Down": angle = (float) Math.PI; break;
+            }
+            toggleTrigger.getBody().setTransform(toggleTrigger.getBody().getPosition(), angle);
         });
         loadEntities(data.getEntities().getPressure_Trigger(), entity -> new PressureTrigger(getGates.apply(entity.getCustomFields().getGates())), entity -> new Vector2(0, -1 * (((16 - 4) / 2f) / 16)));
 
