@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_58",
-	"uniqueIdentifer": "153c4b40-8560-11f0-b38d-df91d09662c8",
+	"uniqueIdentifer": "5bce9bb0-8560-11f0-b298-012045da0e61",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "153c4b42-8560-11f0-b38d-8122fdb6d962",
+				"iid": "5bce9bb2-8560-11f0-b298-41cd3a3f9214",
 				"layer": "Entities",
-				"x": 272,
-				"y": 176,
+				"x": 96,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "153c4b43-8560-11f0-b38d-8f45622b9434",
+				"iid": "5bce9bb3-8560-11f0-b298-b950b301a76c",
 				"layer": "Entities",
-				"x": 464,
-				"y": 256,
+				"x": 400,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,10 +47,10 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "153c4b44-8560-11f0-b38d-e32dca6e6e55",
+				"iid": "5bce9bb4-8560-11f0-b298-c71c6370f215",
 				"layer": "Entities",
-				"x": 256,
-				"y": 176,
+				"x": 176,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -62,10 +62,10 @@
 		"Toggle_Trigger": [
 			{
 				"id": "Toggle_Trigger",
-				"iid": "153c4b45-8560-11f0-b38d-452d97489c19",
+				"iid": "5bce9bb5-8560-11f0-b298-6376648350cc",
 				"layer": "Entities",
-				"x": 128,
-				"y": 176,
+				"x": 256,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 10626611,
@@ -73,21 +73,21 @@
 					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "153c4b46-8560-11f0-b38d-1d1a45840441",
-							"layerIid": "153c4b41-8560-11f0-b38d-a9d722bbd64e",
-							"levelIid": "153c4b40-8560-11f0-b38d-df91d09662c8",
+							"entityIid": "5bce9bb6-8560-11f0-b298-bf8ca955b476",
+							"layerIid": "5bce9bb1-8560-11f0-b298-31ae0f7365ce",
+							"levelIid": "5bce9bb0-8560-11f0-b298-012045da0e61",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
-					"direction": "Up"
+					"direction": "Down"
 				}
 			},
 			{
 				"id": "Toggle_Trigger",
-				"iid": "648cdc00-8560-11f0-b38d-2f4e84a27b6e",
+				"iid": "811ffbc0-8560-11f0-b298-ed524d0d3ecb",
 				"layer": "Entities",
-				"x": 208,
-				"y": 144,
+				"x": 256,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 10626611,
@@ -95,31 +95,9 @@
 					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "783ada90-8560-11f0-b38d-b9ccb2af1f83",
-							"layerIid": "153c4b41-8560-11f0-b38d-a9d722bbd64e",
-							"levelIid": "153c4b40-8560-11f0-b38d-df91d09662c8",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Up"
-				}
-			},
-			{
-				"id": "Toggle_Trigger",
-				"iid": "e3e73ac0-8560-11f0-b38d-c964151d2de9",
-				"layer": "Entities",
-				"x": 112,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 10626611,
-				"customFields": {
-					"autoRevertDuration": null,
-					"gates": [
-						{
-							"entityIid": "e4f17ed0-8560-11f0-b38d-c9ec3acfa23c",
-							"layerIid": "153c4b41-8560-11f0-b38d-a9d722bbd64e",
-							"levelIid": "153c4b40-8560-11f0-b38d-df91d09662c8",
+							"entityIid": "834acb00-8560-11f0-b298-db2602ab9bc2",
+							"layerIid": "5bce9bb1-8560-11f0-b298-31ae0f7365ce",
+							"levelIid": "5bce9bb0-8560-11f0-b298-012045da0e61",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
@@ -130,34 +108,23 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "153c4b46-8560-11f0-b38d-1d1a45840441",
+				"iid": "5bce9bb6-8560-11f0-b298-bf8ca955b476",
 				"layer": "Entities",
-				"x": 400,
-				"y": 240,
+				"x": 320,
+				"y": 64,
 				"width": 16,
-				"height": 32,
+				"height": 96,
 				"color": 9149364,
 				"customFields" : {}
 			},
 			{
 				"id": "Gate",
-				"iid": "783ada90-8560-11f0-b38d-b9ccb2af1f83",
+				"iid": "834acb00-8560-11f0-b298-db2602ab9bc2",
 				"layer": "Entities",
-				"x": 416,
-				"y": 240,
+				"x": 352,
+				"y": 64,
 				"width": 16,
-				"height": 32,
-				"color": 9149364,
-				"customFields" : {}
-			},
-			{
-				"id": "Gate",
-				"iid": "e4f17ed0-8560-11f0-b38d-c9ec3acfa23c",
-				"layer": "Entities",
-				"x": 432,
-				"y": 240,
-				"width": 16,
-				"height": 32,
+				"height": 96,
 				"color": 9149364,
 				"customFields" : {}
 			}
