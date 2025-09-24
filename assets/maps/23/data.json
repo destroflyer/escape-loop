@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_23",
-	"uniqueIdentifer": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
+	"uniqueIdentifer": "02f69240-5e50-11f0-ba66-1d0cd2621a79",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "5dccb7b2-8560-11f0-b4b2-d9f4d7bbc0bb",
+				"iid": "b9226560-5e50-11f0-ba66-79bdedcfff00",
 				"layer": "Entities",
-				"x": 144,
-				"y": 96,
+				"x": 176,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -32,10 +32,10 @@
 		"Toggle_Trigger": [
 			{
 				"id": "Toggle_Trigger",
-				"iid": "5dccb7b3-8560-11f0-b4b2-f71d1ee037cd",
+				"iid": "2b8ad300-5e50-11f0-94d9-dba3ba6df098",
 				"layer": "Entities",
-				"x": 352,
-				"y": 256,
+				"x": 192,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 10626611,
@@ -43,42 +43,42 @@
 					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
-							"layerIid": "5dccb7b1-8560-11f0-b4b2-8dd9c7512ebe",
-							"levelIid": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
+							"entityIid": "9b4397e0-5e50-11f0-94d9-476280282f93",
+							"layerIid": "02f69241-5e50-11f0-ba66-c1826d71de91",
+							"levelIid": "02f69240-5e50-11f0-ba66-1d0cd2621a79",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
-					"direction": "Left"
-				}
-			}
-		],
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "5dccb7b5-8560-11f0-b4b2-29988f407b9a",
-				"layer": "Entities",
-				"x": 208,
-				"y": 96,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": true
+					"direction": "Up"
 				}
 			}
 		],
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
+				"iid": "9b4397e0-5e50-11f0-94d9-476280282f93",
 				"layer": "Entities",
-				"x": 176,
+				"x": 208,
 				"y": 80,
-				"width": 16,
-				"height": 32,
+				"width": 64,
+				"height": 176,
 				"color": 9149364,
 				"customFields" : {}
+			}
+		],
+		"Start": [
+			{
+				"id": "Start",
+				"iid": "02f69242-5e50-11f0-ba66-6b0934dd7129",
+				"layer": "Entities",
+				"x": 176,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 11882632,
+				"customFields": {
+					"visible": true
+				}
 			}
 		]
 	}
