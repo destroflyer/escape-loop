@@ -89,7 +89,9 @@
 				"width": 16,
 				"height": 80,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			}
 		]
 	}

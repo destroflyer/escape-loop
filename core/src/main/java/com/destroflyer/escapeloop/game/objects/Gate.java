@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.destroflyer.escapeloop.game.Collisions;
+import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
@@ -16,9 +17,10 @@ import lombok.Setter;
 
 public class Gate extends MapObject {
 
-    public Gate(float width, float height) {
+    public Gate(float width, float height, Direction forcedDirection) {
         this.width = width;
         this.height = height;
+        this.forcedDirection = forcedDirection;
     }
     private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabMainTextureRegion(0, 16);
     private static final float OPEN_SPEED_PER_SIZE = 2;
@@ -26,6 +28,7 @@ public class Gate extends MapObject {
     private float width;
     @Getter
     private float height;
+    private Direction forcedDirection;
     private float lastOpenProgress;
     @Getter
     private float openProgress;
@@ -60,7 +63,7 @@ public class Gate extends MapObject {
         float shapeWidth = width;
         float shapeHeight = height;
         float closeProgress = 1 - openProgress;
-        if (width > height) {
+        if (getDirection().getX() != 0) {
             shapeWidth *= closeProgress;
         } else {
             shapeHeight *= closeProgress;
@@ -77,6 +80,13 @@ public class Gate extends MapObject {
         fixture.setFilterData(filter);
 
         body.setActive((shapeWidth * shapeHeight) > 0);
+    }
+
+    public Direction getDirection() {
+        if (forcedDirection != null) {
+            return forcedDirection;
+        }
+        return (width > height) ? Direction.LEFT : Direction.DOWN;
     }
 
     @Override

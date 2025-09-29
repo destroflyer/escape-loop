@@ -54,7 +54,9 @@
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			},
 			{
 				"id": "Gate",
@@ -65,7 +67,9 @@
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			},
 			{
 				"id": "Gate",
@@ -76,7 +80,9 @@
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			},
 			{
 				"id": "Gate",
@@ -87,7 +93,9 @@
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			},
 			{
 				"id": "Gate",
@@ -98,7 +106,9 @@
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			}
 		],
 		"Pressure_Trigger": [

@@ -67,7 +67,9 @@
 				"width": 16,
 				"height": 16,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			}
 		],
 		"Pressure_Trigger": [

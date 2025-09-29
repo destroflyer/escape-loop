@@ -63,7 +63,9 @@
 				"width": 64,
 				"height": 176,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			}
 		],
 		"Start": [

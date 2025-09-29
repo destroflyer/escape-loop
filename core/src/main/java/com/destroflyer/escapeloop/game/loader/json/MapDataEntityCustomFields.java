@@ -18,8 +18,9 @@ public class MapDataEntityCustomFields {
     private Float horizontalMovementVelocity;
     private Float verticalMovementTileHeight;
     private Float verticalMovementVelocity;
-    // Enemy
+    // Enemy + Gate
     private String direction;
+    // Enemy
     private int hoverTileHeight;
     private boolean autoShoot;
     private float shootCooldown;

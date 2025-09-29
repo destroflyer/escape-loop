@@ -167,7 +167,7 @@ public class MapFileLoader {
         loadEntities(
             data.getEntities().getGate(),
             entity -> {
-                Gate gate = new Gate(toMapSize(entity.getWidth()), toMapSize(entity.getHeight()));
+                Gate gate = new Gate(toMapSize(entity.getWidth()), toMapSize(entity.getHeight()), parseDirection(entity.getCustomFields().getDirection()));
                 gatesByIid.put(entity.getIid(), gate);
                 return gate;
             },
@@ -253,6 +253,9 @@ public class MapFileLoader {
     }
 
     private Direction parseDirection(String direction) {
+        if (direction == null) {
+            return null;
+        }
         switch (direction) {
             case "Left": return Direction.LEFT;
             case "Right": return Direction.RIGHT;

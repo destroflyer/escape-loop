@@ -164,7 +164,9 @@
 				"width": 96,
 				"height": 16,
 				"color": 9149364,
-				"customFields" : {}
+				"customFields": {
+					"direction": null
+				}
 			}
 		],
 		"Toggle_Trigger": [
