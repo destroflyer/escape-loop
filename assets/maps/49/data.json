@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_49",
-	"uniqueIdentifer": "41bb1ad0-8560-11f0-a27f-9bd87795ac5a",
+	"uniqueIdentifer": "bde9d620-8560-11f0-9558-9d64d2a99fa8",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "41bb1ad2-8560-11f0-a27f-d3744ee53c90",
+				"iid": "bde9d622-8560-11f0-9558-016d4f59d244",
 				"layer": "Entities",
-				"x": 80,
-				"y": 80,
+				"x": 288,
+				"y": 48,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,41 +31,13 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "41bb1ad3-8560-11f0-a27f-05336c0de562",
-				"layer": "Entities",
-				"x": 416,
-				"y": 208,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "41bb1ad6-8560-11f0-a27f-3185428c9464",
-				"layer": "Entities",
-				"x": 160,
-				"y": 128,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "41bb1ad7-8560-11f0-a27f-19f747fd8d5a",
+				"iid": "bde9d623-8560-11f0-9558-c1f57b8e6a09",
 				"layer": "Entities",
-				"x": 240,
-				"y": 48,
+				"x": 256,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
@@ -74,80 +46,73 @@
 					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 10
+					"direction": "Left",
+					"hoverTileHeight": 5
 				}
-			},
+			}
+		],
+		"Finish": [
 			{
-				"id": "Enemy",
-				"iid": "881358a0-8560-11f0-a27f-3b536514ef03",
+				"id": "Finish",
+				"iid": "bde9d624-8560-11f0-9558-a552ba94a6fb",
 				"layer": "Entities",
-				"x": 384,
-				"y": 160,
+				"x": 176,
+				"y": 256,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 3
-				}
-			},
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Gate": [
 			{
-				"id": "Enemy",
-				"iid": "8a878cf0-8560-11f0-a27f-3f7b3b8d5a3d",
+				"id": "Gate",
+				"iid": "bde9d626-8560-11f0-9558-d5b344843c06",
 				"layer": "Entities",
-				"x": 384,
-				"y": 176,
+				"x": 208,
+				"y": 240,
 				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 2
-				}
-			},
+				"height": 32,
+				"color": 9149364,
+				"customFields" : {}
+			}
+		],
+		"Toggle_Trigger": [
 			{
-				"id": "Enemy",
-				"iid": "8ab13500-8560-11f0-a27f-a1f568f27f64",
+				"id": "Toggle_Trigger",
+				"iid": "c394f280-8560-11f0-9558-fb975c203d04",
 				"layer": "Entities",
-				"x": 384,
+				"x": 304,
 				"y": 192,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
+				"color": 10626611,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 1
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "bde9d626-8560-11f0-9558-d5b344843c06",
+							"layerIid": "bde9d621-8560-11f0-9558-31b48e00d7ef",
+							"levelIid": "bde9d620-8560-11f0-9558-9d64d2a99fa8",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Left"
 				}
-			},
+			}
+		],
+		"Item": [
 			{
-				"id": "Enemy",
-				"iid": "f6865710-8560-11f0-a27f-07f96a70fc8b",
+				"id": "Item",
+				"iid": "faf7b820-8560-11f0-9558-6f8ece8c6843",
 				"layer": "Entities",
-				"x": 384,
-				"y": 208,
+				"x": 272,
+				"y": 48,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
+				"color": 16705377,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 0
+					"item": "Heavy"
 				}
 			}
 		]
