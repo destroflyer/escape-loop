@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_63",
-	"uniqueIdentifer": "87dfeee0-8560-11f0-b705-55e68adf63d1",
+	"uniqueIdentifer": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "87e015f0-8560-11f0-b705-a7aa5cbb6554",
+				"iid": "958d22f2-8560-11f0-b4b6-9d0840c9fe97",
 				"layer": "Entities",
-				"x": 304,
-				"y": 176,
+				"x": 224,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,38 +34,43 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "87e015f1-8560-11f0-b705-bd882e6c2a30",
+				"iid": "958d22f3-8560-11f0-b4b6-e975f6dd02f8",
 				"layer": "Entities",
-				"x": 48,
-				"y": 192,
+				"x": 304,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Item": [
+		"Platform": [
 			{
-				"id": "Item",
-				"iid": "87e015f2-8560-11f0-b705-1ff79038c2a2",
+				"id": "Platform",
+				"iid": "958d22f6-8560-11f0-b4b6-bdc7a24c5769",
 				"layer": "Entities",
-				"x": 272,
+				"x": 96,
 				"y": 176,
-				"width": 16,
+				"width": 48,
 				"height": 16,
-				"color": 16705377,
+				"color": 4098376,
 				"customFields": {
-					"item": "Knockback"
+					"circleMovementTileRadius": null,
+					"circleMovementSpeed": null,
+					"horizontalMovementTileWidth": 2,
+					"horizontalMovementVelocity": 4,
+					"verticalMovementVelocity": null,
+					"verticalMovementTileHeight": null
 				}
 			}
 		],
 		"Toggle_Trigger": [
 			{
 				"id": "Toggle_Trigger",
-				"iid": "87e015f3-8560-11f0-b705-6d2c5f1aa97d",
+				"iid": "a95f9970-8560-11f0-b4b6-db4275601473",
 				"layer": "Entities",
-				"x": 176,
-				"y": 96,
+				"x": 192,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 10626611,
@@ -73,9 +78,31 @@
 					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "87e015f6-8560-11f0-b705-5df4f34ae45a",
-							"layerIid": "87dfeee1-8560-11f0-b705-f7abb499310f",
-							"levelIid": "87dfeee0-8560-11f0-b705-55e68adf63d1",
+							"entityIid": "abbd3880-8560-11f0-b4b6-01bd32a3b1aa",
+							"layerIid": "958d22f1-8560-11f0-b4b6-8d89c92883af",
+							"levelIid": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
+				}
+			},
+			{
+				"id": "Toggle_Trigger",
+				"iid": "1c3ceb50-8560-11f0-b4b6-13d4c9383b1e",
+				"layer": "Entities",
+				"x": 304,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "20ba3610-8560-11f0-b4b6-6b0f2eebafaa",
+							"layerIid": "958d22f1-8560-11f0-b4b6-8d89c92883af",
+							"levelIid": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
@@ -86,46 +113,39 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "87e015f6-8560-11f0-b705-5df4f34ae45a",
+				"iid": "abbd3880-8560-11f0-b4b6-01bd32a3b1aa",
 				"layer": "Entities",
-				"x": 96,
-				"y": 160,
+				"x": 176,
+				"y": 128,
+				"width": 32,
+				"height": 16,
+				"color": 9149364,
+				"customFields" : {}
+			},
+			{
+				"id": "Gate",
+				"iid": "20ba3610-8560-11f0-b4b6-6b0f2eebafaa",
+				"layer": "Entities",
+				"x": 272,
+				"y": 208,
 				"width": 16,
 				"height": 32,
 				"color": 9149364,
 				"customFields" : {}
 			}
 		],
-		"Bouncer": [
+		"Item": [
 			{
-				"id": "Bouncer",
-				"iid": "b0303710-8560-11f0-b705-750e88a5a53c",
+				"id": "Item",
+				"iid": "ab6510f0-8560-11f0-b4b6-51927d2a28af",
 				"layer": "Entities",
-				"x": 224,
-				"y": 128,
+				"x": 176,
+				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "b29995f0-8560-11f0-b705-4116cc618e8c",
-				"layer": "Entities",
-				"x": 128,
-				"y": 208,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
+				"color": 16705377,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 1
+					"item": "Knockback"
 				}
 			}
 		]

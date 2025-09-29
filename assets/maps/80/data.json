@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_80",
-	"uniqueIdentifer": "2ed64070-5e50-11f0-b4b2-73739cd328d6",
+	"uniqueIdentifer": "af932930-8560-11f0-beea-3f51a060147a",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,13 +16,64 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "af932934-8560-11f0-beea-211bb45e4888",
+				"layer": "Entities",
+				"x": 128,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "af932939-8560-11f0-beea-03eb3cd9c6ee",
+				"layer": "Entities",
+				"x": 128,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 3
+				}
+			},
+			{
+				"id": "Enemy",
+				"iid": "6653ad20-8560-11f0-beea-8d51d117fa63",
+				"layer": "Entities",
+				"x": 128,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 2
+				}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "2ed64072-5e50-11f0-b4b2-5fd83ee9ded3",
+				"iid": "af932932-8560-11f0-beea-4ff724c6df19",
 				"layer": "Entities",
-				"x": 320,
-				"y": 144,
+				"x": 272,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,26 +82,26 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "2ed64073-5e50-11f0-b4b2-a9274c8d775c",
-				"layer": "Entities",
-				"x": 176,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "2ed64074-5e50-11f0-b4b2-e13668147344",
+				"iid": "88347780-8560-11f0-beea-f3870211d384",
 				"layer": "Entities",
-				"x": 352,
-				"y": 144,
+				"x": 256,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Swap"
+				}
+			},
+			{
+				"id": "Item",
+				"iid": "8a4bbec0-8560-11f0-beea-719820270a11",
+				"layer": "Entities",
+				"x": 240,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,

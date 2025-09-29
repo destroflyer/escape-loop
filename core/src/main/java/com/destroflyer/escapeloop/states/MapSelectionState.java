@@ -26,8 +26,8 @@ import lombok.Getter;
 
 public class MapSelectionState extends UiState {
 
-    private static final float MAXIMUM_DISPLAYED_MAPS = 88;
-    private static final float MAPS_PER_ROW = 8;
+    private static final float MAXIMUM_DISPLAYED_MAPS = 100;
+    private static final float MAPS_PER_ROW = 10;
 
     @Getter
     private int maximumMapIndex;
@@ -41,7 +41,7 @@ public class MapSelectionState extends UiState {
     public void create() {
         super.create();
         Label titleLabel = new Label("Select a level", main.getSkinLarge());
-        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), 624);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), 615);
         stage.addActor(titleLabel);
 
         mapsTable = new Table();
@@ -50,7 +50,7 @@ public class MapSelectionState extends UiState {
         createSelectedMapTable();
 
         TextButton backButton = new TextButton("Back", main.getSkinLarge());
-        backButton.setPosition(Main.VIEWPORT_WIDTH - 50 - backButton.getPrefWidth(), 50);
+        backButton.setPosition(Main.VIEWPORT_WIDTH - 30 - backButton.getPrefWidth(), 30);
         backButton.addListener(new ClickListener() {
 
             @Override
@@ -85,7 +85,7 @@ public class MapSelectionState extends UiState {
         });
         selectedMapTable.add(playButton).width(playTableWidth).fill();
 
-        selectedMapTable.setPosition(Main.VIEWPORT_WIDTH - 50 - (selectedMapTable.getPrefWidth() / 2f), (Main.VIEWPORT_HEIGHT / 2f) + (selectedMapTable.getHeight() / 2));
+        selectedMapTable.setPosition(Main.VIEWPORT_WIDTH - 30 - (selectedMapTable.getPrefWidth() / 2f), (Main.VIEWPORT_HEIGHT / 2f) + (selectedMapTable.getHeight() / 2));
         stage.addActor(selectedMapTable);
     }
 
@@ -119,7 +119,7 @@ public class MapSelectionState extends UiState {
             } else {
                 mapButton.setDisabled(true);
             }
-            mapsTable.add(mapButton).fill().padRight(10).padBottom(10);
+            mapsTable.add(mapButton).fill().width(65).padRight(10).padBottom(10);
             mapButtons.add(mapButton);
         }
         mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
@@ -150,7 +150,7 @@ public class MapSelectionState extends UiState {
     }
 
     private String getMapTitle(Integer mapIndex) {
-        return (mapIndex != null) ? "# " + (mapIndex + 1) : "-";
+        return (mapIndex != null) ? "" + (mapIndex + 1) : "-";
     }
 
     private void backToMainMenu() {

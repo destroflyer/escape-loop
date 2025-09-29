@@ -1,0 +1,63 @@
+{
+	"identifier": "Level_85",
+	"uniqueIdentifer": "2ed64070-5e50-11f0-b4b2-73739cd328d6",
+	"x": -1,
+	"y": -1,
+	"width": 512,
+	"height": 288,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields": {
+		"maximumPlayerPasts": 1
+	},
+	"layers": [
+		"Background.png",
+		"Terrain.png",
+		"Decoration.png"
+	],
+	"entities": {
+		"Start": [
+			{
+				"id": "Start",
+				"iid": "2ed64072-5e50-11f0-b4b2-5fd83ee9ded3",
+				"layer": "Entities",
+				"x": 320,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 11882632,
+				"customFields": {
+					"visible": true
+				}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "2ed64073-5e50-11f0-b4b2-a9274c8d775c",
+				"layer": "Entities",
+				"x": 176,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Item": [
+			{
+				"id": "Item",
+				"iid": "2ed64074-5e50-11f0-b4b2-e13668147344",
+				"layer": "Entities",
+				"x": 352,
+				"y": 144,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Swap"
+				}
+			}
+		]
+	}
+}
