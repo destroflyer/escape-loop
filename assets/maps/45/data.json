@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_45",
-	"uniqueIdentifer": "e5b25c70-8560-11f0-ada5-af3ded106f2a",
+	"uniqueIdentifer": "4e949560-8560-11f0-b89c-19e0561d6fa2",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -16,28 +16,13 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "e5b25c72-8560-11f0-ada5-637c1977cb4c",
-				"layer": "Entities",
-				"x": 80,
-				"y": 192,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": true
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "e5b25c73-8560-11f0-ada5-b94ff1a69354",
+				"iid": "4e949562-8560-11f0-b89c-b39c71e9a690",
 				"layer": "Entities",
-				"x": 80,
-				"y": 112,
+				"x": 368,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,10 +32,23 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "e5b25c74-8560-11f0-ada5-459f384104dd",
+				"iid": "4e949564-8560-11f0-b89c-833e8543691c",
 				"layer": "Entities",
-				"x": 224,
-				"y": 112,
+				"x": 208,
+				"y": 32,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Heavy"
+				}
+			},
+			{
+				"id": "Item",
+				"iid": "b98e4b90-8560-11f0-b89c-0b45349d7d4a",
+				"layer": "Entities",
+				"x": 208,
+				"y": 80,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -59,59 +57,83 @@
 				}
 			}
 		],
-		"Enemy": [
+		"Start": [
 			{
-				"id": "Enemy",
-				"iid": "002b1830-8560-11f0-ada5-3f2d3e45cdae",
+				"id": "Start",
+				"iid": "4e949565-8560-11f0-b89c-a384038eada4",
 				"layer": "Entities",
-				"x": 400,
-				"y": 160,
+				"x": 208,
+				"y": 32,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
+				"color": 11882632,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 2,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 6
+					"visible": true
 				}
 			}
 		],
-		"Toggle_Trigger": [
+		"Pressure_Trigger": [
 			{
-				"id": "Toggle_Trigger",
-				"iid": "7d786d10-8560-11f0-ada5-9953edff58bd",
+				"id": "Pressure_Trigger",
+				"iid": "fe88ae70-8560-11f0-b89c-bd53c73a5d22",
 				"layer": "Entities",
-				"x": 432,
-				"y": 208,
+				"x": 112,
+				"y": 128,
 				"width": 16,
 				"height": 16,
-				"color": 10626611,
+				"color": 16217634,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "8bfa6a50-8560-11f0-ada5-13ee51599da7",
-							"layerIid": "e5b25c71-8560-11f0-ada5-ddc89ecad07a",
-							"levelIid": "e5b25c70-8560-11f0-ada5-af3ded106f2a",
+							"entityIid": "0f0199b0-8560-11f0-b89c-95b957c7b6d4",
+							"layerIid": "4e949561-8560-11f0-b89c-651e3cf4dd2e",
+							"levelIid": "4e949560-8560-11f0-b89c-19e0561d6fa2",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
-					],
-					"direction": "Left"
+					]
+				}
+			},
+			{
+				"id": "Pressure_Trigger",
+				"iid": "fee610b0-8560-11f0-b89c-234bf6cf8acb",
+				"layer": "Entities",
+				"x": 336,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "0f6823b0-8560-11f0-b89c-a778296865f2",
+							"layerIid": "4e949561-8560-11f0-b89c-651e3cf4dd2e",
+							"levelIid": "4e949560-8560-11f0-b89c-19e0561d6fa2",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
 				}
 			}
 		],
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "8bfa6a50-8560-11f0-ada5-13ee51599da7",
+				"iid": "0f0199b0-8560-11f0-b89c-95b957c7b6d4",
 				"layer": "Entities",
-				"x": 112,
-				"y": 80,
+				"x": 304,
+				"y": 240,
 				"width": 16,
-				"height": 48,
+				"height": 16,
+				"color": 9149364,
+				"customFields" : {}
+			},
+			{
+				"id": "Gate",
+				"iid": "0f6823b0-8560-11f0-b89c-a778296865f2",
+				"layer": "Entities",
+				"x": 336,
+				"y": 240,
+				"width": 16,
+				"height": 16,
 				"color": 9149364,
 				"customFields" : {}
 			}
