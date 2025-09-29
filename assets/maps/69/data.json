@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_69",
-	"uniqueIdentifer": "f5328d40-8560-11f0-b160-d3298b8f5c3e",
+	"uniqueIdentifer": "b83edaa0-5e50-11f0-94d9-f1e2f3b0676c",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "f5328d42-8560-11f0-b160-2d765f419277",
+				"iid": "b83edaa2-5e50-11f0-94d9-d3277eeed8d0",
 				"layer": "Entities",
-				"x": 256,
-				"y": 224,
+				"x": 128,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,39 +31,13 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "f5328d43-8560-11f0-b160-d38959bc5a99",
-				"layer": "Entities",
-				"x": 272,
-				"y": 64,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "f5328d44-8560-11f0-b160-6b3fc5d52abb",
+				"iid": "b83edaa4-5e50-11f0-94d9-7d2a65a4640d",
 				"layer": "Entities",
-				"x": 224,
-				"y": 224,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Swap"
-				}
-			},
-			{
-				"id": "Item",
-				"iid": "51fc5dd0-8560-11f0-b160-f52656188abd",
-				"layer": "Entities",
-				"x": 288,
-				"y": 144,
+				"x": 176,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -75,9 +49,9 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "f5328d45-8560-11f0-b160-f767fe65e8a0",
+				"iid": "b83edaa5-5e50-11f0-94d9-f9a80bc68e06",
 				"layer": "Entities",
-				"x": 208,
+				"x": 336,
 				"y": 144,
 				"width": 16,
 				"height": 16,
@@ -90,24 +64,35 @@
 					"direction": "Left",
 					"hoverTileHeight": 0
 				}
-			},
+			}
+		],
+		"Text": [
 			{
-				"id": "Enemy",
-				"iid": "f5328d47-8560-11f0-b160-3359f87e0a1f",
+				"id": "Text",
+				"iid": "a7c62110-5e50-11f0-928e-ab7de7bda8ae",
 				"layer": "Entities",
-				"x": 304,
-				"y": 64,
+				"x": 176,
+				"y": 128,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
+				"color": 16777215,
 				"customFields": {
-					"autoShoot": false,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 0
+					"text": "Spatial orbs swap the positions of the thrower and the target",
+					"width": 250
 				}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "fdc2f350-5e50-11f0-baa8-b39975b62451",
+				"layer": "Entities",
+				"x": 416,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
 			}
 		]
 	}
