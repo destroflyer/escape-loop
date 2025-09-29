@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_38",
-	"uniqueIdentifer": "3c8d3000-8560-11f0-9558-950eabd52b6e",
+	"uniqueIdentifer": "cf8e19e0-5e50-11f0-ad7d-6dde68c1f845",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "3c8d3002-8560-11f0-9558-73116abeb61b",
+				"iid": "cf8e19e2-5e50-11f0-ad7d-f7a88ec36c40",
 				"layer": "Entities",
-				"x": 208,
-				"y": 48,
+				"x": 432,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "3c8d3003-8560-11f0-9558-3dd1ba161e46",
+				"iid": "cf8e19e4-5e50-11f0-ad7d-45668fe1b11d",
 				"layer": "Entities",
-				"x": 240,
-				"y": 240,
+				"x": 352,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
@@ -47,58 +47,21 @@
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 4
+					"hoverTileHeight": 7
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "3c8d3004-8560-11f0-9558-a56c812a50a3",
+				"iid": "cf8e40f0-5e50-11f0-ad7d-35625bfbbd27",
 				"layer": "Entities",
-				"x": 336,
-				"y": 176,
+				"x": 96,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
-			}
-		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "63f5d750-8560-11f0-9558-0beee8ce0631",
-				"layer": "Entities",
-				"x": 160,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "67f0d2b0-8560-11f0-9558-af7da4a24f55",
-							"layerIid": "3c8d3001-8560-11f0-9558-6545d4473cd9",
-							"levelIid": "3c8d3000-8560-11f0-9558-950eabd52b6e",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
-			}
-		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "67f0d2b0-8560-11f0-9558-af7da4a24f55",
-				"layer": "Entities",
-				"x": 304,
-				"y": 160,
-				"width": 16,
-				"height": 32,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
 			}
 		]
 	}
