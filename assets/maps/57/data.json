@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_57",
-	"uniqueIdentifer": "4fbefe60-5e50-11f0-9451-8d6aee0d1907",
+	"uniqueIdentifer": "e1747250-5e50-11f0-9ae3-7fd9d5c15d02",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "4fbefe62-5e50-11f0-9451-f71709a7bcf7",
+				"iid": "e1747252-5e50-11f0-9ae3-450403aa8872",
 				"layer": "Entities",
-				"x": 240,
-				"y": 224,
+				"x": 208,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "4fbefe63-5e50-11f0-9451-65b2138a1517",
+				"iid": "e1747253-5e50-11f0-9ae3-0f81c2c91889",
 				"layer": "Entities",
-				"x": 224,
-				"y": 96,
+				"x": 368,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -47,10 +47,10 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "4fbefe64-5e50-11f0-9451-bb416b987547",
+				"iid": "e1747254-5e50-11f0-9ae3-2b3f3ec11adb",
 				"layer": "Entities",
-				"x": 256,
-				"y": 224,
+				"x": 208,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,

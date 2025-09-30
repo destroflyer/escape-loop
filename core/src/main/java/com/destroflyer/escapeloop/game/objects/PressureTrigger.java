@@ -15,6 +15,8 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 
 import java.util.ArrayList;
 
+import lombok.Getter;
+
 public class PressureTrigger extends MapObject {
 
     public PressureTrigger(ArrayList<Gate> gates) {
@@ -23,7 +25,9 @@ public class PressureTrigger extends MapObject {
     }
     private static final TextureRegion TEXTURE_REGION_UP = TextureUtil.loadCaveTextureRegion(8, 7);
     private static final TextureRegion TEXTURE_REGION_DOWN = TextureUtil.loadCaveTextureRegion(8, 8);
+    @Getter
     private ArrayList<Gate> gates;
+    @Getter
     private boolean state;
 
     @Override
@@ -61,7 +65,14 @@ public class PressureTrigger extends MapObject {
     private void updateState() {
         state = activeContacts.size() > 0;
         for (Gate gate : gates) {
-            gate.setOpening(state);
+            boolean isGateOpening = map.getObjects().stream().anyMatch(mapObject -> {
+                if (mapObject instanceof PressureTrigger) {
+                    PressureTrigger pressureTrigger = (PressureTrigger) mapObject;
+                    return pressureTrigger.isState() && pressureTrigger.getGates().contains(gate);
+                }
+                return false;
+            });
+            gate.setOpening(isGateOpening);
         }
     }
 
