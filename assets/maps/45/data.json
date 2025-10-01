@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_45",
-	"uniqueIdentifer": "6c3b37a0-5e50-11f0-870b-8d2187b30b37",
+	"uniqueIdentifer": "dfc34040-5e50-11f0-9451-590543c1b661",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "6c3b37a2-5e50-11f0-870b-3194ae3dd9c1",
+				"iid": "dfc34042-5e50-11f0-9451-856ff40be79a",
 				"layer": "Entities",
-				"x": 128,
-				"y": 128,
+				"x": 256,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,43 +34,23 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "6c3b37a3-5e50-11f0-870b-2f7741a421d9",
+				"iid": "dfc34043-5e50-11f0-9451-718f586c20c8",
 				"layer": "Entities",
-				"x": 304,
-				"y": 96,
+				"x": 400,
+				"y": 208,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "6c3b37a5-5e50-11f0-870b-a714326b14c0",
-				"layer": "Entities",
-				"x": 256,
-				"y": 144,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 3
-				}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "c3450440-5e50-11f0-870b-d122ec21d1db",
+				"iid": "dfc34044-5e50-11f0-9451-9dadb58c0b89",
 				"layer": "Entities",
-				"x": 64,
-				"y": 96,
+				"x": 224,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -79,19 +59,70 @@
 				}
 			}
 		],
+		"Pressure_Trigger": [
+			{
+				"id": "Pressure_Trigger",
+				"iid": "17bb4100-5e50-11f0-9451-cf6cfc01a8f1",
+				"layer": "Entities",
+				"x": 96,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "1a40b360-5e50-11f0-9451-af60fccfca08",
+							"layerIid": "dfc34041-5e50-11f0-9451-a103226889c1",
+							"levelIid": "dfc34040-5e50-11f0-9451-590543c1b661",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
+				}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "1a40b360-5e50-11f0-9451-af60fccfca08",
+				"layer": "Entities",
+				"x": 368,
+				"y": 176,
+				"width": 80,
+				"height": 16,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			}
+		],
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "3f88a4b0-5e50-11f0-928e-e5d44bf6bee3",
+				"iid": "0fb11310-5e50-11f0-baa8-7d361545d7d6",
 				"layer": "Entities",
-				"x": 128,
-				"y": 80,
+				"x": 96,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Other characters will also pick up orbs",
+					"text": "Orbs can be thrown ${keyAction}",
 					"width": 250
+				}
+			},
+			{
+				"id": "Text",
+				"iid": "e2ce8e80-8560-11f0-b89c-875d596dc04e",
+				"layer": "Entities",
+				"x": 96,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Navigate while throwing to aim straight or diagonally",
+					"width": 150
 				}
 			}
 		]
