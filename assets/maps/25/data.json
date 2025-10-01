@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_25",
-	"uniqueIdentifer": "df07ec00-5e50-11f0-b20d-1f53127b5878",
+	"uniqueIdentifer": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -16,13 +16,50 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "5dccb7b2-8560-11f0-b4b2-d9f4d7bbc0bb",
+				"layer": "Entities",
+				"x": 144,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "5dccb7b3-8560-11f0-b4b2-f71d1ee037cd",
+				"layer": "Entities",
+				"x": 352,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
+							"layerIid": "5dccb7b1-8560-11f0-b4b2-8dd9c7512ebe",
+							"levelIid": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Left"
+				}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "df07ec02-5e50-11f0-b20d-abc2022ec3f5",
+				"iid": "5dccb7b5-8560-11f0-b4b2-29988f407b9a",
 				"layer": "Entities",
-				"x": 416,
-				"y": 160,
+				"x": 208,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,67 +68,18 @@
 				}
 			}
 		],
-		"Finish": [
+		"Gate": [
 			{
-				"id": "Finish",
-				"iid": "df07ec03-5e50-11f0-b20d-7143acb0e813",
+				"id": "Gate",
+				"iid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
 				"layer": "Entities",
-				"x": 64,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Bouncer": [
-			{
-				"id": "Bouncer",
-				"iid": "3073bba0-5e50-11f0-b20d-1fda776c0e1c",
-				"layer": "Entities",
-				"x": 192,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "f484f350-5e50-11f0-b20d-ebfdb620ba86",
-				"layer": "Entities",
-				"x": 256,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			},
-			{
-				"id": "Bouncer",
-				"iid": "9167dc10-5e50-11f0-94d9-95b618df2d08",
-				"layer": "Entities",
-				"x": 128,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "b719cd90-5e50-11f0-928e-41f9c0997668",
-				"layer": "Entities",
-				"x": 192,
+				"x": 176,
 				"y": 80,
 				"width": 16,
-				"height": 16,
-				"color": 16777215,
+				"height": 32,
+				"color": 9149364,
 				"customFields": {
-					"text": "Bouncing platforms will... bounce you",
-					"width": 250
+					"direction": null
 				}
 			}
 		]

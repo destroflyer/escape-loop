@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_15",
-	"uniqueIdentifer": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
+	"uniqueIdentifer": "1b8b5d80-5e50-11f0-94d9-0fbda89db09e",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,84 +16,31 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "edd2ef40-5e50-11f0-b20d-6d1cd3fb1786",
-				"layer": "Entities",
-				"x": 160,
-				"y": 160,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": true
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "edd2ef41-5e50-11f0-b20d-617465dc2e3d",
+				"iid": "1b8b5d82-5e50-11f0-94d9-a9811e5cc224",
 				"layer": "Entities",
-				"x": 320,
-				"y": 160,
+				"x": 144,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Gate": [
+		"Start": [
 			{
-				"id": "Gate",
-				"iid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
+				"id": "Start",
+				"iid": "1b8b8490-5e50-11f0-94d9-357b862ffc93",
 				"layer": "Entities",
-				"x": 288,
-				"y": 112,
-				"width": 16,
-				"height": 64,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
-			}
-		],
-		"Pressure_Trigger": [
-			{
-				"id": "Pressure_Trigger",
-				"iid": "00b19ae0-5e50-11f0-9b1e-d1084b1a303d",
-				"layer": "Entities",
-				"x": 192,
-				"y": 160,
+				"x": 368,
+				"y": 208,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 11882632,
 				"customFields": {
-					"gates": [
-						{
-							"entityIid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
-							"layerIid": "edd2c831-5e50-11f0-b20d-2d568b9a62d8",
-							"levelIid": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "3312d280-5e50-11f0-928e-9f2c5a862c4d",
-				"layer": "Entities",
-				"x": 192,
-				"y": 128,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Pressure switches will open gates while something is on top of them",
-					"width": 250
+					"visible": true
 				}
 			}
 		]
