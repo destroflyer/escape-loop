@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_88",
-	"uniqueIdentifer": "af932930-8560-11f0-beea-3f51a060147a",
+	"uniqueIdentifer": "bde6b2f0-8560-11f0-bed8-6b0e69923a67",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,64 +16,13 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "af932934-8560-11f0-beea-211bb45e4888",
-				"layer": "Entities",
-				"x": 128,
-				"y": 256,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields" : {}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "af932939-8560-11f0-beea-03eb3cd9c6ee",
-				"layer": "Entities",
-				"x": 128,
-				"y": 256,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 3
-				}
-			},
-			{
-				"id": "Enemy",
-				"iid": "6653ad20-8560-11f0-beea-8d51d117fa63",
-				"layer": "Entities",
-				"x": 128,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 2
-				}
-			}
-		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "af932932-8560-11f0-beea-4ff724c6df19",
+				"iid": "bde6b2f2-8560-11f0-bed8-3de2be59b11f",
 				"layer": "Entities",
-				"x": 272,
-				"y": 112,
+				"x": 416,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -82,31 +31,118 @@
 				}
 			}
 		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "bde6b2f3-8560-11f0-bed8-458bae1d4857",
+				"layer": "Entities",
+				"x": 32,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields" : {}
+			}
+		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "88347780-8560-11f0-beea-f3870211d384",
+				"iid": "bde6b2f4-8560-11f0-bed8-e7088ade1a53",
 				"layer": "Entities",
 				"x": 256,
-				"y": 112,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Swap"
+					"item": "Knockback"
 				}
 			},
 			{
 				"id": "Item",
-				"iid": "8a4bbec0-8560-11f0-beea-719820270a11",
+				"iid": "4c4625d0-8560-11f0-bed8-9f76ea82c491",
 				"layer": "Entities",
-				"x": 240,
-				"y": 112,
+				"x": 480,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Swap"
+					"item": "Heavy"
+				}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "bde6b2f5-8560-11f0-bed8-d995f6e41dc6",
+				"layer": "Entities",
+				"x": 16,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "433c9c30-8560-11f0-bed8-650035d21c35",
+							"layerIid": "bde6b2f1-8560-11f0-bed8-8172004db009",
+							"levelIid": "bde6b2f0-8560-11f0-bed8-6b0e69923a67",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Right"
+				}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "bde6b2f6-8560-11f0-bed8-7b958e271535",
+				"layer": "Entities",
+				"x": 48,
+				"y": 160,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			},
+			{
+				"id": "Gate",
+				"iid": "433c9c30-8560-11f0-bed8-650035d21c35",
+				"layer": "Entities",
+				"x": 448,
+				"y": 160,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			}
+		],
+		"Pressure_Trigger": [
+			{
+				"id": "Pressure_Trigger",
+				"iid": "e324b210-8560-11f0-bed8-51e7999b81ec",
+				"layer": "Entities",
+				"x": 304,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "bde6b2f6-8560-11f0-bed8-7b958e271535",
+							"layerIid": "bde6b2f1-8560-11f0-bed8-8172004db009",
+							"levelIid": "bde6b2f0-8560-11f0-bed8-6b0e69923a67",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
 				}
 			}
 		]

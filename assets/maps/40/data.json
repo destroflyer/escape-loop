@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_40",
-	"uniqueIdentifer": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
+	"uniqueIdentifer": "3c8d3000-8560-11f0-9558-950eabd52b6e",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "fc441941-8560-11f0-8f3f-49376cd8b319",
+				"iid": "3c8d3002-8560-11f0-9558-73116abeb61b",
 				"layer": "Entities",
-				"x": 288,
-				"y": 112,
+				"x": 208,
+				"y": 48,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,140 +34,70 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "fc441942-8560-11f0-8f3f-a12eb0dbe0b3",
+				"iid": "3c8d3003-8560-11f0-9558-3dd1ba161e46",
 				"layer": "Entities",
 				"x": 240,
-				"y": 160,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
 				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 4,
+					"autoShoot": false,
+					"shootCooldown": 1,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 3
+					"hoverTileHeight": 4
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "fc441943-8560-11f0-8f3f-a3307f7f2afc",
+				"iid": "3c8d3004-8560-11f0-9558-a56c812a50a3",
 				"layer": "Entities",
-				"x": 224,
-				"y": 256,
+				"x": 336,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Gate": [
-			{
-				"id": "Gate",
-				"iid": "67a23690-8560-11f0-8f3f-6952bf7bbec7",
-				"layer": "Entities",
-				"x": 256,
-				"y": 240,
-				"width": 16,
-				"height": 32,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
-			},
-			{
-				"id": "Gate",
-				"iid": "684ef150-8560-11f0-8f3f-750c39e8eb33",
-				"layer": "Entities",
-				"x": 288,
-				"y": 240,
-				"width": 16,
-				"height": 32,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
-			},
-			{
-				"id": "Gate",
-				"iid": "f3a3c6d0-8560-11f0-8f3f-01123ea4e4f0",
-				"layer": "Entities",
-				"x": 96,
-				"y": 64,
-				"width": 16,
-				"height": 64,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
-			}
-		],
 		"Pressure_Trigger": [
 			{
 				"id": "Pressure_Trigger",
-				"iid": "6bf14560-8560-11f0-8f3f-7de5f4adda1c",
+				"iid": "63f5d750-8560-11f0-9558-0beee8ce0631",
 				"layer": "Entities",
-				"x": 16,
-				"y": 112,
+				"x": 160,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 16217634,
 				"customFields": {
 					"gates": [
 						{
-							"entityIid": "67a23690-8560-11f0-8f3f-6952bf7bbec7",
-							"layerIid": "fc441940-8560-11f0-8f3f-9f1056a73116",
-							"levelIid": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
-				}
-			},
-			{
-				"id": "Pressure_Trigger",
-				"iid": "e5f03d20-8560-11f0-8f3f-05a9f0f88af6",
-				"layer": "Entities",
-				"x": 336,
-				"y": 160,
-				"width": 16,
-				"height": 16,
-				"color": 16217634,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "f3a3c6d0-8560-11f0-8f3f-01123ea4e4f0",
-							"layerIid": "fc441940-8560-11f0-8f3f-9f1056a73116",
-							"levelIid": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
+							"entityIid": "67f0d2b0-8560-11f0-9558-af7da4a24f55",
+							"layerIid": "3c8d3001-8560-11f0-9558-6545d4473cd9",
+							"levelIid": "3c8d3000-8560-11f0-9558-950eabd52b6e",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					]
 				}
 			}
 		],
-		"Toggle_Trigger": [
+		"Gate": [
 			{
-				"id": "Toggle_Trigger",
-				"iid": "2de8f670-8560-11f0-8f3f-9deb7090c714",
+				"id": "Gate",
+				"iid": "67f0d2b0-8560-11f0-9558-af7da4a24f55",
 				"layer": "Entities",
-				"x": 352,
-				"y": 208,
+				"x": 304,
+				"y": 160,
 				"width": 16,
-				"height": 16,
-				"color": 10626611,
+				"height": 32,
+				"color": 9149364,
 				"customFields": {
-					"autoRevertDuration": null,
-					"gates": [
-						{
-							"entityIid": "684ef150-8560-11f0-8f3f-750c39e8eb33",
-							"layerIid": "fc441940-8560-11f0-8f3f-9f1056a73116",
-							"levelIid": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Up"
+					"direction": null
 				}
 			}
 		]

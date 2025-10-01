@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_36",
-	"uniqueIdentifer": "ed4fb440-8560-11f0-b4b2-2d903cb02bb1",
+	"uniqueIdentifer": "bc91ae40-8560-11f0-b4b2-0d8c6e83390a",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -16,83 +16,126 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Start": [
-			{
-				"id": "Start",
-				"iid": "ed4fb442-8560-11f0-b4b2-7b91fdab0718",
-				"layer": "Entities",
-				"x": 96,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 11882632,
-				"customFields": {
-					"visible": true
-				}
-			}
-		],
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "ed4fb443-8560-11f0-b4b2-85af34172098",
+				"iid": "bc91ae43-8560-11f0-b4b2-43c37358702a",
 				"layer": "Entities",
-				"x": 400,
-				"y": 112,
+				"x": 96,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
 				"customFields": {
 					"autoShoot": true,
-					"shootCooldown": 1.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Left",
-					"hoverTileHeight": 1
-				}
-			},
-			{
-				"id": "Enemy",
-				"iid": "0ef1a0e0-8560-11f0-b4b2-3b8c532c2575",
-				"layer": "Entities",
-				"x": 160,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 0.25,
+					"shootCooldown": 0.5,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Right",
-					"hoverTileHeight": 5
+					"hoverTileHeight": 1
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "ed4fb444-8560-11f0-b4b2-172c6fb191c4",
+				"iid": "bc91ae44-8560-11f0-b4b2-7594afe0d6a8",
 				"layer": "Entities",
 				"x": 416,
-				"y": 112,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields" : {}
 			}
 		],
-		"Bouncer": [
+		"Gate": [
 			{
-				"id": "Bouncer",
-				"iid": "2c158a00-8560-11f0-b4b2-f5af9e1d13fe",
+				"id": "Gate",
+				"iid": "bc91d551-8560-11f0-b4b2-21c0fcc83aa1",
 				"layer": "Entities",
-				"x": 256,
-				"y": 144,
+				"x": 288,
+				"y": 128,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			},
+			{
+				"id": "Gate",
+				"iid": "78ec5740-8560-11f0-b4b2-03ce4040f26d",
+				"layer": "Entities",
+				"x": 320,
+				"y": 128,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "1d152b70-8560-11f0-b4b2-55de6cbe664f",
+				"layer": "Entities",
+				"x": 208,
+				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 2943221,
-				"customFields" : {}
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "bc91d551-8560-11f0-b4b2-21c0fcc83aa1",
+							"layerIid": "bc91ae41-8560-11f0-b4b2-81319e5b413f",
+							"levelIid": "bc91ae40-8560-11f0-b4b2-0d8c6e83390a",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
+				}
+			},
+			{
+				"id": "Toggle_Trigger",
+				"iid": "2e1261e0-8560-11f0-b4b2-9529404dd081",
+				"layer": "Entities",
+				"x": 304,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "78ec5740-8560-11f0-b4b2-03ce4040f26d",
+							"layerIid": "bc91ae41-8560-11f0-b4b2-81319e5b413f",
+							"levelIid": "bc91ae40-8560-11f0-b4b2-0d8c6e83390a",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Down"
+				}
+			}
+		],
+		"Start": [
+			{
+				"id": "Start",
+				"iid": "33949550-8560-11f0-b4b2-c5efc246f73b",
+				"layer": "Entities",
+				"x": 64,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 11882632,
+				"customFields": {
+					"visible": true
+				}
 			}
 		]
 	}
