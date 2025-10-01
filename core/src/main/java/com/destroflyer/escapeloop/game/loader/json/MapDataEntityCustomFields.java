@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 public class MapDataEntityCustomFields {
     // Start
     private boolean visible;
+    // Finish
+    private boolean outside;
     // Platform
     private Float circleMovementTileRadius;
     private Float circleMovementSpeed;

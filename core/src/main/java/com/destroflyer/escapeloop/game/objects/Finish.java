@@ -15,11 +15,14 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class Finish extends MapObject {
 
-    public Finish() {
+    public Finish(boolean outside) {
+        this.outside = outside;
         textureOffset = new Vector2(0, 0.125f);
         textureSize = new Vector2(0.75f, 0.75f);
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabDecorationsTextureRegion(1, 1, 2, 2);
+    private static final TextureRegion TEXTURE_REGION_DEFAULT = TextureUtil.loadLabDecorationsTextureRegion(1, 1, 2, 2);
+    private static final TextureRegion TEXTURE_REGION_OUTSIDE = TextureUtil.loadLabDecorationsTextureRegion(18, 7, 2, 2);
+    private boolean outside;
 
     @Override
     public void createBody() {
@@ -47,6 +50,6 @@ public class Finish extends MapObject {
 
     @Override
     public TextureRegion getSimpleTextureRegion() {
-        return TEXTURE_REGION;
+        return outside ? TEXTURE_REGION_OUTSIDE : TEXTURE_REGION_DEFAULT;
     }
 }

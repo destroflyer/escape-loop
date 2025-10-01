@@ -14,23 +14,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.destroflyer.escapeloop.Main;
-import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 import com.destroflyer.escapeloop.util.MapImport;
 import com.destroflyer.escapeloop.util.SkinUtil;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import lombok.Getter;
 
 public class MapSelectionState extends UiState {
 
-    private static final float MAXIMUM_DISPLAYED_MAPS = 100;
+    public static final float MAPS_COUNT = 100;
     private static final float MAPS_PER_ROW = 10;
 
-    @Getter
-    private int maximumMapIndex;
     private Table mapsTable;
     private ArrayList<TextButton> mapButtons = new ArrayList<>();
     private Label selectedMapLabel;
@@ -95,19 +88,16 @@ public class MapSelectionState extends UiState {
         if (MapImport.isSrcMapsDirectoryPathSet()) {
             MapImport.importAllMaps();
         }
-        maximumMapIndex = findMaximumMapIndex();
 
         mapsTable.clear();
         mapButtons.clear();
         int currentLevel = getCurrentLevel();
-        for (int mapIndex = 0; mapIndex < MAXIMUM_DISPLAYED_MAPS; mapIndex++) {
+        for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
             if ((mapIndex % MAPS_PER_ROW) == 0) {
                 mapsTable.row();
             }
-            boolean mapExists = mapIndex <= maximumMapIndex;
-            boolean isSelectable = mapExists && (mapIndex <= currentLevel);
             TextButton mapButton = new TextButton(getMapTitle(mapIndex), SkinUtil.getToggleButtonStyle(main.getSkinLarge()));
-            if (isSelectable) {
+            if (mapIndex <= currentLevel) {
                 int _mapIndex = mapIndex;
                 mapButton.addListener(new ClickListener() {
 
@@ -124,15 +114,7 @@ public class MapSelectionState extends UiState {
         }
         mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
 
-        selectMap(currentLevel);
-    }
-
-    private int findMaximumMapIndex() {
-        return Arrays.stream(new File(MapFileLoader.DIRECTORY).listFiles())
-            .map(File::getName)
-            .mapToInt(Integer::parseInt)
-            .max()
-            .getAsInt();
+        selectMap((int) Math.min(currentLevel, MAPS_COUNT - 1));
     }
 
     private int getCurrentLevel() {

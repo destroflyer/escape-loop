@@ -69,7 +69,7 @@ public class MapState extends State {
             int nextMapIndex = map.getMapIndex() + 1;
             preferences.putInteger("level", nextMapIndex);
             preferences.flush();
-            if (nextMapIndex < main.getMapSelectionState().getMaximumMapIndex()) {
+            if (nextMapIndex < MapSelectionState.MAPS_COUNT) {
                 switchToState(new MapState(nextMapIndex));
                 goToMapSelection = false;
             }

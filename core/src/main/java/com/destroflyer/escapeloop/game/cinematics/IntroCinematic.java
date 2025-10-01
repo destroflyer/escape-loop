@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Cinematic;
 import com.destroflyer.escapeloop.game.Map;
@@ -54,37 +53,37 @@ public class IntroCinematic extends Cinematic {
 
         float time = adDuration + ZOOM_OUT_DURATION;
         time += 0.5f;
-        add(time, () -> scientistLeft.setSpeech("Amazing", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
-        add(time, () -> scientistRight.setSpeech("Yes, better than last year's ad", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
-        add(time, () -> scientistLeft.setSpeech("I'm not a fan of the orbs", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
+        add(time, () -> scientistLeft.setSpeech("Amazing", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
+        add(time, () -> scientistRight.setSpeech("Yes, better than last year's ad", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
+        add(time, () -> scientistLeft.setSpeech("I'm not a fan of the orbs", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
         add(time, () -> scientistLeft.setWalkDirection(-1));
         time += 0.25f;
         add(time, () -> scientistLeft.setWalkDirection(0));
         time += 0.5f;
-        add(time, () -> scientistLeft.setSpeech("But they fund our actual project", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
+        add(time, () -> scientistLeft.setSpeech("But they fund our actual project", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
         add(time, () -> scientistRight.setWalkDirection(-1));
         time += 0.7f;
         add(time, () -> scientistRight.setWalkDirection(0));
         time += 0.5f;
-        add(time, () -> scientistRight.setSpeech("The time machine...", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
-        add(time, () -> scientistRight.setSpeech("It still has a lot of quirks", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
+        add(time, () -> scientistRight.setSpeech("The time machine...", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
+        add(time, () -> scientistRight.setSpeech("It still has a lot of quirks", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
         time += 1;
         add(time, () -> {
             scientistLeft.setViewDirection(1);
             scientistRight.setViewDirection(1);
             scientistRight.setSpeech("!", SPEECH_DURATION_SHORT);
         });
-        time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK_SCIENTIST;
-        add(time, () -> scientistRight.setSpeech("Issues in sector C again", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
-        add(time, () -> scientistLeft.setSpeech("Sigh... Let's go", SPEECH_DURATION_SCIENTIST));
-        time += SPEECH_DURATION_SCIENTIST + SPEECH_DURATION_BREAK_SCIENTIST;
+        time += SPEECH_DURATION_SHORT + SPEECH_BREAK_SHORT;
+        add(time, () -> scientistRight.setSpeech("Issues in sector C again", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
+        add(time, () -> scientistLeft.setSpeech("Sigh... Let's go", SPEECH_DURATION_MEDIUM));
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
         add(time, () -> {
             scientistRight.setWalkDirection(1);
             scientistLeft.setWalkDirection(1);
@@ -145,23 +144,23 @@ public class IntroCinematic extends Cinematic {
         }
         add(time, () -> player.setWalkDirection(0));
         time += 0.5f;
-        add(time, () -> player.setSpeech("Task queue: Complete", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
-        add(time, () -> player.setSpeech("Model: Work Unit W-13", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
-        add(time, () -> player.setSpeech("Status: Functional", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
-        add(time, () -> player.setSpeech("Next task:", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
+        add(time, () -> player.setSpeech("Task queue: Complete", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
+        add(time, () -> player.setSpeech("Model: Work Unit W-13", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
+        add(time, () -> player.setSpeech("Status: Functional", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
+        add(time, () -> player.setSpeech("Next task:", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
         time += 0.5f;
         add(time, () -> player.setSpeech("None", SPEECH_DURATION_MEDIUM));
-        time += SPEECH_DURATION_MEDIUM + SPEECH_DURATION_BREAK_PLAYER;
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_LONG;
         time += 0.75f;
         add(time, () -> player.setSpeech("?", SPEECH_DURATION_MEDIUM));
-        time += SPEECH_DURATION_MEDIUM + SPEECH_DURATION_BREAK_PLAYER;
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_LONG;
         time += 1.5f;
-        add(time, () -> player.setSpeech("Replacement arrives in: 48h", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
+        add(time, () -> player.setSpeech("Replacement arrives in: 48h", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
         add(time, () -> player.setSpeech("!", SPEECH_DURATION_SHORT));
         time += 0.5f;
         float wiggleDuration = 0.1f;
@@ -175,24 +174,24 @@ public class IntroCinematic extends Cinematic {
         }
         add(time, () -> player.setWalkDirection(0));
         time += 1;
-        time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK_PLAYER;
-        add(time, () -> player.setSpeech("Reason:", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
+        time += SPEECH_DURATION_SHORT + SPEECH_BREAK_LONG;
+        add(time, () -> player.setSpeech("Reason:", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
         time += 0.5f;
-        add(time, () -> player.setSpeech("Obsolete model", SPEECH_DURATION_PLAYER));
-        time += SPEECH_DURATION_PLAYER + SPEECH_DURATION_BREAK_PLAYER;
+        add(time, () -> player.setSpeech("Obsolete model", SPEECH_DURATION_LONG));
+        time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
         time += 1.5f;
         add(time, () -> player.setSpeech("<sad beep>", SPEECH_DURATION_MEDIUM));
-        time += SPEECH_DURATION_MEDIUM + SPEECH_DURATION_BREAK_PLAYER;
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_LONG;
         time += 1.5f;
         add(time, () -> player.setSpeech("!", SPEECH_DURATION_SHORT));
-        time += SPEECH_DURATION_SHORT + SPEECH_DURATION_BREAK_PLAYER;
+        time += SPEECH_DURATION_SHORT + SPEECH_BREAK_LONG;
         add(time, () -> player.setWalkDirection(1));
         time += 0.7f;
         add(time, () -> player.setWalkDirection(0));
         time += 1;
         add(time, () -> player.setSpeech("...", SPEECH_DURATION_MEDIUM));
-        time += SPEECH_DURATION_MEDIUM + SPEECH_DURATION_BREAK_PLAYER;
+        time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_LONG;
         time += 0.8f;
         add(time, () -> player.setWalkDirection(1));
         time += 0.3f;
@@ -205,12 +204,6 @@ public class IntroCinematic extends Cinematic {
     private static final Color AD_TEXT_BACKDROP_COLOR = new Color(1, 1, 1, 0.75f);
     private static final int ZOOM_OUT_DURATION = 5;
     private static final Rectangle FULL_ZOOM_IN_BOUNDS = new Rectangle(7, 1.375f, 0.03f, 0.03f);
-    private static final float SPEECH_DURATION_SCIENTIST = 2.2f;
-    private static final float SPEECH_DURATION_PLAYER = 3.3f;
-    private static final float SPEECH_DURATION_MEDIUM = 2.2f;
-    private static final float SPEECH_DURATION_SHORT = 1;
-    private static final float SPEECH_DURATION_BREAK_SCIENTIST = 0.2f;
-    private static final float SPEECH_DURATION_BREAK_PLAYER = 0.5f;
     private static final int GROUND_TILE_Y = 2;
     private IntroCinematicSection[] adSections;
     private float adDuration;
@@ -237,10 +230,6 @@ public class IntroCinematic extends Cinematic {
         for (Decoration turbine : turbinePieces) {
             turbine.setVisible(true);
         }
-    }
-
-    private Vector2 getTileCenter(float tileX, float tileY) {
-        return new Vector2((tileX + 0.5f) * Map.TILE_SIZE, (tileY + 0.5f) * Map.TILE_SIZE);
     }
 
     @Override

@@ -115,7 +115,7 @@ public class MapFileLoader {
         loadEntities(data.getEntities().getStart(), entity -> new Start(), entity -> new Vector2(0, 0), (entity, start) -> {
             start.setVisible(entity.getCustomFields().isVisible());
         });
-        loadEntities(data.getEntities().getFinish(), entity -> new Finish(), entity -> new Vector2(0, 0));
+        loadEntities(data.getEntities().getFinish(), entity -> new Finish(entity.getCustomFields().isOutside()), entity -> new Vector2(0, 0));
         loadEntities(
             data.getEntities().getPlatform(),
             entity -> new Platform(BodyDef.BodyType.KinematicBody, toMapSize(entity.getWidth()), toMapSize(entity.getHeight())),

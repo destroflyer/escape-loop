@@ -26,6 +26,7 @@ public class Item extends MapObject {
     protected Character holder;
     protected Character thrower;
     private ArrayList<Character> blockedPickupCharacters = new ArrayList<>();
+    private boolean isBlocking;
 
     @Override
     public void createBody() {
@@ -43,6 +44,11 @@ public class Item extends MapObject {
         filter.categoryBits = Collisions.ITEM;
         filter.maskBits = Collisions.GROUND | Collisions.CHARACTER | Collisions.BOUNCER;
         fixture.setFilterData(filter);
+    }
+
+    public void setBlocking() {
+        isBlocking = true;
+        fixture.getFilterData().maskBits |= Collisions.ITEM;
     }
 
     @Override
@@ -80,7 +86,7 @@ public class Item extends MapObject {
     @Override
     public void preSolve(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
         super.preSolve(mapObject, ownFixture, otherFixture, contact);
-        if (mapObject instanceof Character) {
+        if (!isBlocking && (mapObject instanceof Character)) {
             contact.setEnabled(false);
         }
     }
