@@ -24,6 +24,9 @@ public class OutroCinematic extends Cinematic {
         Scientist scientistLeft = scientists.get(1);
         Scientist scientistRight = scientists.get(0);
 
+        scientistLeft.setViewDirection(1);
+        scientistRight.setViewDirection(1);
+
         float time = 1;
         add(time, () -> {
             scientistLeft.setViewDirection(-1);

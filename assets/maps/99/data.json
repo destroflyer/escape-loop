@@ -85,7 +85,7 @@
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"direction": "Right"
+					"direction": "Left"
 				}
 			},
 			{
@@ -98,7 +98,7 @@
 				"height": 16,
 				"color": 1578021,
 				"customFields": {
-					"direction": "Right"
+					"direction": "Left"
 				}
 			}
 		]
