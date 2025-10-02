@@ -6,20 +6,32 @@ import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.cinematics.IntroCinematic;
 import com.destroflyer.escapeloop.game.cinematics.OutroCinematic;
 import com.destroflyer.escapeloop.game.objects.Decoration;
+import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
 import com.destroflyer.escapeloop.game.objects.items.HeavyItem;
 import com.destroflyer.escapeloop.game.objects.items.KnockbackItem;
 import com.destroflyer.escapeloop.game.objects.items.SwapItem;
 
+import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
-import lombok.AllArgsConstructor;
-
-@AllArgsConstructor
 public class MapCustomLoader {
 
+    public MapCustomLoader(Map map) {
+        this.map = map;
+        reset();
+    }
     private Map map;
+    private List<Gate> gates;
+    private Float finalSceneTimeSinceStart;
+    private boolean finalSceneEndTriggered;
+
+    public void reset() {
+        finalSceneTimeSinceStart = null;
+        finalSceneEndTriggered = false;
+    }
 
     public Cinematic getCinematic() {
         switch (map.getMapIndex()) {
@@ -56,6 +68,37 @@ public class MapCustomLoader {
                             item.setBlocking();
                             item.getBody().setTransform(new Vector2((x + random.nextFloat()) * Map.TILE_SIZE, (y + random.nextFloat()) * Map.TILE_SIZE), 0);
                         }
+                    }
+                }
+                break;
+        }
+        gates = map.getObjects().stream()
+            .filter(mapObject -> mapObject instanceof Gate)
+            .map(mapObject -> (Gate) mapObject).collect(Collectors.toList());
+    }
+
+    public void update(float tpf) {
+        switch (map.getMapIndex()) {
+            case 99:
+                if (finalSceneTimeSinceStart == null) {
+                    if (map.getPlayer().getBody().getPosition().x > (6 * Map.TILE_SIZE)) {
+                        Gate gateTop = gates.get(0);
+                        gateTop.setOpening(true);
+                        finalSceneTimeSinceStart = 0f;
+                    }
+                } else if (!finalSceneEndTriggered) {
+                    finalSceneTimeSinceStart += tpf;
+                    if (finalSceneTimeSinceStart < 0.75f) {
+                        map.getPlayer().setSpeech(null);
+                    } else if (finalSceneTimeSinceStart < 1.5f) {
+                        map.getPlayer().setSpeech("!");
+                    } else if (finalSceneTimeSinceStart < 3.5f) {
+                        map.getPlayer().setSpeech(null);
+                    } else {
+                        map.getPlayer().setSpeech("x_x", 4f);
+                        map.getPlayer().setWalkDirection(0);
+                        map.setAcceptsInputs(false);
+                        finalSceneEndTriggered = true;
                     }
                 }
                 break;

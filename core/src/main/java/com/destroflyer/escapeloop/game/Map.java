@@ -11,6 +11,7 @@ import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.states.MusicState;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 
@@ -59,6 +60,8 @@ public class Map {
     private ArrayList<MapText> texts = new ArrayList<>();
     @Getter
     private Cinematic cinematic;
+    @Setter
+    private boolean acceptsInputs;
     @Getter
     private boolean finished;
 
@@ -78,12 +81,14 @@ public class Map {
     }
 
     public void reset() {
+        mapCustomLoader.reset();
         totalTime = 0;
         playerPasts.clear();
         if (cinematic != null) {
             cinematic.finish();
         }
         cinematic = null;
+        acceptsInputs = true;
         finished = false;
         start();
     }
@@ -149,7 +154,7 @@ public class Map {
                 reset();
             }
         }
-        // Execute the physics step in two halves (one before and one after the game object updates), which ensures:
+        // Execute the physics step in two halves (one before and one after the game logic updates), which ensures:
         // - In the first frame, the initial contacts are up-to-date when the game objects execute their updates (e.g. important for player characterCollisionsEnabled)
         // - When game objects change their fixtures during update (e.g. gates), they destroy the old fixture which immediately ends the contact. By executing another physics step afterwards, the new fixture contact gets started before rendering+inputs (e.g. important for character isGrounded)
         Runnable runHalfStep = () -> {
@@ -160,6 +165,7 @@ public class Map {
         for (MapObject mapObject : objects) {
             mapObject.update(tpf);
         }
+        mapCustomLoader.update(tpf);
         runQueuedTasks();
         runHalfStep.run();
         if (!isPlayerAlive(player)) {
@@ -183,8 +189,10 @@ public class Map {
     }
 
     public void applyInput(PlayerInput input) {
-        input.apply(player);
-        currentPlayerCurrentFrameInputs.add(input);
+        if (acceptsInputs) {
+            input.apply(player);
+            currentPlayerCurrentFrameInputs.add(input);
+        }
     }
 
     public void onFinish() {
