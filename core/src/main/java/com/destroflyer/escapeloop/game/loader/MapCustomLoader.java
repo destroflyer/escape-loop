@@ -14,6 +14,7 @@ import com.destroflyer.escapeloop.game.objects.Scientist;
 import com.destroflyer.escapeloop.game.objects.items.HeavyItem;
 import com.destroflyer.escapeloop.game.objects.items.KnockbackItem;
 import com.destroflyer.escapeloop.game.objects.items.SwapItem;
+import com.destroflyer.escapeloop.states.MapState;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -148,6 +149,7 @@ public class MapCustomLoader {
                                                                     map.getPlayer().setSpeech("<CONTINUE?>", 2.5f);
                                                                     map.queueTask(() -> {
                                                                         map.getPlayer().setSpeech("<click>");
+                                                                        map.queueTask(() -> map.getMapState().switchToState(new MapState(0)), 0.5f);
                                                                     }, 6);
                                                                 }, 4);
                                                             }, 4);
