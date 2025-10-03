@@ -9,7 +9,7 @@ import com.destroflyer.escapeloop.game.loader.MapCustomLoader;
 import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.states.MapState;
-import com.destroflyer.escapeloop.states.MusicState;
+import com.destroflyer.escapeloop.states.AudioState;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class Map {
 
-    public Map(int mapIndex, MapState mapState, MusicState musicState) {
+    public Map(int mapIndex, MapState mapState, AudioState audioState) {
         this.mapIndex = mapIndex;
         this.mapState = mapState;
-        this.musicState = musicState;
+        this.audioState = audioState;
         mapFileLoader = new MapFileLoader(this);
         mapCustomLoader = new MapCustomLoader(this);
         world = new World(GRAVITY, false);
@@ -38,7 +38,7 @@ public class Map {
     @Getter
     private MapState mapState;
     @Getter
-    private MusicState musicState;
+    private AudioState audioState;
     private MapFileLoader mapFileLoader;
     private MapCustomLoader mapCustomLoader;
     @Getter
