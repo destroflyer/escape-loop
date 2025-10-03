@@ -75,6 +75,7 @@ public class IntroCinematic extends Cinematic {
         time += SPEECH_DURATION_MEDIUM + SPEECH_BREAK_SHORT;
         time += 1;
         add(time, () -> {
+            map.getAudioState().playSound("alarm");
             scientistLeft.setViewDirection(1);
             scientistRight.setViewDirection(1);
             scientistRight.setSpeech("!", SPEECH_DURATION_SHORT);

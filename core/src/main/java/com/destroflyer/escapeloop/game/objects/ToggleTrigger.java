@@ -50,6 +50,7 @@ public class ToggleTrigger extends MapObject {
         for (Gate gate : gates) {
             gate.setOpening(!gate.isOpening());
         }
+        map.getAudioState().playSound("trigger");
     }
 
     @Override

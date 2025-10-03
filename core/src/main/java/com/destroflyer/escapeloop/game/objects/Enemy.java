@@ -61,6 +61,9 @@ public class Enemy extends Character {
             });
             remainingShootCooldown = shootCooldown;
             setOneTimeAnimation(ANIMATION_SHOOT);
+            if (map.getSettingsState().getPreferences().getBoolean("playSoundEnemyShot")) {
+                map.getAudioState().playSound("shot");
+            }
         }
     }
 

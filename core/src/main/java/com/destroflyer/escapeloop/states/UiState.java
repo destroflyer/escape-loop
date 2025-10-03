@@ -28,6 +28,12 @@ public abstract class UiState extends State {
         }
     }
 
+    protected void playButtonSound() {
+        if (main.getSettingsState().getPreferences().getBoolean("playSoundMenuButton")) {
+            main.getAudioState().playSound("button");
+        }
+    }
+
     public void dispose() {
         stage.dispose();
     }

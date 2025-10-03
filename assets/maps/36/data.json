@@ -106,7 +106,7 @@
 				"id": "Toggle_Trigger",
 				"iid": "2e1261e0-8560-11f0-b4b2-9529404dd081",
 				"layer": "Entities",
-				"x": 304,
+				"x": 368,
 				"y": 176,
 				"width": 16,
 				"height": 16,
@@ -121,7 +121,7 @@
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
-					"direction": "Down"
+					"direction": "Left"
 				}
 			}
 		],

@@ -44,7 +44,7 @@ public class MapState extends State {
         childStates.add(mapRenderState);
         childStates.add(mapIngameState);
         childStates.add(mapPauseState);
-        map = new Map(mapIndex, this, main.getAudioState());
+        map = new Map(mapIndex, this, main.getSettingsState(), main.getAudioState());
     }
 
     @Override
@@ -77,6 +77,7 @@ public class MapState extends State {
         if (goToMapSelection) {
             switchToState(main.getMapSelectionState());
         }
+        map.getAudioState().playSound("win");
     }
 
     public void openPauseMenu() {

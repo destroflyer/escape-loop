@@ -63,16 +63,20 @@ public class PressureTrigger extends MapObject {
     }
 
     private void updateState() {
-        state = activeContacts.size() > 0;
-        for (Gate gate : gates) {
-            boolean isGateOpening = map.getObjects().stream().anyMatch(mapObject -> {
-                if (mapObject instanceof PressureTrigger) {
-                    PressureTrigger pressureTrigger = (PressureTrigger) mapObject;
-                    return pressureTrigger.isState() && pressureTrigger.getGates().contains(gate);
-                }
-                return false;
-            });
-            gate.setOpening(isGateOpening);
+        boolean newState = activeContacts.size() > 0;
+        if (newState != state) {
+            state = newState;
+            for (Gate gate : gates) {
+                boolean isGateOpening = map.getObjects().stream().anyMatch(mapObject -> {
+                    if (mapObject instanceof PressureTrigger) {
+                        PressureTrigger pressureTrigger = (PressureTrigger) mapObject;
+                        return pressureTrigger.isState() && pressureTrigger.getGates().contains(gate);
+                    }
+                    return false;
+                });
+                gate.setOpening(isGateOpening);
+            }
+            map.getAudioState().playSound("trigger");
         }
     }
 

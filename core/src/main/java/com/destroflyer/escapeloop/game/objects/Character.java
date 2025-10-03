@@ -140,6 +140,7 @@ public class Character extends MapObject {
     public void jump() {
         if (isOnGround()) {
             applyVerticalImpulse(jumpImpulse);
+            map.getAudioState().playSound("jump");
         }
     }
 
@@ -155,6 +156,7 @@ public class Character extends MapObject {
     public void pickup(Item item) {
         this.item = item;
         item.onPickup(this);
+        map.getAudioState().playSound("pickup");
     }
 
     public void action() {
@@ -166,6 +168,7 @@ public class Character extends MapObject {
                 toggleTrigger.toggle();
             }
         }
+        map.getAudioState().playSound("action");
     }
 
     private void throwItem() {

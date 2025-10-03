@@ -10,14 +10,17 @@ import java.util.HashMap;
 public class AudioState extends State {
 
     private HashMap<String, Music> musics = new HashMap<>();
-    private HashMap<String, Sound> sounds = new HashMap<>();
+    private HashMap<String, SoundWithVolume> sounds = new HashMap<>();
     private Music currentMusic;
 
     @Override
     public void create() {
         super.create();
         loadMusics("main", "intro");
-        loadSounds("action", "alarm", "bounce", "button", "explosion", "jump", "loss", "pickup", "shot", "trigger", "win");
+        loadSounds("action", "button", "explosion", "jump", "loss", "pickup", "shot", "win");
+        loadSound("alarm", 1);
+        loadSound("bounce", 2);
+        loadSound("trigger", 3);
         playMusic("main");
     }
 
@@ -34,13 +37,15 @@ public class AudioState extends State {
 
     private void loadSounds(String... names) {
         for (String name : names) {
-            loadSound(name);
+            loadSound(name, 1);
         }
     }
 
-    private void loadSound(String name) {
+    private void loadSound(String name, float baseVolume) {
         Sound sound = Gdx.audio.newSound(Gdx.files.internal("./sounds/" + name + ".mp3"));
-        sounds.put(name, sound);
+        // Ensure everything is preloaded+prepared as much as possible
+        sound.play(0);
+        sounds.put(name, new SoundWithVolume(sound, baseVolume));
     }
 
     public void playMusic(String name) {
@@ -63,7 +68,8 @@ public class AudioState extends State {
     }
 
     public void playSound(String name) {
-        sounds.get(name).play(getVolume());
+        SoundWithVolume sound = sounds.get(name);
+        sound.getSound().play(getVolume("volumeMaster") * getVolume("volumeSound") * sound.getVolume());
     }
 
     public void pauseMusic() {
@@ -89,12 +95,12 @@ public class AudioState extends State {
     public void update(float tpf) {
         super.update(tpf);
         if (currentMusic != null) {
-            currentMusic.setVolume(getVolume());
+            currentMusic.setVolume(getVolume("volumeMaster") * getVolume("volumeMusic"));
         }
     }
 
-    private float getVolume() {
-        return main.getSettingsState().getPreferences().getFloat("musicVolume");
+    private float getVolume(String key) {
+        return main.getSettingsState().getPreferences().getFloat(key);
     }
 
     @Override
@@ -102,8 +108,8 @@ public class AudioState extends State {
         for (Music music : musics.values()) {
             music.dispose();
         }
-        for (Sound sound : sounds.values()) {
-            sound.dispose();
+        for (SoundWithVolume sound : sounds.values()) {
+            sound.getSound().dispose();
         }
     }
 }

@@ -22,10 +22,14 @@ public class MainMenuState extends UiState {
 
         Table menuTable = new Table();
 
-        addButton(menuTable, "Play", () -> switchToState(main.getMapSelectionState()));
+        addButton(menuTable, "Play", () -> {
+            switchToState(main.getMapSelectionState());
+            playButtonSound();
+        });
         addButton(menuTable, "Settings", () -> {
             main.removeState(this);
             main.openSettings(() -> main.addState(this));
+            playButtonSound();
         }).padLeft(10);
         addButton(menuTable, "Exit", () -> Gdx.app.exit()).padLeft(10);
 

@@ -27,7 +27,11 @@ public class SettingsState extends UiState {
 
     public SettingsState() {
         preferences = Gdx.app.getPreferences("escape-loop");
-        setDefaultFloat("musicVolume", 0.1f);
+        setDefaultFloat("volumeMaster", 0.1f);
+        setDefaultFloat("volumeMusic", 1);
+        setDefaultFloat("volumeSound", 1);
+        setDefaultBoolean("playSoundMenuButton", true);
+        setDefaultBoolean("playSoundEnemyShot", true);
         setDefaultFloat("playerPastsTrajectoryDuration", 3);
         setDefaultBoolean("playerPastsDistinctColors", false);
         setDefaultInteger("keyUp", Input.Keys.W);
@@ -55,7 +59,11 @@ public class SettingsState extends UiState {
         Label titleLabel = new Label("Settings", main.getSkinLarge());
         menuTable.add(titleLabel).colspan(2);
 
-        addSlider(menuTable, "Music volume", "musicVolume", 0, 1, 0.01f, 2);
+        addSlider(menuTable, "Master volume", "volumeMaster", 0, 1, 0.01f, 2);
+        addSlider(menuTable, "Music volume", "volumeMusic", 0, 2, 0.01f, 2);
+        addSlider(menuTable, "Sound volume", "volumeSound", 0, 2, 0.01f, 2);
+        addCheckbox(menuTable, "Play sound - Menu buttons", "playSoundMenuButton");
+        addCheckbox(menuTable, "Play sound - Bullets", "playSoundEnemyShot");
         addSlider(menuTable, "Player pasts - Trajectory duration (s)", "playerPastsTrajectoryDuration", 0, 6, 0.1f, 1);
         addCheckbox(menuTable, "Player pasts - Distinct colors", "playerPastsDistinctColors");
         addKeyButton(menuTable, "Up", "keyUp");

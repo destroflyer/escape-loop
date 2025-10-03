@@ -86,6 +86,7 @@ public abstract class MapObject {
         Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
         body.setLinearVelocity(new Vector2());
         body.applyLinearImpulse(impulse, body.getPosition(), true);
+        map.getAudioState().playSound("bounce");
     }
 
     public RayCastResult rayCast(Vector2 point1, Vector2 point2, Predicate<RayCastResult> filter) {

@@ -49,6 +49,7 @@ public class MapSelectionState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 backToMainMenu();
+                playButtonSound();
             }
         });
         stage.addActor(backButton);
@@ -74,6 +75,7 @@ public class MapSelectionState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 switchToState(new MapState(selectedMapIndex));
+                playButtonSound();
             }
         });
         selectedMapTable.add(playButton).width(playTableWidth).fill();
