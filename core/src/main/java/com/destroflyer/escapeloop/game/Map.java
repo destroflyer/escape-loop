@@ -45,7 +45,7 @@ public class Map {
     private float time;
     @Getter
     private ArrayList<MapObject> objects = new ArrayList<>();
-    private ArrayList<Runnable> queuedTasks = new ArrayList<>();
+    private ArrayList<QueuedTask> queuedTasks = new ArrayList<>();
     @Getter
     private World world;
     @Getter
@@ -141,6 +141,7 @@ public class Map {
     public void update(float tpf) {
         totalTime += tpf;
         time += tpf;
+        updateQueuedTasks(tpf);
         currentPlayerFrames.add(new PlayerPastFrame(time, player.getBody().getPosition().cpy(), new ArrayList<>(currentPlayerCurrentFrameInputs)));
         currentPlayerCurrentFrameInputs.clear();
         for (PlayerPast playerPast : playerPasts) {
@@ -165,7 +166,7 @@ public class Map {
         for (MapObject mapObject : objects) {
             mapObject.update(tpf);
         }
-        mapCustomLoader.update(tpf);
+        mapCustomLoader.update();
         runQueuedTasks();
         runHalfStep.run();
         if (!isPlayerAlive(player)) {
@@ -177,15 +178,29 @@ public class Map {
         return objects.contains(player);
     }
 
-    public void queueTask(Runnable task) {
-        queuedTasks.add(task);
+    public void queueTask(Runnable runnable) {
+        queueTask(runnable, 0);
+    }
+
+    public void queueTask(Runnable runnable, float remainingTime) {
+        queuedTasks.add(new QueuedTask(runnable, remainingTime));
+    }
+
+    private void updateQueuedTasks(float tpf) {
+        for (QueuedTask queuedTask : queuedTasks) {
+            queuedTask.update(tpf);
+        }
     }
 
     private void runQueuedTasks() {
-        for (Runnable queuedTask : queuedTasks) {
-            queuedTask.run();
+        for (int i = 0; i < queuedTasks.size(); i++) {
+            QueuedTask queuedTask = queuedTasks.get(i);
+            if (queuedTask.shouldRun()) {
+                queuedTask.run();
+                queuedTasks.remove(i);
+                i--;
+            }
         }
-        queuedTasks.clear();
     }
 
     public void applyInput(PlayerInput input) {

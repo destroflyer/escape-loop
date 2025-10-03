@@ -69,7 +69,7 @@ public class MapRenderState extends State {
         Cinematic cinematic = mapState.getMap().getCinematic();
         updateBounds(cinematic);
         drawFullScreenTexture(backgroundTexture);
-        drawMapObjects(mapObject -> true, MapRenderLayer.BACKGROUND);
+        drawMapObjects(MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
         drawFullScreenTexture(decorationTexture);
         if (cinematic == null) {
@@ -78,6 +78,7 @@ public class MapRenderState extends State {
         drawMapObjects(mapObject -> !(mapObject instanceof Character) && !(mapObject instanceof Item), MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Character, MapRenderLayer.FOREGROUND);
         drawMapObjects(mapObject -> mapObject instanceof Item, MapRenderLayer.FOREGROUND);
+        drawMapObjects(MapRenderLayer.SPEECH);
         if (cinematic != null) {
             cinematic.render(spriteBatch, shapeRenderer);
         }
@@ -107,6 +108,10 @@ public class MapRenderState extends State {
             String text = main.getSettingsState().replacePlaceholders(mapText.getText());
             drawCenteredText(x, y, text, Color.WHITE, mapText.getWidth());
         }
+    }
+
+    private void drawMapObjects(MapRenderLayer layer) {
+        drawMapObjects(mapObject -> true, layer);
     }
 
     private void drawMapObjects(Predicate<MapObject> filter, MapRenderLayer layer) {
@@ -173,12 +178,14 @@ public class MapRenderState extends State {
                 if (mapObject.hasTexture()) {
                     drawTexture(mapObject, leftBottomWithDirectionTransform, textureWidth, textureHeight, alpha);
                 }
+                if (debug) {
+                    drawDebugShape(mapObject, bodyX, bodyY, alpha);
+                }
+                break;
+            case SPEECH:
                 String speech = mapObject.getSpeech();
                 if (speech != null) {
                     drawSpeech(speech, centerTopTransform);
-                }
-                if (debug) {
-                    drawDebugShape(mapObject, bodyX, bodyY, alpha);
                 }
                 break;
         }
