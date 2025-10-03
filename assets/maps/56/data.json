@@ -37,7 +37,7 @@
 				"iid": "561a24a3-8560-11f0-b4b6-b10d5d484f2c",
 				"layer": "Entities",
 				"x": 176,
-				"y": 144,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -52,7 +52,20 @@
 				"iid": "561a4bb1-8560-11f0-b4b6-c770411bac1c",
 				"layer": "Entities",
 				"x": 96,
-				"y": 160,
+				"y": 144,
+				"width": 48,
+				"height": 16,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			},
+			{
+				"id": "Gate",
+				"iid": "6c470830-8560-11f0-bded-2b457f25b9ee",
+				"layer": "Entities",
+				"x": 96,
+				"y": 176,
 				"width": 48,
 				"height": 16,
 				"color": 9149364,
@@ -67,7 +80,7 @@
 				"iid": "561a4bb2-8560-11f0-b4b6-5d9bcb4075b7",
 				"layer": "Entities",
 				"x": 416,
-				"y": 144,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 16217634,
@@ -89,12 +102,36 @@
 				"iid": "561a4bb8-8560-11f0-b4b6-85688c82f40e",
 				"layer": "Entities",
 				"x": 224,
-				"y": 144,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
 					"item": "Heavy"
+				}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "664e6810-8560-11f0-bded-d9e833842691",
+				"layer": "Entities",
+				"x": 400,
+				"y": 256,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"autoRevertDuration": null,
+					"gates": [
+						{
+							"entityIid": "6c470830-8560-11f0-bded-2b457f25b9ee",
+							"layerIid": "561a24a1-8560-11f0-b4b6-ab6d18af6817",
+							"levelIid": "561a24a0-8560-11f0-b4b6-ad5f9ae0d9f0",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
 				}
 			}
 		]

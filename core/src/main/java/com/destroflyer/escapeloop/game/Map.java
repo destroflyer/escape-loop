@@ -77,6 +77,7 @@ public class Map {
         if (playerPasts.size() < maximumPlayerPasts) {
             playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerFrames)));
             start();
+            audioState.playSound("time_machine");
         }
     }
 
