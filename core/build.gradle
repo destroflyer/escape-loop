@@ -11,4 +11,9 @@ dependencies {
 
   compileOnly("org.projectlombok:lombok:1.18.38")
   annotationProcessor("org.projectlombok:lombok:1.18.38")
+
+  // EscapeLoop
+  implementation "com.auth0:java-jwt:${javaJwtVersion}"
+  implementation "org.bouncycastle:bcprov-jdk18on:${bouncycastleVersion}"
+  implementation "org.bouncycastle:bcpkix-jdk18on:${bouncycastleVersion}"
 }

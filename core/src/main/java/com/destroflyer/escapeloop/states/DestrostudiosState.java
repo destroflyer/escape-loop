@@ -2,26 +2,48 @@ package com.destroflyer.escapeloop.states;
 
 import com.badlogic.gdx.Net;
 import com.destroflyer.escapeloop.State;
+import com.destroflyer.escapeloop.states.models.Account;
 import com.destroflyer.escapeloop.states.models.Highscore;
 import com.destroflyer.escapeloop.states.models.HighscoreDto;
 import com.destroflyer.escapeloop.states.models.SetHighscoreDto;
+import com.destroflyer.escapeloop.util.AuthTokenUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Consumer;
+
+import lombok.Getter;
 
 public class DestrostudiosState extends State {
 
     private static final int APP_ID = 16;
     private static final String BASE_URL = "https://destrostudios.com:8080";
     private static final String HIGHSCORE_EVALUATION = "LOWER";
-    private HashMap<String, ArrayList<Highscore>> highscores = new HashMap<>();
+    private static final int HIGHSCORES_PER_MAP = 5;
+    @Getter
+    private Account account;
+    @Getter
+    private HashMap<String, Highscore> personalRecords = new HashMap<>();
+    @Getter
+    private HashMap<String, ArrayList<Highscore>> worldRecords = new HashMap<>();
+
+    @Override
+    public void create() {
+        super.create();
+        account = AuthTokenUtil.getAccount(main.getAuthToken());
+    }
 
     public void requestHighscores() {
-        request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores", null, HighscoreDto[].class, (highscoreDtos) -> {
-            highscores.clear();
+        request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores?evaluation=" + HIGHSCORE_EVALUATION + "&login=" + "destroflyer", null, HighscoreDto[].class, (highscoreDtos) -> {
+            personalRecords.clear();
             for (HighscoreDto highscoreDto : highscoreDtos) {
-                highscores.computeIfAbsent(highscoreDto.getContext(), mapId -> new ArrayList<>()).add(new Highscore(highscoreDto.getUser().getLogin(), highscoreDto.getScore()));
+                personalRecords.put(highscoreDto.getContext(), new Highscore(highscoreDto.getUser().getLogin(), highscoreDto.getScore()));
+            }
+        });
+        request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores?evaluation=" + HIGHSCORE_EVALUATION + "&limitPerContext=" + HIGHSCORES_PER_MAP, null, HighscoreDto[].class, (highscoreDtos) -> {
+            worldRecords.clear();
+            for (HighscoreDto highscoreDto : highscoreDtos) {
+                worldRecords.computeIfAbsent(highscoreDto.getContext(), mapId -> new ArrayList<>()).add(new Highscore(highscoreDto.getUser().getLogin(), highscoreDto.getScore()));
             }
         });
     }
