@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.destroflyer.escapeloop.states.CreditsState;
 import com.destroflyer.escapeloop.states.MainMenuState;
 import com.destroflyer.escapeloop.states.AudioState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
@@ -38,6 +39,8 @@ public class Main extends ApplicationAdapter {
     @Getter
     private MapSelectionState mapSelectionState;
     @Getter
+    private CreditsState creditsState;
+    @Getter
     private float time;
 
     @Override
@@ -61,6 +64,8 @@ public class Main extends ApplicationAdapter {
         addState(mainMenuState);
 
         mapSelectionState = new MapSelectionState();
+
+        creditsState = new CreditsState();
     }
 
     public void openSettings(Runnable back) {

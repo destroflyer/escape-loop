@@ -31,6 +31,10 @@ public class MainMenuState extends UiState {
             main.openSettings(() -> main.addState(this));
             playButtonSound();
         }).padLeft(10);
+        addButton(menuTable, "Credits", () -> {
+            switchToState(main.getCreditsState());
+            playButtonSound();
+        }).padLeft(10);
         addButton(menuTable, "Exit", () -> Gdx.app.exit()).padLeft(10);
 
         menuTable.setFillParent(true);
