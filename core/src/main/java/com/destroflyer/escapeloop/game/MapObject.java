@@ -107,14 +107,20 @@ public abstract class MapObject {
     }
 
     public void remove() {
+        remove(false);
+    }
+
+    public void remove(boolean instant) {
         float timeUntilRemoval = 0;
-        if (removalAnimation != null) {
-            map.queueTask(() -> body.setActive(false));
-            setOneTimeAnimation(removalAnimation);
-            timeUntilRemoval = removalAnimation.getAnimationDuration();
-        }
-        if (removalSound != null) {
-            map.getAudioState().playSound(removalSound);
+        if (!instant) {
+            if (removalAnimation != null) {
+                map.queueTask(() -> body.setActive(false));
+                setOneTimeAnimation(removalAnimation);
+                timeUntilRemoval = removalAnimation.getAnimationDuration();
+            }
+            if (removalSound != null) {
+                map.getAudioState().playSound(removalSound);
+            }
         }
         map.queueTask(() -> map.removeObject(this), timeUntilRemoval);
     }

@@ -84,10 +84,10 @@ public class Map {
     public void respawnCurrentPlayer() {
         if (playerPasts.isEmpty()) {
             reset();
-            audioState.playSound("loss");
         } else {
             start();
         }
+        audioState.playSound("loss");
     }
 
     public void reset() {

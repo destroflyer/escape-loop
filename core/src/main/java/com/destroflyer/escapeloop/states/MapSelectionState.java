@@ -106,6 +106,7 @@ public class MapSelectionState extends UiState {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         selectMap(_mapIndex);
+                        playButtonSound();
                     }
                 });
             } else {

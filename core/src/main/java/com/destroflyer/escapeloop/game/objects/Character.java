@@ -106,7 +106,7 @@ public class Character extends MapObject {
         remainingGroundIgnoreTime = Math.max(0, remainingGroundIgnoreTime - tpf);
 
         if (body.getPosition().y < -1) {
-            remove();
+            remove(true);
         }
     }
 

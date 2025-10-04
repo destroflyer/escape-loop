@@ -84,6 +84,7 @@ public class SettingsState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 back();
+                playButtonSound();
             }
         });
         menuTable.add(backButton).colspan(2).fill();

@@ -32,6 +32,7 @@ public class MapPauseState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 mapState.closePauseMenu();
+                playButtonSound();
             }
         });
         menuTable.add(continueButton).fill();
@@ -47,6 +48,7 @@ public class MapPauseState extends UiState {
             public void clicked(InputEvent event, float x, float y) {
                 stageVisible = false;
                 main.openSettings(() -> stageVisible = true);
+                playButtonSound();
             }
         });
         menuTable.add(settingsButton).fill();
@@ -61,6 +63,7 @@ public class MapPauseState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 mapState.backToMapSelection();
+                playButtonSound();
             }
         });
         menuTable.add(exitButton).fill();
