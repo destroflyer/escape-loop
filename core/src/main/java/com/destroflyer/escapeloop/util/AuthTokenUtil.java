@@ -36,9 +36,9 @@ public class AuthTokenUtil {
         }
     }
 
-    public static Account getAccount(String jwt) {
-        DecodedJWT decodedJWT = JWT_VERIFIER.verify(jwt);
-        Map<String, Object> user = decodedJWT.getClaim("user").asMap();
+    public static Account getAccount(String authToken) {
+        DecodedJWT decodedJwt = JWT_VERIFIER.verify(authToken);
+        Map<String, Object> user = decodedJwt.getClaim("user").asMap();
         int id = (int) user.get("id");
         String login = (String) user.get("login");
         return new Account(id, login);

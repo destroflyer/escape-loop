@@ -14,6 +14,8 @@ import com.destroflyer.escapeloop.states.MainMenuState;
 import com.destroflyer.escapeloop.states.AudioState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
 import com.destroflyer.escapeloop.states.SettingsState;
+import com.destroflyer.escapeloop.states.models.Account;
+import com.destroflyer.escapeloop.util.AuthTokenUtil;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,8 @@ public class Main extends ApplicationAdapter {
     public static final int VIEWPORT_HEIGHT = 720;
     @Getter
     private String authToken;
+    @Getter
+    private Account account;
     @Getter
     private StretchViewport viewport;
     private InputMultiplexer inputMultiplexer;
@@ -55,6 +59,8 @@ public class Main extends ApplicationAdapter {
 
     @Override
     public void create() {
+        account = AuthTokenUtil.getAccount(authToken);
+
         viewport = new StretchViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
 
         inputMultiplexer = new InputMultiplexer();

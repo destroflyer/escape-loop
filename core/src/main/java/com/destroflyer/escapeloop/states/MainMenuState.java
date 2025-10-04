@@ -42,6 +42,10 @@ public class MainMenuState extends UiState {
         menuTable.moveBy(0, -130);
 
         stage.addActor(menuTable);
+
+        Label userLabel = new Label(main.getAccount().getLogin(), main.getSkinSmall());
+        userLabel.setPosition(Main.VIEWPORT_WIDTH - 10 - userLabel.getWidth(), Main.VIEWPORT_HEIGHT - 10 - userLabel.getHeight());
+        stage.addActor(userLabel);
     }
 
     private Cell<TextButton> addButton(Table menuTable, String label, Runnable onClick) {
