@@ -22,6 +22,7 @@ import com.destroflyer.escapeloop.states.models.Highscore;
 import com.destroflyer.escapeloop.states.models.RecordRow;
 import com.destroflyer.escapeloop.util.MapImport;
 import com.destroflyer.escapeloop.util.SkinUtil;
+import com.destroflyer.escapeloop.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
@@ -201,12 +202,12 @@ public class MapSelectionState extends UiState {
             RecordRow recordRow = selectedMapWorldRecordRows[i];
             Highscore highscore = (((worldRecords != null) && (i < worldRecords.size())) ? worldRecords.get(i) : null);
             recordRow.getUserLabel().setText((highscore != null) ? highscore.getUser() : "-");
-            recordRow.getTimeLabel().setText((highscore != null) ? "" + highscore.getTime() : "-");
+            recordRow.getTimeLabel().setText((highscore != null) ? TimeUtil.formatMilliseconds(highscore.getTime()) : "-");
         }
         Highscore personalRecord = main.getDestrostudiosState().getPersonalRecords().get(selectedMapId);
         for (int i = 0; i < selectedMapWorldRecordRows.length; i++) {
             selectedMapPersonalRecordRow.getUserLabel().setText((personalRecord != null) ? personalRecord.getUser() : "-");
-            selectedMapPersonalRecordRow.getTimeLabel().setText((personalRecord != null) ? "" + personalRecord.getTime() : "-");
+            selectedMapPersonalRecordRow.getTimeLabel().setText((personalRecord != null) ? TimeUtil.formatMilliseconds(personalRecord.getTime()) : "-");
         }
     }
 
