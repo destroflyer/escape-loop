@@ -43,7 +43,7 @@
 				"color": 39387,
 				"customFields": {
 					"autoShoot": true,
-					"shootCooldown": 1.5,
+					"shootCooldown": 2,
 					"patrolHorizontal": null,
 					"patrolVertical": null,
 					"direction": "Left",

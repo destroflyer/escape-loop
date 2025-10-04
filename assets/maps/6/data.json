@@ -45,6 +45,36 @@
 					"visible": true
 				}
 			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "e4c6ece0-8560-11f0-8db6-a5b25d1c008c",
+				"layer": "Entities",
+				"x": 240,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "You can also bounce off your other jumping selves while you're both in the air",
+					"width": 200
+				}
+			},
+			{
+				"id": "Text",
+				"iid": "d668aed0-8560-11f0-8db6-ad60cdc80c51",
+				"layer": "Entities",
+				"x": 240,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "It doesn't matter if a past self dies",
+					"width": 150
+				}
+			}
 		]
 	}
 }

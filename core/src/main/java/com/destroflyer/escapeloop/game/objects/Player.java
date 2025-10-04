@@ -40,7 +40,8 @@ public class Player extends Character {
     @Override
     public void update(float tpf) {
         super.update(tpf);
-        if (!characterCollisionsEnabled && activeContacts.stream().noneMatch(mapObject -> mapObject instanceof Character)) {
+        // Keep collisions between players disabled for a short start duration, to make the spawn feel more fluid
+        if (!characterCollisionsEnabled && ((map.getTime() > 0.75f) || (activeContacts.stream().noneMatch(mapObject -> mapObject instanceof Character)))) {
             characterCollisionsEnabled = true;
         }
     }
@@ -65,12 +66,6 @@ public class Player extends Character {
     public void action() {
         super.action();
         setOneTimeAnimation((verticalDirection != 0) ? ANIMATION_ACTION_VERTICAL : ANIMATION_ACTION_HORIZONTAL);
-    }
-
-    @Override
-    public void setWalkDirection(int walkDirection) {
-        super.setWalkDirection(walkDirection);
-        characterCollisionsEnabled = true;
     }
 
     @Override

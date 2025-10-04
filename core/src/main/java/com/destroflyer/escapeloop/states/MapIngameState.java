@@ -12,6 +12,7 @@ import com.destroflyer.escapeloop.game.inputs.JumpInput;
 import com.destroflyer.escapeloop.game.inputs.SetVerticalDirectionInput;
 import com.destroflyer.escapeloop.game.inputs.SetWalkDirectionInput;
 import com.destroflyer.escapeloop.util.FloatUtil;
+import com.destroflyer.escapeloop.util.InputUtil;
 
 public class MapIngameState extends UiState {
 
@@ -49,14 +50,13 @@ public class MapIngameState extends UiState {
         if (map.getCinematic() == null) {
             Preferences preferences = main.getSettingsState().getPreferences();
             String help = "";
-            help += Input.Keys.toString(preferences.getInteger("keyAction")) + " = Action";
+            help += InputUtil.getKeyName(preferences.getInteger("keyAction")) + " = Action";
             help += ", ";
-            help += Input.Keys.toString(preferences.getInteger("keyRespawn")) + " = Respawn";
+            help += InputUtil.getKeyName(preferences.getInteger("keyRespawn")) + " = Respawn";
             help += ", ";
-            int remainingPlayerPasts = map.getMaximumPlayerPasts() - mapState.getMap().getPlayerPasts().size();
-            help += Input.Keys.toString(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + remainingPlayerPasts + "/" + map.getMaximumPlayerPasts() + " charges)";
+            help += InputUtil.getKeyName(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + map.getMaximumPlayerPasts() + " charge" + ((map.getMaximumPlayerPasts() == 1) ? "": "s") + ")";
             help += ", ";
-            help += Input.Keys.toString(preferences.getInteger("keyReset")) + " = Reset";
+            help += InputUtil.getKeyName(preferences.getInteger("keyReset")) + " = Reset";
             infoLabel.setText(help);
 
             timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTotalTime(), 3) + "s");

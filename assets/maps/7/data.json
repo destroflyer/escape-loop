@@ -52,13 +52,27 @@
 				"iid": "c84f4780-5e50-11f0-928e-1ba6501e9213",
 				"layer": "Entities",
 				"x": 224,
+				"y": 128,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Try jumping and keep walking left in the air while using the time machine - Then jump with your new self and bounce your past self upwards",
+					"width": 320
+				}
+			},
+			{
+				"id": "Text",
+				"iid": "00a63d80-8560-11f0-8db6-1fb0ffc8bcdd",
+				"layer": "Entities",
+				"x": 224,
 				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "When travelling back in time, your actions can influence the outcome of your previous selves actions",
-					"width": 250
+					"text": "It doesn't matter which version of you reaches the finish",
+					"width": 200
 				}
 			}
 		]

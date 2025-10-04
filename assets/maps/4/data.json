@@ -60,6 +60,20 @@
 					"text": "When bouncing, your angle and velocity determine how far and fast you fly",
 					"width": 300
 				}
+			},
+			{
+				"id": "Text",
+				"iid": "5f3436d0-8560-11f0-8db6-0bf45dc2b5e7",
+				"layer": "Entities",
+				"x": 288,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Try hitting your past self at high speed on the very right edge to cover large distances",
+					"width": 300
+				}
 			}
 		]
 	}

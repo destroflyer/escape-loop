@@ -83,6 +83,7 @@ public abstract class MapObject {
         // Can for example happen during the first frame with two players at the starting position
         if (directionToTarget.isZero()) {
             // Guarantees the two objects to have different bounce directions
+            // (Note that solving it strictly in x direction means a narrow 1-tile-wide start corridor wouldn't be properly solved and the players would be stuck!)
             directionToTarget.x = (hashCode() < otherMapObject.hashCode()) ? -1 : 1;
         }
         Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);

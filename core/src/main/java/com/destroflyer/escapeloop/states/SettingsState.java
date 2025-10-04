@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.destroflyer.escapeloop.util.FloatUtil;
+import com.destroflyer.escapeloop.util.InputUtil;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -133,7 +134,7 @@ public class SettingsState extends UiState {
         addElement(menuTable, labelText, label -> {
             TextButton button = new TextButton(null, main.getSkinSmall());
 
-            Consumer<String> updateButtonText = customText -> button.setText((customText != null) ? customText : Input.Keys.toString(preferences.getInteger(key)));
+            Consumer<String> updateButtonText = customText -> button.setText((customText != null) ? customText : InputUtil.getKeyName(preferences.getInteger(key)));
             updateButtonText.accept(null);
 
             button.addListener(new ChangeListener() {
@@ -187,7 +188,7 @@ public class SettingsState extends UiState {
             String key = entry.getKey();
             String value = entry.getValue().toString();
             if (key.startsWith("key")) {
-                value = "[" + Input.Keys.toString(Integer.parseInt(value)) + "]";
+                value = "[" + InputUtil.getKeyName(Integer.parseInt(value)) + "]";
             }
             text = text.replaceAll("\\$\\{" + entry.getKey() + "\\}", value);
         }
