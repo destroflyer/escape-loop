@@ -24,7 +24,7 @@ public class DestrostudiosState extends State {
     private HashMap<String, ArrayList<Highscore>> worldRecords = new HashMap<>();
 
     public void requestHighscores() {
-        request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores?evaluation=" + HIGHSCORE_EVALUATION + "&login=" + "destroflyer", null, HighscoreDto[].class, (highscoreDtos) -> {
+        request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores?evaluation=" + HIGHSCORE_EVALUATION + "&login=" + main.getAccount().getLogin(), null, HighscoreDto[].class, (highscoreDtos) -> {
             personalRecords.clear();
             for (HighscoreDto highscoreDto : highscoreDtos) {
                 personalRecords.put(highscoreDto.getContext(), new Highscore(highscoreDto.getUser().getLogin(), highscoreDto.getScore()));
