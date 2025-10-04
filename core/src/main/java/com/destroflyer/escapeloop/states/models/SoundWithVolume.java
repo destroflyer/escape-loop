@@ -1,4 +1,4 @@
-package com.destroflyer.escapeloop.states;
+package com.destroflyer.escapeloop.states.models;
 
 import com.badlogic.gdx.audio.Sound;
 
@@ -8,10 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class SoundWithVolume {
-
-    public SoundWithVolume(Sound sound) {
-        this(sound, 1);
-    }
     private Sound sound;
     private float volume;
 }

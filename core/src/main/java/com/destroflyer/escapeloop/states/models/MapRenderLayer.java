@@ -1,4 +1,4 @@
-package com.destroflyer.escapeloop.states;
+package com.destroflyer.escapeloop.states.models;
 
 public enum MapRenderLayer {
     BACKGROUND,

@@ -63,6 +63,7 @@ public class MapState extends State {
     }
 
     private void onMapFinished() {
+        main.getDestrostudiosState().requestSetHighscore(map.getId(), (long) (map.getTotalTime() * 1000));
         boolean goToMapSelection = true;
         Preferences preferences = main.getSettingsState().getPreferences();
         if (map.getMapIndex() >= preferences.getInteger("level")) {

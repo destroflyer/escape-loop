@@ -235,4 +235,8 @@ public class Map {
     public float getHeight() {
         return (((float) Main.VIEWPORT_HEIGHT) / Main.VIEWPORT_WIDTH) * width;
     }
+
+    public String getId() {
+        return mapFileLoader.getId();
+    }
 }

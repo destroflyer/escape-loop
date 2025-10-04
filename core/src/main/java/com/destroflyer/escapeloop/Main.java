@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.destroflyer.escapeloop.states.CreditsState;
+import com.destroflyer.escapeloop.states.DestrostudiosState;
+import com.destroflyer.escapeloop.states.HttpState;
 import com.destroflyer.escapeloop.states.MainMenuState;
 import com.destroflyer.escapeloop.states.AudioState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
@@ -19,9 +21,13 @@ import lombok.Getter;
 
 public class Main extends ApplicationAdapter {
 
+    public Main(String authToken) {
+        this.authToken = authToken;
+    }
     public static final int VIEWPORT_WIDTH = 1280;
     public static final int VIEWPORT_HEIGHT = 720;
-
+    @Getter
+    private String authToken;
     @Getter
     private StretchViewport viewport;
     private InputMultiplexer inputMultiplexer;
@@ -40,6 +46,10 @@ public class Main extends ApplicationAdapter {
     private MapSelectionState mapSelectionState;
     @Getter
     private CreditsState creditsState;
+    @Getter
+    private HttpState httpState;
+    @Getter
+    private DestrostudiosState destrostudiosState;
     @Getter
     private float time;
 
@@ -66,6 +76,12 @@ public class Main extends ApplicationAdapter {
         mapSelectionState = new MapSelectionState();
 
         creditsState = new CreditsState();
+
+        httpState = new HttpState();
+        addState(httpState);
+
+        destrostudiosState = new DestrostudiosState();
+        addState(destrostudiosState);
     }
 
     public void openSettings(Runnable back) {

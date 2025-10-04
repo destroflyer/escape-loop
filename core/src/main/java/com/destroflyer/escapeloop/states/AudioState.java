@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.destroflyer.escapeloop.State;
+import com.destroflyer.escapeloop.states.models.SoundWithVolume;
 
 import java.util.HashMap;
 

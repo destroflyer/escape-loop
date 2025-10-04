@@ -11,6 +11,10 @@ public class Lwjgl3Launcher {
         if (StartupHelper.startNewJvmIfRequired()) {
             return;
         }
+        String authToken = args[0];
+        if (authToken == null) {
+            throw new RuntimeException("No destrostudios auth token provided");
+        }
         Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
         configuration.setTitle("Escape Loop");
         configuration.setWindowIcon("./icon/128.png", "./icon/64.png", "./icon/32.png", "./icon/16.png");
@@ -18,6 +22,6 @@ public class Lwjgl3Launcher {
         configuration.useVsync(true);
         // Safeguard as vsync doesn't always work on Linux (And add 1 to try to match fractional refresh rates)
         configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
-        new Lwjgl3Application(new Main(), configuration);
+        new Lwjgl3Application(new Main(authToken), configuration);
     }
 }

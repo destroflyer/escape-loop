@@ -41,6 +41,7 @@ import com.destroflyer.escapeloop.game.objects.Gate;
 import com.destroflyer.escapeloop.game.objects.Item;
 import com.destroflyer.escapeloop.game.objects.Ground;
 import com.destroflyer.escapeloop.game.objects.Player;
+import com.destroflyer.escapeloop.states.models.MapRenderLayer;
 import com.destroflyer.escapeloop.util.RenderUtil;
 
 import java.util.ArrayList;

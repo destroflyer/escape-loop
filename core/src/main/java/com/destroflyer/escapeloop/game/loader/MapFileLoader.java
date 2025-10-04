@@ -224,6 +224,10 @@ public class MapFileLoader {
         }
     }
 
+    public String getId() {
+        return data.getUniqueIdentifer();
+    }
+
     public float getWidth() {
         return toMapSize(data.getWidth());
     }

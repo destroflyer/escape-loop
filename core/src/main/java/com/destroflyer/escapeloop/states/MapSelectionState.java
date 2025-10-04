@@ -87,6 +87,8 @@ public class MapSelectionState extends UiState {
     @Override
     public void onAdd(Main main) {
         super.onAdd(main);
+        main.getDestrostudiosState().requestHighscores();
+
         if (MapImport.isSrcMapsDirectoryPathSet()) {
             MapImport.importAllMaps();
         }

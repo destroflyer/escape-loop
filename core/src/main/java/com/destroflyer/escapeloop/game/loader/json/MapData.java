@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class MapData {
+    private String uniqueIdentifer;
     private int width;
     private int height;
     private MapDataCustomFields customFields;
