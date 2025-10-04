@@ -33,6 +33,7 @@ public class Bullet extends MapObject {
         fixtureDef.shape = circleShape;
         fixtureDef.isSensor = true;
         Fixture fixture = body.createFixture(fixtureDef);
+        circleShape.dispose();
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.BULLET;

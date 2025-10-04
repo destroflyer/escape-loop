@@ -2,8 +2,6 @@ package com.destroflyer.escapeloop.game.objects;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.util.TextureUtil;
 
@@ -19,10 +17,6 @@ public class Decoration extends MapObject {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
         body = map.getWorld().createBody(bodyDef);
-        PolygonShape polygonShape = new PolygonShape();
-        float width = Map.TILE_SIZE;
-        float height = Map.TILE_SIZE;
-        polygonShape.setAsBox(width / 2, height / 2);
     }
 
     @Override

@@ -57,6 +57,7 @@ public class Character extends MapObject {
         characterFixtureDef.shape = characterShape;
         characterFixtureDef.density = 1;
         characterFixture = body.createFixture(characterFixtureDef);
+        characterShape.dispose();
 
         Filter characterFilter = new Filter();
         characterFilter.categoryBits = Collisions.CHARACTER;
@@ -69,6 +70,7 @@ public class Character extends MapObject {
         sensorFixtureDef.shape = footSensorShape;
         sensorFixtureDef.isSensor = true;
         footSensorFixture = body.createFixture(sensorFixtureDef);
+        footSensorShape.dispose();
 
         Filter sensorFilter = new Filter();
         sensorFilter.categoryBits = Collisions.CHARACTER_FOOT_SENSOR;

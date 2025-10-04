@@ -32,6 +32,7 @@ public class CreditsState extends UiState {
         addCredits(table, "Sound - Pickup", "Koi Roylers");
         addCredits(table, "Sound - Time machine", "DRAGON-STUDIO");
         addCredits(table, "Sound - Trigger", "Milan Wulf");
+        addCredits(table, "Testing", "My friends <3");
 
         table.row().padTop(10);
 

@@ -34,6 +34,7 @@ public class Bouncer extends MapObject {
         fixtureDef.shape = polygonShape;
         fixtureDef.isSensor = true;
         Fixture fixture = body.createFixture(fixtureDef);
+        polygonShape.dispose();
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.BOUNCER;

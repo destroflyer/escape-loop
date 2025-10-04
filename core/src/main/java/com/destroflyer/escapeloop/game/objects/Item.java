@@ -39,6 +39,7 @@ public class Item extends MapObject {
         fixtureDef.shape = circleShape;
         fixtureDef.density = 2.5f;
         fixture = body.createFixture(fixtureDef);
+        circleShape.dispose();
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.ITEM;

@@ -73,6 +73,7 @@ public class Gate extends MapObject {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = polygonShape;
         fixture = body.createFixture(fixtureDef);
+        polygonShape.dispose();
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.GROUND;

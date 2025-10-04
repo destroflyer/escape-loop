@@ -27,6 +27,7 @@ public class Ground extends MapObject {
         PolygonShape polygonShape = new PolygonShape();
         polygonShape.setAsBox(width / 2, height / 2);
         Fixture fixture = body.createFixture(polygonShape, 0);
+        polygonShape.dispose();
 
         Filter filter = new Filter();
         filter.categoryBits = Collisions.GROUND;
