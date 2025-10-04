@@ -15,10 +15,13 @@ public class Enemy extends Character {
         remainingShootCooldown = shootCooldown;
         this.autoShoot = autoShoot;
         textureSize = new Vector2(1, 1);
+        removalAnimation = ANIMATION_REMOVAL;
+        removalSound = "explosion";
     }
     private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/idle.png", 2, 2, 0.2f);
     private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/run.png", 2, 2, 0.15f);
     private static final Animation<TextureRegion> ANIMATION_SHOOT = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/shoot.png", 2, 1, 0.05f);
+    private static final Animation<TextureRegion> ANIMATION_REMOVAL = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/death.png", 2, 2, 3, 0.05f);
     private static final float HOVER_SPRING_STRENGTH = 50;
     private static final float HOVER_DAMPING = 5;
     private int hoverTileHeight;

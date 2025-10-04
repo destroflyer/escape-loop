@@ -94,8 +94,8 @@ public class MapCustomLoader {
                     scientistLeft.setSpeech("<click>", 1f);
                     scientistLeft.setWalkDirection(1);
                     scientistRight.setWalkDirection(1);
-                    map.queueTask(() -> map.removeObject(scientistRight), 0.9f);
-                    map.queueTask(() -> map.removeObject(scientistLeft), 1.2f);
+                    map.queueTask(scientistRight::remove, 0.9f);
+                    map.queueTask(scientistLeft::remove, 1.2f);
 
                     Gate gateTop = gates.get(0);
                     gateTop.setOpening(true);

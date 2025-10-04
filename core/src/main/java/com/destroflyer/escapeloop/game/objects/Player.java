@@ -17,11 +17,14 @@ public class Player extends Character {
     public Player() {
         textureOffset = new Vector2(0, 0.25f);
         textureSize = new Vector2(1, 1);
+        removalAnimation = ANIMATION_REMOVAL;
+        removalSound = "explosion";
     }
     public static final PlayerContextAnimations ANIMATIONS_WITH_TIME_MACHINE = new PlayerContextAnimations(true);
     private static final PlayerContextAnimations ANIMATIONS_WITHOUT_TIME_MACHINE = new PlayerContextAnimations(false);
     private static final Animation<TextureRegion> ANIMATION_ACTION_HORIZONTAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/action_horizontal.png", 2, 2, 0.1f);
     private static final Animation<TextureRegion> ANIMATION_ACTION_VERTICAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/action_vertical.png", 2, 2, 0.1f);
+    private static final Animation<TextureRegion> ANIMATION_REMOVAL = TextureUtil.loadWrappedAnimation("./textures/orange_robot/death.png", 2, 2, 0.1f);
     @Setter
     private boolean hasTimeMachine = true;
     @Getter

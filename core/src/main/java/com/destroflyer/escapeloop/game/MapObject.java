@@ -26,6 +26,8 @@ public abstract class MapObject {
     protected Vector2 textureOffset = new Vector2();
     @Getter
     protected Vector2 textureSize = new Vector2(Map.TILE_SIZE, Map.TILE_SIZE);
+    protected Animation<TextureRegion> removalAnimation;
+    protected String removalSound;
     private Animation<TextureRegion> oneTimeAnimation;
     private float oneTimeAnimationStartTime;
     @Getter
@@ -105,7 +107,16 @@ public abstract class MapObject {
     }
 
     public void remove() {
-        map.queueTask(() -> map.removeObject(this));
+        float timeUntilRemoval = 0;
+        if (removalAnimation != null) {
+            map.queueTask(() -> body.setActive(false));
+            setOneTimeAnimation(removalAnimation);
+            timeUntilRemoval = removalAnimation.getAnimationDuration();
+        }
+        if (removalSound != null) {
+            map.getAudioState().playSound(removalSound);
+        }
+        map.queueTask(() -> map.removeObject(this), timeUntilRemoval);
     }
 
     // Rendering

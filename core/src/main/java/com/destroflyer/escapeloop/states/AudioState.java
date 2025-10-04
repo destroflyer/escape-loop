@@ -17,8 +17,9 @@ public class AudioState extends State {
     public void create() {
         super.create();
         loadMusics("main", "intro");
-        loadSounds("action", "alarm", "button", "explosion", "jump", "loss", "pickup", "shot", "win");
+        loadSounds("action", "alarm", "button", "jump", "loss", "pickup", "shot", "win");
         loadSound("bounce", 2);
+        loadSound("explosion", 3);
         loadSound("time_machine", 1.5f);
         loadSound("trigger", 3);
         playMusic("main");
