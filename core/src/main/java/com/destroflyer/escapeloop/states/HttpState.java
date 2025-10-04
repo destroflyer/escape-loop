@@ -50,6 +50,7 @@ public class HttpState extends State {
             "Http request " + result + " - " + requestWithHandler.getMethod() + " " + requestWithHandler.getUrl()
             + ((statusCode != null) ? " " + statusCode : "")
             + ((_requestBody != null) ? ", body=" + _requestBody : "");
+        requestQueueLocked = true;
         Runnable onFinish = () -> Gdx.app.postRunnable(() -> {
             requestQueueLocked = false;
             tryNextRequest();
