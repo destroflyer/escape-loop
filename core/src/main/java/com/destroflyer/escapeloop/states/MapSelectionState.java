@@ -134,13 +134,14 @@ public class MapSelectionState extends UiState {
 
         mapsTable.clear();
         mapButtons.clear();
-        int currentLevel = getCurrentLevel();
+        int currentLevel = main.getSettingsState().getPreferences().getInteger("level");
         for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
             if ((mapIndex % MAPS_PER_ROW) == 0) {
                 mapsTable.row();
             }
             TextButton mapButton = new TextButton(getMapTitle(mapIndex), SkinUtil.getToggleButtonStyle(main.getSkinLarge()));
-            if (mapIndex <= currentLevel) {
+            boolean isUnlocked = (mapIndex <= currentLevel) || main.getSettingsState().getPreferences().getBoolean("unlockAllLevels");
+            if (isUnlocked) {
                 int _mapIndex = mapIndex;
                 mapButton.addListener(new ClickListener() {
 
@@ -159,10 +160,6 @@ public class MapSelectionState extends UiState {
         mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
 
         selectMap((int) Math.min(currentLevel, MAPS_COUNT - 1));
-    }
-
-    private int getCurrentLevel() {
-        return main.getSettingsState().getPreferences().getInteger("level");
     }
 
     public void selectMap(int mapIndex) {

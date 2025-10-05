@@ -44,6 +44,7 @@ public class SettingsState extends UiState {
         setDefaultInteger("keyRespawn", Input.Keys.K);
         setDefaultInteger("keyTimeMachine", Input.Keys.L);
         setDefaultInteger("keyReset", Input.Keys.BACKSPACE);
+        setDefaultBoolean("unlockAllLevels", false);
         setDefaultInteger("level", 0);
     }
     @Getter
@@ -67,6 +68,7 @@ public class SettingsState extends UiState {
         addCheckbox(menuTable, "Play sound - Bullets", "playSoundEnemyShot");
         addSlider(menuTable, "Player pasts - Trajectory duration (s)", "playerPastsTrajectoryDuration", 0, 6, 0.1f, 1);
         addCheckbox(menuTable, "Player pasts - Distinct colors", "playerPastsDistinctColors");
+        addCheckbox(menuTable, "Unlock all levels", "unlockAllLevels");
         addKeyButton(menuTable, "Up", "keyUp");
         addKeyButton(menuTable, "Left", "keyLeft");
         addKeyButton(menuTable, "Down", "keyDown");
