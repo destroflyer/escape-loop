@@ -31,7 +31,7 @@ public class MapFinishedState extends UiState {
         Label timeLabel = new Label(TimeUtil.formatMilliseconds(timeMillis), main.getSkinLarge());
         menuTable.add(timeLabel).colspan(2);
 
-        menuTable.row().padTop(10);
+        menuTable.row().padTop(8);
 
         TextButton playAgainButton = new TextButton("Play again", main.getSkinLarge());
         playAgainButton.addListener(new ClickListener() {

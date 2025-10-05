@@ -70,7 +70,7 @@ public class MapState extends State {
             int nextMapIndex = mapIndex + 1;
             preferences.putInteger("level", nextMapIndex);
             preferences.flush();
-            if (nextMapIndex < MapSelectionState.MAPS_COUNT) {
+            if (nextMapIndex <= MapSelectionState.MAPS_COUNT) {
                 switchToState(new MapState(nextMapIndex));
             } else {
                 switchToState(main.getMapSelectionState());

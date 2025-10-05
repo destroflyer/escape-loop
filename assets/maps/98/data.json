@@ -21,7 +21,7 @@
 				"id": "Finish",
 				"iid": "85180c23-5e50-11f0-baa8-a5bb323185ba",
 				"layer": "Entities",
-				"x": 368,
+				"x": 400,
 				"y": 160,
 				"width": 16,
 				"height": 16,
@@ -36,7 +36,7 @@
 				"id": "Item",
 				"iid": "85180c24-5e50-11f0-baa8-c71b2d8c766a",
 				"layer": "Entities",
-				"x": 288,
+				"x": 144,
 				"y": 160,
 				"width": 16,
 				"height": 16,
@@ -51,7 +51,7 @@
 				"id": "Pressure_Trigger",
 				"iid": "b47458e0-5e50-11f0-baa8-2b0cf767f178",
 				"layer": "Entities",
-				"x": 112,
+				"x": 128,
 				"y": 112,
 				"width": 16,
 				"height": 16,
@@ -73,7 +73,7 @@
 				"id": "Gate",
 				"iid": "b8bb2a50-5e50-11f0-baa8-19b4afcd0fb9",
 				"layer": "Entities",
-				"x": 240,
+				"x": 224,
 				"y": 128,
 				"width": 16,
 				"height": 48,
@@ -86,7 +86,7 @@
 				"id": "Gate",
 				"iid": "db85b870-5e50-11f0-baa8-8525e6bcaa91",
 				"layer": "Entities",
-				"x": 336,
+				"x": 368,
 				"y": 128,
 				"width": 16,
 				"height": 48,
@@ -101,7 +101,7 @@
 				"id": "Toggle_Trigger",
 				"iid": "c11cb420-5e50-11f0-baa8-cbe552de6b27",
 				"layer": "Entities",
-				"x": 288,
+				"x": 368,
 				"y": 80,
 				"width": 16,
 				"height": 16,
@@ -125,7 +125,7 @@
 				"id": "Start",
 				"iid": "85180c22-5e50-11f0-baa8-8d6ec1de8023",
 				"layer": "Entities",
-				"x": 80,
+				"x": 96,
 				"y": 112,
 				"width": 16,
 				"height": 16,
@@ -146,6 +146,26 @@
 				"height": 16,
 				"color": 2943221,
 				"customFields" : {}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "903f4690-8560-11f0-a20d-c14b67e81e40",
+				"layer": "Entities",
+				"x": 400,
+				"y": 80,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"patrolHorizontal": null,
+					"patrolVertical": null,
+					"direction": "Left",
+					"hoverTileHeight": 1
+				}
 			}
 		]
 	}
