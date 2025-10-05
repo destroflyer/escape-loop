@@ -63,20 +63,20 @@ public class MapState extends State {
     }
 
     private void onMapFinished() {
-        main.getDestrostudiosState().requestSetHighscore(map.getId(), (long) (map.getTotalTime() * 1000));
-        boolean goToMapSelection = true;
+        long timeMillis = (long) (map.getTotalTime() * 1000);
+        main.getDestrostudiosState().requestSetHighscore(map.getId(), timeMillis);
         Preferences preferences = main.getSettingsState().getPreferences();
-        if (map.getMapIndex() >= preferences.getInteger("level")) {
-            int nextMapIndex = map.getMapIndex() + 1;
+        if (mapIndex >= preferences.getInteger("level")) {
+            int nextMapIndex = mapIndex + 1;
             preferences.putInteger("level", nextMapIndex);
             preferences.flush();
             if (nextMapIndex < MapSelectionState.MAPS_COUNT) {
                 switchToState(new MapState(nextMapIndex));
-                goToMapSelection = false;
+            } else {
+                switchToState(main.getMapSelectionState());
             }
-        }
-        if (goToMapSelection) {
-            switchToState(main.getMapSelectionState());
+        } else {
+            switchToState(new MapFinishedState(mapIndex, timeMillis));
         }
         map.getAudioState().playSound("win");
     }

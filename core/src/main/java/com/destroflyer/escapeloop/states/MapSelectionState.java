@@ -34,7 +34,7 @@ public class MapSelectionState extends UiState {
 
     private Table mapsTable;
     private ArrayList<TextButton> mapButtons = new ArrayList<>();
-    private Integer selectedMapIndex;
+    private int selectedMapIndex;
     private String selectedMapId;
     private Label selectedMapLabel;
     private Image selectedMapImage;
@@ -60,7 +60,6 @@ public class MapSelectionState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 backToMainMenu();
-                playButtonSound();
             }
         });
         stage.addActor(backButton);
@@ -167,9 +166,7 @@ public class MapSelectionState extends UiState {
     }
 
     public void selectMap(int mapIndex) {
-        if (selectedMapIndex != null) {
-            mapButtons.get(selectedMapIndex).setChecked(false);
-        }
+        mapButtons.get(selectedMapIndex).setChecked(false);
         selectedMapIndex = mapIndex;
         selectedMapLabel.setText(getMapTitle(selectedMapIndex));
         selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
@@ -187,7 +184,7 @@ public class MapSelectionState extends UiState {
     }
 
     private String getMapTitle(Integer mapIndex) {
-        return (mapIndex != null) ? "" + (mapIndex + 1) : "-";
+        return "" + (mapIndex + 1);
     }
 
     @Override
@@ -213,6 +210,7 @@ public class MapSelectionState extends UiState {
 
     private void backToMainMenu() {
         switchToState(main.getMainMenuState());
+        playButtonSound();
     }
 
     @Override

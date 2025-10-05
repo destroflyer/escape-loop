@@ -42,7 +42,6 @@ public class CreditsState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 backToMainMenu();
-                playButtonSound();
             }
         });
         table.add(backButton).colspan(2).fill();
@@ -65,6 +64,7 @@ public class CreditsState extends UiState {
 
     private void backToMainMenu() {
         switchToState(main.getMainMenuState());
+        playButtonSound();
     }
 
     @Override

@@ -85,7 +85,6 @@ public class SettingsState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 back();
-                playButtonSound();
             }
         });
         menuTable.add(backButton).colspan(2).fill();
@@ -202,6 +201,7 @@ public class SettingsState extends UiState {
         }
         main.removeState(this);
         back.run();
+        playButtonSound();
     }
 
     private void stopKeyRecording(Integer keycode) {

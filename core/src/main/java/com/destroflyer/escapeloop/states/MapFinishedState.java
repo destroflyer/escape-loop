@@ -4,52 +4,44 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.destroflyer.escapeloop.util.TimeUtil;
 
-public class MapPauseState extends UiState {
+import lombok.AllArgsConstructor;
 
-    public MapPauseState(MapState mapState) {
-        this.mapState = mapState;
-        hasBackdrop = true;
-    }
-    private MapState mapState;
+@AllArgsConstructor
+public class MapFinishedState extends UiState {
+
+    private int mapIndex;
+    private long timeMillis;
 
     @Override
     public void create() {
         super.create();
         Table menuTable = new Table();
 
-        // Continue
+        Label mapLabel = new Label("Level " + (mapIndex + 1), main.getSkinLarge());
+        menuTable.add(mapLabel).colspan(2);
 
-        TextButton continueButton = new TextButton("Continue", main.getSkinLarge());
-        continueButton.addListener(new ClickListener() {
+        menuTable.row().padTop(2);
 
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                close();
-            }
-        });
-        menuTable.add(continueButton).fill();
-
-        // Settings
+        Label timeLabel = new Label(TimeUtil.formatMilliseconds(timeMillis), main.getSkinLarge());
+        menuTable.add(timeLabel).colspan(2);
 
         menuTable.row().padTop(10);
 
-        TextButton settingsButton = new TextButton("Settings", main.getSkinLarge());
-        settingsButton.addListener(new ClickListener() {
+        TextButton playAgainButton = new TextButton("Play again", main.getSkinLarge());
+        playAgainButton.addListener(new ClickListener() {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                stageVisible = false;
-                main.openSettings(() -> stageVisible = true);
-                playButtonSound();
+                backToMapSelection();
             }
         });
-        menuTable.add(settingsButton).fill();
-
-        // Exit
+        menuTable.add(playAgainButton).fill();
 
         menuTable.row().padTop(10);
 
@@ -58,8 +50,7 @@ public class MapPauseState extends UiState {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                mapState.backToMapSelection();
-                playButtonSound();
+                backToMapSelection();
             }
         });
         menuTable.add(exitButton).fill();
@@ -70,8 +61,13 @@ public class MapPauseState extends UiState {
         stage.addActor(menuTable);
     }
 
-    private void close() {
-        mapState.closePauseMenu();
+    private void playAgain() {
+        switchToState(new MapState(mapIndex));
+        playButtonSound();
+    }
+
+    private void backToMapSelection() {
+        switchToState(main.getMapSelectionState());
         playButtonSound();
     }
 
@@ -81,8 +77,11 @@ public class MapPauseState extends UiState {
 
             @Override
             public boolean keyDown(int keycode) {
-                if (keycode == Input.Keys.ESCAPE) {
-                    close();
+                if (keycode == Input.Keys.ENTER) {
+                    playAgain();
+                    return true;
+                } else if (keycode == Input.Keys.ESCAPE) {
+                    backToMapSelection();
                     return true;
                 }
                 return false;

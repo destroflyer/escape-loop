@@ -87,6 +87,7 @@ public class MapIngameState extends UiState {
                 Map map = mapState.getMap();
                 if (keycode == Input.Keys.ESCAPE) {
                     mapState.openPauseMenu();
+                    playButtonSound();
                     return true;
                 } else if (keycode == preferences.getInteger("keyReset")) {
                     map.reset();
