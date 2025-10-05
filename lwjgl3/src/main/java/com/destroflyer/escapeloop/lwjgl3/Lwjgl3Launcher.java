@@ -19,9 +19,8 @@ public class Lwjgl3Launcher {
         configuration.setTitle("Escape Loop");
         configuration.setWindowIcon("./icon/128.png", "./icon/64.png", "./icon/32.png", "./icon/16.png");
         configuration.setWindowedMode(Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
-        configuration.useVsync(true);
-        // Safeguard as vsync doesn't always work on Linux (And add 1 to try to match fractional refresh rates)
-        configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
+        configuration.useVsync(false);
+        configuration.setForegroundFPS(Main.FPS);
         new Lwjgl3Application(new Main(authToken), configuration);
     }
 }

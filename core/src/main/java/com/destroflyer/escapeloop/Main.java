@@ -28,6 +28,7 @@ public class Main extends ApplicationAdapter {
     }
     public static final int VIEWPORT_WIDTH = 1280;
     public static final int VIEWPORT_HEIGHT = 720;
+    public static final int FPS = 166;
     @Getter
     private String authToken;
     @Getter
