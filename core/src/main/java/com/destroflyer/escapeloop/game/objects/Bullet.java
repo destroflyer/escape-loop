@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -42,8 +41,8 @@ public class Bullet extends MapObject {
     }
 
     @Override
-    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
-        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture) {
+        super.onContactBegin(mapObject, ownFixture, otherFixture);
         if (mapObject != shooter) {
             if (mapObject instanceof Character) {
                 mapObject.remove();

@@ -214,8 +214,8 @@ public class MapFileLoader {
         if (entities != null) {
             for (MapDataEntity entity : entities) {
                 T mapObject = createMapObject.apply(entity);
-                Vector2 tileOffset = getTileOffset.apply(entity);
                 map.addObject(mapObject);
+                Vector2 tileOffset = getTileOffset.apply(entity);
                 mapObject.getBody().setTransform(getMapPosition(entity).add(tileOffset.scl(Map.TILE_SIZE)), 0);
                 if (afterCreation != null) {
                     afterCreation.accept(entity, mapObject);

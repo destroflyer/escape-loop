@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 import com.destroflyer.escapeloop.Main;
+import com.destroflyer.escapeloop.game.contact.MapContactListener;
 import com.destroflyer.escapeloop.game.loader.MapCustomLoader;
 import com.destroflyer.escapeloop.game.loader.MapFileLoader;
 import com.destroflyer.escapeloop.game.objects.Player;
@@ -26,8 +27,9 @@ public class Map {
         this.audioState = audioState;
         mapFileLoader = new MapFileLoader(this);
         mapCustomLoader = new MapCustomLoader(this);
+        mapContactListener = new MapContactListener(this);
         world = new World(GRAVITY, false);
-        world.setContactListener(new MapContactListener(this));
+        world.setContactListener(mapContactListener);
         reset();
         cinematic = mapCustomLoader.getCinematic();
     }
@@ -45,6 +47,7 @@ public class Map {
     private AudioState audioState;
     private MapFileLoader mapFileLoader;
     private MapCustomLoader mapCustomLoader;
+    private MapContactListener mapContactListener;
     @Getter
     public float width;
     @Getter
@@ -53,6 +56,7 @@ public class Map {
     private float time;
     @Getter
     private ArrayList<MapObject> objects = new ArrayList<>();
+    private int nextObjectId;
     private ArrayList<QueuedTask> queuedTasks = new ArrayList<>();
     @Getter
     private World world;
@@ -109,6 +113,7 @@ public class Map {
             world.destroyBody(mapObject.getBody());
         }
         objects.clear();
+        nextObjectId = 0;
         queuedTasks.clear();
         texts.clear();
 
@@ -133,6 +138,7 @@ public class Map {
     }
 
     public void addObject(MapObject mapObject) {
+        mapObject.setId(nextObjectId++);
         mapObject.setMap(this);
         mapObject.createBody();
         objects.add(mapObject);
@@ -148,7 +154,8 @@ public class Map {
         texts.add(text);
     }
 
-    public void update(float tpf) {
+    public void update() {
+        float tpf = 1f / Main.FPS;
         totalTime += tpf;
         time += tpf;
         updateQueuedTasks(tpf);
@@ -170,6 +177,7 @@ public class Map {
         // - When game objects change their fixtures during update (e.g. gates), they destroy the old fixture which immediately ends the contact. By executing another physics step afterwards, the new fixture contact gets started before rendering+inputs (e.g. important for character isGrounded)
         Runnable runHalfStep = () -> {
             world.step(tpf / 2f, VELOCITY_ITERATIONS, POSITIONS_ITERATIONS);
+            mapContactListener.handleContacts();
             runQueuedTasks();
         };
         runHalfStep.run();

@@ -56,7 +56,8 @@ public class Player extends Character {
             if (solveCollision && (mapObject instanceof Player)) {
                 Player player = (Player) mapObject;
                 if (player.isCharacterCollisionsEnabled()) {
-                    bounceOff(player);
+                    // Because this is inside preSolve, it needs to be enqueued (to avoid non-deterministic physics)
+                    map.queueTask(() -> bounceOff(player));
                 }
                 solveCollision = false;
             }

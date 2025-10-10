@@ -1,6 +1,5 @@
 package com.destroflyer.escapeloop.game.objects.items;
 
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.MapObject;
@@ -21,8 +20,8 @@ public class KnockbackItem extends Item {
     }
 
     @Override
-    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
-        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture) {
+        super.onContactBegin(mapObject, ownFixture, otherFixture);
         if (mapObject instanceof ToggleTrigger) {
             ToggleTrigger toggleTrigger = (ToggleTrigger) mapObject;
             toggleTrigger.toggle();

@@ -45,7 +45,7 @@ public class MapIngameState extends UiState {
             updateVerticalDirection(map);
         }
 
-        map.update(tpf);
+        map.update();
 
         if (map.getCinematic() == null) {
             Preferences preferences = main.getSettingsState().getPreferences();

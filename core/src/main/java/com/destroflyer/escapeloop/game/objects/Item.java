@@ -61,8 +61,8 @@ public class Item extends MapObject {
     }
 
     @Override
-    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
-        super.onContactBegin(mapObject, ownFixture, otherFixture, contact);
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture) {
+        super.onContactBegin(mapObject, ownFixture, otherFixture);
         if ((holder == null) && (mapObject instanceof Character)) {
             Character character = (Character) mapObject;
             if (!blockedPickupCharacters.contains(character)) {
@@ -79,8 +79,8 @@ public class Item extends MapObject {
     }
 
     @Override
-    public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
-        super.onContactEnd(mapObject, ownFixture, otherFixture, contact);
+    public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture) {
+        super.onContactEnd(mapObject, ownFixture, otherFixture);
         blockedPickupCharacters.remove(mapObject);
     }
 

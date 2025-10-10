@@ -16,6 +16,9 @@ import java.util.function.Predicate;
 
 public abstract class MapObject {
 
+    @Getter
+    @Setter
+    private int id;
     @Setter
     protected Map map;
     @Getter
@@ -60,15 +63,11 @@ public abstract class MapObject {
         behaviours.add(behaviour);
     }
 
-    public void removeBehaviour(Behaviour behaviour) {
-        behaviours.remove(behaviour);
-    }
-
-    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+    public void onContactBegin(MapObject mapObject, Fixture ownFixture, Fixture otherFixture) {
         activeContacts.add(mapObject);
     }
 
-    public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture, Contact contact) {
+    public void onContactEnd(MapObject mapObject, Fixture ownFixture, Fixture otherFixture) {
         activeContacts.remove(mapObject);
     }
 
@@ -80,11 +79,11 @@ public abstract class MapObject {
         float bounceStrengthX = 0.5f + Math.min(Math.max(Math.abs(body.getLinearVelocity().x), Math.abs(otherMapObject.getBody().getLinearVelocity().x)) / 3, 1);
         float bounceStrengthY = 1;
         Vector2 directionToTarget = body.getPosition().cpy().sub(otherMapObject.getBody().getPosition()).nor();
-        // Can for example happen during the first frame with two players at the starting position
+        // Can happen for two players doing the exact same inputs and therefore being at the exact same position, when their collisions finally get enabled after some time
         if (directionToTarget.isZero()) {
             // Guarantees the two objects to have different bounce directions
             // (Note that solving it strictly in x direction means a narrow 1-tile-wide start corridor wouldn't be properly solved and the players would be stuck!)
-            directionToTarget.x = (hashCode() < otherMapObject.hashCode()) ? -1 : 1;
+            directionToTarget.x = (id < otherMapObject.getId()) ? -1 : 1;
         }
         Vector2 impulse = directionToTarget.cpy().scl(bounceStrengthX, bounceStrengthY);
         body.setLinearVelocity(new Vector2());
