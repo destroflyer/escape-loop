@@ -38,7 +38,7 @@ public class MapFinishedState extends UiState {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                backToMapSelection();
+                playAgain();
             }
         });
         menuTable.add(playAgainButton).fill();
