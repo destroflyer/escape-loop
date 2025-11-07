@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_56",
-	"uniqueIdentifer": "561a24a0-8560-11f0-b4b6-ad5f9ae0d9f0",
+	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -16,28 +16,13 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "561a24a2-8560-11f0-b4b6-8f4a773732c6",
-				"layer": "Entities",
-				"x": 112,
-				"y": 208,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields": {
-					"outside": false
-				}
-			}
-		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "561a24a3-8560-11f0-b4b6-b10d5d484f2c",
+				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
 				"layer": "Entities",
-				"x": 176,
-				"y": 128,
+				"x": 80,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -46,92 +31,67 @@
 				}
 			}
 		],
-		"Gate": [
+		"Finish": [
 			{
-				"id": "Gate",
-				"iid": "561a4bb1-8560-11f0-b4b6-c770411bac1c",
+				"id": "Finish",
+				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
 				"layer": "Entities",
-				"x": 96,
-				"y": 144,
-				"width": 48,
+				"x": 400,
+				"y": 160,
+				"width": 16,
 				"height": 16,
-				"color": 9149364,
+				"color": 6539085,
 				"customFields": {
-					"direction": null
-				}
-			},
-			{
-				"id": "Gate",
-				"iid": "6c470830-8560-11f0-bded-2b457f25b9ee",
-				"layer": "Entities",
-				"x": 96,
-				"y": 176,
-				"width": 48,
-				"height": 16,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
+					"outside": false
 				}
 			}
 		],
-		"Pressure_Trigger": [
+		"Enemy": [
 			{
-				"id": "Pressure_Trigger",
-				"iid": "561a4bb2-8560-11f0-b4b6-5d9bcb4075b7",
+				"id": "Enemy",
+				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
 				"layer": "Entities",
-				"x": 416,
-				"y": 128,
+				"x": 256,
+				"y": 176,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 39387,
 				"customFields": {
-					"gates": [
-						{
-							"entityIid": "561a4bb1-8560-11f0-b4b6-c770411bac1c",
-							"layerIid": "561a24a1-8560-11f0-b4b6-ab6d18af6817",
-							"levelIid": "561a24a0-8560-11f0-b4b6-ad5f9ae0d9f0",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"direction": "Left",
+					"hoverTileHeight": 1
 				}
 			}
 		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "561a4bb8-8560-11f0-b4b6-85688c82f40e",
+				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
 				"layer": "Entities",
-				"x": 224,
-				"y": 128,
+				"x": 112,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Heavy"
+					"item": "Knockback"
 				}
 			}
 		],
-		"Toggle_Trigger": [
+		"Text": [
 			{
-				"id": "Toggle_Trigger",
-				"iid": "664e6810-8560-11f0-bded-d9e833842691",
+				"id": "Text",
+				"iid": "66af4be0-5e50-11f0-928e-b7eb09714dcf",
 				"layer": "Entities",
-				"x": 400,
-				"y": 256,
+				"x": 304,
+				"y": 144,
 				"width": 16,
 				"height": 16,
-				"color": 10626611,
+				"color": 16777215,
 				"customFields": {
-					"autoRevertDuration": null,
-					"gates": [
-						{
-							"entityIid": "6c470830-8560-11f0-bded-2b457f25b9ee",
-							"layerIid": "561a24a1-8560-11f0-b4b6-ab6d18af6817",
-							"levelIid": "561a24a0-8560-11f0-b4b6-ad5f9ae0d9f0",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Up"
+					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
+					"width": 250
 				}
 			}
 		]

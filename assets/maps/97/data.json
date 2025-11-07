@@ -44,8 +44,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 0
 				}
@@ -62,8 +60,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 1
 				}
@@ -80,8 +76,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 2
 				}
@@ -98,8 +92,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 2,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 0
 				}
@@ -116,8 +108,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 2,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 1
 				}
@@ -134,8 +124,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 3,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 0
 				}
@@ -152,8 +140,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 0
 				}
@@ -170,8 +156,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 2,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 4
 				}
@@ -258,7 +242,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "9061cba0-8560-11f0-b4b2-9954cbd973e8",
@@ -280,7 +263,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "7f859540-8560-11f0-b4b2-cf614564c2f5",

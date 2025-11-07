@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_78",
-	"uniqueIdentifer": "f5328d40-8560-11f0-b160-d3298b8f5c3e",
+	"uniqueIdentifer": "df71cd70-5e50-11f0-baa8-59677b7c1325",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "f5328d42-8560-11f0-b160-2d765f419277",
+				"iid": "df71cd72-5e50-11f0-baa8-dbf3e9472b0b",
 				"layer": "Entities",
-				"x": 256,
-				"y": 224,
+				"x": 176,
+				"y": 208,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,41 +31,13 @@
 				}
 			}
 		],
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "f5328d43-8560-11f0-b160-d38959bc5a99",
-				"layer": "Entities",
-				"x": 272,
-				"y": 64,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields": {
-					"outside": false
-				}
-			}
-		],
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "f5328d44-8560-11f0-b160-6b3fc5d52abb",
+				"iid": "df71cd73-5e50-11f0-baa8-ed9e03bb00c2",
 				"layer": "Entities",
-				"x": 224,
-				"y": 224,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Swap"
-				}
-			},
-			{
-				"id": "Item",
-				"iid": "51fc5dd0-8560-11f0-b160-f52656188abd",
-				"layer": "Entities",
-				"x": 288,
-				"y": 144,
+				"x": 208,
+				"y": 208,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
@@ -77,38 +49,33 @@
 		"Enemy": [
 			{
 				"id": "Enemy",
-				"iid": "f5328d45-8560-11f0-b160-f767fe65e8a0",
+				"iid": "df71cd74-5e50-11f0-baa8-e90ed6ae78a7",
 				"layer": "Entities",
-				"x": 208,
-				"y": 144,
+				"x": 288,
+				"y": 208,
 				"width": 16,
 				"height": 16,
 				"color": 39387,
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
-					"hoverTileHeight": 0
+					"hoverTileHeight": 6
 				}
-			},
+			}
+		],
+		"Finish": [
 			{
-				"id": "Enemy",
-				"iid": "f5328d47-8560-11f0-b160-3359f87e0a1f",
+				"id": "Finish",
+				"iid": "df71cd76-5e50-11f0-baa8-93b9717d0b40",
 				"layer": "Entities",
-				"x": 304,
-				"y": 64,
+				"x": 336,
+				"y": 112,
 				"width": 16,
 				"height": 16,
-				"color": 39387,
+				"color": 6539085,
 				"customFields": {
-					"autoShoot": false,
-					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
-					"direction": "Right",
-					"hoverTileHeight": 0
+					"outside": false
 				}
 			}
 		]

@@ -59,8 +59,6 @@
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 0
 				}
@@ -77,8 +75,6 @@
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 1
 				}
@@ -95,8 +91,6 @@
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 2
 				}
@@ -113,8 +107,6 @@
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 0
 				}

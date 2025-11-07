@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_60",
-	"uniqueIdentifer": "4fbefe60-5e50-11f0-9451-8d6aee0d1907",
+	"uniqueIdentifer": "121690e0-5e50-11f0-abb8-0ba5a2801051",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "4fbefe62-5e50-11f0-9451-f71709a7bcf7",
+				"iid": "121690e2-5e50-11f0-abb8-ffe62cd43522",
 				"layer": "Entities",
-				"x": 240,
-				"y": 224,
+				"x": 448,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "4fbefe63-5e50-11f0-9451-65b2138a1517",
+				"iid": "121690e3-5e50-11f0-abb8-55488a786319",
 				"layer": "Entities",
-				"x": 224,
-				"y": 96,
+				"x": 64,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -49,10 +49,10 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "4fbefe64-5e50-11f0-9451-bb416b987547",
+				"iid": "121690e5-5e50-11f0-abb8-0f5c8b872b4c",
 				"layer": "Entities",
-				"x": 256,
-				"y": 224,
+				"x": 400,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,

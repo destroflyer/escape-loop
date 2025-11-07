@@ -29,8 +29,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 1
 				}
@@ -90,7 +88,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "bc91d551-8560-11f0-b4b2-21c0fcc83aa1",
@@ -112,7 +109,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "78ec5740-8560-11f0-b4b2-03ce4040f26d",

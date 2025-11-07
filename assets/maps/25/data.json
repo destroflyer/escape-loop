@@ -42,7 +42,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",

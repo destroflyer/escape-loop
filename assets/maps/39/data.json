@@ -44,8 +44,6 @@
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 7
 				}

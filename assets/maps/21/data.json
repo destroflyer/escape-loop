@@ -42,7 +42,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "a0cfd1f5-8560-11f0-9dd4-41c27513406e",
@@ -64,7 +63,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "4df92050-8560-11f0-9dd4-4fd1241b638f",

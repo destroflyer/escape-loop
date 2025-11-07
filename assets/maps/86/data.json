@@ -44,8 +44,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Right",
 					"hoverTileHeight": 0
 				}
@@ -62,8 +60,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 0.5,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 0
 				}
@@ -136,7 +132,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "236ee1e5-8560-11f0-b4b2-6f340039b771",
@@ -158,7 +153,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "236ee1e4-8560-11f0-b4b2-d375eee93272",
@@ -180,7 +174,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "236ee1ea-8560-11f0-b4b2-e3184e553696",

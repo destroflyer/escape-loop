@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_72",
-	"uniqueIdentifer": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
+	"uniqueIdentifer": "ed65dd10-8560-11f0-a779-338d6c08bb87",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "958d22f2-8560-11f0-b4b6-9d0840c9fe97",
+				"iid": "ed65dd12-8560-11f0-a779-2f01e6c5668c",
 				"layer": "Entities",
-				"x": 224,
-				"y": 224,
+				"x": 304,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,9 +34,9 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "958d22f3-8560-11f0-b4b6-e975f6dd02f8",
+				"iid": "ed65dd13-8560-11f0-a779-018369ac529e",
 				"layer": "Entities",
-				"x": 304,
+				"x": 144,
 				"y": 224,
 				"width": 16,
 				"height": 16,
@@ -46,21 +46,54 @@
 				}
 			}
 		],
+		"Item": [
+			{
+				"id": "Item",
+				"iid": "ed65dd14-8560-11f0-a779-432f456259c2",
+				"layer": "Entities",
+				"x": 304,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Knockback"
+				}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "099c9c80-8560-11f0-a779-41cf6c8f7280",
+				"layer": "Entities",
+				"x": 112,
+				"y": 96,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"direction": "Right",
+					"hoverTileHeight": 1
+				}
+			}
+		],
 		"Platform": [
 			{
 				"id": "Platform",
-				"iid": "958d22f6-8560-11f0-b4b6-bdc7a24c5769",
+				"iid": "2b3ab890-8560-11f0-a779-3fe44ea3ebd9",
 				"layer": "Entities",
-				"x": 96,
-				"y": 176,
+				"x": 432,
+				"y": 96,
 				"width": 48,
 				"height": 16,
 				"color": 4098376,
 				"customFields": {
 					"circleMovementTileRadius": null,
 					"circleMovementSpeed": null,
-					"horizontalMovementTileWidth": 2,
-					"horizontalMovementVelocity": 4,
+					"horizontalMovementTileWidth": -18,
+					"horizontalMovementVelocity": 5,
 					"verticalMovementVelocity": null,
 					"verticalMovementTileHeight": null
 				}
@@ -69,42 +102,19 @@
 		"Toggle_Trigger": [
 			{
 				"id": "Toggle_Trigger",
-				"iid": "a95f9970-8560-11f0-b4b6-db4275601473",
+				"iid": "f506aac0-8560-11f0-a779-019ba1fd432e",
 				"layer": "Entities",
-				"x": 192,
-				"y": 224,
+				"x": 128,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
-							"entityIid": "abbd3880-8560-11f0-b4b6-01bd32a3b1aa",
-							"layerIid": "958d22f1-8560-11f0-b4b6-8d89c92883af",
-							"levelIid": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Up"
-				}
-			},
-			{
-				"id": "Toggle_Trigger",
-				"iid": "1c3ceb50-8560-11f0-b4b6-13d4c9383b1e",
-				"layer": "Entities",
-				"x": 304,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 10626611,
-				"customFields": {
-					"autoRevertDuration": null,
-					"gates": [
-						{
-							"entityIid": "20ba3610-8560-11f0-b4b6-6b0f2eebafaa",
-							"layerIid": "958d22f1-8560-11f0-b4b6-8d89c92883af",
-							"levelIid": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
+							"entityIid": "fbaa30e0-8560-11f0-a779-fd0fbfe672e2",
+							"layerIid": "ed65dd11-8560-11f0-a779-9d9035c77565",
+							"levelIid": "ed65dd10-8560-11f0-a779-338d6c08bb87",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					],
@@ -115,43 +125,15 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "abbd3880-8560-11f0-b4b6-01bd32a3b1aa",
+				"iid": "fbaa30e0-8560-11f0-a779-fd0fbfe672e2",
 				"layer": "Entities",
-				"x": 176,
-				"y": 128,
-				"width": 32,
-				"height": 16,
+				"x": 240,
+				"y": 144,
+				"width": 16,
+				"height": 48,
 				"color": 9149364,
 				"customFields": {
 					"direction": null
-				}
-			},
-			{
-				"id": "Gate",
-				"iid": "20ba3610-8560-11f0-b4b6-6b0f2eebafaa",
-				"layer": "Entities",
-				"x": 272,
-				"y": 208,
-				"width": 16,
-				"height": 32,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "ab6510f0-8560-11f0-b4b6-51927d2a28af",
-				"layer": "Entities",
-				"x": 176,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Knockback"
 				}
 			}
 		]

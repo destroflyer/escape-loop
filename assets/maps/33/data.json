@@ -44,8 +44,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 5
 				}
@@ -62,8 +60,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 4
 				}
@@ -80,8 +76,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 3
 				}
@@ -98,8 +92,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 2
 				}
@@ -116,8 +108,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 1
 				}
@@ -134,8 +124,6 @@
 				"customFields": {
 					"autoShoot": true,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 0
 				}
@@ -182,7 +170,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "265303f0-8560-11f0-b4b2-359ceddc05ca",

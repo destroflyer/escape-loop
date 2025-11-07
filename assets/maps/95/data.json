@@ -87,7 +87,6 @@
 				"height": 16,
 				"color": 10626611,
 				"customFields": {
-					"autoRevertDuration": null,
 					"gates": [
 						{
 							"entityIid": "963c0455-8560-11f0-b38d-a104fbe28595",
@@ -113,8 +112,6 @@
 				"customFields": {
 					"autoShoot": false,
 					"shootCooldown": 1,
-					"patrolHorizontal": null,
-					"patrolVertical": null,
 					"direction": "Left",
 					"hoverTileHeight": 0
 				}
