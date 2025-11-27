@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_25",
-	"uniqueIdentifer": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
+	"uniqueIdentifer": "7f94b610-5e50-11f0-928e-95fb73237167",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -16,51 +16,13 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "5dccb7b2-8560-11f0-b4b2-d9f4d7bbc0bb",
-				"layer": "Entities",
-				"x": 144,
-				"y": 96,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields": {
-					"outside": false
-				}
-			}
-		],
-		"Toggle_Trigger": [
-			{
-				"id": "Toggle_Trigger",
-				"iid": "5dccb7b3-8560-11f0-b4b2-f71d1ee037cd",
-				"layer": "Entities",
-				"x": 352,
-				"y": 256,
-				"width": 16,
-				"height": 16,
-				"color": 10626611,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
-							"layerIid": "5dccb7b1-8560-11f0-b4b2-8dd9c7512ebe",
-							"levelIid": "5dccb7b0-8560-11f0-b4b2-e7efc8f6bc75",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Left"
-				}
-			}
-		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5dccb7b5-8560-11f0-b4b2-29988f407b9a",
+				"iid": "7f94b614-5e50-11f0-928e-ab7058480ff3",
 				"layer": "Entities",
-				"x": 208,
-				"y": 96,
+				"x": 128,
+				"y": 176,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -69,18 +31,52 @@
 				}
 			}
 		],
-		"Gate": [
+		"Text": [
 			{
-				"id": "Gate",
-				"iid": "dc9f7410-8560-11f0-b4b2-b321ed1a98c9",
+				"id": "Text",
+				"iid": "7f94b615-5e50-11f0-928e-7f828e199bb8",
 				"layer": "Entities",
-				"x": 176,
-				"y": 80,
+				"x": 336,
+				"y": 144,
 				"width": 16,
-				"height": 32,
-				"color": 9149364,
+				"height": 16,
+				"color": 16777215,
 				"customFields": {
-					"direction": null
+					"text": "Avoid bullets - They will destroy you!",
+					"width": 250
+				}
+			}
+		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "aeef5c80-5e50-11f0-928e-433f98bc7e15",
+				"layer": "Entities",
+				"x": 304,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 1,
+					"direction": "Left",
+					"hoverTileHeight": 0
+				}
+			}
+		],
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "d912de10-5e50-11f0-928e-c1d069970f74",
+				"layer": "Entities",
+				"x": 352,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"outside": false
 				}
 			}
 		]

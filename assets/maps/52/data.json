@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_52",
-	"uniqueIdentifer": "bde9d620-8560-11f0-9558-9d64d2a99fa8",
+	"uniqueIdentifer": "affb2d30-8560-11f0-9faf-790e07f5b31a",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "bde9d622-8560-11f0-9558-016d4f59d244",
+				"iid": "affb2d32-8560-11f0-9faf-53b8f03848ed",
 				"layer": "Entities",
-				"x": 288,
-				"y": 48,
+				"x": 240,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,31 +31,13 @@
 				}
 			}
 		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "bde9d623-8560-11f0-9558-c1f57b8e6a09",
-				"layer": "Entities",
-				"x": 256,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": false,
-					"shootCooldown": 1,
-					"direction": "Left",
-					"hoverTileHeight": 5
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "bde9d624-8560-11f0-9558-a552ba94a6fb",
+				"iid": "affb2d33-8560-11f0-9faf-334617d0e469",
 				"layer": "Entities",
-				"x": 176,
-				"y": 256,
+				"x": 352,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -64,56 +46,23 @@
 				}
 			}
 		],
-		"Gate": [
+		"Platform": [
 			{
-				"id": "Gate",
-				"iid": "bde9d626-8560-11f0-9558-d5b344843c06",
+				"id": "Platform",
+				"iid": "cf792860-8560-11f0-9faf-ad8f03f7a540",
 				"layer": "Entities",
-				"x": 208,
-				"y": 240,
-				"width": 16,
-				"height": 32,
-				"color": 9149364,
-				"customFields": {
-					"direction": null
-				}
-			}
-		],
-		"Toggle_Trigger": [
-			{
-				"id": "Toggle_Trigger",
-				"iid": "c394f280-8560-11f0-9558-fb975c203d04",
-				"layer": "Entities",
-				"x": 304,
-				"y": 192,
-				"width": 16,
+				"x": 144,
+				"y": 256,
+				"width": 64,
 				"height": 16,
-				"color": 10626611,
+				"color": 4098376,
 				"customFields": {
-					"gates": [
-						{
-							"entityIid": "bde9d626-8560-11f0-9558-d5b344843c06",
-							"layerIid": "bde9d621-8560-11f0-9558-31b48e00d7ef",
-							"levelIid": "bde9d620-8560-11f0-9558-9d64d2a99fa8",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Left"
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "faf7b820-8560-11f0-9558-6f8ece8c6843",
-				"layer": "Entities",
-				"x": 272,
-				"y": 48,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
+					"circleMovementTileRadius": null,
+					"circleMovementSpeed": null,
+					"horizontalMovementTileWidth": null,
+					"horizontalMovementVelocity": null,
+					"verticalMovementVelocity": 1,
+					"verticalMovementTileHeight": 8
 				}
 			}
 		]

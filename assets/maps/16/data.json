@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_16",
-	"uniqueIdentifer": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
+	"uniqueIdentifer": "672163b0-5e50-11f0-9b1e-157b7f4779d3",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "edd2ef40-5e50-11f0-b20d-6d1cd3fb1786",
+				"iid": "672163b2-5e50-11f0-9b1e-b50a0a8cbebb",
 				"layer": "Entities",
-				"x": 160,
-				"y": 160,
+				"x": 144,
+				"y": 96,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "edd2ef41-5e50-11f0-b20d-617465dc2e3d",
+				"iid": "672163b3-5e50-11f0-9b1e-af585247e9a7",
 				"layer": "Entities",
-				"x": 320,
-				"y": 160,
+				"x": 208,
+				"y": 208,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -49,10 +49,10 @@
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
+				"iid": "672163b4-5e50-11f0-9b1e-6fec21e9a6c6",
 				"layer": "Entities",
-				"x": 288,
-				"y": 112,
+				"x": 256,
+				"y": 48,
 				"width": 16,
 				"height": 64,
 				"color": 9149364,
@@ -61,40 +61,41 @@
 				}
 			}
 		],
-		"Pressure_Trigger": [
+		"Toggle_Trigger": [
 			{
-				"id": "Pressure_Trigger",
-				"iid": "00b19ae0-5e50-11f0-9b1e-d1084b1a303d",
+				"id": "Toggle_Trigger",
+				"iid": "79ca7560-5e50-11f0-9b1e-052d633851bd",
 				"layer": "Entities",
 				"x": 192,
-				"y": 160,
+				"y": 96,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 10626611,
 				"customFields": {
 					"gates": [
 						{
-							"entityIid": "edd2ef43-5e50-11f0-b20d-8d4edfc50e3c",
-							"layerIid": "edd2c831-5e50-11f0-b20d-2d568b9a62d8",
-							"levelIid": "edd2c830-5e50-11f0-b20d-b1e7f090a3e5",
+							"entityIid": "672163b4-5e50-11f0-9b1e-6fec21e9a6c6",
+							"layerIid": "672163b1-5e50-11f0-9b1e-7fc2ce0cc897",
+							"levelIid": "672163b0-5e50-11f0-9b1e-157b7f4779d3",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
-					]
+					],
+					"direction": "Up"
 				}
 			}
 		],
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "3312d280-5e50-11f0-928e-9f2c5a862c4d",
+				"iid": "75cda5a0-5e50-11f0-928e-eb7d0e1fbc73",
 				"layer": "Entities",
 				"x": 192,
-				"y": 128,
+				"y": 64,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Pressure switches will open gates while something is on top of them",
+					"text": "Toggle switches will open/close gates when pushed - Use your action key ${keyAction}",
 					"width": 250
 				}
 			}

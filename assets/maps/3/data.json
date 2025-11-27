@@ -45,6 +45,22 @@
 					"visible": true
 				}
 			}
+		],
+		"Text": [
+			{
+				"id": "Text",
+				"iid": "f510bb50-ac70-11f0-905e-b378757170bf",
+				"layer": "Entities",
+				"x": 240,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16777215,
+				"customFields": {
+					"text": "Your time machine has limited charges. You can see how many charges you have at the top. In some levels, you can use it multiple times. In others you can't use it all",
+					"width": 240
+				}
+			}
 		]
 	}
 }

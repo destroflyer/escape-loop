@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_7",
-	"uniqueIdentifer": "faab7040-5e50-11f0-ba66-c96d718bf9e1",
+	"uniqueIdentifer": "a672aee0-5e50-11f0-ba66-019125e08ce2",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "faab7043-5e50-11f0-ba66-f978a8a24f67",
+				"iid": "a672aee3-5e50-11f0-ba66-23cbb6c744b8",
 				"layer": "Entities",
-				"x": 304,
-				"y": 240,
+				"x": 240,
+				"y": 192,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "faab7042-5e50-11f0-ba66-d940cffb0c7d",
+				"iid": "a672aee2-5e50-11f0-ba66-2b32fb6a0902",
 				"layer": "Entities",
-				"x": 160,
-				"y": 176,
+				"x": 352,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -49,30 +49,16 @@
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "c84f4780-5e50-11f0-928e-1ba6501e9213",
+				"iid": "f7de1150-ac70-11f0-905e-bdd51d9c2790",
 				"layer": "Entities",
-				"x": 224,
-				"y": 128,
+				"x": 256,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Try jumping and keep walking left in the air while using the time machine - Then jump with your new self and bounce your past self upwards",
-					"width": 320
-				}
-			},
-			{
-				"id": "Text",
-				"iid": "00a63d80-8560-11f0-8db6-1fb0ffc8bcdd",
-				"layer": "Entities",
-				"x": 224,
-				"y": 96,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "It doesn't matter which version of you reaches the finish",
-					"width": 200
+					"text": "Jump on top of yourself in the air to reach even even higher places",
+					"width": 160
 				}
 			}
 		]

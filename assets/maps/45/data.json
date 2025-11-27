@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_45",
-	"uniqueIdentifer": "dfc34040-5e50-11f0-9451-590543c1b661",
+	"uniqueIdentifer": "5bce9bb0-8560-11f0-b298-012045da0e61",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "dfc34042-5e50-11f0-9451-856ff40be79a",
+				"iid": "5bce9bb2-8560-11f0-b298-41cd3a3f9214",
 				"layer": "Entities",
-				"x": 256,
-				"y": 160,
+				"x": 96,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,10 +34,10 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "dfc34043-5e50-11f0-9451-718f586c20c8",
+				"iid": "5bce9bb3-8560-11f0-b298-b950b301a76c",
 				"layer": "Entities",
 				"x": 400,
-				"y": 208,
+				"y": 128,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -49,82 +49,87 @@
 		"Item": [
 			{
 				"id": "Item",
-				"iid": "dfc34044-5e50-11f0-9451-9dadb58c0b89",
+				"iid": "5bce9bb4-8560-11f0-b298-c71c6370f215",
 				"layer": "Entities",
-				"x": 224,
-				"y": 160,
+				"x": 176,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 16705377,
 				"customFields": {
-					"item": "Heavy"
+					"item": "Knockback"
 				}
 			}
 		],
-		"Pressure_Trigger": [
+		"Toggle_Trigger": [
 			{
-				"id": "Pressure_Trigger",
-				"iid": "17bb4100-5e50-11f0-9451-cf6cfc01a8f1",
+				"id": "Toggle_Trigger",
+				"iid": "5bce9bb5-8560-11f0-b298-6376648350cc",
 				"layer": "Entities",
-				"x": 96,
-				"y": 208,
+				"x": 256,
+				"y": 64,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 10626611,
 				"customFields": {
 					"gates": [
 						{
-							"entityIid": "1a40b360-5e50-11f0-9451-af60fccfca08",
-							"layerIid": "dfc34041-5e50-11f0-9451-a103226889c1",
-							"levelIid": "dfc34040-5e50-11f0-9451-590543c1b661",
+							"entityIid": "5bce9bb6-8560-11f0-b298-bf8ca955b476",
+							"layerIid": "5bce9bb1-8560-11f0-b298-31ae0f7365ce",
+							"levelIid": "5bce9bb0-8560-11f0-b298-012045da0e61",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
-					]
+					],
+					"direction": "Down"
+				}
+			},
+			{
+				"id": "Toggle_Trigger",
+				"iid": "811ffbc0-8560-11f0-b298-ed524d0d3ecb",
+				"layer": "Entities",
+				"x": 256,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "834acb00-8560-11f0-b298-db2602ab9bc2",
+							"layerIid": "5bce9bb1-8560-11f0-b298-31ae0f7365ce",
+							"levelIid": "5bce9bb0-8560-11f0-b298-012045da0e61",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
 				}
 			}
 		],
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "1a40b360-5e50-11f0-9451-af60fccfca08",
+				"iid": "5bce9bb6-8560-11f0-b298-bf8ca955b476",
 				"layer": "Entities",
-				"x": 368,
-				"y": 176,
-				"width": 80,
-				"height": 16,
+				"x": 320,
+				"y": 64,
+				"width": 16,
+				"height": 96,
 				"color": 9149364,
 				"customFields": {
 					"direction": null
 				}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "0fb11310-5e50-11f0-baa8-7d361545d7d6",
-				"layer": "Entities",
-				"x": 96,
-				"y": 128,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Orbs can be thrown ${keyAction}",
-					"width": 250
-				}
 			},
 			{
-				"id": "Text",
-				"iid": "e2ce8e80-8560-11f0-b89c-875d596dc04e",
+				"id": "Gate",
+				"iid": "834acb00-8560-11f0-b298-db2602ab9bc2",
 				"layer": "Entities",
-				"x": 96,
-				"y": 160,
+				"x": 352,
+				"y": 64,
 				"width": 16,
-				"height": 16,
-				"color": 16777215,
+				"height": 96,
+				"color": 9149364,
 				"customFields": {
-					"text": "Navigate while throwing to aim straight or diagonally",
-					"width": 150
+					"direction": null
 				}
 			}
 		]

@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_44",
-	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
+	"uniqueIdentifer": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 1
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
+				"iid": "958d22f2-8560-11f0-b4b6-9d0840c9fe97",
 				"layer": "Entities",
-				"x": 416,
-				"y": 112,
+				"x": 224,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,49 +31,125 @@
 				}
 			}
 		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
-				"layer": "Entities",
-				"x": 336,
-				"y": 112,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
-				"layer": "Entities",
-				"x": 336,
-				"y": 80,
-				"width": 16,
-				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
-					"width": 250
-				}
-			}
-		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
+				"iid": "958d22f3-8560-11f0-b4b6-e975f6dd02f8",
 				"layer": "Entities",
-				"x": 64,
-				"y": 256,
+				"x": 304,
+				"y": 224,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields": {
 					"outside": false
+				}
+			}
+		],
+		"Platform": [
+			{
+				"id": "Platform",
+				"iid": "958d22f6-8560-11f0-b4b6-bdc7a24c5769",
+				"layer": "Entities",
+				"x": 96,
+				"y": 176,
+				"width": 48,
+				"height": 16,
+				"color": 4098376,
+				"customFields": {
+					"circleMovementTileRadius": null,
+					"circleMovementSpeed": null,
+					"horizontalMovementTileWidth": 2,
+					"horizontalMovementVelocity": 4,
+					"verticalMovementVelocity": null,
+					"verticalMovementTileHeight": null
+				}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "a95f9970-8560-11f0-b4b6-db4275601473",
+				"layer": "Entities",
+				"x": 192,
+				"y": 224,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "abbd3880-8560-11f0-b4b6-01bd32a3b1aa",
+							"layerIid": "958d22f1-8560-11f0-b4b6-8d89c92883af",
+							"levelIid": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
+				}
+			},
+			{
+				"id": "Toggle_Trigger",
+				"iid": "1c3ceb50-8560-11f0-b4b6-13d4c9383b1e",
+				"layer": "Entities",
+				"x": 304,
+				"y": 176,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "20ba3610-8560-11f0-b4b6-6b0f2eebafaa",
+							"layerIid": "958d22f1-8560-11f0-b4b6-8d89c92883af",
+							"levelIid": "958d22f0-8560-11f0-b4b6-41e19b66ea24",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
+				}
+			}
+		],
+		"Gate": [
+			{
+				"id": "Gate",
+				"iid": "abbd3880-8560-11f0-b4b6-01bd32a3b1aa",
+				"layer": "Entities",
+				"x": 176,
+				"y": 128,
+				"width": 32,
+				"height": 16,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			},
+			{
+				"id": "Gate",
+				"iid": "20ba3610-8560-11f0-b4b6-6b0f2eebafaa",
+				"layer": "Entities",
+				"x": 272,
+				"y": 208,
+				"width": 16,
+				"height": 32,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			}
+		],
+		"Item": [
+			{
+				"id": "Item",
+				"iid": "ab6510f0-8560-11f0-b4b6-51927d2a28af",
+				"layer": "Entities",
+				"x": 176,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Knockback"
 				}
 			}
 		]

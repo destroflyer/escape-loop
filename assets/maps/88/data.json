@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_88",
-	"uniqueIdentifer": "bde6b2f0-8560-11f0-bed8-6b0e69923a67",
+	"uniqueIdentifer": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "bde6b2f2-8560-11f0-bed8-3de2be59b11f",
+				"iid": "fc441941-8560-11f0-8f3f-49376cd8b319",
 				"layer": "Entities",
-				"x": 416,
-				"y": 176,
+				"x": 288,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,13 +31,31 @@
 				}
 			}
 		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "fc441942-8560-11f0-8f3f-a12eb0dbe0b3",
+				"layer": "Entities",
+				"x": 240,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 4,
+					"direction": "Left",
+					"hoverTileHeight": 3
+				}
+			}
+		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "bde6b2f3-8560-11f0-bed8-458bae1d4857",
+				"iid": "fc441943-8560-11f0-8f3f-a3307f7f2afc",
 				"layer": "Entities",
-				"x": 32,
-				"y": 176,
+				"x": 224,
+				"y": 256,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -46,64 +64,13 @@
 				}
 			}
 		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "bde6b2f4-8560-11f0-bed8-e7088ade1a53",
-				"layer": "Entities",
-				"x": 256,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Knockback"
-				}
-			},
-			{
-				"id": "Item",
-				"iid": "4c4625d0-8560-11f0-bed8-9f76ea82c491",
-				"layer": "Entities",
-				"x": 480,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
-		"Toggle_Trigger": [
-			{
-				"id": "Toggle_Trigger",
-				"iid": "bde6b2f5-8560-11f0-bed8-d995f6e41dc6",
-				"layer": "Entities",
-				"x": 16,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 10626611,
-				"customFields": {
-					"gates": [
-						{
-							"entityIid": "433c9c30-8560-11f0-bed8-650035d21c35",
-							"layerIid": "bde6b2f1-8560-11f0-bed8-8172004db009",
-							"levelIid": "bde6b2f0-8560-11f0-bed8-6b0e69923a67",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					],
-					"direction": "Right"
-				}
-			}
-		],
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "bde6b2f6-8560-11f0-bed8-7b958e271535",
+				"iid": "67a23690-8560-11f0-8f3f-6952bf7bbec7",
 				"layer": "Entities",
-				"x": 48,
-				"y": 160,
+				"x": 256,
+				"y": 240,
 				"width": 16,
 				"height": 32,
 				"color": 9149364,
@@ -113,12 +80,25 @@
 			},
 			{
 				"id": "Gate",
-				"iid": "433c9c30-8560-11f0-bed8-650035d21c35",
+				"iid": "684ef150-8560-11f0-8f3f-750c39e8eb33",
 				"layer": "Entities",
-				"x": 448,
-				"y": 160,
+				"x": 288,
+				"y": 240,
 				"width": 16,
 				"height": 32,
+				"color": 9149364,
+				"customFields": {
+					"direction": null
+				}
+			},
+			{
+				"id": "Gate",
+				"iid": "f3a3c6d0-8560-11f0-8f3f-01123ea4e4f0",
+				"layer": "Entities",
+				"x": 96,
+				"y": 64,
+				"width": 16,
+				"height": 64,
 				"color": 9149364,
 				"customFields": {
 					"direction": null
@@ -128,22 +108,65 @@
 		"Pressure_Trigger": [
 			{
 				"id": "Pressure_Trigger",
-				"iid": "e324b210-8560-11f0-bed8-51e7999b81ec",
+				"iid": "6bf14560-8560-11f0-8f3f-7de5f4adda1c",
 				"layer": "Entities",
-				"x": 304,
-				"y": 176,
+				"x": 16,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 16217634,
 				"customFields": {
 					"gates": [
 						{
-							"entityIid": "bde6b2f6-8560-11f0-bed8-7b958e271535",
-							"layerIid": "bde6b2f1-8560-11f0-bed8-8172004db009",
-							"levelIid": "bde6b2f0-8560-11f0-bed8-6b0e69923a67",
+							"entityIid": "67a23690-8560-11f0-8f3f-6952bf7bbec7",
+							"layerIid": "fc441940-8560-11f0-8f3f-9f1056a73116",
+							"levelIid": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
 							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
 						}
 					]
+				}
+			},
+			{
+				"id": "Pressure_Trigger",
+				"iid": "e5f03d20-8560-11f0-8f3f-05a9f0f88af6",
+				"layer": "Entities",
+				"x": 336,
+				"y": 160,
+				"width": 16,
+				"height": 16,
+				"color": 16217634,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "f3a3c6d0-8560-11f0-8f3f-01123ea4e4f0",
+							"layerIid": "fc441940-8560-11f0-8f3f-9f1056a73116",
+							"levelIid": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					]
+				}
+			}
+		],
+		"Toggle_Trigger": [
+			{
+				"id": "Toggle_Trigger",
+				"iid": "2de8f670-8560-11f0-8f3f-9deb7090c714",
+				"layer": "Entities",
+				"x": 352,
+				"y": 208,
+				"width": 16,
+				"height": 16,
+				"color": 10626611,
+				"customFields": {
+					"gates": [
+						{
+							"entityIid": "684ef150-8560-11f0-8f3f-750c39e8eb33",
+							"layerIid": "fc441940-8560-11f0-8f3f-9f1056a73116",
+							"levelIid": "fc43f230-8560-11f0-8f3f-9bb7c9713b39",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Up"
 				}
 			}
 		]

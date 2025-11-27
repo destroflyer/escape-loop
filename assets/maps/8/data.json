@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_8",
-	"uniqueIdentifer": "a672aee0-5e50-11f0-ba66-019125e08ce2",
+	"uniqueIdentifer": "dba81ac0-5e50-11f0-94d9-4157b88df978",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,13 +16,28 @@
 		"Decoration.png"
 	],
 	"entities": {
+		"Finish": [
+			{
+				"id": "Finish",
+				"iid": "dba81ac2-5e50-11f0-94d9-0d73c85d8b23",
+				"layer": "Entities",
+				"x": 432,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 6539085,
+				"customFields": {
+					"outside": false
+				}
+			}
+		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "a672aee3-5e50-11f0-ba66-23cbb6c744b8",
+				"iid": "dba81ac3-5e50-11f0-94d9-d79d3f7ccce5",
 				"layer": "Entities",
-				"x": 224,
-				"y": 192,
+				"x": 112,
+				"y": 160,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,18 +46,19 @@
 				}
 			}
 		],
-		"Finish": [
+		"Text": [
 			{
-				"id": "Finish",
-				"iid": "a672aee2-5e50-11f0-ba66-2b32fb6a0902",
+				"id": "Text",
+				"iid": "d668aed0-8560-11f0-8db6-ad60cdc80c51",
 				"layer": "Entities",
-				"x": 416,
+				"x": 240,
 				"y": 128,
 				"width": 16,
 				"height": 16,
-				"color": 6539085,
+				"color": 16777215,
 				"customFields": {
-					"outside": false
+					"text": "It doesn't matter if a past self dies",
+					"width": 150
 				}
 			}
 		]

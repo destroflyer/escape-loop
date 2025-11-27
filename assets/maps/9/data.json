@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_9",
-	"uniqueIdentifer": "293f3400-8560-11f0-9faf-3502cc138f34",
+	"uniqueIdentifer": "37d925a0-8560-11f0-ad57-3bf0d4a65d64",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 2
+		"maximumPlayerPasts": 0
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "293f3402-8560-11f0-9faf-23555fe5d1d1",
+				"iid": "37d925a2-8560-11f0-ad57-5be5796355d7",
 				"layer": "Entities",
-				"x": 192,
-				"y": 240,
+				"x": 464,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -34,15 +34,53 @@
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "293f3403-8560-11f0-9faf-db790e20e536",
+				"iid": "37d925a3-8560-11f0-ad57-21293ff196b8",
 				"layer": "Entities",
-				"x": 352,
-				"y": 128,
+				"x": 32,
+				"y": 144,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
 				"customFields": {
 					"outside": false
+				}
+			}
+		],
+		"Platform": [
+			{
+				"id": "Platform",
+				"iid": "37d925a4-8560-11f0-ad57-bba0d821b9cd",
+				"layer": "Entities",
+				"x": 240,
+				"y": 160,
+				"width": 80,
+				"height": 16,
+				"color": 4098376,
+				"customFields": {
+					"circleMovementTileRadius": null,
+					"circleMovementSpeed": null,
+					"horizontalMovementTileWidth": 7,
+					"horizontalMovementVelocity": 3,
+					"verticalMovementVelocity": null,
+					"verticalMovementTileHeight": null
+				}
+			},
+			{
+				"id": "Platform",
+				"iid": "7979d630-8560-11f0-ad57-8159e9676986",
+				"layer": "Entities",
+				"x": 144,
+				"y": 160,
+				"width": 48,
+				"height": 16,
+				"color": 4098376,
+				"customFields": {
+					"circleMovementTileRadius": 3,
+					"circleMovementSpeed": 3,
+					"horizontalMovementTileWidth": null,
+					"horizontalMovementVelocity": null,
+					"verticalMovementVelocity": null,
+					"verticalMovementTileHeight": null
 				}
 			}
 		]

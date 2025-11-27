@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_32",
-	"uniqueIdentifer": "7f94b610-5e50-11f0-928e-95fb73237167",
+	"uniqueIdentifer": "5b9db220-5e50-11f0-9b1e-67fb86c0d7a9",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "7f94b614-5e50-11f0-928e-ab7058480ff3",
+				"iid": "5b9db222-5e50-11f0-9b1e-ffb92f95309e",
 				"layer": "Entities",
-				"x": 128,
-				"y": 176,
+				"x": 416,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,47 +31,44 @@
 				}
 			}
 		],
+		"Item": [
+			{
+				"id": "Item",
+				"iid": "5b9db225-5e50-11f0-9b1e-ebbe47dd0a94",
+				"layer": "Entities",
+				"x": 336,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Heavy"
+				}
+			}
+		],
 		"Text": [
 			{
 				"id": "Text",
-				"iid": "7f94b615-5e50-11f0-928e-7f828e199bb8",
+				"iid": "60becca0-5e50-11f0-928e-17aced0201e9",
 				"layer": "Entities",
 				"x": 336,
-				"y": 144,
+				"y": 80,
 				"width": 16,
 				"height": 16,
 				"color": 16777215,
 				"customFields": {
-					"text": "Avoid bullets - They will destroy you!",
+					"text": "Touch an orb to pick it up. Gravity orbs increase the holder's weight",
 					"width": 250
-				}
-			}
-		],
-		"Enemy": [
-			{
-				"id": "Enemy",
-				"iid": "aeef5c80-5e50-11f0-928e-433f98bc7e15",
-				"layer": "Entities",
-				"x": 304,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"direction": "Left",
-					"hoverTileHeight": 0
 				}
 			}
 		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "d912de10-5e50-11f0-928e-c1d069970f74",
+				"iid": "d3762b80-5e50-11f0-928e-7dcd42fcb6f4",
 				"layer": "Entities",
-				"x": 352,
-				"y": 176,
+				"x": 64,
+				"y": 256,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,

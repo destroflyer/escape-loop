@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_56",
-	"uniqueIdentifer": "fc9046b0-5e50-11f0-870b-77a6f7d87888",
+	"uniqueIdentifer": "ed4fb440-8560-11f0-b4b2-2d903cb02bb1",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -8,7 +8,7 @@
 	"bgColor": "#696A79",
 	"neighbourLevels": [],
 	"customFields": {
-		"maximumPlayerPasts": 0
+		"maximumPlayerPasts": 1
 	},
 	"layers": [
 		"Background.png",
@@ -19,10 +19,10 @@
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "fc9046b2-5e50-11f0-870b-b1c3fb7e77d2",
+				"iid": "ed4fb442-8560-11f0-b4b2-7b91fdab0718",
 				"layer": "Entities",
-				"x": 80,
-				"y": 176,
+				"x": 96,
+				"y": 240,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -31,13 +31,47 @@
 				}
 			}
 		],
+		"Enemy": [
+			{
+				"id": "Enemy",
+				"iid": "ed4fb443-8560-11f0-b4b2-85af34172098",
+				"layer": "Entities",
+				"x": 400,
+				"y": 112,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 2,
+					"direction": "Left",
+					"hoverTileHeight": 1
+				}
+			},
+			{
+				"id": "Enemy",
+				"iid": "0ef1a0e0-8560-11f0-b4b2-3b8c532c2575",
+				"layer": "Entities",
+				"x": 160,
+				"y": 240,
+				"width": 16,
+				"height": 16,
+				"color": 39387,
+				"customFields": {
+					"autoShoot": true,
+					"shootCooldown": 0.25,
+					"direction": "Right",
+					"hoverTileHeight": 5
+				}
+			}
+		],
 		"Finish": [
 			{
 				"id": "Finish",
-				"iid": "fc9046b3-5e50-11f0-870b-31ecd765bea2",
+				"iid": "ed4fb444-8560-11f0-b4b2-172c6fb191c4",
 				"layer": "Entities",
-				"x": 400,
-				"y": 160,
+				"x": 416,
+				"y": 112,
 				"width": 16,
 				"height": 16,
 				"color": 6539085,
@@ -46,53 +80,17 @@
 				}
 			}
 		],
-		"Enemy": [
+		"Bouncer": [
 			{
-				"id": "Enemy",
-				"iid": "302821a0-5e50-11f0-870b-8751e2bef8cc",
+				"id": "Bouncer",
+				"iid": "2c158a00-8560-11f0-b4b2-f5af9e1d13fe",
 				"layer": "Entities",
 				"x": 256,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 39387,
-				"customFields": {
-					"autoShoot": true,
-					"shootCooldown": 1,
-					"direction": "Left",
-					"hoverTileHeight": 1
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "60921530-5e50-11f0-870b-a7bffab95090",
-				"layer": "Entities",
-				"x": 112,
-				"y": 176,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Knockback"
-				}
-			}
-		],
-		"Text": [
-			{
-				"id": "Text",
-				"iid": "66af4be0-5e50-11f0-928e-b7eb09714dcf",
-				"layer": "Entities",
-				"x": 304,
 				"y": 144,
 				"width": 16,
 				"height": 16,
-				"color": 16777215,
-				"customFields": {
-					"text": "Not all thrown orbs are immediately picked up by the target. Magnetic orbs will instead push them away",
-					"width": 250
-				}
+				"color": 2943221,
+				"customFields" : {}
 			}
 		]
 	}
