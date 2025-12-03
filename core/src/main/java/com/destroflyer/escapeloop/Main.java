@@ -13,6 +13,7 @@ import com.destroflyer.escapeloop.states.HttpState;
 import com.destroflyer.escapeloop.states.MainMenuState;
 import com.destroflyer.escapeloop.states.AudioState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
+import com.destroflyer.escapeloop.states.MapsState;
 import com.destroflyer.escapeloop.states.SettingsState;
 import com.destroflyer.escapeloop.states.models.Account;
 import com.destroflyer.escapeloop.util.AuthTokenUtil;
@@ -46,6 +47,8 @@ public class Main extends ApplicationAdapter {
     @Getter
     private AudioState audioState;
     @Getter
+    private MapsState mapsState;
+    @Getter
     private MainMenuState mainMenuState;
     @Getter
     private MapSelectionState mapSelectionState;
@@ -76,6 +79,9 @@ public class Main extends ApplicationAdapter {
 
         audioState = new AudioState();
         addState(audioState);
+
+        mapsState = new MapsState();
+        addState(mapsState);
 
         mainMenuState = new MainMenuState();
         addState(mainMenuState);

@@ -65,11 +65,8 @@ public class MapState extends State {
     private void onMapFinished() {
         long timeMillis = (long) (map.getTotalTime() * 1000);
         main.getDestrostudiosState().requestSetHighscore(map.getId(), timeMillis);
-        Preferences preferences = main.getSettingsState().getPreferences();
-        if (mapIndex == preferences.getInteger("level")) {
+        if (mapIndex == main.getMapsState().getCurrentLevel()) {
             int nextMapIndex = mapIndex + 1;
-            preferences.putInteger("level", nextMapIndex);
-            preferences.flush();
             if (nextMapIndex <= MapSelectionState.MAPS_COUNT) {
                 switchToState(new MapState(nextMapIndex));
             } else {

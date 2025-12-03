@@ -24,12 +24,17 @@ public class MapFinishedState extends UiState {
         Table menuTable = new Table();
 
         Label mapLabel = new Label("Level " + (mapIndex + 1), main.getSkinLarge());
-        menuTable.add(mapLabel).colspan(2);
+        menuTable.add(mapLabel);
 
         menuTable.row().padTop(2);
 
         Label timeLabel = new Label(TimeUtil.formatMilliseconds(timeMillis), main.getSkinLarge());
-        menuTable.add(timeLabel).colspan(2);
+        menuTable.add(timeLabel);
+
+        menuTable.row().padTop(2);
+
+        Label playAgainInfoLabel = new Label("(Press Enter to play again)", main.getSkinSmall());
+        menuTable.add(playAgainInfoLabel);
 
         menuTable.row().padTop(8);
 

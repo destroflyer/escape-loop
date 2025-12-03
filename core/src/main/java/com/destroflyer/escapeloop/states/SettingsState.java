@@ -28,6 +28,7 @@ public class SettingsState extends UiState {
 
     public SettingsState() {
         preferences = Gdx.app.getPreferences("escape-loop");
+        removeLegacySetting("level");
         setDefaultFloat("volumeMaster", 0.1f);
         setDefaultFloat("volumeMusic", 1);
         setDefaultFloat("volumeSound", 1);
@@ -45,7 +46,6 @@ public class SettingsState extends UiState {
         setDefaultInteger("keyTimeMachine", Input.Keys.L);
         setDefaultInteger("keyReset", Input.Keys.BACKSPACE);
         setDefaultBoolean("unlockAllLevels", false);
-        setDefaultInteger("level", 0);
     }
     @Getter
     private Preferences preferences;
@@ -163,6 +163,10 @@ public class SettingsState extends UiState {
 
         Actor element = createElement.apply(label);
         menuTable.add(element).padLeft(10);
+    }
+
+    private void removeLegacySetting(String key) {
+        preferences.remove(key);
     }
 
     private void setDefaultBoolean(String key, boolean defaultValue) {

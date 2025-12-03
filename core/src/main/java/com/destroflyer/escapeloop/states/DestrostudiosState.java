@@ -18,23 +18,29 @@ public class DestrostudiosState extends State {
     private static final String BASE_URL = "https://destrostudios.com:8080";
     private static final String HIGHSCORE_EVALUATION = "LOWER";
     public static final int DISPLAYED_WORLD_RECORDS_PER_MAP = 5;
+    private boolean personalRecordsLoading;
+    private boolean worldRecordsLoading;
     @Getter
     private HashMap<String, Highscore> personalRecords = new HashMap<>();
     @Getter
     private HashMap<String, ArrayList<Highscore>> worldRecords = new HashMap<>();
 
     public void requestHighscores() {
+        personalRecordsLoading = true;
         request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores?evaluation=" + HIGHSCORE_EVALUATION + "&login=" + main.getAccount().getLogin(), null, HighscoreDto[].class, (highscoreDtos) -> {
             personalRecords.clear();
             for (HighscoreDto highscoreDto : highscoreDtos) {
                 personalRecords.put(highscoreDto.getContext(), new Highscore(highscoreDto.getUser().getLogin(), highscoreDto.getScore()));
             }
+            personalRecordsLoading = false;
         });
+        worldRecordsLoading = true;
         request(Net.HttpMethods.GET, "/apps/" + APP_ID + "/highscores?evaluation=" + HIGHSCORE_EVALUATION + "&limitPerContext=" + DISPLAYED_WORLD_RECORDS_PER_MAP, null, HighscoreDto[].class, (highscoreDtos) -> {
             worldRecords.clear();
             for (HighscoreDto highscoreDto : highscoreDtos) {
                 worldRecords.computeIfAbsent(highscoreDto.getContext(), mapId -> new ArrayList<>()).add(new Highscore(highscoreDto.getUser().getLogin(), highscoreDto.getScore()));
             }
+            worldRecordsLoading = false;
         });
     }
 
@@ -63,5 +69,9 @@ public class DestrostudiosState extends State {
             responseClass,
             onSuccess
         );
+    }
+
+    public boolean isLoading() {
+        return personalRecordsLoading || worldRecordsLoading;
     }
 }

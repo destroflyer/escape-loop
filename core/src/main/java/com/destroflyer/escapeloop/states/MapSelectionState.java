@@ -1,6 +1,5 @@
 package com.destroflyer.escapeloop.states;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
@@ -15,9 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Json;
 import com.destroflyer.escapeloop.Main;
-import com.destroflyer.escapeloop.game.loader.json.MapData;
 import com.destroflyer.escapeloop.states.models.Highscore;
 import com.destroflyer.escapeloop.states.models.RecordRow;
 import com.destroflyer.escapeloop.util.MapImport;
@@ -40,6 +37,7 @@ public class MapSelectionState extends UiState {
     private Image selectedMapImage;
     private RecordRow[] selectedMapWorldRecordRows;
     private RecordRow selectedMapPersonalRecordRow;
+    private TextButton playButton;
 
     @Override
     public void create() {
@@ -111,13 +109,15 @@ public class MapSelectionState extends UiState {
         selectedMapPersonalRecordRow = new RecordRow(personalRecordUserLabel, personalRecordTimeLabel);
 
         selectedMapTable.row();
-        TextButton playButton = new TextButton("Play", main.getSkinLarge());
+        playButton = new TextButton("Play", main.getSkinLarge());
         playButton.addListener(new ClickListener() {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                switchToState(new MapState(selectedMapIndex));
-                playButtonSound();
+                if (!playButton.isDisabled()) {
+                    switchToState(new MapState(selectedMapIndex));
+                    playButtonSound();
+                }
             }
         });
         selectedMapTable.add(playButton).colspan(2).padTop(5).width(playTableWidth).fill();
@@ -134,60 +134,49 @@ public class MapSelectionState extends UiState {
 
         mapsTable.clear();
         mapButtons.clear();
-        int currentLevel = main.getSettingsState().getPreferences().getInteger("level");
         for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
             if ((mapIndex % MAPS_PER_ROW) == 0) {
                 mapsTable.row();
             }
             TextButton mapButton = new TextButton(getMapTitle(mapIndex), SkinUtil.getToggleButtonStyle(main.getSkinLarge()));
-            boolean isUnlocked = (mapIndex <= currentLevel) || main.getSettingsState().getPreferences().getBoolean("unlockAllLevels");
-            if (isUnlocked) {
-                int _mapIndex = mapIndex;
-                mapButton.addListener(new ClickListener() {
+            int _mapIndex = mapIndex;
+            mapButton.addListener(new ClickListener() {
 
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (!mapButton.isDisabled()) {
                         selectMap(_mapIndex);
                         playButtonSound();
                     }
-                });
-            } else {
-                mapButton.setDisabled(true);
-            }
+                }
+            });
+            mapButton.setDisabled(true);
             mapsTable.add(mapButton).fill().width(65).padRight(10).padBottom(10);
             mapButtons.add(mapButton);
         }
         mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
 
-        selectMap((int) Math.min(currentLevel, MAPS_COUNT - 1));
-    }
-
-    public void selectMap(int mapIndex) {
-        mapButtons.get(selectedMapIndex).setChecked(false);
-        selectedMapIndex = mapIndex;
-        selectedMapLabel.setText(getMapTitle(selectedMapIndex));
-        selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
-        mapButtons.get(selectedMapIndex).setChecked(true);
-
-        selectedMapId = getMapId(mapIndex);
-    }
-
-    // FIXME: This part should not happen here and shouldn't duplicate the file loader!
-    private String getMapId(int mapIndex) {
-        Json json = new Json();
-        json.setIgnoreUnknownFields(true);
-        MapData data = json.fromJson(MapData.class, Gdx.files.internal("./maps/" + mapIndex + "/data.json"));
-        return data.getUniqueIdentifer();
-    }
-
-    private String getMapTitle(Integer mapIndex) {
-        return "" + (mapIndex + 1);
+        playButton.setDisabled(true);
     }
 
     @Override
     public void render() {
         super.render();
+        updateMapButtons();
         updateRecords();
+    }
+
+    private void updateMapButtons() {
+        if (playButton.isDisabled() && !main.getDestrostudiosState().isLoading()) {
+            for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
+                TextButton mapButton = mapButtons.get(mapIndex);
+                boolean isUnlocked = main.getMapsState().hasUnlockedMap(mapIndex);
+                mapButton.setDisabled(!isUnlocked);
+            }
+            int currentLevel = main.getMapsState().getCurrentLevel();
+            selectMap((int) Math.min(currentLevel, MAPS_COUNT - 1));
+            playButton.setDisabled(false);
+        }
     }
 
     private void updateRecords() {
@@ -203,6 +192,19 @@ public class MapSelectionState extends UiState {
             selectedMapPersonalRecordRow.getUserLabel().setText((personalRecord != null) ? personalRecord.getUser() : "-");
             selectedMapPersonalRecordRow.getTimeLabel().setText((personalRecord != null) ? TimeUtil.formatMilliseconds(personalRecord.getTime()) : "-");
         }
+    }
+
+    public void selectMap(int mapIndex) {
+        mapButtons.get(selectedMapIndex).setChecked(false);
+        selectedMapIndex = mapIndex;
+        selectedMapId = main.getMapsState().getMapId(mapIndex);
+        selectedMapLabel.setText(getMapTitle(selectedMapIndex));
+        selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
+        mapButtons.get(selectedMapIndex).setChecked(true);
+    }
+
+    private String getMapTitle(int mapIndex) {
+        return "" + (mapIndex + 1);
     }
 
     private void backToMainMenu() {
