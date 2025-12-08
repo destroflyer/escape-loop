@@ -29,6 +29,7 @@ public class MapSelectionState extends UiState {
     public static final float MAPS_COUNT = 100;
     private static final float MAPS_PER_ROW = 10;
 
+    private Label titleLabel;
     private Table mapsTable;
     private ArrayList<TextButton> mapButtons = new ArrayList<>();
     private int selectedMapIndex;
@@ -42,8 +43,7 @@ public class MapSelectionState extends UiState {
     @Override
     public void create() {
         super.create();
-        Label titleLabel = new Label("Select a level", main.getSkinLarge());
-        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), 615);
+        titleLabel = new Label(null, main.getSkinLarge());
         stage.addActor(titleLabel);
 
         mapsTable = new Table();
@@ -132,6 +132,8 @@ public class MapSelectionState extends UiState {
             MapImport.importAllMaps();
         }
 
+        setTitle("Loading...");
+
         mapsTable.clear();
         mapButtons.clear();
         for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
@@ -168,6 +170,7 @@ public class MapSelectionState extends UiState {
 
     private void updateMapButtons() {
         if (playButton.isDisabled() && !main.getDestrostudiosState().isLoading()) {
+            setTitle("Select a level");
             for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
                 TextButton mapButton = mapButtons.get(mapIndex);
                 boolean isUnlocked = main.getMapsState().hasUnlockedMap(mapIndex);
@@ -177,6 +180,11 @@ public class MapSelectionState extends UiState {
             selectMap((int) Math.min(currentLevel, MAPS_COUNT - 1));
             playButton.setDisabled(false);
         }
+    }
+
+    private void setTitle(String title) {
+        titleLabel.setText(title);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), 615);
     }
 
     private void updateRecords() {
