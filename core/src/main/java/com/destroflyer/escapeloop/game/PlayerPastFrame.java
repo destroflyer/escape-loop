@@ -10,7 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class PlayerPastFrame {
-    private float time;
+    private int frame;
     private Vector2 position;
     private ArrayList<PlayerInput> inputs;
 }

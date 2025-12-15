@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class HighscoreDto {
     private String context;
     private UserDto user;
-    private long score;
+    private int score;
 }

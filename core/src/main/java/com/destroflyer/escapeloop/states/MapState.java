@@ -63,8 +63,7 @@ public class MapState extends State {
     }
 
     private void onMapFinished() {
-        long timeMillis = (long) (map.getTotalTime() * 1000);
-        main.getDestrostudiosState().requestSetHighscore(map.getId(), timeMillis);
+        main.getDestrostudiosState().requestSetHighscore(map.getId(), map.getTotalFrame());
         if (mapIndex == main.getMapsState().getCurrentLevel()) {
             int nextMapIndex = mapIndex + 1;
             if (nextMapIndex <= MapSelectionState.MAPS_COUNT) {
@@ -73,7 +72,7 @@ public class MapState extends State {
                 switchToState(main.getMapSelectionState());
             }
         } else {
-            switchToState(new MapFinishedState(mapIndex, timeMillis));
+            switchToState(new MapFinishedState(mapIndex, map.getTotalFrame()));
         }
         map.getAudioState().playSound("win");
     }

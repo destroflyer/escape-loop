@@ -12,6 +12,7 @@ import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.states.MapState;
 import com.destroflyer.escapeloop.states.AudioState;
 import com.destroflyer.escapeloop.states.SettingsState;
+import com.destroflyer.escapeloop.util.TimeUtil;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -51,9 +52,8 @@ public class Map {
     @Getter
     public float width;
     @Getter
-    private float totalTime;
-    @Getter
-    private float time;
+    private int totalFrame;
+    private int frame;
     @Getter
     private ArrayList<MapObject> objects = new ArrayList<>();
     private int nextObjectId;
@@ -96,7 +96,7 @@ public class Map {
 
     public void reset() {
         mapCustomLoader.reset();
-        totalTime = 0;
+        totalFrame = 0;
         playerPasts.clear();
         if (cinematic != null) {
             cinematic.finish();
@@ -108,7 +108,7 @@ public class Map {
     }
 
     private void start() {
-        time = 0;
+        frame = 0;
         for (MapObject mapObject : objects) {
             world.destroyBody(mapObject.getBody());
         }
@@ -156,17 +156,18 @@ public class Map {
 
     public void update() {
         float tpf = 1f / Main.FPS;
-        totalTime += tpf;
-        time += tpf;
+        totalFrame++;
+        frame++;
         updateQueuedTasks(tpf);
-        currentPlayerFrames.add(new PlayerPastFrame(time, player.getBody().getPosition().cpy(), new ArrayList<>(currentPlayerCurrentFrameInputs)));
+        currentPlayerFrames.add(new PlayerPastFrame(frame, player.getBody().getPosition().cpy(), new ArrayList<>(currentPlayerCurrentFrameInputs)));
         currentPlayerCurrentFrameInputs.clear();
         for (PlayerPast playerPast : playerPasts) {
             if (isPlayerAlive(playerPast.getPlayer())) {
-                playerPast.applyTime(time);
+                playerPast.applyFrame(frame);
             }
         }
         if (cinematic != null) {
+            float time = getTime();
             cinematic.applyTime(time);
             if (time >= cinematic.getDuration()) {
                 reset();
@@ -240,11 +241,19 @@ public class Map {
         return objects.stream().filter(mapObject -> mapObject.getBody() == body).findAny().orElse(null);
     }
 
+    public String getId() {
+        return mapFileLoader.getId();
+    }
+
     public float getHeight() {
         return (((float) Main.VIEWPORT_HEIGHT) / Main.VIEWPORT_WIDTH) * width;
     }
 
-    public String getId() {
-        return mapFileLoader.getId();
+    public float getTime() {
+        return TimeUtil.convertFramesToSeconds(frame);
+    }
+
+    public float getTotalTime() {
+        return TimeUtil.convertFramesToSeconds(totalFrame);
     }
 }

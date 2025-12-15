@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 public class MapFinishedState extends UiState {
 
     private int mapIndex;
-    private long timeMillis;
+    private int totalFrames;
 
     @Override
     public void create() {
@@ -28,7 +28,7 @@ public class MapFinishedState extends UiState {
 
         menuTable.row().padTop(2);
 
-        Label timeLabel = new Label(TimeUtil.formatMilliseconds(timeMillis), main.getSkinLarge());
+        Label timeLabel = new Label(TimeUtil.formatFrames(totalFrames), main.getSkinLarge());
         menuTable.add(timeLabel);
 
         menuTable.row().padTop(2);

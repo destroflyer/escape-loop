@@ -23,11 +23,11 @@ public class PlayerPast {
         remainingFrames.addAll(frames);
     }
 
-    public void applyTime(float time) {
+    public void applyFrame(int frame) {
         for (int i = 0; i < remainingFrames.size(); i++) {
-            PlayerPastFrame frame = remainingFrames.get(i);
-            if (time >= frame.getTime()) {
-                for (PlayerInput input : frame.getInputs()) {
+            PlayerPastFrame pastFrame = remainingFrames.get(i);
+            if (frame >= pastFrame.getFrame()) {
+                for (PlayerInput input : pastFrame.getInputs()) {
                     input.apply(player);
                 }
                 remainingFrames.remove(i);

@@ -44,14 +44,14 @@ public class DestrostudiosState extends State {
         });
     }
 
-    public void requestSetHighscore(String mapId, long timeMillis) {
+    public void requestSetHighscore(String mapId, int totalFrames) {
         request(
             Net.HttpMethods.POST,
             "/apps/" + APP_ID + "/setHighscore",
             SetHighscoreDto.builder()
                 .context(mapId)
                 .evaluation(HIGHSCORE_EVALUATION)
-                .score(timeMillis)
+                .score(totalFrames)
                 .build()
         );
     }

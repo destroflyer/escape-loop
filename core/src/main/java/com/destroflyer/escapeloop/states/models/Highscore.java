@@ -7,5 +7,5 @@ import lombok.Getter;
 @Getter
 public class Highscore {
     private String user;
-    private long time;
+    private int frames;
 }

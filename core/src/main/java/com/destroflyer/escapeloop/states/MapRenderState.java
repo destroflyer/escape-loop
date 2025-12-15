@@ -43,6 +43,7 @@ import com.destroflyer.escapeloop.game.objects.Ground;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.states.models.MapRenderLayer;
 import com.destroflyer.escapeloop.util.RenderUtil;
+import com.destroflyer.escapeloop.util.TimeUtil;
 
 import java.util.ArrayList;
 
@@ -242,7 +243,7 @@ public class MapRenderState extends State {
         float maximumTime = mapState.getMap().getTime() + main.getSettingsState().getPreferences().getFloat("playerPastsTrajectoryDuration");
         ArrayList<Vector2> trajectoryPoints = new ArrayList<>();
         for (PlayerPastFrame frame : playerPastWithIndex.getPlayerPast().getRemainingFrames()) {
-            if (frame.getTime() > maximumTime) {
+            if (TimeUtil.convertFramesToSeconds(frame.getFrame()) > maximumTime) {
                 break;
             }
             int x = convertMapX(frame.getPosition().x);

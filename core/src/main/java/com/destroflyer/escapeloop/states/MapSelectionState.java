@@ -193,12 +193,12 @@ public class MapSelectionState extends UiState {
             RecordRow recordRow = selectedMapWorldRecordRows[i];
             Highscore highscore = (((worldRecords != null) && (i < worldRecords.size())) ? worldRecords.get(i) : null);
             recordRow.getUserLabel().setText((highscore != null) ? highscore.getUser() : "-");
-            recordRow.getTimeLabel().setText((highscore != null) ? TimeUtil.formatMilliseconds(highscore.getTime()) : "-");
+            recordRow.getTimeLabel().setText((highscore != null) ? TimeUtil.formatFrames(highscore.getFrames()) : "-");
         }
         Highscore personalRecord = main.getDestrostudiosState().getPersonalRecords().get(selectedMapId);
         for (int i = 0; i < selectedMapWorldRecordRows.length; i++) {
             selectedMapPersonalRecordRow.getUserLabel().setText((personalRecord != null) ? personalRecord.getUser() : "-");
-            selectedMapPersonalRecordRow.getTimeLabel().setText((personalRecord != null) ? TimeUtil.formatMilliseconds(personalRecord.getTime()) : "-");
+            selectedMapPersonalRecordRow.getTimeLabel().setText((personalRecord != null) ? TimeUtil.formatFrames(personalRecord.getFrames()) : "-");
         }
     }
 
