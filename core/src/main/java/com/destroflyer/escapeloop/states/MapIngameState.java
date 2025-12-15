@@ -4,7 +4,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.inputs.ActionInput;
@@ -18,16 +21,25 @@ public class MapIngameState extends UiState {
 
     public MapIngameState(MapState mapState) {
         this.mapState = mapState;
+        timeMachineChargeTextureRegion = new TextureRegion(new Texture("./textures/orange_robot/idle_with_time_machine.png"), 5, 12, 22, 22);
     }
     private MapState mapState;
+    private Label timeMachineLabel;
     private Label infoLabel;
     private Label timeLabel;
+    private TextureRegion timeMachineChargeTextureRegion;
 
     @Override
     public void create() {
         super.create();
-        infoLabel = new Label(null, main.getSkinLarge());
-        infoLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
+        timeMachineLabel = new Label(null, main.getSkinLarge());
+        timeMachineLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
+        stage.addActor(timeMachineLabel);
+
+        infoLabel = new Label(null, main.getSkinSmall());
+        // 1px lower than the other labels to look a bit more aligned
+        infoLabel.setPosition(710, (Main.VIEWPORT_HEIGHT - 37));
+        infoLabel.setAlignment(Align.center);
         stage.addActor(infoLabel);
 
         timeLabel = new Label(null, main.getSkinLarge());
@@ -49,17 +61,26 @@ public class MapIngameState extends UiState {
 
         if (map.getCinematic() == null) {
             Preferences preferences = main.getSettingsState().getPreferences();
-            String help = "";
-            help += InputUtil.getKeyName(preferences.getInteger("keyAction")) + " = Action";
-            help += ", ";
-            help += InputUtil.getKeyName(preferences.getInteger("keyRespawn")) + " = Respawn";
-            help += ", ";
-            help += InputUtil.getKeyName(preferences.getInteger("keyTimeMachine")) + " = Time machine (" + map.getMaximumPlayerPasts() + " charge" + ((map.getMaximumPlayerPasts() == 1) ? "": "s") + ")";
-            help += ", ";
-            help += InputUtil.getKeyName(preferences.getInteger("keyReset")) + " = Reset";
-            infoLabel.setText(help);
+
+            String timeMachineText = "Time machine [" + InputUtil.getKeyName(preferences.getInteger("keyTimeMachine")) + "]:";
+            if (map.getMaximumPlayerPasts() == 0) {
+                timeMachineText += " No charges";
+            }
+            timeMachineLabel.setText(timeMachineText);
+
+            String infoText = "";
+            infoText += InputUtil.getKeyName(preferences.getInteger("keyAction")) + " = Action";
+            infoText += ", ";
+            infoText += InputUtil.getKeyName(preferences.getInteger("keyRespawn")) + " = Respawn";
+            infoText += ", ";
+            infoText += InputUtil.getKeyName(preferences.getInteger("keyReset")) + " = Reset";
+            infoLabel.setText(infoText);
 
             timeLabel.setText("Time: " + FloatUtil.format(mapState.getMap().getTotalTime(), 3) + "s");
+        } else {
+            timeMachineLabel.setText("");
+            infoLabel.setText("");
+            timeLabel.setText("");
         }
     }
 
@@ -75,6 +96,30 @@ public class MapIngameState extends UiState {
         if (verticalDirection != map.getPlayer().getVerticalDirection()) {
             map.applyInput(new SetVerticalDirectionInput(verticalDirection));
         }
+    }
+
+    @Override
+    public void render() {
+        super.render();
+        Map map = mapState.getMap();
+        if (map.getCinematic() == null) {
+            drawTimeMachineCharges(map);
+        }
+    }
+
+    private void drawTimeMachineCharges(Map map) {
+        int textureSize = 50;
+        int margin = 10;
+        float y = Main.VIEWPORT_HEIGHT - margin - textureSize;
+
+        spriteBatch.begin();
+        for (int i = 0; i < map.getMaximumPlayerPasts(); i++) {
+            boolean hasTimeMachineCharge = (map.getMaximumPlayerPasts() - map.getPlayerPasts().size()) > i;
+            spriteBatch.setColor(1, 1, 1, hasTimeMachineCharge ? 1 : 0.25f);
+            float x = timeMachineLabel.getX() + timeMachineLabel.getPrefWidth() + margin + (i * textureSize);
+            spriteBatch.draw(timeMachineChargeTextureRegion, x, y, textureSize, textureSize);
+        }
+        spriteBatch.end();
     }
 
     @Override
