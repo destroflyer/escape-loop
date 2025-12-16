@@ -10,7 +10,11 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class PlayerPastFrame {
+
+    public PlayerPastFrame(int frame, ArrayList<PlayerInput> inputs) {
+        this(frame, inputs, null);
+    }
     private int frame;
-    private Vector2 position;
     private ArrayList<PlayerInput> inputs;
+    private Vector2 position;
 }

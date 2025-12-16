@@ -15,24 +15,16 @@ import com.destroflyer.escapeloop.states.SettingsState;
 import com.destroflyer.escapeloop.util.TimeUtil;
 
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 
 public class Map {
 
-    public Map(int mapIndex, MapState mapState, SettingsState settingsState, AudioState audioState) {
+    public Map(int mapIndex, MapState<?, ?> mapState, SettingsState settingsState, AudioState audioState) {
         this.mapIndex = mapIndex;
         this.mapState = mapState;
         this.settingsState = settingsState;
         this.audioState = audioState;
-        mapFileLoader = new MapFileLoader(this);
-        mapCustomLoader = new MapCustomLoader(this);
-        mapContactListener = new MapContactListener(this);
-        world = new World(GRAVITY, false);
-        world.setContactListener(mapContactListener);
-        reset();
-        cinematic = mapCustomLoader.getCinematic();
     }
     private static final Vector2 GRAVITY = new Vector2(0, -9.81f);
     private static final int VELOCITY_ITERATIONS = 6;
@@ -41,19 +33,19 @@ public class Map {
     @Getter
     private int mapIndex;
     @Getter
-    private MapState mapState;
+    private MapState<?, ?> mapState;
     @Getter
     private SettingsState settingsState;
     @Getter
-    private AudioState audioState;
-    private MapFileLoader mapFileLoader;
+    protected AudioState audioState;
+    protected MapFileLoader mapFileLoader;
     private MapCustomLoader mapCustomLoader;
     private MapContactListener mapContactListener;
     @Getter
     public float width;
     @Getter
     private int totalFrame;
-    private int frame;
+    protected int frame;
     @Getter
     private ArrayList<MapObject> objects = new ArrayList<>();
     private int nextObjectId;
@@ -61,37 +53,22 @@ public class Map {
     @Getter
     private World world;
     @Getter
-    private Player player;
-    private ArrayList<PlayerInput> currentPlayerCurrentFrameInputs = new ArrayList<>();
-    private ArrayList<PlayerPastFrame> currentPlayerFrames = new ArrayList<>();
-    @Getter
-    private int maximumPlayerPasts;
-    @Getter
-    private ArrayList<PlayerPast> playerPasts = new ArrayList<>();
+    protected ArrayList<PlayerPast> playerPasts = new ArrayList<>();
     @Getter
     private ArrayList<MapText> texts = new ArrayList<>();
     @Getter
     private Cinematic cinematic;
-    @Setter
-    private boolean acceptsInputs;
     @Getter
     private boolean finished;
 
-    public void tryStartNextPlayer() {
-        if (playerPasts.size() < maximumPlayerPasts) {
-            playerPasts.add(new PlayerPast(new ArrayList<>(currentPlayerFrames)));
-            start();
-            audioState.playSound("time_machine");
-        }
-    }
-
-    public void respawnCurrentPlayer() {
-        if (playerPasts.isEmpty()) {
-            reset();
-        } else {
-            start();
-        }
-        audioState.playSound("loss");
+    public void initialize() {
+        mapFileLoader = new MapFileLoader(this);
+        mapCustomLoader = new MapCustomLoader(this);
+        mapContactListener = new MapContactListener(this);
+        world = new World(GRAVITY, false);
+        world.setContactListener(mapContactListener);
+        reset();
+        cinematic = mapCustomLoader.getCinematic();
     }
 
     public void reset() {
@@ -102,12 +79,11 @@ public class Map {
             cinematic.finish();
         }
         cinematic = null;
-        acceptsInputs = true;
         finished = false;
         start();
     }
 
-    private void start() {
+    protected void start() {
         frame = 0;
         for (MapObject mapObject : objects) {
             world.destroyBody(mapObject.getBody());
@@ -118,23 +94,19 @@ public class Map {
         texts.clear();
 
         width = mapFileLoader.getWidth();
-        mapFileLoader.loadContent();
+        loadContent();
+
         Vector2 startPosition = mapFileLoader.getStartPosition();
-        maximumPlayerPasts = mapFileLoader.getMaximumPlayerPasts();
-
-        mapCustomLoader.loadContent();
-
-        player = new Player();
-        addObject(player);
-        player.getBody().setTransform(startPosition, 0);
-        currentPlayerCurrentFrameInputs.clear();
-        currentPlayerFrames.clear();
-
         for (PlayerPast playerPast : playerPasts) {
             playerPast.reset();
             addObject(playerPast.getPlayer());
             playerPast.getPlayer().getBody().setTransform(startPosition, 0);
         }
+    }
+
+    protected void loadContent() {
+        mapFileLoader.loadContent();
+        mapCustomLoader.loadContent();
     }
 
     public void addObject(MapObject mapObject) {
@@ -159,13 +131,7 @@ public class Map {
         totalFrame++;
         frame++;
         updateQueuedTasks(tpf);
-        currentPlayerFrames.add(new PlayerPastFrame(frame, player.getBody().getPosition().cpy(), new ArrayList<>(currentPlayerCurrentFrameInputs)));
-        currentPlayerCurrentFrameInputs.clear();
-        for (PlayerPast playerPast : playerPasts) {
-            if (isPlayerAlive(playerPast.getPlayer())) {
-                playerPast.applyFrame(frame);
-            }
-        }
+        updatePlayers();
         if (cinematic != null) {
             float time = getTime();
             cinematic.applyTime(time);
@@ -188,12 +154,17 @@ public class Map {
         mapCustomLoader.update();
         runQueuedTasks();
         runHalfStep.run();
-        if (!isPlayerAlive(player)) {
-            respawnCurrentPlayer();
+    }
+
+    protected void updatePlayers() {
+        for (PlayerPast playerPast : playerPasts) {
+            if (isPlayerAlive(playerPast.getPlayer())) {
+                playerPast.applyFrame(frame);
+            }
         }
     }
 
-    private boolean isPlayerAlive(Player player) {
+    protected boolean isPlayerAlive(Player player) {
         return objects.contains(player);
     }
 
@@ -219,13 +190,6 @@ public class Map {
                 queuedTasks.remove(i);
                 i--;
             }
-        }
-    }
-
-    public void applyInput(PlayerInput input) {
-        if (acceptsInputs) {
-            input.apply(player);
-            currentPlayerCurrentFrameInputs.add(input);
         }
     }
 

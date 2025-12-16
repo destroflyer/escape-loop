@@ -1,5 +1,7 @@
 package com.destroflyer.escapeloop.states.models;
 
+import com.destroflyer.escapeloop.game.replays.json.Replay;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -8,4 +10,5 @@ import lombok.Getter;
 public class Highscore {
     private String user;
     private int frames;
+    private Replay replay;
 }

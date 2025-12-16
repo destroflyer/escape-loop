@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.game.Cinematic;
-import com.destroflyer.escapeloop.game.Map;
+import com.destroflyer.escapeloop.game.PlayMap;
 import com.destroflyer.escapeloop.game.objects.Decoration;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.game.objects.Scientist;
@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 public class IntroCinematic extends Cinematic {
 
-    public IntroCinematic(Map map) {
+    public IntroCinematic(PlayMap map) {
         super(map);
 
         Scientist scientistLeft = new Scientist();

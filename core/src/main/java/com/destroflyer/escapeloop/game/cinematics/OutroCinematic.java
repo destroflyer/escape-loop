@@ -1,7 +1,7 @@
 package com.destroflyer.escapeloop.game.cinematics;
 
 import com.destroflyer.escapeloop.game.Cinematic;
-import com.destroflyer.escapeloop.game.Map;
+import com.destroflyer.escapeloop.game.PlayMap;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.game.objects.Scientist;
 
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class OutroCinematic extends Cinematic {
 
-    public OutroCinematic(Map map) {
+    public OutroCinematic(PlayMap map) {
         super(map);
 
         Player player = map.getPlayer();

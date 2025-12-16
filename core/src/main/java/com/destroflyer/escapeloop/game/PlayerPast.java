@@ -13,6 +13,7 @@ public class PlayerPast {
     }
     @Getter
     private Player player;
+    @Getter
     private ArrayList<PlayerPastFrame> frames;
     @Getter
     private ArrayList<PlayerPastFrame> remainingFrames = new ArrayList<>();

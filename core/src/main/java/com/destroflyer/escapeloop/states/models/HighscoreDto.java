@@ -10,4 +10,5 @@ public class HighscoreDto {
     private String context;
     private UserDto user;
     private int score;
+    private String metadata;
 }

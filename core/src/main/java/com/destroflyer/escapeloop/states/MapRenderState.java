@@ -33,6 +33,7 @@ import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.MapObject;
 import com.destroflyer.escapeloop.game.MapText;
 import com.destroflyer.escapeloop.game.Particles;
+import com.destroflyer.escapeloop.game.PlayMap;
 import com.destroflyer.escapeloop.game.PlayerPast;
 import com.destroflyer.escapeloop.game.PlayerPastFrame;
 import com.destroflyer.escapeloop.game.PlayerPastWithIndex;
@@ -49,10 +50,10 @@ import java.util.ArrayList;
 
 public class MapRenderState extends State {
 
-    public MapRenderState(MapState mapState) {
+    public MapRenderState(MapState<?, ?> mapState) {
         this.mapState = mapState;
     }
-    private MapState mapState;
+    private MapState<?, ?> mapState;
     private Texture backgroundTexture;
     private Texture terrainTexture;
     private Texture decorationTexture;
@@ -243,7 +244,7 @@ public class MapRenderState extends State {
         float maximumTime = mapState.getMap().getTime() + main.getSettingsState().getPreferences().getFloat("playerPastsTrajectoryDuration");
         ArrayList<Vector2> trajectoryPoints = new ArrayList<>();
         for (PlayerPastFrame frame : playerPastWithIndex.getPlayerPast().getRemainingFrames()) {
-            if (TimeUtil.convertFramesToSeconds(frame.getFrame()) > maximumTime) {
+            if ((frame.getPosition() == null) || (TimeUtil.convertFramesToSeconds(frame.getFrame()) > maximumTime)) {
                 break;
             }
             int x = convertMapX(frame.getPosition().x);
@@ -444,7 +445,14 @@ public class MapRenderState extends State {
             if (fixtureIndex == 1) {
                 return character.isOnGround() ? new Color(1, 1, 0, 0.5f) : new Color(0, 1, 0, 0.5f);
             } else {
-                return (character == mapState.getMap().getPlayer()) ? new Color(1, 0, 0, alpha) : new Color(0, 1, 0, alpha);
+                Map map = mapState.getMap();
+                if (map instanceof PlayMap) {
+                    PlayMap playMap = (PlayMap) map;
+                    if (character == playMap.getPlayer()) {
+                        return new Color(1, 0, 0, alpha);
+                    }
+                }
+                return new Color(0, 1, 0, alpha);
             }
         } else if (mapObject instanceof Ground) {
             return new Color(0.05f, 0.05f, 0.05f, alpha);

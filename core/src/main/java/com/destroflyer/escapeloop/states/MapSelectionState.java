@@ -91,8 +91,22 @@ public class MapSelectionState extends UiState {
         addRecordsTitleRow.accept("World records");
         selectedMapWorldRecordRows = new RecordRow[DestrostudiosState.DISPLAYED_WORLD_RECORDS_PER_MAP];
         for (int i = 0; i < selectedMapWorldRecordRows.length; i++) {
+            int _i = i;
             Label userLabel = new Label(null, main.getSkinSmall());
             Label timeLabel = new Label(null, main.getSkinSmall());
+            timeLabel.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    ArrayList<Highscore> worldRecords = main.getDestrostudiosState().getWorldRecords().get(selectedMapId);
+                    if (_i < worldRecords.size()) {
+                        Highscore highscore = worldRecords.get(_i);
+                        if (highscore.getReplay() != null) {
+                            switchToState(new ReplayMapState(selectedMapIndex, highscore));
+                        }
+                    }
+                }
+            });
             selectedMapTable.row();
             selectedMapTable.add(userLabel).align(Align.left);
             selectedMapTable.add(timeLabel).align(Align.right);
@@ -103,6 +117,16 @@ public class MapSelectionState extends UiState {
 
         Label personalRecordUserLabel = new Label(null, main.getSkinSmall());
         Label personalRecordTimeLabel = new Label(null, main.getSkinSmall());
+        personalRecordTimeLabel.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Highscore personalRecord = main.getDestrostudiosState().getPersonalRecords().get(selectedMapId);
+                if ((personalRecord != null) && (personalRecord.getReplay() != null)) {
+                    switchToState(new ReplayMapState(selectedMapIndex, personalRecord));
+                }
+            }
+        });
         selectedMapTable.row();
         selectedMapTable.add(personalRecordUserLabel).align(Align.left);
         selectedMapTable.add(personalRecordTimeLabel).align(Align.right);
@@ -115,7 +139,7 @@ public class MapSelectionState extends UiState {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!playButton.isDisabled()) {
-                    switchToState(new MapState(selectedMapIndex));
+                    switchToState(new PlayMapState(selectedMapIndex));
                     playButtonSound();
                 }
             }

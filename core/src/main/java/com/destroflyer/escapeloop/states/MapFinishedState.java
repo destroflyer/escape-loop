@@ -67,7 +67,7 @@ public class MapFinishedState extends UiState {
     }
 
     private void playAgain() {
-        switchToState(new MapState(mapIndex));
+        switchToState(new PlayMapState(mapIndex));
         playButtonSound();
     }
 

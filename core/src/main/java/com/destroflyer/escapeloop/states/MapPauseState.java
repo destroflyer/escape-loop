@@ -10,11 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 public class MapPauseState extends UiState {
 
-    public MapPauseState(MapState mapState) {
+    public MapPauseState(MapState<?, ?> mapState) {
         this.mapState = mapState;
         hasBackdrop = true;
     }
-    private MapState mapState;
+    private MapState<?, ?> mapState;
 
     @Override
     public void create() {

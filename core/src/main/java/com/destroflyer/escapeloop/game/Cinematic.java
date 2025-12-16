@@ -11,7 +11,7 @@ import lombok.Getter;
 
 public class Cinematic {
 
-    public Cinematic(Map map) {
+    public Cinematic(PlayMap map) {
         this.map = map;
     }
     protected static final float SPEECH_DURATION_SHORT = 1;
@@ -19,7 +19,7 @@ public class Cinematic {
     protected static final float SPEECH_DURATION_LONG = 3.3f;
     protected static final float SPEECH_BREAK_SHORT = 0.2f;
     protected static final float SPEECH_BREAK_LONG = 0.5f;
-    protected Map map;
+    protected PlayMap map;
     @Getter
     protected float duration;
     private ArrayList<CinematicAction> actions = new ArrayList<>();
