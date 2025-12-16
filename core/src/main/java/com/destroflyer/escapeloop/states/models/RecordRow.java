@@ -1,5 +1,6 @@
 package com.destroflyer.escapeloop.states.models;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
 import lombok.AllArgsConstructor;
@@ -10,4 +11,5 @@ import lombok.Getter;
 public class RecordRow {
     private Label userLabel;
     private Label timeLabel;
+    private Image replayImage;
 }

@@ -19,6 +19,7 @@ import com.destroflyer.escapeloop.states.models.Highscore;
 import com.destroflyer.escapeloop.states.models.RecordRow;
 import com.destroflyer.escapeloop.util.MapImport;
 import com.destroflyer.escapeloop.util.SkinUtil;
+import com.destroflyer.escapeloop.util.TextureUtil;
 import com.destroflyer.escapeloop.util.TimeUtil;
 
 import java.util.ArrayList;
@@ -29,6 +30,12 @@ public class MapSelectionState extends UiState {
     public static final float MAPS_COUNT = 100;
     private static final float MAPS_PER_ROW = 10;
 
+    public MapSelectionState() {
+        replayAvailableTextureRegion = TextureUtil.loadEyeIconTextureRegion(0);
+        replayNotAvailableTextureRegion = TextureUtil.loadEyeIconTextureRegion(1);
+    }
+    private TextureRegion replayAvailableTextureRegion;
+    private TextureRegion replayNotAvailableTextureRegion;
     private Label titleLabel;
     private Table mapsTable;
     private ArrayList<TextButton> mapButtons = new ArrayList<>();
@@ -70,22 +77,22 @@ public class MapSelectionState extends UiState {
         selectedMapTable.row();
         selectedMapLabel = new Label(null, main.getSkinLarge());
         selectedMapLabel.setAlignment(Align.center);
-        selectedMapTable.add(selectedMapLabel).colspan(2).width(playTableWidth).fill();
+        selectedMapTable.add(selectedMapLabel).colspan(3).width(playTableWidth).fill();
 
         selectedMapTable.row();
         selectedMapImage = new Image();
-        selectedMapTable.add(selectedMapImage).colspan(2).size(playTableWidth, playTableWidth * (9f / 16)).padTop(10).fill();
+        selectedMapTable.add(selectedMapImage).colspan(3).size(playTableWidth, playTableWidth * (9f / 16)).padTop(10).fill();
 
         selectedMapTable.setPosition(Main.VIEWPORT_WIDTH - 55 - (selectedMapTable.getPrefWidth() / 2f), (Main.VIEWPORT_HEIGHT / 2f) - 20 + (selectedMapTable.getHeight() / 2));
         stage.addActor(selectedMapTable);
 
         Consumer<String> addRecordsTitleRow = (title) -> {
             selectedMapTable.row();
-            selectedMapTable.add(new Label(title, main.getSkinSmall())).colspan(2).padTop(5).align(Align.left);
+            selectedMapTable.add(new Label(title, main.getSkinSmall())).colspan(3).padTop(5).left();
 
             selectedMapTable.row();
             Image line = new Image(main.getSkinSmall().newDrawable("white", Color.WHITE));
-            selectedMapTable.add(line).colspan(2).height(1).expandX().fillX();
+            selectedMapTable.add(line).colspan(3).height(1).expandX().fillX();
         };
 
         addRecordsTitleRow.accept("World records");
@@ -94,43 +101,49 @@ public class MapSelectionState extends UiState {
             int _i = i;
             Label userLabel = new Label(null, main.getSkinSmall());
             Label timeLabel = new Label(null, main.getSkinSmall());
-            timeLabel.addListener(new ClickListener() {
+            Image replayImage = new Image();
+            replayImage.addListener(new ClickListener() {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     ArrayList<Highscore> worldRecords = main.getDestrostudiosState().getWorldRecords().get(selectedMapId);
-                    if (_i < worldRecords.size()) {
+                    if ((worldRecords != null) && (_i < worldRecords.size())) {
                         Highscore highscore = worldRecords.get(_i);
                         if (highscore.getReplay() != null) {
                             switchToState(new ReplayMapState(selectedMapIndex, highscore));
+                            playButtonSound();
                         }
                     }
                 }
             });
             selectedMapTable.row();
-            selectedMapTable.add(userLabel).align(Align.left);
-            selectedMapTable.add(timeLabel).align(Align.right);
-            selectedMapWorldRecordRows[i] = new RecordRow(userLabel, timeLabel);
+            selectedMapTable.add(userLabel).left().expandX();
+            selectedMapTable.add(timeLabel).right().expandX();
+            selectedMapTable.add(replayImage).width(replayAvailableTextureRegion.getRegionWidth()).padLeft(5);
+            selectedMapWorldRecordRows[i] = new RecordRow(userLabel, timeLabel, replayImage);
         }
         addRecordsTitleRow.accept("Personal record");
         selectedMapTable.row();
 
         Label personalRecordUserLabel = new Label(null, main.getSkinSmall());
         Label personalRecordTimeLabel = new Label(null, main.getSkinSmall());
-        personalRecordTimeLabel.addListener(new ClickListener() {
+        Image personalRecordReplayImage = new Image();
+        personalRecordReplayImage.addListener(new ClickListener() {
 
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Highscore personalRecord = main.getDestrostudiosState().getPersonalRecords().get(selectedMapId);
                 if ((personalRecord != null) && (personalRecord.getReplay() != null)) {
                     switchToState(new ReplayMapState(selectedMapIndex, personalRecord));
+                    playButtonSound();
                 }
             }
         });
         selectedMapTable.row();
-        selectedMapTable.add(personalRecordUserLabel).align(Align.left);
-        selectedMapTable.add(personalRecordTimeLabel).align(Align.right);
-        selectedMapPersonalRecordRow = new RecordRow(personalRecordUserLabel, personalRecordTimeLabel);
+        selectedMapTable.add(personalRecordUserLabel).left().expandX();
+        selectedMapTable.add(personalRecordTimeLabel).right().expandX();
+        selectedMapTable.add(personalRecordReplayImage).width(replayAvailableTextureRegion.getRegionWidth()).padLeft(5);
+        selectedMapPersonalRecordRow = new RecordRow(personalRecordUserLabel, personalRecordTimeLabel, personalRecordReplayImage);
 
         selectedMapTable.row();
         playButton = new TextButton("Play", main.getSkinLarge());
@@ -144,7 +157,7 @@ public class MapSelectionState extends UiState {
                 }
             }
         });
-        selectedMapTable.add(playButton).colspan(2).padTop(5).width(playTableWidth).fill();
+        selectedMapTable.add(playButton).colspan(3).padTop(5).width(playTableWidth).fill();
     }
 
     @Override
@@ -214,15 +227,25 @@ public class MapSelectionState extends UiState {
     private void updateRecords() {
         ArrayList<Highscore> worldRecords = main.getDestrostudiosState().getWorldRecords().get(selectedMapId);
         for (int i = 0; i < selectedMapWorldRecordRows.length; i++) {
-            RecordRow recordRow = selectedMapWorldRecordRows[i];
             Highscore highscore = (((worldRecords != null) && (i < worldRecords.size())) ? worldRecords.get(i) : null);
-            recordRow.getUserLabel().setText((highscore != null) ? highscore.getUser() : "-");
-            recordRow.getTimeLabel().setText((highscore != null) ? TimeUtil.formatFrames(highscore.getFrames()) : "-");
+            updateRecord(selectedMapWorldRecordRows[i], highscore);
         }
         Highscore personalRecord = main.getDestrostudiosState().getPersonalRecords().get(selectedMapId);
         for (int i = 0; i < selectedMapWorldRecordRows.length; i++) {
-            selectedMapPersonalRecordRow.getUserLabel().setText((personalRecord != null) ? personalRecord.getUser() : "-");
-            selectedMapPersonalRecordRow.getTimeLabel().setText((personalRecord != null) ? TimeUtil.formatFrames(personalRecord.getFrames()) : "-");
+            updateRecord(selectedMapPersonalRecordRow, personalRecord);
+        }
+    }
+
+    private void updateRecord(RecordRow recordRow, Highscore highscore) {
+        if (highscore != null) {
+            recordRow.getUserLabel().setText(highscore.getUser());
+            recordRow.getTimeLabel().setText(TimeUtil.formatFrames(highscore.getFrames()));
+            recordRow.getReplayImage().setDrawable(new TextureRegionDrawable((highscore.getReplay() != null) ? replayAvailableTextureRegion : replayNotAvailableTextureRegion));
+            recordRow.getReplayImage().setVisible(true);
+        } else {
+            recordRow.getUserLabel().setText("-");
+            recordRow.getTimeLabel().setText("");
+            recordRow.getReplayImage().setVisible(false);
         }
     }
 

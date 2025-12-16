@@ -23,6 +23,7 @@ public class CreditsState extends UiState {
         addCredits(table, "Texture - Scientists", "Elthen's Pixel Art Shop");
         addCredits(table, "Texture - Interior 1", "Chroma Dave");
         addCredits(table, "Texture - Interior 2", "Uma Alma");
+        addCredits(table, "Texture - Icons", "Nikoichu");
         addCredits(table, "Music - Background", "BackgroundMusicForVideos");
         addCredits(table, "Music - Intro", "HitsLab");
         addCredits(table, "Sound - Alarm, Bounce, Bullet", "freesound_community");

@@ -10,6 +10,7 @@ public class TextureUtil {
     private static final Texture LAB_MAIN_TEXTURE = new Texture("./textures/lab/main.png");
     private static final Texture LAB_DECORATIONS_TEXTURE = new Texture("./textures/lab/decorations.png");
     private static final Texture SCIENTISTS_TEXTURE = new Texture("./textures/scientists/scientists.png");
+    private static final Texture EYE_ICON_TEXTURE = new Texture("./textures/menu/eye.png");
 
     public static Animation<TextureRegion> loadWrappedAnimation(String path, int cols, int rows, float frameDuration) {
         return loadWrappedAnimation(path, cols, rows, cols * rows, frameDuration);
@@ -69,6 +70,11 @@ public class TextureUtil {
     public static TextureRegion loadLabDecorationsTextureRegion(int x, int y, int width, int height) {
         int tileSize = 16;
         return new TextureRegion(LAB_DECORATIONS_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);
+    }
+
+    public static TextureRegion loadEyeIconTextureRegion(int x) {
+        int tileSize = 15;
+        return new TextureRegion(EYE_ICON_TEXTURE, x * tileSize, 0, tileSize, tileSize);
     }
 
     public static TextureRegion loadTextureRegion(Texture texture, int cols, int rows, int x, int y) {
