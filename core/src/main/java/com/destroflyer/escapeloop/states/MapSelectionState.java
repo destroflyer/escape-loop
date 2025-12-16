@@ -119,7 +119,7 @@ public class MapSelectionState extends UiState {
             selectedMapTable.row();
             selectedMapTable.add(userLabel).left().expandX();
             selectedMapTable.add(timeLabel).right().expandX();
-            selectedMapTable.add(replayImage).width(replayAvailableTextureRegion.getRegionWidth()).padLeft(5);
+            selectedMapTable.add(replayImage).width(replayAvailableTextureRegion.getRegionWidth()).padTop(1).padLeft(5);
             selectedMapWorldRecordRows[i] = new RecordRow(userLabel, timeLabel, replayImage);
         }
         addRecordsTitleRow.accept("Personal record");
@@ -142,7 +142,7 @@ public class MapSelectionState extends UiState {
         selectedMapTable.row();
         selectedMapTable.add(personalRecordUserLabel).left().expandX();
         selectedMapTable.add(personalRecordTimeLabel).right().expandX();
-        selectedMapTable.add(personalRecordReplayImage).width(replayAvailableTextureRegion.getRegionWidth()).padLeft(5);
+        selectedMapTable.add(personalRecordReplayImage).width(replayAvailableTextureRegion.getRegionWidth()).padTop(1).padLeft(5);
         selectedMapPersonalRecordRow = new RecordRow(personalRecordUserLabel, personalRecordTimeLabel, personalRecordReplayImage);
 
         selectedMapTable.row();
