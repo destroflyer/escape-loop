@@ -17,6 +17,7 @@ public class HttpState extends State {
         json = new Json();
         json.setIgnoreUnknownFields(true);
         json.setOutputType(JsonWriter.OutputType.json);
+        json.setUsePrototypes(false);
     }
     private static final String LOG_TAG = "HTTP_REQUEST";
     private Json json;

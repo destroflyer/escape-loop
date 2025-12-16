@@ -3,6 +3,7 @@ package com.destroflyer.escapeloop.states;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -82,7 +83,8 @@ public class MapFinishedState extends UiState {
 
             @Override
             public boolean keyDown(int keycode) {
-                if (keycode == Input.Keys.ENTER) {
+                Preferences preferences = main.getSettingsState().getPreferences();
+                if ((keycode == Input.Keys.ENTER) || (keycode == preferences.getInteger("keyReset"))) {
                     playAgain();
                     return true;
                 } else if (keycode == Input.Keys.ESCAPE) {

@@ -128,8 +128,6 @@ public class Map {
 
     public void update() {
         float tpf = 1f / Main.FPS;
-        totalFrame++;
-        frame++;
         updateQueuedTasks(tpf);
         updatePlayers();
         if (cinematic != null) {
@@ -154,6 +152,8 @@ public class Map {
         mapCustomLoader.update();
         runQueuedTasks();
         runHalfStep.run();
+        totalFrame++;
+        frame++;
     }
 
     protected void updatePlayers() {

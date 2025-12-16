@@ -45,13 +45,15 @@ public class MapPlayIngameState extends MapIngameState<PlayMapState> {
 
     @Override
     public void update(float tpf) {
-        super.update(tpf);
         PlayMap map = mapState.getMap();
 
+        // Apply the inputs before map.update()
         if (map.getCinematic() == null) {
             updateWalkDirection(map);
             updateVerticalDirection(map);
         }
+
+        super.update(tpf);
 
         if (map.getCinematic() == null) {
             Preferences preferences = main.getSettingsState().getPreferences();

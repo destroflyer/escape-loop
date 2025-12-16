@@ -21,6 +21,7 @@ public class DestrostudiosState extends State {
     public DestrostudiosState() {
         json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
+        json.setUsePrototypes(false);
     }
     private static final String LOG_TAG = "DESTROSTUDIOS";
     private static final int APP_ID = 16;
