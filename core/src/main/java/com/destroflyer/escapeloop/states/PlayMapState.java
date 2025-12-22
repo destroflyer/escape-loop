@@ -42,9 +42,11 @@ public class PlayMapState extends MapState<PlayMap, MapPlayIngameState> {
     }
 
     private void onMapFinished(float tpf) {
+        boolean wasCurrentLevel = mapIndex == main.getMapsState().getCurrentLevel();
         Replay replay = ReplayConverter.convertToReplay(map, tpf);
         main.getDestrostudiosState().requestSetHighscore(map.getId(), map.getTotalFrame(), replay);
-        if (mapIndex == main.getMapsState().getCurrentLevel()) {
+        if (wasCurrentLevel) {
+            main.getDestrostudiosState().requestHighscores();
             int nextMapIndex = mapIndex + 1;
             if (nextMapIndex <= MapSelectionState.MAPS_COUNT) {
                 switchToState(new PlayMapState(nextMapIndex));
