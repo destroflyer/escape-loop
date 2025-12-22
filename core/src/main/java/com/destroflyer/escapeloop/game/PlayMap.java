@@ -74,13 +74,13 @@ public class PlayMap extends Map {
     @Override
     protected void updatePlayers() {
         super.updatePlayers();
+        currentPlayerCurrentFrameInputs.forEach(input -> input.apply(player));
         currentPlayerFrames.add(new PlayerPastFrame(frame, new ArrayList<>(currentPlayerCurrentFrameInputs), player.getBody().getPosition().cpy()));
         currentPlayerCurrentFrameInputs.clear();
     }
 
-    public void applyInput(PlayerInput input) {
+    public void queueInput(PlayerInput input) {
         if (acceptsInputs) {
-            input.apply(player);
             currentPlayerCurrentFrameInputs.add(input);
         }
     }

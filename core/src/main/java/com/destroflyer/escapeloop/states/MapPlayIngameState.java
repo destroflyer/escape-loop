@@ -83,14 +83,14 @@ public class MapPlayIngameState extends MapIngameState<PlayMapState> {
     private void updateWalkDirection(PlayMap map) {
         int walkDirection = mapState.isDirectionLeft() ? -1 : (mapState.isDirectionRight() ? 1 : 0);
         if (walkDirection != map.getPlayer().getWalkDirection()) {
-            map.applyInput(new SetWalkDirectionInput(walkDirection));
+            map.queueInput(new SetWalkDirectionInput(walkDirection));
         }
     }
 
     private void updateVerticalDirection(PlayMap map) {
         int verticalDirection = mapState.isDirectionDown() ? -1 : (mapState.isDirectionUp() ? 1 : 0);
         if (verticalDirection != map.getPlayer().getVerticalDirection()) {
-            map.applyInput(new SetVerticalDirectionInput(verticalDirection));
+            map.queueInput(new SetVerticalDirectionInput(verticalDirection));
         }
     }
 
@@ -124,10 +124,10 @@ public class MapPlayIngameState extends MapIngameState<PlayMapState> {
         if (map.getCinematic() == null) {
             Preferences preferences = main.getSettingsState().getPreferences();
             if (keycode == preferences.getInteger("keyJump")) {
-                map.applyInput(new JumpInput());
+                map.queueInput(new JumpInput());
                 return true;
             } else if (keycode == preferences.getInteger("keyAction")) {
-                map.applyInput(new ActionInput());
+                map.queueInput(new ActionInput());
                 return true;
             } else if (keycode == preferences.getInteger("keyRespawn")) {
                 map.respawnCurrentPlayer();
