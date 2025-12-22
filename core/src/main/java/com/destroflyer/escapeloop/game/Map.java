@@ -92,21 +92,23 @@ public class Map {
         nextObjectId = 0;
         queuedTasks.clear();
         texts.clear();
-
         width = mapFileLoader.getWidth();
         loadContent();
+        createPlayers();
+    }
 
+    protected void loadContent() {
+        mapFileLoader.loadContent();
+        mapCustomLoader.loadContent();
+    }
+
+    protected void createPlayers() {
         Vector2 startPosition = mapFileLoader.getStartPosition();
         for (PlayerPast playerPast : playerPasts) {
             playerPast.reset();
             addObject(playerPast.getPlayer());
             playerPast.getPlayer().getBody().setTransform(startPosition, 0);
         }
-    }
-
-    protected void loadContent() {
-        mapFileLoader.loadContent();
-        mapCustomLoader.loadContent();
     }
 
     public void addObject(MapObject mapObject) {

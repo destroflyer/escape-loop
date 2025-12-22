@@ -55,12 +55,17 @@ public class PlayMap extends Map {
     protected void loadContent() {
         super.loadContent();
         maximumPlayerPasts = mapFileLoader.getMaximumPlayerPasts();
+        currentPlayerCurrentFrameInputs.clear();
+        currentPlayerFrames.clear();
+    }
 
+    @Override
+    protected void createPlayers() {
+        super.createPlayers();
+        // Add the player after the past players (note that this also matches their order in the replay map (needs to match for deterministic physics))
         player = new Player();
         addObject(player);
         player.getBody().setTransform(mapFileLoader.getStartPosition(), 0);
-        currentPlayerCurrentFrameInputs.clear();
-        currentPlayerFrames.clear();
     }
 
     @Override
