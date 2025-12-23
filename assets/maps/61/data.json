@@ -1,6 +1,6 @@
 {
 	"identifier": "Level_61",
-	"uniqueIdentifer": "4e949560-8560-11f0-b89c-19e0561d6fa2",
+	"uniqueIdentifer": "bde9d620-8560-11f0-9558-9d64d2a99fa8",
 	"x": -1,
 	"y": -1,
 	"width": 512,
@@ -16,56 +16,13 @@
 		"Decoration.png"
 	],
 	"entities": {
-		"Finish": [
-			{
-				"id": "Finish",
-				"iid": "4e949562-8560-11f0-b89c-b39c71e9a690",
-				"layer": "Entities",
-				"x": 368,
-				"y": 240,
-				"width": 16,
-				"height": 16,
-				"color": 6539085,
-				"customFields": {
-					"outside": false
-				}
-			}
-		],
-		"Item": [
-			{
-				"id": "Item",
-				"iid": "4e949564-8560-11f0-b89c-833e8543691c",
-				"layer": "Entities",
-				"x": 208,
-				"y": 32,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
-			},
-			{
-				"id": "Item",
-				"iid": "b98e4b90-8560-11f0-b89c-0b45349d7d4a",
-				"layer": "Entities",
-				"x": 208,
-				"y": 80,
-				"width": 16,
-				"height": 16,
-				"color": 16705377,
-				"customFields": {
-					"item": "Heavy"
-				}
-			}
-		],
 		"Start": [
 			{
 				"id": "Start",
-				"iid": "4e949565-8560-11f0-b89c-a384038eada4",
+				"iid": "bde9d622-8560-11f0-9558-016d4f59d244",
 				"layer": "Entities",
-				"x": 208,
-				"y": 32,
+				"x": 288,
+				"y": 48,
 				"width": 16,
 				"height": 16,
 				"color": 11882632,
@@ -74,73 +31,89 @@
 				}
 			}
 		],
-		"Pressure_Trigger": [
+		"Enemy": [
 			{
-				"id": "Pressure_Trigger",
-				"iid": "fe88ae70-8560-11f0-b89c-bd53c73a5d22",
+				"id": "Enemy",
+				"iid": "bde9d623-8560-11f0-9558-c1f57b8e6a09",
 				"layer": "Entities",
-				"x": 112,
-				"y": 128,
+				"x": 256,
+				"y": 176,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 39387,
 				"customFields": {
-					"gates": [
-						{
-							"entityIid": "0f0199b0-8560-11f0-b89c-95b957c7b6d4",
-							"layerIid": "4e949561-8560-11f0-b89c-651e3cf4dd2e",
-							"levelIid": "4e949560-8560-11f0-b89c-19e0561d6fa2",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
+					"autoShoot": false,
+					"shootCooldown": 1,
+					"direction": "Left",
+					"hoverTileHeight": 5
 				}
-			},
+			}
+		],
+		"Finish": [
 			{
-				"id": "Pressure_Trigger",
-				"iid": "fee610b0-8560-11f0-b89c-234bf6cf8acb",
+				"id": "Finish",
+				"iid": "bde9d624-8560-11f0-9558-a552ba94a6fb",
 				"layer": "Entities",
-				"x": 336,
-				"y": 128,
+				"x": 176,
+				"y": 256,
 				"width": 16,
 				"height": 16,
-				"color": 16217634,
+				"color": 6539085,
 				"customFields": {
-					"gates": [
-						{
-							"entityIid": "0f6823b0-8560-11f0-b89c-a778296865f2",
-							"layerIid": "4e949561-8560-11f0-b89c-651e3cf4dd2e",
-							"levelIid": "4e949560-8560-11f0-b89c-19e0561d6fa2",
-							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
-						}
-					]
+					"outside": false
 				}
 			}
 		],
 		"Gate": [
 			{
 				"id": "Gate",
-				"iid": "0f0199b0-8560-11f0-b89c-95b957c7b6d4",
+				"iid": "bde9d626-8560-11f0-9558-d5b344843c06",
 				"layer": "Entities",
-				"x": 304,
+				"x": 208,
 				"y": 240,
 				"width": 16,
-				"height": 16,
+				"height": 32,
 				"color": 9149364,
 				"customFields": {
 					"direction": null
 				}
-			},
+			}
+		],
+		"Toggle_Trigger": [
 			{
-				"id": "Gate",
-				"iid": "0f6823b0-8560-11f0-b89c-a778296865f2",
+				"id": "Toggle_Trigger",
+				"iid": "c394f280-8560-11f0-9558-fb975c203d04",
 				"layer": "Entities",
-				"x": 336,
-				"y": 240,
+				"x": 304,
+				"y": 192,
 				"width": 16,
 				"height": 16,
-				"color": 9149364,
+				"color": 10626611,
 				"customFields": {
-					"direction": null
+					"gates": [
+						{
+							"entityIid": "bde9d626-8560-11f0-9558-d5b344843c06",
+							"layerIid": "bde9d621-8560-11f0-9558-31b48e00d7ef",
+							"levelIid": "bde9d620-8560-11f0-9558-9d64d2a99fa8",
+							"worldIid": "29d64e01-5e50-11f0-a187-b3ca3437dd4f"
+						}
+					],
+					"direction": "Left"
+				}
+			}
+		],
+		"Item": [
+			{
+				"id": "Item",
+				"iid": "faf7b820-8560-11f0-9558-6f8ece8c6843",
+				"layer": "Entities",
+				"x": 272,
+				"y": 48,
+				"width": 16,
+				"height": 16,
+				"color": 16705377,
+				"customFields": {
+					"item": "Heavy"
 				}
 			}
 		]
