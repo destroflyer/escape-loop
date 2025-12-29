@@ -4,11 +4,13 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.destroflyer.escapeloop.states.models.Highscore;
 import com.destroflyer.escapeloop.util.TimeUtil;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +19,7 @@ import lombok.AllArgsConstructor;
 public class MapFinishedState extends UiState {
 
     private int mapIndex;
+    private String mapId;
     private int totalFrames;
 
     @Override
@@ -31,6 +34,30 @@ public class MapFinishedState extends UiState {
 
         Label timeLabel = new Label(TimeUtil.formatFrames(totalFrames), main.getSkinLarge());
         menuTable.add(timeLabel);
+
+        Highscore personalRecord = main.getDestrostudiosState().getPersonalRecords().get(mapId);
+        if (personalRecord != null) {
+            int splitFrames = totalFrames - personalRecord.getFrames();
+
+            String splitSign;
+            int splitSignWidth;
+            Color splitColor;
+            if (splitFrames <= 0) {
+                splitSign = "-";
+                splitSignWidth = 10;
+                splitColor = Color.BLUE;
+            } else {
+                splitSign = "+";
+                splitSignWidth = 17;
+                splitColor = Color.RED;
+            }
+
+            menuTable.row();
+
+            Label splitLabel = new Label(splitSign + TimeUtil.formatFrames(Math.abs(splitFrames)), main.getSkinLarge());
+            splitLabel.setColor(splitColor);
+            menuTable.add(splitLabel).padRight(splitSignWidth);
+        }
 
         menuTable.row().padTop(2);
 

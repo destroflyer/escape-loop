@@ -54,7 +54,7 @@ public class PlayMapState extends MapState<PlayMap, MapPlayIngameState> {
                 switchToState(main.getMapSelectionState());
             }
         } else {
-            switchToState(new MapFinishedState(mapIndex, map.getTotalFrame()));
+            switchToState(new MapFinishedState(mapIndex, map.getId(), map.getTotalFrame()));
         }
         map.getAudioState().playSound("win");
     }
