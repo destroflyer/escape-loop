@@ -39,7 +39,7 @@ public class MapSelectionState extends UiState {
     private Label titleLabel;
     private Table mapsTable;
     private ArrayList<TextButton> mapButtons = new ArrayList<>();
-    private int selectedMapIndex;
+    private int selectedMapIndex = -1;
     private String selectedMapId;
     private Label selectedMapLabel;
     private Image selectedMapImage;
@@ -201,11 +201,11 @@ public class MapSelectionState extends UiState {
     @Override
     public void render() {
         super.render();
-        updateMapButtons();
+        initializeAfterLoading();
         updateRecords();
     }
 
-    private void updateMapButtons() {
+    private void initializeAfterLoading() {
         if (playButton.isDisabled() && !main.getDestrostudiosState().isLoading()) {
             setTitle("Select a level");
             for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
@@ -213,8 +213,12 @@ public class MapSelectionState extends UiState {
                 boolean isUnlocked = main.getMapsState().hasUnlockedMap(mapIndex);
                 mapButton.setDisabled(!isUnlocked);
             }
-            int currentLevel = main.getMapsState().getCurrentLevel();
-            selectMap((int) Math.min(currentLevel, MAPS_COUNT - 1));
+            int initialSelectedMapIndex = selectedMapIndex;
+            if (initialSelectedMapIndex == -1) {
+                int currentLevel = main.getMapsState().getCurrentLevel();
+                initialSelectedMapIndex = (int) Math.min(currentLevel, MAPS_COUNT - 1);
+            }
+            selectMap(initialSelectedMapIndex);
             playButton.setDisabled(false);
         }
     }
@@ -250,7 +254,9 @@ public class MapSelectionState extends UiState {
     }
 
     public void selectMap(int mapIndex) {
-        mapButtons.get(selectedMapIndex).setChecked(false);
+        if (selectedMapIndex != -1) {
+            mapButtons.get(selectedMapIndex).setChecked(false);
+        }
         selectedMapIndex = mapIndex;
         selectedMapId = main.getMapsState().getMapId(mapIndex);
         selectedMapLabel.setText(getMapTitle(selectedMapIndex));
