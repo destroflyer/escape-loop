@@ -12,7 +12,7 @@ import lombok.Getter;
 public class PlayerContextAnimations {
 
     public PlayerContextAnimations(boolean withTimeMachine) {
-        Function<String, String> getTexturePath = name -> "./textures/orange_robot/" + name + "_" + (withTimeMachine ? "with" : "without") + "_time_machine.png";
+        Function<String, String> getTexturePath = name -> "./textures/player_robot/orange/" + name + "_" + (withTimeMachine ? "with" : "without") + "_time_machine.png";
         idleAnimation = TextureUtil.loadWrappedAnimation(getTexturePath.apply("idle"), 4, 2, 5, 0.2f);
         runAnimation = TextureUtil.loadWrappedAnimation(getTexturePath.apply("run"), 5, 1, 0.15f);
         flyingAnimation = TextureUtil.loadWrappedAnimation(getTexturePath.apply("flying"), 2, 1, 0.2f);

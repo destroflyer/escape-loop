@@ -18,7 +18,7 @@ public class MapPlayIngameState extends MapIngameState<PlayMapState> {
 
     public MapPlayIngameState(PlayMapState playMapState) {
         super(playMapState);
-        timeMachineChargeTextureRegion = new TextureRegion(new Texture("./textures/orange_robot/idle_with_time_machine.png"), 5, 12, 22, 22);
+        timeMachineChargeTextureRegion = new TextureRegion(new Texture("./textures/player_robot/orange/idle_with_time_machine.png"), 5, 12, 22, 22);
     }
     private Label timeMachineLabel;
     private Label infoLabel;
