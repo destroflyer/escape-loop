@@ -27,8 +27,6 @@ import com.destroflyer.escapeloop.game.objects.PressureTrigger;
 import com.destroflyer.escapeloop.game.objects.Scientist;
 import com.destroflyer.escapeloop.game.objects.Start;
 import com.destroflyer.escapeloop.game.objects.ToggleTrigger;
-import com.destroflyer.escapeloop.game.objects.items.DamageItem;
-import com.destroflyer.escapeloop.game.objects.items.FreezeItem;
 import com.destroflyer.escapeloop.game.objects.items.HeavyItem;
 import com.destroflyer.escapeloop.game.objects.items.KnockbackItem;
 import com.destroflyer.escapeloop.game.objects.items.SwapItem;
@@ -52,8 +50,6 @@ public class MapFileLoader {
     private static final int TILE_SIZE_DATA = 16;
     private static final HashMap<String, Class<? extends Item>> ITEM_CLASSES = new HashMap<>();
     static {
-        ITEM_CLASSES.put("Damage", DamageItem.class);
-        ITEM_CLASSES.put("Freeze", FreezeItem.class);
         ITEM_CLASSES.put("Heavy", HeavyItem.class);
         ITEM_CLASSES.put("Knockback", KnockbackItem.class);
         ITEM_CLASSES.put("Swap", SwapItem.class);

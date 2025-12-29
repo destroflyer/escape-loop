@@ -207,10 +207,10 @@ public class Character extends MapObject {
     }
 
     @Override
-    public void remove() {
-        super.remove();
+    public void remove(boolean instant) {
+        super.remove(instant);
         if (item != null) {
-            item.remove();
+            item.remove(instant);
         }
     }
 
