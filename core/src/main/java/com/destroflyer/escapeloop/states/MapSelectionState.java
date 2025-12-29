@@ -40,6 +40,7 @@ public class MapSelectionState extends UiState {
     private Table mapsTable;
     private ArrayList<TextButton> mapButtons = new ArrayList<>();
     private int selectedMapIndex = -1;
+    private int mapIndexToSelectAfterLoading;
     private String selectedMapId;
     private Label selectedMapLabel;
     private Image selectedMapImage;
@@ -195,6 +196,9 @@ public class MapSelectionState extends UiState {
         }
         mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
 
+        mapIndexToSelectAfterLoading = selectedMapIndex;
+        selectMap(-1);
+
         playButton.setDisabled(true);
     }
 
@@ -213,12 +217,11 @@ public class MapSelectionState extends UiState {
                 boolean isUnlocked = main.getMapsState().hasUnlockedMap(mapIndex);
                 mapButton.setDisabled(!isUnlocked);
             }
-            int initialSelectedMapIndex = selectedMapIndex;
-            if (initialSelectedMapIndex == -1) {
+            if (mapIndexToSelectAfterLoading == -1) {
                 int currentLevel = main.getMapsState().getCurrentLevel();
-                initialSelectedMapIndex = (int) Math.min(currentLevel, MAPS_COUNT - 1);
+                mapIndexToSelectAfterLoading = (int) Math.min(currentLevel, MAPS_COUNT - 1);
             }
-            selectMap(initialSelectedMapIndex);
+            selectMap(mapIndexToSelectAfterLoading);
             playButton.setDisabled(false);
         }
     }
@@ -258,10 +261,16 @@ public class MapSelectionState extends UiState {
             mapButtons.get(selectedMapIndex).setChecked(false);
         }
         selectedMapIndex = mapIndex;
-        selectedMapId = main.getMapsState().getMapId(mapIndex);
-        selectedMapLabel.setText(getMapTitle(selectedMapIndex));
-        selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
-        mapButtons.get(selectedMapIndex).setChecked(true);
+        if (selectedMapIndex != -1) {
+            selectedMapId = main.getMapsState().getMapId(selectedMapIndex);
+            selectedMapLabel.setText(getMapTitle(selectedMapIndex));
+            selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
+            mapButtons.get(selectedMapIndex).setChecked(true);
+        } else {
+            selectedMapId = null;
+            selectedMapLabel.setText("");
+            selectedMapImage.setDrawable(null);
+        }
     }
 
     private String getMapTitle(int mapIndex) {
