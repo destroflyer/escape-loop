@@ -29,7 +29,6 @@ public abstract class MapObject {
     protected Vector2 textureOffset = new Vector2();
     @Getter
     protected Vector2 textureSize = new Vector2(Map.TILE_SIZE, Map.TILE_SIZE);
-    protected Animation<TextureRegion> removalAnimation;
     protected String removalSound;
     private Animation<TextureRegion> oneTimeAnimation;
     private float oneTimeAnimationStartTime;
@@ -113,6 +112,7 @@ public abstract class MapObject {
     public void remove(boolean instant) {
         float timeUntilRemoval = 0;
         if (!instant) {
+            Animation<TextureRegion> removalAnimation = getRemovalAnimation();
             if (removalAnimation != null) {
                 map.queueTask(() -> body.setActive(false));
                 setOneTimeAnimation(removalAnimation);
@@ -156,6 +156,10 @@ public abstract class MapObject {
     }
 
     protected Animation<TextureRegion> getLoopedAnimation() {
+        return null;
+    }
+
+    protected Animation<TextureRegion> getRemovalAnimation() {
         return null;
     }
 

@@ -1,6 +1,7 @@
 package com.destroflyer.escapeloop.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
@@ -9,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.destroflyer.escapeloop.Main;
-import com.destroflyer.escapeloop.game.objects.Player;
+import com.destroflyer.escapeloop.game.animations.PlayerAnimations;
 
 public class MainMenuState extends UiState {
 
@@ -29,6 +30,10 @@ public class MainMenuState extends UiState {
         addButton(menuTable, "Settings", () -> {
             main.removeState(this);
             main.openSettings(() -> main.addState(this));
+            playButtonSound();
+        }).padLeft(10);
+        addButton(menuTable, "Achievements", () -> {
+            switchToState(main.getAchievementsState());
             playButtonSound();
         }).padLeft(10);
         addButton(menuTable, "Credits", () -> {
@@ -73,7 +78,8 @@ public class MainMenuState extends UiState {
         float y = ((Main.VIEWPORT_HEIGHT / 2f) + 70) - (height / 2f);
         spriteBatch.setProjectionMatrix(main.getViewport().getCamera().combined);
         spriteBatch.begin();
-        TextureRegion textureRegion = Player.ANIMATIONS_WITH_TIME_MACHINE.getRunAnimation().getKeyFrame(main.getTime(), true);
+        Animation<TextureRegion> animation = PlayerAnimations.get(main.getSkinsState().getSelectedPlayerSkin()).getAnimationsWithTimeMachine().getRunAnimation();
+        TextureRegion textureRegion = animation.getKeyFrame(main.getTime(), true);
         spriteBatch.draw(textureRegion, x, y, width, height);
         spriteBatch.end();
     }

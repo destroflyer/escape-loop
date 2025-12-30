@@ -11,4 +11,6 @@ import lombok.NoArgsConstructor;
 public class ReplayMetadata {
     private int fps;
     private float tpf;
+    private String skinPlayer;
+    private String skinEnemy;
 }

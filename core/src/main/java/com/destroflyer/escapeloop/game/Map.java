@@ -20,11 +20,12 @@ import java.util.ArrayList;
 
 public class Map {
 
-    public Map(int mapIndex, MapState<?, ?> mapState, SettingsState settingsState, AudioState audioState) {
+    public Map(int mapIndex, MapState<?, ?> mapState, SettingsState settingsState, AudioState audioState, MapSkins skins) {
         this.mapIndex = mapIndex;
         this.mapState = mapState;
         this.settingsState = settingsState;
         this.audioState = audioState;
+        this.skins = skins;
     }
     private static final Vector2 GRAVITY = new Vector2(0, -9.81f);
     private static final int VELOCITY_ITERATIONS = 6;
@@ -36,6 +37,8 @@ public class Map {
     private MapState<?, ?> mapState;
     @Getter
     private SettingsState settingsState;
+    @Getter
+    private MapSkins skins;
     @Getter
     protected AudioState audioState;
     protected MapFileLoader mapFileLoader;

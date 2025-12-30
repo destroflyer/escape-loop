@@ -3,6 +3,7 @@ package com.destroflyer.escapeloop.states;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Preferences;
+import com.destroflyer.escapeloop.game.MapSkins;
 import com.destroflyer.escapeloop.game.PlayMap;
 import com.destroflyer.escapeloop.game.replays.ReplayConverter;
 import com.destroflyer.escapeloop.game.replays.json.Replay;
@@ -30,7 +31,7 @@ public class PlayMapState extends MapState<PlayMap, MapPlayIngameState> {
 
     @Override
     protected PlayMap createMap() {
-        return new PlayMap(mapIndex, this, main.getSettingsState(), main.getAudioState());
+        return new PlayMap(mapIndex, this, main.getSettingsState(), main.getAudioState(), new MapSkins(main.getSkinsState().getSelectedPlayerSkin(), main.getSkinsState().getSelectedEnemySkin()));
     }
 
     @Override

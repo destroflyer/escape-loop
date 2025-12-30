@@ -1,7 +1,6 @@
 package com.destroflyer.escapeloop.states;
 
 import com.badlogic.gdx.Preferences;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -13,17 +12,17 @@ import com.destroflyer.escapeloop.game.inputs.SetVerticalDirectionInput;
 import com.destroflyer.escapeloop.game.inputs.SetWalkDirectionInput;
 import com.destroflyer.escapeloop.util.FloatUtil;
 import com.destroflyer.escapeloop.util.InputUtil;
+import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class MapPlayIngameState extends MapIngameState<PlayMapState> {
 
     public MapPlayIngameState(PlayMapState playMapState) {
         super(playMapState);
-        timeMachineChargeTextureRegion = new TextureRegion(new Texture("./textures/player_robot/orange/idle_with_time_machine.png"), 5, 12, 22, 22);
     }
     private Label timeMachineLabel;
+    private TextureRegion timeMachineChargeTextureRegion;
     private Label infoLabel;
     private Label timeLabel;
-    private TextureRegion timeMachineChargeTextureRegion;
 
     @Override
     public void create() {
@@ -31,6 +30,8 @@ public class MapPlayIngameState extends MapIngameState<PlayMapState> {
         timeMachineLabel = new Label(null, main.getSkinLarge());
         timeMachineLabel.setPosition(20, (Main.VIEWPORT_HEIGHT - 36));
         stage.addActor(timeMachineLabel);
+
+        timeMachineChargeTextureRegion = new TextureRegion(TextureUtil.getPlayerTexture(mapState.getMap().getSkins().getPlayerSkin()), 5, 44, 22, 22);
 
         infoLabel = new Label(null, main.getSkinSmall());
         // 1px lower than the other labels to look a bit more aligned

@@ -10,14 +10,12 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.destroflyer.escapeloop.game.Collisions;
 import com.destroflyer.escapeloop.game.Direction;
 import com.destroflyer.escapeloop.game.MapObject;
-import com.destroflyer.escapeloop.util.TextureUtil;
 
 public class Bullet extends MapObject {
 
     public Bullet(Enemy shooter) {
         this.shooter = shooter;
     }
-    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/bullet.png", 2, 2, 3, 0.2f);
     private Enemy shooter;
 
     @Override
@@ -61,6 +59,6 @@ public class Bullet extends MapObject {
 
     @Override
     protected Animation<TextureRegion> getLoopedAnimation() {
-        return ANIMATION_FLYING;
+        return shooter.getAnimations().getBulletFlyingAnimation();
     }
 }

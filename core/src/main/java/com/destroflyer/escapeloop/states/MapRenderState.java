@@ -64,6 +64,7 @@ public class MapRenderState extends State {
 
     @Override
     public void render() {
+        super.render();
         if (backgroundTexture == null) {
             backgroundTexture = new Texture("./textures/cave/background.png");
             terrainTexture = new Texture("./maps/" + mapState.getMap().getMapIndex() + "/terrain.png");

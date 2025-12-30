@@ -5,7 +5,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.destroflyer.escapeloop.game.Map;
 import com.destroflyer.escapeloop.game.RayCastResult;
-import com.destroflyer.escapeloop.util.TextureUtil;
+import com.destroflyer.escapeloop.game.animations.EnemyAnimations;
+
+import lombok.Getter;
 
 public class Enemy extends Character {
 
@@ -15,19 +17,22 @@ public class Enemy extends Character {
         remainingShootCooldown = shootCooldown;
         this.autoShoot = autoShoot;
         textureSize = new Vector2(1, 1);
-        removalAnimation = ANIMATION_REMOVAL;
         removalSound = "explosion";
     }
-    private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/idle.png", 2, 2, 0.2f);
-    private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/run.png", 2, 2, 0.15f);
-    private static final Animation<TextureRegion> ANIMATION_SHOOT = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/shoot.png", 2, 1, 0.05f);
-    private static final Animation<TextureRegion> ANIMATION_REMOVAL = TextureUtil.loadWrappedAnimation("./textures/enemy_robot/death.png", 2, 2, 3, 0.05f);
     private static final float HOVER_SPRING_STRENGTH = 50;
     private static final float HOVER_DAMPING = 5;
     private int hoverTileHeight;
     private float shootCooldown;
     private float remainingShootCooldown;
     private boolean autoShoot;
+    @Getter
+    private EnemyAnimations animations;
+
+    @Override
+    public void setMap(Map map) {
+        super.setMap(map);
+        animations = EnemyAnimations.get(map.getSkins().getEnemySkin());
+    }
 
     @Override
     public void update(float tpf) {
@@ -63,7 +68,7 @@ public class Enemy extends Character {
                 bullet.getBody().setLinearVelocity(new Vector2(viewDirection * 2, 0));
             });
             remainingShootCooldown = shootCooldown;
-            setOneTimeAnimation(ANIMATION_SHOOT);
+            setOneTimeAnimation(animations.getShootAnimation());
             if (map.getSettingsState().getPreferences().getBoolean("playSoundEnemyShot")) {
                 map.getAudioState().playSound("shot");
             }
@@ -72,6 +77,11 @@ public class Enemy extends Character {
 
     @Override
     protected Animation<TextureRegion> getLoopedAnimation() {
-        return (walkDirection != 0) ? ANIMATION_RUN : ANIMATION_IDLE;
+        return (walkDirection != 0) ? animations.getRunAnimation() : animations.getIdleAnimation();
+    }
+
+    @Override
+    protected Animation<TextureRegion> getRemovalAnimation() {
+        return animations.getRemovalAnimation();
     }
 }

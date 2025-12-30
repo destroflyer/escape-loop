@@ -12,8 +12,8 @@ import lombok.Setter;
 
 public class PlayMap extends Map {
 
-    public PlayMap(int mapIndex, MapState<?, ?> mapState, SettingsState settingsState, AudioState audioState) {
-        super(mapIndex, mapState, settingsState, audioState);
+    public PlayMap(int mapIndex, MapState<?, ?> mapState, SettingsState settingsState, AudioState audioState, MapSkins mapSkins) {
+        super(mapIndex, mapState, settingsState, audioState, mapSkins);
     }
     @Getter
     protected int maximumPlayerPasts;

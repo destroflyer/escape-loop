@@ -37,7 +37,7 @@ public class CreditsState extends UiState {
 
         table.row().padTop(10);
 
-        TextButton backButton = new TextButton("Ok", main.getSkinLarge());
+        TextButton backButton = new TextButton("Back", main.getSkinLarge());
         backButton.addListener(new ClickListener() {
 
             @Override
@@ -45,7 +45,7 @@ public class CreditsState extends UiState {
                 backToMainMenu();
             }
         });
-        table.add(backButton).colspan(2).fill();
+        table.add(backButton).colspan(2).fill().padTop(20);
 
         table.setFillParent(true);
         table.center();

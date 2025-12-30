@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.destroflyer.escapeloop.states.AchievementsState;
 import com.destroflyer.escapeloop.states.CreditsState;
 import com.destroflyer.escapeloop.states.DestrostudiosState;
 import com.destroflyer.escapeloop.states.HttpState;
@@ -15,6 +16,7 @@ import com.destroflyer.escapeloop.states.AudioState;
 import com.destroflyer.escapeloop.states.MapSelectionState;
 import com.destroflyer.escapeloop.states.MapsState;
 import com.destroflyer.escapeloop.states.SettingsState;
+import com.destroflyer.escapeloop.states.SkinsState;
 import com.destroflyer.escapeloop.states.models.Account;
 import com.destroflyer.escapeloop.util.AuthTokenUtil;
 
@@ -49,9 +51,13 @@ public class Main extends ApplicationAdapter {
     @Getter
     private MapsState mapsState;
     @Getter
+    private SkinsState skinsState;
+    @Getter
     private MainMenuState mainMenuState;
     @Getter
     private MapSelectionState mapSelectionState;
+    @Getter
+    private AchievementsState achievementsState;
     @Getter
     private CreditsState creditsState;
     @Getter
@@ -83,10 +89,15 @@ public class Main extends ApplicationAdapter {
         mapsState = new MapsState();
         addState(mapsState);
 
+        skinsState = new SkinsState();
+        addState(skinsState);
+
         mainMenuState = new MainMenuState();
         addState(mainMenuState);
 
         mapSelectionState = new MapSelectionState();
+
+        achievementsState = new AchievementsState();
 
         creditsState = new CreditsState();
 

@@ -147,7 +147,7 @@ public class IntroCinematic extends Cinematic {
         time += 0.5f;
         add(time, () -> player.setSpeech("Task queue: Complete", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
-        add(time, () -> player.setSpeech("Model: Work Unit W-13", SPEECH_DURATION_LONG));
+        add(time, () -> player.setSpeech("Model: Work Unit " + map.getSkins().getPlayerSkin().getTitle(), SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;
         add(time, () -> player.setSpeech("Status: Functional", SPEECH_DURATION_LONG));
         time += SPEECH_DURATION_LONG + SPEECH_BREAK_LONG;

@@ -3,6 +3,10 @@ package com.destroflyer.escapeloop.util;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.destroflyer.escapeloop.game.Skin;
+import com.destroflyer.escapeloop.game.Skins;
+
+import java.util.HashMap;
 
 public class TextureUtil {
 
@@ -11,6 +15,33 @@ public class TextureUtil {
     private static final Texture LAB_DECORATIONS_TEXTURE = new Texture("./textures/lab/decorations.png");
     private static final Texture SCIENTISTS_TEXTURE = new Texture("./textures/scientists/scientists.png");
     private static final Texture EYE_ICON_TEXTURE = new Texture("./textures/menu/eye.png");
+    private static final HashMap<String, Texture> PLAYER_TEXTURES = new HashMap<>();
+    private static final HashMap<String, Texture> ENEMY_TEXTURES = new HashMap<>();
+
+    static {
+        for (Skin playerSkin : Skins.PLAYER) {
+            PLAYER_TEXTURES.put(playerSkin.getName(), new Texture("./textures/player_robot/" + playerSkin.getName() + ".png"));
+        }
+        for (Skin enemySkin : Skins.ENEMY) {
+            ENEMY_TEXTURES.put(enemySkin.getName(), new Texture("./textures/enemy_robot/" + enemySkin.getName() + ".png"));
+        }
+    }
+
+    public static Animation<TextureRegion> loadPlayerAnimation(Skin skin, int row, int totalFrames, float frameDuration) {
+        return loadLinearAnimation(getPlayerTexture(skin), 9, 5, row, totalFrames, frameDuration);
+    }
+
+    public static Animation<TextureRegion> loadEnemyAnimation(Skin skin, int row, int totalFrames, float frameDuration) {
+        return loadLinearAnimation(getEnemyTexture(skin), 5, 4, row, totalFrames, frameDuration);
+    }
+
+    public static Texture getPlayerTexture(Skin skin) {
+        return PLAYER_TEXTURES.get(skin.getName());
+    }
+
+    public static Texture getEnemyTexture(Skin skin) {
+        return ENEMY_TEXTURES.get(skin.getName());
+    }
 
     public static Animation<TextureRegion> loadWrappedAnimation(String path, int cols, int rows, float frameDuration) {
         return loadWrappedAnimation(path, cols, rows, cols * rows, frameDuration);

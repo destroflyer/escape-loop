@@ -203,8 +203,8 @@ public class MapSelectionState extends UiState {
     }
 
     @Override
-    public void render() {
-        super.render();
+    public void update(float tpf) {
+        super.update(tpf);
         initializeAfterLoading();
         updateRecords();
     }

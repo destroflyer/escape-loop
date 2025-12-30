@@ -25,7 +25,7 @@ public class ReplayConverter {
             replayPasts.add(convertToReplayPast(playerPast));
         }
         replayPasts.add(convertToReplayPast(map.createCurrentPlayerPast()));
-        return new Replay(replayPasts, new ReplayMetadata(Main.FPS, tpf));
+        return new Replay(replayPasts, new ReplayMetadata(Main.FPS, tpf, map.getSkins().getPlayerSkin().getName(), map.getSkins().getEnemySkin().getName()));
     }
 
     private static ReplayPast convertToReplayPast(PlayerPast playerPast) {
