@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.destroflyer.escapeloop.Main;
 import com.destroflyer.escapeloop.State;
 import com.destroflyer.escapeloop.game.replays.json.Replay;
 import com.destroflyer.escapeloop.states.models.Highscore;
@@ -35,6 +36,12 @@ public class DestrostudiosState extends State {
     private HashMap<String, Highscore> personalRecords = new HashMap<>();
     @Getter
     private HashMap<String, ArrayList<Highscore>> worldRecords = new HashMap<>();
+
+    @Override
+    public void onAdd(Main main) {
+        super.onAdd(main);
+        requestHighscores();
+    }
 
     public void requestHighscores() {
         personalRecordsLoading = true;

@@ -49,7 +49,7 @@ public class PlayMapState extends MapState<PlayMap, MapPlayIngameState> {
         if (wasCurrentLevel) {
             main.getDestrostudiosState().requestHighscores();
             int nextMapIndex = mapIndex + 1;
-            if (nextMapIndex <= MapSelectionState.MAPS_COUNT) {
+            if (nextMapIndex <= MapsState.MAPS_COUNT) {
                 switchToState(new PlayMapState(nextMapIndex));
             } else {
                 switchToState(main.getMapSelectionState());

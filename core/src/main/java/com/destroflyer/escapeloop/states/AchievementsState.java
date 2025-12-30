@@ -3,6 +3,7 @@ package com.destroflyer.escapeloop.states;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -41,8 +42,6 @@ public class AchievementsState extends UiState {
         Label titleLabel = new Label("Achievements", main.getSkinLarge());
         table.add(titleLabel).colspan(2).padBottom(40);
 
-        table.row();
-
         createSkinCheckboxes(
             table,
             Skins.PLAYER,
@@ -50,10 +49,9 @@ public class AchievementsState extends UiState {
             skin -> PlayerAnimations.get(skin).getAnimationsWithTimeMachine().getRunAnimation(),
             -28,
             skin -> main.getSkinsState().selectPlayerSkin(skin),
-            main.getSkinsState().getSelectedPlayerSkin()
+            main.getSkinsState().getSelectedPlayerSkin(),
+            new int[] { 0, 50, 99 }
         );
-
-        table.row();
 
         createSkinCheckboxes(
             table,
@@ -62,7 +60,8 @@ public class AchievementsState extends UiState {
             skin -> EnemyAnimations.get(skin).getRunAnimation(),
             0,
             skin -> main.getSkinsState().selectEnemySkin(skin),
-            main.getSkinsState().getSelectedEnemySkin()
+            main.getSkinsState().getSelectedEnemySkin(),
+            new int[] { 0, 75 }
         );
 
         table.row();
@@ -85,7 +84,9 @@ public class AchievementsState extends UiState {
         stage.addActor(table);
     }
 
-    private void createSkinCheckboxes(Table table, Skin[] allSkins, HashMap<String, SkinCheckbox> skinCheckboxes, Function<Skin, Animation<TextureRegion>> getAnimation, float offsetY, Consumer<Skin> selectSkin, Skin selectedSkin) {
+    private void createSkinCheckboxes(Table table, Skin[] allSkins, HashMap<String, SkinCheckbox> skinCheckboxes, Function<Skin, Animation<TextureRegion>> getAnimation, float imageOffsetY, Consumer<Skin> selectSkin, Skin selectedSkin, int[] requiredMapRecords) {
+        table.row();
+
         CheckBox[] checkBoxes = new CheckBox[allSkins.length];
         for (int i = 0; i < allSkins.length; i++) {
             Skin skin = allSkins[i];
@@ -104,13 +105,25 @@ public class AchievementsState extends UiState {
             Animation<TextureRegion> animation = getAnimation.apply(skin);
             TextureRegionDrawable animationDrawable = new TextureRegionDrawable(animation.getKeyFrame(0));
             Image image = new Image(animationDrawable);
-            table.add(image).size(64, 64).padTop(offsetY);
+            table.add(image).size(64, 64).padTop(imageOffsetY);
 
-            skinCheckboxes.put(skin.getName(), new SkinCheckbox(animation, animationDrawable));
+            skinCheckboxes.put(skin.getName(), new SkinCheckbox(checkBox, animation, animationDrawable, requiredMapRecords[i]));
 
             checkBoxes[i] = checkBox;
         }
         new ButtonGroup<>(checkBoxes);
+
+        table.row().padTop((imageOffsetY / -2) - 10);
+
+        for (int i = 0; i < allSkins.length; i++) {
+            if (requiredMapRecords[i] > 0) {
+                Label descriptionLabel = new Label("Beat " + ((requiredMapRecords[i] == (MapsState.MAPS_COUNT - 1)) ? "all" : requiredMapRecords[i]) + " levels", main.getSkinSmall());
+                descriptionLabel.setColor(new Color(0.7f, 0.7f, 0.7f, 1));
+                table.add(descriptionLabel).colspan(2);
+            } else {
+                table.add().colspan(2);
+            }
+        }
     }
 
     private void backToMainMenu() {
@@ -126,8 +139,10 @@ public class AchievementsState extends UiState {
     }
 
     private void updateSkinCheckboxes(HashMap<String, SkinCheckbox> skinCheckboxes) {
+        int personalRecordsCount = main.getDestrostudiosState().getPersonalRecords().size();
         for (SkinCheckbox skinCheckbox : skinCheckboxes.values()) {
             skinCheckbox.getAnimationDrawable().setRegion(skinCheckbox.getAnimation().getKeyFrame(main.getTime(), true));
+            skinCheckbox.getCheckBox().setDisabled(personalRecordsCount < skinCheckbox.getRequiredMapRecords());
         }
     }
 

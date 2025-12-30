@@ -46,6 +46,8 @@ public class SettingsState extends UiState {
         setDefaultInteger("keyTimeMachine", Input.Keys.L);
         setDefaultInteger("keyReset", Input.Keys.BACKSPACE);
         setDefaultBoolean("unlockAllLevels", false);
+        setDefaultString("skinPlayer", "default");
+        setDefaultString("skinEnemy", "default");
     }
     @Getter
     private Preferences preferences;
@@ -184,6 +186,12 @@ public class SettingsState extends UiState {
     private void setDefaultFloat(String key, float defaultValue) {
         if (!preferences.contains(key)) {
             preferences.putFloat(key, defaultValue);
+        }
+    }
+
+    private void setDefaultString(String key, String defaultValue) {
+        if (!preferences.contains(key)) {
+            preferences.putString(key, defaultValue);
         }
     }
 

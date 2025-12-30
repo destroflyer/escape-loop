@@ -27,7 +27,6 @@ import java.util.function.Consumer;
 
 public class MapSelectionState extends UiState {
 
-    public static final float MAPS_COUNT = 100;
     private static final float MAPS_PER_ROW = 10;
 
     public MapSelectionState() {
@@ -174,7 +173,7 @@ public class MapSelectionState extends UiState {
 
         mapsTable.clear();
         mapButtons.clear();
-        for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
+        for (int mapIndex = 0; mapIndex < MapsState.MAPS_COUNT; mapIndex++) {
             if ((mapIndex % MAPS_PER_ROW) == 0) {
                 mapsTable.row();
             }
@@ -212,14 +211,14 @@ public class MapSelectionState extends UiState {
     private void initializeAfterLoading() {
         if (playButton.isDisabled() && !main.getDestrostudiosState().isLoading()) {
             setTitle("Select a level");
-            for (int mapIndex = 0; mapIndex < MAPS_COUNT; mapIndex++) {
+            for (int mapIndex = 0; mapIndex < MapsState.MAPS_COUNT; mapIndex++) {
                 TextButton mapButton = mapButtons.get(mapIndex);
                 boolean isUnlocked = main.getMapsState().hasUnlockedMap(mapIndex);
                 mapButton.setDisabled(!isUnlocked);
             }
             if (mapIndexToSelectAfterLoading == -1) {
                 int currentLevel = main.getMapsState().getCurrentLevel();
-                mapIndexToSelectAfterLoading = (int) Math.min(currentLevel, MAPS_COUNT - 1);
+                mapIndexToSelectAfterLoading = Math.min(currentLevel, MapsState.MAPS_COUNT - 1);
             }
             selectMap(mapIndexToSelectAfterLoading);
             playButton.setDisabled(false);
