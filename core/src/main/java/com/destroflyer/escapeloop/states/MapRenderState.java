@@ -44,6 +44,7 @@ import com.destroflyer.escapeloop.game.objects.Ground;
 import com.destroflyer.escapeloop.game.objects.Player;
 import com.destroflyer.escapeloop.states.models.MapRenderLayer;
 import com.destroflyer.escapeloop.util.RenderUtil;
+import com.destroflyer.escapeloop.util.TextureUtil;
 import com.destroflyer.escapeloop.util.TimeUtil;
 
 import java.util.ArrayList;
@@ -54,7 +55,6 @@ public class MapRenderState extends State {
         this.mapState = mapState;
     }
     private MapState<?, ?> mapState;
-    private Texture backgroundTexture;
     private Texture terrainTexture;
     private Texture decorationTexture;
     private BitmapFont textFont = new BitmapFont();
@@ -65,14 +65,13 @@ public class MapRenderState extends State {
     @Override
     public void render() {
         super.render();
-        if (backgroundTexture == null) {
-            backgroundTexture = new Texture("./textures/cave/background.png");
+        if (terrainTexture == null) {
             terrainTexture = new Texture("./maps/" + mapState.getMap().getMapIndex() + "/terrain.png");
             decorationTexture = new Texture("./maps/" + mapState.getMap().getMapIndex() + "/decoration.png");
         }
         Cinematic cinematic = mapState.getMap().getCinematic();
         updateBounds(cinematic);
-        drawFullScreenTexture(backgroundTexture);
+        drawFullScreenTexture(TextureUtil.CAVE_BACKGROUND_TEXTURE);
         drawMapObjects(MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
         drawFullScreenTexture(decorationTexture);

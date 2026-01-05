@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class TextureUtil {
 
+    public static final Texture CAVE_BACKGROUND_TEXTURE = new Texture("./textures/cave/background.png");
     private static final Texture CAVE_TEXTURE = new Texture("./textures/cave/main.png");
     private static final Texture LAB_MAIN_TEXTURE = new Texture("./textures/lab/main.png");
     private static final Texture LAB_DECORATIONS_TEXTURE = new Texture("./textures/lab/decorations.png");

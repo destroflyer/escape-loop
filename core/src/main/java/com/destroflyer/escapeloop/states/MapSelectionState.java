@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -42,7 +43,9 @@ public class MapSelectionState extends UiState {
     private int mapIndexToSelectAfterLoading;
     private String selectedMapId;
     private Label selectedMapLabel;
-    private Image selectedMapImage;
+    private Stack selectedMapImageStack;
+    private Image selectedMapImageTerrain;
+    private Image selectedMapImageDecoration;
     private RecordRow[] selectedMapWorldRecordRows;
     private RecordRow selectedMapPersonalRecordRow;
     private TextButton playButton;
@@ -80,8 +83,13 @@ public class MapSelectionState extends UiState {
         selectedMapTable.add(selectedMapLabel).colspan(3).width(playTableWidth).fill();
 
         selectedMapTable.row();
-        selectedMapImage = new Image();
-        selectedMapTable.add(selectedMapImage).colspan(3).size(playTableWidth, playTableWidth * (9f / 16)).padTop(10).fill();
+        selectedMapImageStack = new Stack();
+        selectedMapImageTerrain = new Image();
+        selectedMapImageDecoration = new Image();
+        selectedMapImageStack.add(new Image(TextureUtil.CAVE_BACKGROUND_TEXTURE));
+        selectedMapImageStack.add(selectedMapImageTerrain);
+        selectedMapImageStack.add(selectedMapImageDecoration);
+        selectedMapTable.add(selectedMapImageStack).colspan(3).size(playTableWidth, playTableWidth * (9f / 16)).padTop(10).fill();
 
         selectedMapTable.setPosition(Main.VIEWPORT_WIDTH - 55 - (selectedMapTable.getPrefWidth() / 2f), (Main.VIEWPORT_HEIGHT / 2f) - 20 + (selectedMapTable.getHeight() / 2));
         stage.addActor(selectedMapTable);
@@ -263,12 +271,16 @@ public class MapSelectionState extends UiState {
         if (selectedMapIndex != -1) {
             selectedMapId = main.getMapsState().getMapId(selectedMapIndex);
             selectedMapLabel.setText(getMapTitle(selectedMapIndex));
-            selectedMapImage.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
+            selectedMapImageStack.setVisible(true);
+            selectedMapImageTerrain.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/terrain.png"))));
+            selectedMapImageDecoration.setDrawable(new TextureRegionDrawable(new TextureRegion(new Texture("maps/" + selectedMapIndex + "/decoration.png"))));
             mapButtons.get(selectedMapIndex).setChecked(true);
         } else {
             selectedMapId = null;
             selectedMapLabel.setText("");
-            selectedMapImage.setDrawable(null);
+            selectedMapImageStack.setVisible(false);
+            selectedMapImageTerrain.setDrawable(null);
+            selectedMapImageDecoration.setDrawable(null);
         }
     }
 
