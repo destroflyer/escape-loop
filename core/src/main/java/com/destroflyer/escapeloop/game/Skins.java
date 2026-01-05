@@ -8,7 +8,7 @@ public class Skins {
 
     public static final Skin[] PLAYER = new Skin[] {
         new Skin("default", "W-13"),
-        new Skin("blue", "W-25"),
+        new Skin("black", "W-25"),
         new Skin("rainbow", "W-66"),
     };
 
