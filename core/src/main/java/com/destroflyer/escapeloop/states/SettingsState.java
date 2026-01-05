@@ -58,30 +58,39 @@ public class SettingsState extends UiState {
     @Override
     public void create() {
         super.create();
-        Table menuTable = new Table();
+        Table parentTable = new Table();
 
         Label titleLabel = new Label("Settings", main.getSkinLarge());
-        menuTable.add(titleLabel).colspan(2);
+        parentTable.add(titleLabel).colspan(2).padTop(40);
 
-        addSlider(menuTable, "Master volume", "volumeMaster", 0, 1, 0.01f, 2);
-        addSlider(menuTable, "Music volume", "volumeMusic", 0, 2, 0.01f, 2);
-        addSlider(menuTable, "Sound volume", "volumeSound", 0, 2, 0.01f, 2);
-        addCheckbox(menuTable, "Play sound - Menu buttons", "playSoundMenuButton");
-        addCheckbox(menuTable, "Play sound - Bullets", "playSoundEnemyShot");
-        addSlider(menuTable, "Player pasts - Trajectory duration (s)", "playerPastsTrajectoryDuration", 0, 6, 0.1f, 1);
-        addCheckbox(menuTable, "Player pasts - Distinct colors", "playerPastsDistinctColors");
-        addCheckbox(menuTable, "Unlock all levels", "unlockAllLevels");
-        addKeyButton(menuTable, "Up", "keyUp");
-        addKeyButton(menuTable, "Left", "keyLeft");
-        addKeyButton(menuTable, "Down", "keyDown");
-        addKeyButton(menuTable, "Right", "keyRight");
-        addKeyButton(menuTable, "Jump", "keyJump");
-        addKeyButton(menuTable, "Action", "keyAction");
-        addKeyButton(menuTable, "Respawn", "keyRespawn");
-        addKeyButton(menuTable, "Time machine", "keyTimeMachine");
-        addKeyButton(menuTable, "Reset", "keyReset");
+        parentTable.row();
 
-        menuTable.row().padTop(10);
+        Table leftMenuTable = new Table();
+        parentTable.add(leftMenuTable);
+
+        addSlider(leftMenuTable, "Master volume", "volumeMaster", 0, 1, 0.01f, 2);
+        addSlider(leftMenuTable, "Music volume", "volumeMusic", 0, 2, 0.01f, 2);
+        addSlider(leftMenuTable, "Sound volume", "volumeSound", 0, 2, 0.01f, 2);
+        addCheckbox(leftMenuTable, "Play sound - Menu buttons", "playSoundMenuButton");
+        addCheckbox(leftMenuTable, "Play sound - Bullets", "playSoundEnemyShot");
+        addSlider(leftMenuTable, "Player pasts - Trajectory duration (s)", "playerPastsTrajectoryDuration", 0, 6, 0.1f, 1);
+        addCheckbox(leftMenuTable, "Player pasts - Distinct colors", "playerPastsDistinctColors");
+        addCheckbox(leftMenuTable, "Unlock all levels", "unlockAllLevels");
+
+        Table rightMenuTable = new Table();
+        parentTable.add(rightMenuTable).padLeft(120);
+
+        addKeyButton(rightMenuTable, "Up", "keyUp");
+        addKeyButton(rightMenuTable, "Left", "keyLeft");
+        addKeyButton(rightMenuTable, "Down", "keyDown");
+        addKeyButton(rightMenuTable, "Right", "keyRight");
+        addKeyButton(rightMenuTable, "Jump", "keyJump");
+        addKeyButton(rightMenuTable, "Action", "keyAction");
+        addKeyButton(rightMenuTable, "Respawn", "keyRespawn");
+        addKeyButton(rightMenuTable, "Time machine", "keyTimeMachine");
+        addKeyButton(rightMenuTable, "Reset", "keyReset");
+
+        parentTable.row().padTop(40);
 
         TextButton backButton = new TextButton("Ok", main.getSkinLarge());
         backButton.addListener(new ClickListener() {
@@ -91,16 +100,16 @@ public class SettingsState extends UiState {
                 back();
             }
         });
-        menuTable.add(backButton).colspan(2).fill();
+        parentTable.add(backButton).colspan(2).width(200);
 
-        menuTable.setFillParent(true);
-        menuTable.center();
+        parentTable.setFillParent(true);
+        parentTable.center();
 
-        stage.addActor(menuTable);
+        stage.addActor(parentTable);
     }
 
     private void addSlider(Table menuTable, String labelText, String key, float minimum, float maximum, float stepSize, int displayedDecimals) {
-        addElement(menuTable, null, label -> {
+        addElement(menuTable, null, 180,  label -> {
             Runnable updateLabel = () -> label.setText(labelText + ": " + FloatUtil.format(preferences.getFloat(key), displayedDecimals));
             updateLabel.run();
 
@@ -119,7 +128,7 @@ public class SettingsState extends UiState {
     }
 
     private void addCheckbox(Table menuTable, String labelText, String key) {
-        addElement(menuTable, labelText, label -> {
+        addElement(menuTable, labelText, 180, label -> {
             CheckBox checkbox = new CheckBox(null, main.getSkinSmall());
             checkbox.setChecked(preferences.getBoolean(key));
             checkbox.addListener(new ChangeListener() {
@@ -134,7 +143,7 @@ public class SettingsState extends UiState {
     }
 
     private void addKeyButton(Table menuTable, String labelText, String key) {
-        addElement(menuTable, labelText, label -> {
+        addElement(menuTable, labelText, 90, label -> {
             TextButton button = new TextButton(null, main.getSkinSmall());
 
             Consumer<String> updateButtonText = customText -> button.setText((customText != null) ? customText : InputUtil.getKeyName(preferences.getInteger(key)));
@@ -157,14 +166,14 @@ public class SettingsState extends UiState {
         });
     }
 
-    private void addElement(Table menuTable, String labelText, Function<Label, Actor> createElement) {
+    private void addElement(Table menuTable, String labelText, int elementWidth, Function<Label, Actor> createElement) {
         menuTable.row().padTop(10);
 
         Label label = new Label(labelText, main.getSkinSmall());
-        menuTable.add(label);
+        menuTable.add(label).left();
 
         Actor element = createElement.apply(label);
-        menuTable.add(element).padLeft(10);
+        menuTable.add(element).width(elementWidth).padLeft(20);
     }
 
     private void removeLegacySetting(String key) {

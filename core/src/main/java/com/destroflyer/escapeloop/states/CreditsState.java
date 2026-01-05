@@ -17,7 +17,7 @@ public class CreditsState extends UiState {
         Table table = new Table();
 
         Label titleLabel = new Label("Credits", main.getSkinLarge());
-        table.add(titleLabel).colspan(2);
+        table.add(titleLabel).colspan(2).padBottom(10);
 
         addCredits(table, "Texture - Robots", "Edu");
         addCredits(table, "Texture - Scientists", "Elthen's Pixel Art Shop");
@@ -35,7 +35,7 @@ public class CreditsState extends UiState {
         addCredits(table, "Sound - Trigger", "Milan Wulf");
         addCredits(table, "Testing", "My friends <3");
 
-        table.row().padTop(10);
+        table.row().padTop(30);
 
         TextButton backButton = new TextButton("Back", main.getSkinLarge());
         backButton.addListener(new ClickListener() {
@@ -45,7 +45,7 @@ public class CreditsState extends UiState {
                 backToMainMenu();
             }
         });
-        table.add(backButton).colspan(2).fill().padTop(20);
+        table.add(backButton).colspan(2).width(200);
 
         table.setFillParent(true);
         table.center();
