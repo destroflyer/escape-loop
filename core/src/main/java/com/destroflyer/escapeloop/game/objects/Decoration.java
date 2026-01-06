@@ -8,7 +8,7 @@ import com.destroflyer.escapeloop.util.TextureUtil;
 public class Decoration extends MapObject {
 
     public Decoration(int textureRegionX, int textureRegionY) {
-        textureRegion = TextureUtil.loadLabDecorationsTextureRegion(textureRegionX, textureRegionY, 1, 1);
+        textureRegion = TextureUtil.getMapObjectsTextureRegion(textureRegionX, textureRegionY, 1, 1);
     }
     private TextureRegion textureRegion;
 

@@ -31,8 +31,8 @@ public class MapSelectionState extends UiState {
     private static final float MAPS_PER_ROW = 10;
 
     public MapSelectionState() {
-        replayAvailableTextureRegion = TextureUtil.loadEyeIconTextureRegion(0);
-        replayNotAvailableTextureRegion = TextureUtil.loadEyeIconTextureRegion(1);
+        replayAvailableTextureRegion = TextureUtil.getEyeIconTextureRegion(0);
+        replayNotAvailableTextureRegion = TextureUtil.getEyeIconTextureRegion(1);
     }
     private TextureRegion replayAvailableTextureRegion;
     private TextureRegion replayNotAvailableTextureRegion;
@@ -86,7 +86,7 @@ public class MapSelectionState extends UiState {
         selectedMapImageStack = new Stack();
         selectedMapImageTerrain = new Image();
         selectedMapImageDecoration = new Image();
-        selectedMapImageStack.add(new Image(TextureUtil.CAVE_BACKGROUND_TEXTURE));
+        selectedMapImageStack.add(new Image(TextureUtil.MAP_BACKGROUND_TEXTURE));
         selectedMapImageStack.add(selectedMapImageTerrain);
         selectedMapImageStack.add(selectedMapImageDecoration);
         selectedMapTable.add(selectedMapImageStack).colspan(3).size(playTableWidth, playTableWidth * (9f / 16)).padTop(10).fill();

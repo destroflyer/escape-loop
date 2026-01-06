@@ -15,7 +15,7 @@ public class TimeMachine extends MapObject {
 
     public TimeMachine() {
         textureSize = new Vector2(WIDTH, HEIGHT);
-        textureRegion = new TextureRegion(new Texture("./textures/lab/time_machine.png"));
+        textureRegion = new TextureRegion(new Texture("./textures/map/time_machine.png"));
     }
     private static final float WIDTH = 0.1f;
     private static final float HEIGHT = (WIDTH * (11f / 4));

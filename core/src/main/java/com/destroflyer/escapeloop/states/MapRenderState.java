@@ -71,7 +71,7 @@ public class MapRenderState extends State {
         }
         Cinematic cinematic = mapState.getMap().getCinematic();
         updateBounds(cinematic);
-        drawFullScreenTexture(TextureUtil.CAVE_BACKGROUND_TEXTURE);
+        drawFullScreenTexture(TextureUtil.MAP_BACKGROUND_TEXTURE);
         drawMapObjects(MapRenderLayer.BACKGROUND);
         drawFullScreenTexture(terrainTexture);
         drawFullScreenTexture(decorationTexture);

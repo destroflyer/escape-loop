@@ -18,7 +18,7 @@ public class Bouncer extends MapObject {
     public Bouncer() {
         textureOffset = new Vector2(0, (((16 - 4) / 2f) / 16) * Map.TILE_SIZE);
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabDecorationsTextureRegion(8, 5, 1, 1);
+    private static final TextureRegion TEXTURE_REGION = TextureUtil.getMapObjectsTextureRegion(0, 2);
 
     @Override
     public void createBody() {

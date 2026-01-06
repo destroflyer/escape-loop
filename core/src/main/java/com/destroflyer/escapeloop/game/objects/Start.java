@@ -12,7 +12,7 @@ public class Start extends MapObject {
         textureOffset = new Vector2(0, 0.125f);
         textureSize = new Vector2(0.75f, 0.75f);
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabDecorationsTextureRegion(1, 3, 2, 2);
+    private static final TextureRegion TEXTURE_REGION = TextureUtil.getMapObjectsTextureRegion(0, 3, 2, 2);
 
     @Override
     public void createBody() {

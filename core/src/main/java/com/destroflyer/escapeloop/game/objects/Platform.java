@@ -9,9 +9,9 @@ public class Platform extends Ground {
     public Platform(BodyDef.BodyType bodyType, float width, float height) {
         super(bodyType, width, height);
     }
-    private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.loadLabMainTextureRegion(1, 5);
-    private static final TextureRegion TEXTURE_REGION_CENTER = TextureUtil.loadLabMainTextureRegion(2, 5);
-    private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadLabMainTextureRegion(3, 5);
+    private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.getMapObjectsTextureRegion(0, 0);
+    private static final TextureRegion TEXTURE_REGION_CENTER = TextureUtil.getMapObjectsTextureRegion(1, 0);
+    private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.getMapObjectsTextureRegion(2, 0);
 
     @Override
     public TextureRegion getTextureRegion(int tileX, int tileY, int tilesX, int tilesY) {

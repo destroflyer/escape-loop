@@ -11,9 +11,9 @@ public class Scientist extends Character {
         textureOffset = new Vector2(0, 0.18f);
         textureSize = new Vector2(0.85f, 0.85f);
     }
-    private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.loadScientistsAnimation(0, 4, 0.25f);
-    private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.loadScientistsAnimation(1, 8, 0.15f);
-    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.loadWrappedAnimation("textures/scientists/flying.png", 4, 1, 0.2f);
+    private static final Animation<TextureRegion> ANIMATION_IDLE = TextureUtil.getScientistAnimation(0, 4, 0.25f);
+    private static final Animation<TextureRegion> ANIMATION_RUN = TextureUtil.getScientistAnimation(1, 8, 0.15f);
+    private static final Animation<TextureRegion> ANIMATION_FLYING = TextureUtil.getScientistAnimation(2, 4, 0.2f);
 
     @Override
     protected Animation<TextureRegion> getLoopedAnimation() {

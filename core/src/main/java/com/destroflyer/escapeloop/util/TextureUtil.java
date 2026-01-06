@@ -10,30 +10,28 @@ import java.util.HashMap;
 
 public class TextureUtil {
 
-    public static final Texture CAVE_BACKGROUND_TEXTURE = new Texture("./textures/cave/background.png");
-    private static final Texture CAVE_TEXTURE = new Texture("./textures/cave/main.png");
-    private static final Texture LAB_MAIN_TEXTURE = new Texture("./textures/lab/main.png");
-    private static final Texture LAB_DECORATIONS_TEXTURE = new Texture("./textures/lab/decorations.png");
-    private static final Texture SCIENTISTS_TEXTURE = new Texture("./textures/scientists/scientists.png");
+    public static final Texture MAP_BACKGROUND_TEXTURE = new Texture("./textures/map/background.png");
+    private static final Texture MAP_OBJECTS_TEXTURE = new Texture("./textures/map/objects.png");
+    private static final Texture SCIENTIST_TEXTURE = new Texture("./textures/scientist/default.png");
     private static final Texture EYE_ICON_TEXTURE = new Texture("./textures/menu/eye.png");
     private static final HashMap<String, Texture> PLAYER_TEXTURES = new HashMap<>();
     private static final HashMap<String, Texture> ENEMY_TEXTURES = new HashMap<>();
 
     static {
         for (Skin playerSkin : Skins.PLAYER) {
-            PLAYER_TEXTURES.put(playerSkin.getName(), new Texture("./textures/player_robot/" + playerSkin.getName() + ".png"));
+            PLAYER_TEXTURES.put(playerSkin.getName(), new Texture("./textures/player/" + playerSkin.getName() + ".png"));
         }
         for (Skin enemySkin : Skins.ENEMY) {
-            ENEMY_TEXTURES.put(enemySkin.getName(), new Texture("./textures/enemy_robot/" + enemySkin.getName() + ".png"));
+            ENEMY_TEXTURES.put(enemySkin.getName(), new Texture("./textures/enemy/" + enemySkin.getName() + ".png"));
         }
     }
 
-    public static Animation<TextureRegion> loadPlayerAnimation(Skin skin, int row, int totalFrames, float frameDuration) {
-        return loadLinearAnimation(getPlayerTexture(skin), 9, 5, row, totalFrames, frameDuration);
+    public static Animation<TextureRegion> getPlayerAnimation(Skin skin, int row, int totalFrames, float frameDuration) {
+        return getLinearAnimation(getPlayerTexture(skin), 9, 5, row, totalFrames, frameDuration);
     }
 
-    public static Animation<TextureRegion> loadEnemyAnimation(Skin skin, int row, int totalFrames, float frameDuration) {
-        return loadLinearAnimation(getEnemyTexture(skin), 5, 4, row, totalFrames, frameDuration);
+    public static Animation<TextureRegion> getEnemyAnimation(Skin skin, int row, int totalFrames, float frameDuration) {
+        return getLinearAnimation(getEnemyTexture(skin), 5, 4, row, totalFrames, frameDuration);
     }
 
     public static Texture getPlayerTexture(Skin skin) {
@@ -44,35 +42,11 @@ public class TextureUtil {
         return ENEMY_TEXTURES.get(skin.getName());
     }
 
-    public static Animation<TextureRegion> loadWrappedAnimation(String path, int cols, int rows, float frameDuration) {
-        return loadWrappedAnimation(path, cols, rows, cols * rows, frameDuration);
+    public static Animation<TextureRegion> getScientistAnimation(int row, int totalFrames, float frameDuration) {
+        return getLinearAnimation(SCIENTIST_TEXTURE, 3, 8, row, totalFrames, frameDuration);
     }
 
-    public static Animation<TextureRegion> loadWrappedAnimation(String path, int cols, int rows, int totalFrames, float frameDuration) {
-        return loadWrappedAnimation(new Texture(path), cols, rows, totalFrames, frameDuration);
-    }
-
-    public static Animation<TextureRegion> loadWrappedAnimation(Texture texture, int cols, int rows, int totalFrames, float frameDuration) {
-        int frameWidth = texture.getWidth() / cols;
-        int frameHeight = texture.getHeight() / rows;
-        TextureRegion[] frames = new TextureRegion[totalFrames];
-        int frameIndex = 0;
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                if (frameIndex >= totalFrames) {
-                    break;
-                }
-                frames[frameIndex++] = new TextureRegion(texture, col * frameWidth, row * frameHeight, frameWidth, frameHeight);
-            }
-        }
-        return new Animation<>(frameDuration, frames);
-    }
-
-    public static Animation<TextureRegion> loadScientistsAnimation(int row, int totalFrames, float frameDuration) {
-        return loadLinearAnimation(SCIENTISTS_TEXTURE, 16, 23, row, totalFrames, frameDuration);
-    }
-
-    public static Animation<TextureRegion> loadLinearAnimation(Texture texture, int rows, int cols, int row, int totalFrames, float frameDuration) {
+    private static Animation<TextureRegion> getLinearAnimation(Texture texture, int rows, int cols, int row, int totalFrames, float frameDuration) {
         int frameWidth = texture.getWidth() / cols;
         int frameHeight = texture.getHeight() / rows;
         TextureRegion[] frames = new TextureRegion[totalFrames];
@@ -86,32 +60,17 @@ public class TextureUtil {
         return new Animation<>(frameDuration, frames);
     }
 
-    public static TextureRegion loadCaveTextureRegion(int x, int y) {
-        return loadTextureRegion(CAVE_TEXTURE, 29, 12, x, y);
+    public static TextureRegion getMapObjectsTextureRegion(int x, int y) {
+        return getMapObjectsTextureRegion(x, y, 1, 1);
     }
 
-    public static TextureRegion loadLabMainTextureRegion(int x, int y) {
-        return loadLabMainTextureRegion(x, y, 1, 1);
-    }
-
-    public static TextureRegion loadLabMainTextureRegion(int x, int y, int width, int height) {
+    public static TextureRegion getMapObjectsTextureRegion(int x, int y, int width, int height) {
         int tileSize = 16;
-        return new TextureRegion(LAB_MAIN_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);
+        return new TextureRegion(MAP_OBJECTS_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);
     }
 
-    public static TextureRegion loadLabDecorationsTextureRegion(int x, int y, int width, int height) {
-        int tileSize = 16;
-        return new TextureRegion(LAB_DECORATIONS_TEXTURE, x * tileSize, y * tileSize, width * tileSize, height * tileSize);
-    }
-
-    public static TextureRegion loadEyeIconTextureRegion(int x) {
+    public static TextureRegion getEyeIconTextureRegion(int x) {
         int tileSize = 15;
         return new TextureRegion(EYE_ICON_TEXTURE, x * tileSize, 0, tileSize, tileSize);
-    }
-
-    public static TextureRegion loadTextureRegion(Texture texture, int cols, int rows, int x, int y) {
-        int frameWidth = texture.getWidth() / cols;
-        int frameHeight = texture.getHeight() / rows;
-        return new TextureRegion(texture, x * frameWidth, y * frameHeight, frameWidth, frameHeight);
     }
 }

@@ -104,7 +104,7 @@ public class IntroCinematic extends Cinematic {
         player.getBody().setTransform(getTileCenter(6, GROUND_TILE_Y), 0);
         player.setHasTimeMachine(false);
 
-        Decoration box = new Decoration(1, 8);
+        Decoration box = new Decoration(1, 2);
         map.addObject(box);
         box.getBody().setTransform(getTileCenter(7, GROUND_TILE_Y), 0);
 

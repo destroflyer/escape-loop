@@ -11,9 +11,9 @@ import lombok.Getter;
 public class PlayerContextAnimations {
 
     public PlayerContextAnimations(Skin skin, int idleRow, int runRow, int flyingRow) {
-        idleAnimation = TextureUtil.loadPlayerAnimation(skin, idleRow, 5, 0.2f);
-        runAnimation = TextureUtil.loadPlayerAnimation(skin, runRow, 5, 0.15f);
-        flyingAnimation = TextureUtil.loadPlayerAnimation(skin, flyingRow, 2, 0.2f);
+        idleAnimation = TextureUtil.getPlayerAnimation(skin, idleRow, 5, 0.2f);
+        runAnimation = TextureUtil.getPlayerAnimation(skin, runRow, 5, 0.15f);
+        flyingAnimation = TextureUtil.getPlayerAnimation(skin, flyingRow, 2, 0.2f);
     }
     private Animation<TextureRegion> idleAnimation;
     private Animation<TextureRegion> runAnimation;

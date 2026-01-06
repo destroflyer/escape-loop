@@ -22,7 +22,7 @@ public class Gate extends MapObject {
         this.height = height;
         this.forcedDirection = forcedDirection;
     }
-    private static final TextureRegion TEXTURE_REGION = TextureUtil.loadLabMainTextureRegion(0, 16);
+    private static final TextureRegion TEXTURE_REGION = TextureUtil.getMapObjectsTextureRegion(4, 1);
     private static final float OPEN_SPEED_PER_SIZE = 2;
     @Getter
     private float width;

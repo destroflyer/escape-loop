@@ -54,7 +54,7 @@ public class MapCustomLoader {
             case 0:
                 for (int x = 0; x < 3; x++) {
                     for (int y = 0; y < 3; y++) {
-                        Decoration turbinePiece = new Decoration(5, (y == 2) ? 5 : 6);
+                        Decoration turbinePiece = new Decoration(5, (y == 2) ? 0 : 1);
                         map.addObject(turbinePiece);
                         turbinePiece.getBody().setTransform(new Vector2((2.5f + x) * Map.TILE_SIZE, (2.5f + y) * Map.TILE_SIZE), 0);
                     }

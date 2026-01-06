@@ -20,8 +20,8 @@ public class ToggleTrigger extends MapObject {
         this.gates = gates;
         textureOffset = new Vector2(0, (((16 - 7) / 2f) / 16) * Map.TILE_SIZE);
     }
-    private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.loadCaveTextureRegion(5, 7);
-    private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.loadCaveTextureRegion(5, 8);
+    private static final TextureRegion TEXTURE_REGION_LEFT = TextureUtil.getMapObjectsTextureRegion(2, 1);
+    private static final TextureRegion TEXTURE_REGION_RIGHT = TextureUtil.getMapObjectsTextureRegion(3, 1);
     private ArrayList<Gate> gates;
     private boolean state;
 

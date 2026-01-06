@@ -22,8 +22,8 @@ public class PressureTrigger extends MapObject {
         this.gates = gates;
         textureOffset = new Vector2(0, (((16 - 4) / 2f) / 16) * Map.TILE_SIZE);
     }
-    private static final TextureRegion TEXTURE_REGION_UP = TextureUtil.loadCaveTextureRegion(8, 7);
-    private static final TextureRegion TEXTURE_REGION_DOWN = TextureUtil.loadCaveTextureRegion(8, 8);
+    private static final TextureRegion TEXTURE_REGION_UP = TextureUtil.getMapObjectsTextureRegion(0, 1);
+    private static final TextureRegion TEXTURE_REGION_DOWN = TextureUtil.getMapObjectsTextureRegion(1, 1);
     @Getter
     private ArrayList<Gate> gates;
     @Getter

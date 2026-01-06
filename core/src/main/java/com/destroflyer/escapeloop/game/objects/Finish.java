@@ -19,8 +19,8 @@ public class Finish extends MapObject {
         textureOffset = new Vector2(0, 0.125f);
         textureSize = new Vector2(0.75f, 0.75f);
     }
-    private static final TextureRegion TEXTURE_REGION_DEFAULT = TextureUtil.loadLabDecorationsTextureRegion(1, 1, 2, 2);
-    private static final TextureRegion TEXTURE_REGION_OUTSIDE = TextureUtil.loadLabDecorationsTextureRegion(18, 7, 2, 2);
+    private static final TextureRegion TEXTURE_REGION_DEFAULT = TextureUtil.getMapObjectsTextureRegion(2, 3, 2, 2);
+    private static final TextureRegion TEXTURE_REGION_OUTSIDE = TextureUtil.getMapObjectsTextureRegion(4, 3, 2, 2);
     private boolean outside;
 
     @Override

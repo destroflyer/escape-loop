@@ -25,11 +25,11 @@ public class EnemyAnimations {
     }
 
     private EnemyAnimations(Skin skin) {
-        idleAnimation = TextureUtil.loadEnemyAnimation(skin, 0, 4, 0.2f);
-        runAnimation = TextureUtil.loadEnemyAnimation(skin, 1, 4, 0.15f);
-        shootAnimation = TextureUtil.loadEnemyAnimation(skin, 2, 2, 0.05f);
-        removalAnimation = TextureUtil.loadEnemyAnimation(skin, 3, 3, 0.05f);
-        bulletFlyingAnimation = TextureUtil.loadEnemyAnimation(skin, 4, 3, 0.2f);
+        idleAnimation = TextureUtil.getEnemyAnimation(skin, 0, 4, 0.2f);
+        runAnimation = TextureUtil.getEnemyAnimation(skin, 1, 4, 0.15f);
+        shootAnimation = TextureUtil.getEnemyAnimation(skin, 2, 2, 0.05f);
+        removalAnimation = TextureUtil.getEnemyAnimation(skin, 3, 3, 0.05f);
+        bulletFlyingAnimation = TextureUtil.getEnemyAnimation(skin, 4, 3, 0.2f);
     }
     private Animation<TextureRegion> idleAnimation;
     private Animation<TextureRegion> runAnimation;

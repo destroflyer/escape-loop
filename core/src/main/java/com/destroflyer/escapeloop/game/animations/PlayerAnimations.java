@@ -27,9 +27,9 @@ public class PlayerAnimations {
     private PlayerAnimations(Skin skin) {
         animationsWithoutTimeMachine = new PlayerContextAnimations(skin, 0, 2, 4);
         animationsWithTimeMachine = new PlayerContextAnimations(skin, 1, 3, 5);
-        actionHorizontalAnimation = TextureUtil.loadPlayerAnimation(skin, 6, 4, 0.1f);
-        actionVerticalAnimation = TextureUtil.loadPlayerAnimation(skin, 7, 4, 0.1f);
-        removalAnimation = TextureUtil.loadPlayerAnimation(skin, 8, 4, 0.1f);
+        actionHorizontalAnimation = TextureUtil.getPlayerAnimation(skin, 6, 4, 0.1f);
+        actionVerticalAnimation = TextureUtil.getPlayerAnimation(skin, 7, 4, 0.1f);
+        removalAnimation = TextureUtil.getPlayerAnimation(skin, 8, 4, 0.1f);
     }
     private PlayerContextAnimations animationsWithoutTimeMachine;
     private PlayerContextAnimations animationsWithTimeMachine;
