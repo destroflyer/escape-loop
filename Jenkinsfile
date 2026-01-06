@@ -22,7 +22,7 @@ pipeline {
                 GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
             }
             steps {
-                sh './gradlew lwjgl3:packageWinX64'
+                sh './gradlew lwjgl3:dist'
             }
         }
     }
