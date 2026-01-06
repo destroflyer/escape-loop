@@ -20,10 +20,9 @@ pipeline {
             }
             environment {
                 GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
-                ANDROID_SDK_HOME = "${WORKSPACE}/.android"
             }
             steps {
-                sh './gradlew lwjgl3:dist'
+                sh './gradlew lwjgl3:packageWinX64'
             }
         }
     }

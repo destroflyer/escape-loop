@@ -24,10 +24,9 @@ pipeline {
             }
             environment {
                 GRADLE_USER_HOME = "${WORKSPACE}/.gradle"
-                ANDROID_SDK_HOME = "${WORKSPACE}/.android"
             }
             steps {
-                sh './gradlew lwjgl3:dist'
+                sh './gradlew lwjgl3:packageWinX64'
             }
         }
         stage('Deploy') {
@@ -38,8 +37,7 @@ pipeline {
                 // Client
                 sh 'rm -rf "$CLIENT"'
                 sh 'mkdir "$CLIENT"'
-                sh 'cp -r /home/destroflyer/java/jdk-22.0.2 "$CLIENT/java"'
-                sh 'mv "lwjgl3/build/libs/Escape Loop-1.0.0.jar" "$CLIENT/escape-loop.jar"'
+                sh 'mv lwjgl3/build/construo/winX64/* "$CLIENT"'
                 sh 'mv assets/* "$CLIENT"'
                 sh 'rm "$CLIENT/assets.txt"'
                 sh 'curl -X POST https://destrostudios.com:8080/apps/16/updateFiles'

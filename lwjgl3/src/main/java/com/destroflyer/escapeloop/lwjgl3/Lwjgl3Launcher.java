@@ -11,7 +11,7 @@ public class Lwjgl3Launcher {
         if (StartupHelper.startNewJvmIfRequired()) {
             return;
         }
-        String authToken = args[0];
+        String authToken = args.length > 0 ? args[0] : null;
         if (authToken == null) {
             throw new RuntimeException("No destrostudios auth token provided");
         }
