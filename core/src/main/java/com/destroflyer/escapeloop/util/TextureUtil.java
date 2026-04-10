@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 public class TextureUtil {
 
+    public static final Texture MENU_BACKGROUND_TEXTURE = new Texture("./textures/menu/background.png");
     public static final Texture MAP_BACKGROUND_TEXTURE = new Texture("./textures/map/background.png");
     private static final Texture MAP_OBJECTS_TEXTURE = new Texture("./textures/map/objects.png");
     private static final Texture SCIENTIST_TEXTURE = new Texture("./textures/scientist/default.png");

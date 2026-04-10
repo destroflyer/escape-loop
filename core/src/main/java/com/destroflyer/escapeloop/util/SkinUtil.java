@@ -8,8 +8,7 @@ public class SkinUtil {
     public static TextButton.TextButtonStyle getToggleButtonStyle(Skin baseSkin) {
         TextButton.TextButtonStyle defaultStyle = baseSkin.get("default", TextButton.TextButtonStyle.class);
         TextButton.TextButtonStyle toggleStyle = new TextButton.TextButtonStyle(defaultStyle);
-        toggleStyle.checked = baseSkin.getDrawable("button-down");
-        toggleStyle.checkedOver = baseSkin.getDrawable("button-down");
+        toggleStyle.checked = baseSkin.getDrawable("button-checked");
         return toggleStyle;
     }
 }

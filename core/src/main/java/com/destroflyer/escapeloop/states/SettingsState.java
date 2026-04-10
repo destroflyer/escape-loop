@@ -61,7 +61,7 @@ public class SettingsState extends UiState {
         Table parentTable = new Table();
 
         Label titleLabel = new Label("Settings", main.getSkinLarge());
-        parentTable.add(titleLabel).colspan(2).padTop(40);
+        parentTable.add(titleLabel).colspan(2).padBottom(15);
 
         parentTable.row();
 
@@ -90,7 +90,7 @@ public class SettingsState extends UiState {
         addKeyButton(rightMenuTable, "Time machine", "keyTimeMachine");
         addKeyButton(rightMenuTable, "Reset", "keyReset");
 
-        parentTable.row().padTop(40);
+        parentTable.row().padTop(30);
 
         TextButton backButton = new TextButton("Ok", main.getSkinLarge());
         backButton.addListener(new ClickListener() {
@@ -104,6 +104,7 @@ public class SettingsState extends UiState {
 
         parentTable.setFillParent(true);
         parentTable.center();
+        parentTable.moveBy(0, 20);
 
         stage.addActor(parentTable);
     }

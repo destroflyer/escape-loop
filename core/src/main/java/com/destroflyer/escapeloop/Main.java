@@ -4,8 +4,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.destroflyer.escapeloop.states.AchievementsState;
 import com.destroflyer.escapeloop.states.CreditsState;
@@ -19,6 +19,7 @@ import com.destroflyer.escapeloop.states.SettingsState;
 import com.destroflyer.escapeloop.states.SkinsState;
 import com.destroflyer.escapeloop.states.models.Account;
 import com.destroflyer.escapeloop.util.AuthTokenUtil;
+import com.destroflyer.escapeloop.util.TextureUtil;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,7 @@ public class Main extends ApplicationAdapter {
     private Account account;
     @Getter
     private StretchViewport viewport;
+    private SpriteBatch spriteBatch;
     private InputMultiplexer inputMultiplexer;
     @Getter
     private Skin skinSmall;
@@ -72,6 +74,7 @@ public class Main extends ApplicationAdapter {
         account = AuthTokenUtil.getAccount(authToken);
 
         viewport = new StretchViewport(VIEWPORT_WIDTH, VIEWPORT_HEIGHT);
+        spriteBatch = new SpriteBatch();
 
         inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(inputMultiplexer);
@@ -136,7 +139,9 @@ public class Main extends ApplicationAdapter {
     public void render() {
         float tpf = Gdx.graphics.getDeltaTime();
         time += tpf;
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1);
+        spriteBatch.begin();
+        spriteBatch.draw(TextureUtil.MENU_BACKGROUND_TEXTURE, 0, 0, Main.VIEWPORT_WIDTH, Main.VIEWPORT_HEIGHT);
+        spriteBatch.end();
         for (State state : states.toArray(new State[0])) {
             state.update(tpf);
             state.render();

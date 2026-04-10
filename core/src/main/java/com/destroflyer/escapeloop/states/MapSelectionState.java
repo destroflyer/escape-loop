@@ -60,17 +60,6 @@ public class MapSelectionState extends UiState {
         stage.addActor(mapsTable);
 
         createSelectedMapTable();
-
-        TextButton backButton = new TextButton("Back", main.getSkinLarge());
-        backButton.setPosition(Main.VIEWPORT_WIDTH - 55 - backButton.getPrefWidth(), 30);
-        backButton.addListener(new ClickListener() {
-
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                backToMainMenu();
-            }
-        });
-        stage.addActor(backButton);
     }
 
     private void createSelectedMapTable() {
@@ -91,7 +80,7 @@ public class MapSelectionState extends UiState {
         selectedMapImageStack.add(selectedMapImageDecoration);
         selectedMapTable.add(selectedMapImageStack).colspan(3).size(playTableWidth, playTableWidth * (9f / 16)).padTop(10).fill();
 
-        selectedMapTable.setPosition(Main.VIEWPORT_WIDTH - 55 - (selectedMapTable.getPrefWidth() / 2f), (Main.VIEWPORT_HEIGHT / 2f) - 20 + (selectedMapTable.getHeight() / 2));
+        selectedMapTable.setPosition(Main.VIEWPORT_WIDTH - 45 - (selectedMapTable.getPrefWidth() / 2f), (Main.VIEWPORT_HEIGHT / 2f) + (selectedMapTable.getHeight() / 2) - 1);
         stage.addActor(selectedMapTable);
 
         Consumer<String> addRecordsTitleRow = (title) -> {
@@ -153,7 +142,10 @@ public class MapSelectionState extends UiState {
         selectedMapTable.add(personalRecordReplayImage).width(replayAvailableTextureRegion.getRegionWidth()).padTop(1).padLeft(5);
         selectedMapPersonalRecordRow = new RecordRow(personalRecordUserLabel, personalRecordTimeLabel, personalRecordReplayImage);
 
-        selectedMapTable.row();
+        selectedMapTable.row().padTop(5);
+        Table buttonsTable = new Table();
+        buttonsTable.row();
+
         playButton = new TextButton("Play", main.getSkinLarge());
         playButton.addListener(new ClickListener() {
 
@@ -165,7 +157,19 @@ public class MapSelectionState extends UiState {
                 }
             }
         });
-        selectedMapTable.add(playButton).colspan(3).padTop(5).width(playTableWidth).fill();
+        buttonsTable.add(playButton).width(300).padRight(5);
+
+        TextButton backButton = new TextButton("Back", main.getSkinLarge());
+        backButton.addListener(new ClickListener() {
+
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                backToMainMenu();
+            }
+        });
+        buttonsTable.add(backButton).width(100).padLeft(5);
+
+        selectedMapTable.add(buttonsTable).colspan(3).fill();
     }
 
     @Override
@@ -201,7 +205,7 @@ public class MapSelectionState extends UiState {
             mapsTable.add(mapButton).fill().width(65).padRight(10).padBottom(10);
             mapButtons.add(mapButton);
         }
-        mapsTable.setPosition(30 + (mapsTable.getPrefWidth() / 2f), 20 + (mapsTable.getPrefHeight() / 2));
+        mapsTable.setPosition(45 + (mapsTable.getPrefWidth() / 2f), 90 + (mapsTable.getPrefHeight() / 2));
 
         mapIndexToSelectAfterLoading = selectedMapIndex;
         selectMap(-1);
@@ -235,7 +239,7 @@ public class MapSelectionState extends UiState {
 
     private void setTitle(String title) {
         titleLabel.setText(title);
-        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), 615);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), 668);
     }
 
     private void updateRecords() {

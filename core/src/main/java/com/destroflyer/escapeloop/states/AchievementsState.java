@@ -80,6 +80,7 @@ public class AchievementsState extends UiState {
 
         table.setFillParent(true);
         table.center();
+        table.moveBy(0, 20);
 
         stage.addActor(table);
     }

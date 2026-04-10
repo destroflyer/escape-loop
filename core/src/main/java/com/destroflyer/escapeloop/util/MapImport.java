@@ -1,6 +1,7 @@
 package com.destroflyer.escapeloop.util;
 
 import com.destroflyer.escapeloop.game.loader.MapFileLoader;
+import com.destroflyer.escapeloop.states.MapsState;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,16 +11,24 @@ import java.nio.file.StandardCopyOption;
 
 public class MapImport {
 
-    private static final String MAP_NAME_PREFIX = "Level_";
-
     public static void main(String[] args) {
         importAllMaps();
     }
 
     public static void importAllMaps() {
-        for (File srcDirectory : new File(getSrcMapsDirectoryPath()).listFiles()) {
-            int mapIndex = Integer.parseInt(srcDirectory.getName().substring(MAP_NAME_PREFIX.length()));
+        importMenu();
+        for (int mapIndex = 0; mapIndex < MapsState.MAPS_COUNT; mapIndex++) {
             importMap(mapIndex);
+        }
+    }
+
+    public static void importMenu() {
+        try {
+            File srcDirectory = new File(getSrcMapsDirectoryPath() + "/Menu");
+            File dstDirectory = new File("./textures/menu");
+            copyFile(srcDirectory, dstDirectory, "_composite.png", "background.png");
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
     }
 
@@ -28,18 +37,18 @@ public class MapImport {
         File dstDirectory = new File(MapFileLoader.DIRECTORY + "/" + mapIndex);
         dstDirectory.mkdir();
         try {
-            copyFile(srcDirectory, dstDirectory, "data.json");
-            copyFile(srcDirectory, dstDirectory, "Terrain.csv");
-            copyFile(srcDirectory, dstDirectory, "Terrain.png");
-            copyFile(srcDirectory, dstDirectory, "Decoration.png");
+            copyFile(srcDirectory, dstDirectory, "data.json", "data.json");
+            copyFile(srcDirectory, dstDirectory, "Terrain.csv", "terrain.csv");
+            copyFile(srcDirectory, dstDirectory, "Terrain.png", "terrain.png");
+            copyFile(srcDirectory, dstDirectory, "Decoration.png", "decoration.png");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
     }
 
     @SuppressWarnings("NewApi")
-    private static void copyFile(File srcDirectory, File dstDirectory, String fileName) throws IOException {
-        Files.copy(Paths.get(srcDirectory.getPath() + "/" + fileName), Paths.get(dstDirectory.getPath() + "/" + fileName.toLowerCase()), StandardCopyOption.REPLACE_EXISTING);
+    private static void copyFile(File srcDirectory, File dstDirectory, String srcFileName, String dstFileName) throws IOException {
+        Files.copy(Paths.get(srcDirectory.getPath() + "/" + srcFileName), Paths.get(dstDirectory.getPath() + "/" + dstFileName), StandardCopyOption.REPLACE_EXISTING);
     }
 
     public static boolean isSrcMapsDirectoryPathSet() {

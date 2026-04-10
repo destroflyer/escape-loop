@@ -49,12 +49,13 @@ public class CreditsState extends UiState {
 
         table.setFillParent(true);
         table.center();
+        table.moveBy(0, 20);
 
         stage.addActor(table);
     }
 
     private void addCredits(Table table, String labelText, String descriptionText) {
-        table.row().padTop(10);
+        table.row().padTop(5);
 
         Label label = new Label(labelText, main.getSkinSmall());
         table.add(label);

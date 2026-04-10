@@ -18,7 +18,7 @@ public class MainMenuState extends UiState {
     public void create() {
         super.create();
         Label titleLabel = new Label("Escape Loop", main.getSkinLarge());
-        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 110);
+        titleLabel.setPosition((Main.VIEWPORT_WIDTH / 2f) - (titleLabel.getPrefWidth() / 2), (Main.VIEWPORT_HEIGHT / 2f) + 130);
         stage.addActor(titleLabel);
 
         Table menuTable = new Table();
@@ -44,7 +44,7 @@ public class MainMenuState extends UiState {
 
         menuTable.setFillParent(true);
         menuTable.center();
-        menuTable.moveBy(0, -130);
+        menuTable.moveBy(0, -110);
 
         stage.addActor(menuTable);
 
@@ -75,7 +75,7 @@ public class MainMenuState extends UiState {
         int width = 300;
         int height = 300;
         float x = (Main.VIEWPORT_WIDTH / 2f) - (width / 2f);
-        float y = ((Main.VIEWPORT_HEIGHT / 2f) + 70) - (height / 2f);
+        float y = ((Main.VIEWPORT_HEIGHT / 2f) + 90) - (height / 2f);
         spriteBatch.setProjectionMatrix(main.getViewport().getCamera().combined);
         spriteBatch.begin();
         Animation<TextureRegion> animation = PlayerAnimations.get(main.getSkinsState().getSelectedPlayerSkin()).getAnimationsWithTimeMachine().getRunAnimation();
